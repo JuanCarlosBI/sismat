@@ -20,6 +20,28 @@ public class AlumnoDaoImpl extends HibernateDaoSupport implements AlumnoDao {
 		setSessionFactory(sessionFactory);
 	}
 	
+	public Alumnos datosAlumno(String idAlumno) {
+		logger.info("en datosAlumno()");
+		
+		return getHibernateTemplate().get(Alumnos.class, idAlumno);
+	}
+	
+	public boolean registroAlumno(Alumnos alumno){
+		boolean resultado;
+		
+		try {
+			getHibernateTemplate().save(alumno);	
+			getHibernateTemplate().flush();
+			resultado = true;
+			
+		} catch (Exception e) {
+			resultado = false;
+			System.out.println(e);
+		}	
+		
+		return resultado;
+	}
+	
 	@SuppressWarnings("unchecked")
 	public List<Alumnos> listaAlumnos(String codigoColegio, String dni, String nombre, String apellidoPaterno,String apellidoMaterno, char estado) {	
 		logger.info("en listaAlumnos");

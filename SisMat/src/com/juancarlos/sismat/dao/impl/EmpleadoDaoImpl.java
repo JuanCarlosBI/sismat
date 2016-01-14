@@ -22,7 +22,7 @@ public class EmpleadoDaoImpl extends HibernateDaoSupport implements EmpleadoDao 
 		setSessionFactory(sessionFactory);
 	}
 	
-	public Empleado datosEmpleado(Integer idEmpleado) {
+	public Empleado datosEmpleado(String idEmpleado) {
 		logger.info("en datosEmpleado()");
 		
 		return getHibernateTemplate().get(Empleado.class, idEmpleado);
@@ -35,7 +35,7 @@ public class EmpleadoDaoImpl extends HibernateDaoSupport implements EmpleadoDao 
 	}
 
 	
-	public boolean eliminaEmpleado(Integer idEmpleado) {
+	public boolean eliminaEmpleado(String idEmpleado) {
 		boolean resultado = false;
 		
 		Colegio colegio = new Colegio(); //encontrar(idEmpleado);
@@ -75,6 +75,43 @@ public class EmpleadoDaoImpl extends HibernateDaoSupport implements EmpleadoDao 
 		}
 		
 		return null;
+	}
+
+	public boolean actualizarRegistroEmpleado(Empleado empleado) {
+		boolean resultado;
+		boolean eliminado;
+		
+		try {	
+			eliminado = eliminaEmpleado(empleado.getIdEmpleado());
+			
+			if(eliminado){
+				getHibernateTemplate().update(empleado);	
+				getHibernateTemplate().flush();
+				resultado = true;
+			}
+			else{
+				resultado = false;
+			}			
+		} catch (Exception e) {
+			resultado = false;
+		}	
+		
+		return resultado;	
+	}
+
+	public boolean registroEmpleado(Empleado empleado){
+		boolean resultado;
+		
+		try {
+			getHibernateTemplate().save(empleado);	
+			getHibernateTemplate().flush();
+			resultado = true;
+			
+		} catch (Exception e) {
+			resultado = false;
+		}	
+		
+		return resultado;
 	}
 
 }

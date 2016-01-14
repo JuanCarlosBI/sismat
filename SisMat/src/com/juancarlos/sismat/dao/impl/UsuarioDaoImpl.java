@@ -50,7 +50,7 @@ public class UsuarioDaoImpl extends HibernateDaoSupport implements  UsuarioDao {
 		logger.info("en datosEmpleado");
 		String sql = "";
 		List<Usuario> usuarios;
-		Integer idEmpleado;
+		String idEmpleado;
 		Empleado empleado = null;
 		
 		
@@ -70,4 +70,18 @@ public class UsuarioDaoImpl extends HibernateDaoSupport implements  UsuarioDao {
 		return empleado;
 	}
 	
+	public boolean registroUsuario(Usuario usuario)  {
+		boolean resultado;
+		
+		try {
+			getHibernateTemplate().save(usuario);	
+			getHibernateTemplate().flush();
+			resultado = true;
+			
+		} catch (Exception e) {
+			resultado = false;
+		}	
+		
+		return resultado;
+	}
 }

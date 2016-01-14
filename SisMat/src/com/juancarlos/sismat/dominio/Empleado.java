@@ -27,7 +27,8 @@ import javax.persistence.TemporalType;
 public class Empleado  implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private Integer idEmpleado;
+//	private Integer idEmpleado;
+	private String idEmpleado;
      private String nombres;
      private String apellidos;
      private String dni;
@@ -40,6 +41,7 @@ public class Empleado  implements java.io.Serializable {
      private String cargo;
      private String especialidad;
      private char estado;
+     private String nombreCompleto;
      private String codigoColegio;
      private Set<Nivel> nivelsForTutor = new HashSet<Nivel>(0);
      private Set<Nivel> nivelsForCoTutor = new HashSet<Nivel>(0);
@@ -83,20 +85,30 @@ public class Empleado  implements java.io.Serializable {
    
      @Id @GeneratedValue(strategy=IDENTITY)    
     @Column(name="IdEmpleado", unique=true, nullable=false)
-    public Integer getIdEmpleado() {
-        return this.idEmpleado;
-    }
+     public String getIdEmpleado() {
+ 		return idEmpleado;
+ 	}
+
+ 	public void setIdEmpleado(String idEmpleado) {
+ 		this.idEmpleado = idEmpleado;
+ 	}
+//    public Integer getIdEmpleado() {
+//        return this.idEmpleado;
+//    }
+//    
+//    public void setIdEmpleado(Integer idEmpleado) {
+//        this.idEmpleado = idEmpleado;
+//    }
     
-    public void setIdEmpleado(Integer idEmpleado) {
-        this.idEmpleado = idEmpleado;
-    }
     
     @Column(name="Nombres", nullable=false, length=70)
     public String getNombres() {
         return this.nombres;
     }
     
-    public void setNombres(String nombres) {
+
+
+	public void setNombres(String nombres) {
         this.nombres = nombres;
     }
 
@@ -246,6 +258,16 @@ public class Empleado  implements java.io.Serializable {
     public void setHorarioses(Set<Horarios> horarioses) {
         this.horarioses = horarioses;
     }
+
+    @Column(name="nombreCompleto", length=100)
+	public String getNombreCompleto() {
+		return nombreCompleto;
+	}
+
+	public void setNombreCompleto(String nombreCompleto) {
+		this.nombreCompleto = nombreCompleto;
+	}
+    
 
 //@OneToOne(fetch=FetchType.LAZY, mappedBy="empleados")
 //    public Set<Usuario> getUsuarioses() {

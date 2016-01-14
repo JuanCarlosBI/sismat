@@ -1,5 +1,6 @@
 package com.juancarlos.sismat.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,5 +24,44 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 		
 		return null;
 	}
+	
+	public boolean registroEmpleado(String dni,String nombres,String apellidoPaterno,String apellidoMaterno, Date fechaNacimiento,char sexo,String direccion,String distrito,String celular,String cargo){
+		Empleado empleado = new Empleado();
+		String apellidos=apellidoPaterno+" "+apellidoMaterno;
+		String nombreCompleto=nombres+" "+apellidos;
+		empleado.setIdEmpleado(dni);
+		empleado.setNombres(nombres);
+		empleado.setApellidos(apellidos);
+		empleado.setFechaNacimiento(fechaNacimiento);
+		empleado.setSexo(sexo);
+		empleado.setDireccion(direccion);
+		empleado.setDistrito(distrito);
+		empleado.setCelular(celular);
+		empleado.setCargo(cargo);
+		empleado.setNombreCompleto(nombreCompleto);
+		
+			
+		return empleadoDao.registroEmpleado(empleado);
+	}
+
+	public boolean actualizarRegistroEmpleado(String dni,String nombres,String apellidoPaterno,String apellidoMaterno, Date fechaNacimiento,char sexo,String direccion,String distrito,String celular,String cargo){
+		
+		Empleado empleado = new Empleado();
+		String apellidos=apellidoPaterno+" "+apellidoMaterno;
+		empleado.setIdEmpleado(dni);
+		empleado.setNombres(nombres);
+		empleado.setApellidos(apellidos);
+		empleado.setFechaNacimiento(fechaNacimiento);
+		empleado.setSexo(sexo);
+		empleado.setDireccion(direccion);
+		empleado.setDistrito(distrito);
+		empleado.setCelular(celular);
+		empleado.setCargo(cargo);
+		
+			
+		
+		return empleadoDao.actualizarRegistroEmpleado(empleado);
+	}
+
 
 }

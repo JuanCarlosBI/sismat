@@ -34,22 +34,62 @@ public class Alumnos  implements java.io.Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private Integer idAlumno;
+//	private Integer idAlumno;
+	private String idAlumno;
      private String nombres;
      private String apellidoPaterno;
      private String apellidoMaterno;
      private String dni;
      private char sexo;
      private Date fechaNacimiento;
-     private String nombrePadre;
-     private String nombreMadre;
-     private String nombreApoderado;
      private String telefono;
      private String celular;
      private String direccion;
      private String distrito;
      private char estado;
      private String codigoColegio;
+     
+     private String edad;
+     private String responsable;
+     private String religion;
+     private String nombrePadre;
+     private String apellidosPadre;
+     private String dniPadre;
+     private Date fechaNacPadre;
+     private String estadoCivilPadre;
+     private String telefonoPadre;
+     private String celularPadre;
+     private String direccionPadre;
+     private String distritoPadre;
+     private String ocupacionPadre;
+     private String religionPadre;
+     private String estaVivoPadre;
+     private String nombreMadre;
+     private String apellidosMadre;
+     private String dniMadre;
+     private Date fechaNacMadre;
+     private String estadoCivilMadre;
+     private String telefonoMadre;
+     private String celularMadre;
+     private String direccionMadre;
+     private String distritoMadre;
+     private String ocupacionMadre;
+     private String religionMadre;
+     private String estaVivoMadre;
+     private String nombreApoderado;
+     private String apellidosApoderado;
+     private String dniApoderado;
+     private Date fechaNacApoderado;
+     private String estadoCivilApoderado;
+     private String telefonoApoderado;
+     private String celularApoderado;
+     private String direccionApoderado;
+     private String distritoApoderado;
+     private String ocupacionApoderado;
+     private String religionApoderado;
+     private String estaVivoApoderado;
+     
+     
      private Set<Matriculas> matriculases = new HashSet<Matriculas>(0);
 
     public Alumnos() {
@@ -92,21 +132,32 @@ public class Alumnos  implements java.io.Serializable {
 
     
     @Column(name="IdAlumno", unique=true, nullable=false)
-    public Integer getIdAlumno() {
-        return this.idAlumno;
-    }
-    
-    public void setIdAlumno(Integer idAlumno) {
-        this.idAlumno = idAlumno;
-    }
+     
+     public String getIdAlumno() {
+ 		return idAlumno;
+ 	}
+
+
+ 	public void setIdAlumno(String idAlumno) {
+ 		this.idAlumno = idAlumno;
+ 	}
+//    public Integer getIdAlumno() {
+//        return this.idAlumno;
+//    }
+//    
+//    public void setIdAlumno(Integer idAlumno) {
+//        this.idAlumno = idAlumno;
+//    }
 
     
     @Column(name="Nombres", nullable=false, length=70)
     public String getNombres() {
         return this.nombres;
     }
-    
-    public void setNombres(String nombres) {
+
+
+
+	public void setNombres(String nombres) {
         this.nombres = nombres;
     }
 
@@ -250,6 +301,368 @@ public class Alumnos  implements java.io.Serializable {
     public void setCodigoColegio(String codigoColegio) {
         this.codigoColegio = codigoColegio;
     }
+    
+    
+
+public String getEdad() {
+		return edad;
+	}
+
+
+	public void setEdad(String edad) {
+		this.edad = edad;
+	}
+
+
+	public String getResponsable() {
+		return responsable;
+	}
+
+
+	public void setResponsable(String responsable) {
+		this.responsable = responsable;
+	}
+
+
+	public String getReligion() {
+		return religion;
+	}
+
+
+	public void setReligion(String religion) {
+		this.religion = religion;
+	}
+
+
+	public String getApellidosPadre() {
+		return apellidosPadre;
+	}
+
+
+	public void setApellidosPadre(String apellidosPadre) {
+		this.apellidosPadre = apellidosPadre;
+	}
+
+
+	public String getDniPadre() {
+		return dniPadre;
+	}
+
+
+	public void setDniPadre(String dniPadre) {
+		this.dniPadre = dniPadre;
+	}
+
+
+	public Date getFechaNacPadre() {
+		return fechaNacPadre;
+	}
+
+
+	public void setFechaNacPadre(Date fechaNacPadre) {
+		this.fechaNacPadre = fechaNacPadre;
+	}
+
+
+	public String getEstadoCivilPadre() {
+		return estadoCivilPadre;
+	}
+
+
+	public void setEstadoCivilPadre(String estadoCivilPadre) {
+		this.estadoCivilPadre = estadoCivilPadre;
+	}
+
+
+	public String getTelefonoPadre() {
+		return telefonoPadre;
+	}
+
+
+	public void setTelefonoPadre(String telefonoPadre) {
+		this.telefonoPadre = telefonoPadre;
+	}
+
+
+	public String getCelularPadre() {
+		return celularPadre;
+	}
+
+
+	public void setCelularPadre(String celularPadre) {
+		this.celularPadre = celularPadre;
+	}
+
+
+	public String getDireccionPadre() {
+		return direccionPadre;
+	}
+
+
+	public void setDireccionPadre(String direccionPadre) {
+		this.direccionPadre = direccionPadre;
+	}
+
+
+	public String getDistritoPadre() {
+		return distritoPadre;
+	}
+
+
+	public void setDistritoPadre(String distritoPadre) {
+		this.distritoPadre = distritoPadre;
+	}
+
+
+	public String getOcupacionPadre() {
+		return ocupacionPadre;
+	}
+
+
+	public void setOcupacionPadre(String ocupacionPadre) {
+		this.ocupacionPadre = ocupacionPadre;
+	}
+
+
+	public String getReligionPadre() {
+		return religionPadre;
+	}
+
+
+	public void setReligionPadre(String religionPadre) {
+		this.religionPadre = religionPadre;
+	}
+
+
+	public String getEstaVivoPadre() {
+		return estaVivoPadre;
+	}
+
+
+	public void setEstaVivoPadre(String estaVivoPadre) {
+		this.estaVivoPadre = estaVivoPadre;
+	}
+
+
+	public String getApellidosMadre() {
+		return apellidosMadre;
+	}
+
+
+	public void setApellidosMadre(String apellidosMadre) {
+		this.apellidosMadre = apellidosMadre;
+	}
+
+
+	public String getDniMadre() {
+		return dniMadre;
+	}
+
+
+	public void setDniMadre(String dniMadre) {
+		this.dniMadre = dniMadre;
+	}
+
+
+	public Date getFechaNacMadre() {
+		return fechaNacMadre;
+	}
+
+
+	public void setFechaNacMadre(Date fechaNacMadre) {
+		this.fechaNacMadre = fechaNacMadre;
+	}
+
+
+	public String getEstadoCivilMadre() {
+		return estadoCivilMadre;
+	}
+
+
+	public void setEstadoCivilMadre(String estadoCivilMadre) {
+		this.estadoCivilMadre = estadoCivilMadre;
+	}
+
+
+	public String getTelefonoMadre() {
+		return telefonoMadre;
+	}
+
+
+	public void setTelefonoMadre(String telefonoMadre) {
+		this.telefonoMadre = telefonoMadre;
+	}
+
+
+	public String getCelularMadre() {
+		return celularMadre;
+	}
+
+
+	public void setCelularMadre(String celularMadre) {
+		this.celularMadre = celularMadre;
+	}
+
+
+	public String getDireccionMadre() {
+		return direccionMadre;
+	}
+
+
+	public void setDireccionMadre(String direccionMadre) {
+		this.direccionMadre = direccionMadre;
+	}
+
+
+	public String getDistritoMadre() {
+		return distritoMadre;
+	}
+
+
+	public void setDistritoMadre(String distritoMadre) {
+		this.distritoMadre = distritoMadre;
+	}
+
+
+	public String getOcupacionMadre() {
+		return ocupacionMadre;
+	}
+
+
+	public void setOcupacionMadre(String ocupacionMadre) {
+		this.ocupacionMadre = ocupacionMadre;
+	}
+
+
+	public String getReligionMadre() {
+		return religionMadre;
+	}
+
+
+	public void setReligionMadre(String religionMadre) {
+		this.religionMadre = religionMadre;
+	}
+
+
+	public String getEstaVivoMadre() {
+		return estaVivoMadre;
+	}
+
+
+	public void setEstaVivoMadre(String estaVivoMadre) {
+		this.estaVivoMadre = estaVivoMadre;
+	}
+
+
+	public String getApellidosApoderado() {
+		return apellidosApoderado;
+	}
+
+
+	public void setApellidosApoderado(String apellidosApoderado) {
+		this.apellidosApoderado = apellidosApoderado;
+	}
+
+
+	public String getDniApoderado() {
+		return dniApoderado;
+	}
+
+
+	public void setDniApoderado(String dniApoderado) {
+		this.dniApoderado = dniApoderado;
+	}
+
+
+	public Date getFechaNacApoderado() {
+		return fechaNacApoderado;
+	}
+
+
+	public void setFechaNacApoderado(Date fechaNacApoderado) {
+		this.fechaNacApoderado = fechaNacApoderado;
+	}
+
+
+	public String getEstadoCivilApoderado() {
+		return estadoCivilApoderado;
+	}
+
+
+	public void setEstadoCivilApoderado(String estadoCivilApoderado) {
+		this.estadoCivilApoderado = estadoCivilApoderado;
+	}
+
+
+	public String getTelefonoApoderado() {
+		return telefonoApoderado;
+	}
+
+
+	public void setTelefonoApoderado(String telefonoApoderado) {
+		this.telefonoApoderado = telefonoApoderado;
+	}
+
+
+	public String getCelularApoderado() {
+		return celularApoderado;
+	}
+
+
+	public void setCelularApoderado(String celularApoderado) {
+		this.celularApoderado = celularApoderado;
+	}
+
+
+	public String getDireccionApoderado() {
+		return direccionApoderado;
+	}
+
+
+	public void setDireccionApoderado(String direccionApoderado) {
+		this.direccionApoderado = direccionApoderado;
+	}
+
+
+	public String getDistritoApoderado() {
+		return distritoApoderado;
+	}
+
+
+	public void setDistritoApoderado(String distritoApoderado) {
+		this.distritoApoderado = distritoApoderado;
+	}
+
+
+	public String getOcupacionApoderado() {
+		return ocupacionApoderado;
+	}
+
+
+	public void setOcupacionApoderado(String ocupacionApoderado) {
+		this.ocupacionApoderado = ocupacionApoderado;
+	}
+
+
+	public String getReligionApoderado() {
+		return religionApoderado;
+	}
+
+
+	public void setReligionApoderado(String religionApoderado) {
+		this.religionApoderado = religionApoderado;
+	}
+
+
+	public String getEstaVivoApoderado() {
+		return estaVivoApoderado;
+	}
+
+
+	public void setEstaVivoApoderado(String estaVivoApoderado) {
+		this.estaVivoApoderado = estaVivoApoderado;
+	}
+
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="alumnos")
     public Set<Matriculas> getMatriculases() {

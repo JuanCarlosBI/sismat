@@ -7,5 +7,6 @@ public interface UsuarioService {
 	
 	public boolean iniciaSession(String nombreUsuario,String clave);
 	public Empleado datosUsuario(String nombreUsuario,String clave);
+	public boolean registroUsuario(String nombreUsuario,String clave,String tipo);
 
 }

@@ -30,6 +30,9 @@ public class Cursos  implements java.io.Serializable {
 	private Short idCurso;
      private String nombre;
      private char estado;
+     private String grado;
+     private String nivelAcademico;
+     private String area;
      private String codigoColegio;
      private Set<Horarios> horarioses = new HashSet<Horarios>(0);
 
@@ -99,6 +102,36 @@ public class Cursos  implements java.io.Serializable {
     public void setHorarioses(Set<Horarios> horarioses) {
         this.horarioses = horarioses;
     }
+
+
+	public String getGrado() {
+		return grado;
+	}
+
+
+	public void setGrado(String grado) {
+		this.grado = grado;
+	}
+
+
+	public String getNivelAcademico() {
+		return nivelAcademico;
+	}
+
+
+	public void setNivelAcademico(String nivelAcademico) {
+		this.nivelAcademico = nivelAcademico;
+	}
+
+
+	public String getArea() {
+		return area;
+	}
+
+
+	public void setArea(String area) {
+		this.area = area;
+	}
 
 
 

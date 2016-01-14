@@ -34,36 +34,40 @@ public class Nivel  implements java.io.Serializable {
      private Empleado empleadosByCoTutor;
      private String grado;
      private String orden;
-     private short nroVacantes;
+     
      private char estado;
-     private String codigoColegio;
+     private String tipo;
+     private String nroVacantes;
+     public String getTipo() {
+		return tipo;
+	}
+
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+
+	 @Column(name="NroVacantes", nullable=false)
+	public String getNroVacantes() {
+		return nroVacantes;
+	}
+
+
+	public void setNroVacantes(String nroVacantes) {
+		this.nroVacantes = nroVacantes;
+	}
+
+
+
+	private String codigoColegio;
      private Set<Horarios> horarioses = new HashSet<Horarios>(0);
      private Set<Matriculas> matriculases = new HashSet<Matriculas>(0);
 
     public Nivel() {
     }
 
-	
-    public Nivel(Empleado empleadosByTutor, Empleado empleadosByCoTutor, String grado, String orden, short nroVacantes, char estado, String codigoColegio) {
-        this.empleadosByTutor = empleadosByTutor;
-        this.empleadosByCoTutor = empleadosByCoTutor;
-        this.grado = grado;
-        this.orden = orden;
-        this.nroVacantes = nroVacantes;
-        this.estado = estado;
-        this.codigoColegio = codigoColegio;
-    }
-    public Nivel(Empleado empleadosByTutor, Empleado empleadosByCoTutor, String grado, String orden, short nroVacantes, char estado, String codigoColegio, Set<Horarios> horarioses, Set<Matriculas> matriculases) {
-       this.empleadosByTutor = empleadosByTutor;
-       this.empleadosByCoTutor = empleadosByCoTutor;
-       this.grado = grado;
-       this.orden = orden;
-       this.nroVacantes = nroVacantes;
-       this.estado = estado;
-       this.codigoColegio = codigoColegio;
-       this.horarioses = horarioses;
-       this.matriculases = matriculases;
-    }
+
    
      @Id @GeneratedValue(strategy=IDENTITY)
 
@@ -118,14 +122,7 @@ public class Nivel  implements java.io.Serializable {
     }
 
     
-    @Column(name="NroVacantes", nullable=false)
-    public short getNroVacantes() {
-        return this.nroVacantes;
-    }
-    
-    public void setNroVacantes(short nroVacantes) {
-        this.nroVacantes = nroVacantes;
-    }
+   
 
     
     @Column(name="Estado", nullable=false, length=1)
