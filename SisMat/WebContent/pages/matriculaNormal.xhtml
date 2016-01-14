@@ -1,0 +1,256 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<f:view contentType="text/html">
+	<h:head>
+		<title>Matricula Normal</title>
+		<link type="text/css" rel="stylesheet"
+			href="#{request.contextPath}/css/default.css" />
+		<link type="text/css" rel="stylesheet"
+			href="#{request.contextPath}/css/icons.css" />
+		<script type="text/javacsript"
+			src="#{request.contextPath}/js/jquery-2.1.3.js"></script>
+		<script type="text/javacsript" src="#{request.contextPath}/js/util.js"></script>
+		<style type="text/css">
+			.fieldInputForm {
+				width: 200px;
+			}
+		</style>
+	</h:head>
+	<h:body>
+		<h:form>
+		
+		<p:panel id="horarios" header="Ficha de Matricula Normal"
+				styleClass="panelBusquedaForm" toggleable="false" closable="false"
+				toggleSpeed="500" closeSpeed="2000" widgetVar="panel" >
+				
+				<table>
+					<tr>
+						<td>
+							<p:panel>				
+								<p:outputLabel value="Informacion del alumno" />
+								<table style="text-align: right;">
+									<tr>										
+										<td><p:outputLabel value="Alumno:"/></td>
+										<td colspan="3"><p:inputText value="" disabled="true"/></td>
+										<td>
+											<p:commandButton id="btnBusca"								
+												value="Buscar" styleClass="buttonForm"/>
+										</td>									
+									</tr>
+									<tr>										
+										<td><p:outputLabel value="Responsable:"/></td>
+										<td colspan="3"><p:inputText value="" disabled="true"/> </td>
+										<td/>									
+									</tr>
+									<tr>
+										<td><p:outputLabel value="Direccion:"/></td>
+										<td colspan="3"><p:inputText value="" disabled="true"/> </td>
+										<td/>										
+									</tr>
+									<tr>
+										<td><p:outputLabel value="Edad:"/></td>
+										<td><p:inputText value="" size="1" disabled="true"/></td>
+										<td><p:outputLabel value="Ocupacion:"/></td>
+										<td><p:inputText value="" size="1" disabled="true"/></td>
+										<td/>
+									</tr>
+									<tr>
+										<td><p:outputLabel value="Sexo:"/></td>
+										<td colspan="3">
+										<p:selectOneRadio id="idSexo" value="Sexo"  layout="grid" columns="3" disabled="true">	            				
+				            				<f:selectItem itemValue="M" itemLabel="Masculino"/>
+				            				<f:selectItem itemValue="F" itemLabel="Femenino"/>				            				
+				        				</p:selectOneRadio>
+										</td>	
+										<td/>									
+									</tr>									
+								</table>
+								
+								<table style="text-align: right;">
+											<tr>
+												<td><p:outputLabel value="Situacion:"/></td>
+												<td style="text-align: left;">
+												<p:selectOneMenu id="idSituacion" value="Situacion"  layout="grid" columns="1">	            				
+						            				<f:selectItem itemValue="N" itemLabel="Nuevo"/>
+						            				<f:selectItem itemValue="R" itemLabel="Ratificacion"/>
+						        				</p:selectOneMenu>
+												</td>												
+												<td style="text-align: left;"><p:outputLabel value="Ant. colegio:"/></td>
+												<td colspan="3"><p:inputText value=""/></td>
+											</tr>
+											<tr>
+												<td><p:outputLabel value="Grado:"/></td>
+												<td style="text-align: left;">
+												<p:selectOneMenu id="idGrado" value="Grado"  layout="grid" columns="1">	            				
+						            				<f:selectItem itemValue="I" itemLabel="Inicial"/>
+						            				<f:selectItem itemValue="P" itemLabel="Primaria"/>
+						            				<f:selectItem itemValue="S" itemLabel="Secundaria"/>
+						        				</p:selectOneMenu>
+												</td>												
+												<td><p:outputLabel value="Nivel:"/></td>
+												<td colspan="3" style="text-align: left;">
+												<p:selectOneMenu id="idNivel" value="Nivel"  layout="grid" columns="1">	            				
+						            				<f:selectItem itemValue="Normal-1°-Primaria" itemLabel="Normal-1°-Primaria"/>
+						            				<f:selectItem itemValue="Normal-1°-Secundaria" itemLabel="Normal-1°-Secundaria"/>
+						            				<f:selectItem itemValue="Verano-1°-Primaria" itemLabel="Verano-1°-Primaria"/>
+						        				</p:selectOneMenu>
+												</td>
+											</tr>
+											<tr>
+												<td><p:outputLabel value="Seccion:"/></td>
+												<td style="text-align: left;">
+												<p:selectOneMenu id="idSeccion" value="Seccion"  layout="grid" columns="1">	            				
+						            				<f:selectItem itemValue="N" itemLabel="Nuevo"/>
+						            				<f:selectItem itemValue="R" itemLabel="Ratificacion"/>
+						        				</p:selectOneMenu>
+												</td>
+												<td><p:outputLabel value="Vacantes:"/></td>
+												<td style="text-align: left;"><p:inputText value="" disabled="true" size="1"/></td>
+												<td><p:outputLabel value="Periodo:"/></td>
+												<td style="text-align: left;"><p:spinner id="basic" min="2015" max="2050" size="1"/></td>
+											</tr>
+										</table>
+										
+										<p:panel>				
+											<p:outputLabel value="Informacion de la seccion" />
+											<table>
+												<tr>
+													<td><p:outputLabel value="Tutor:"/></td>
+													<td><p:inputText value=""  disabled="true"/></td>													
+												</tr>
+												<tr>
+													<td><p:outputLabel value="Co-Tutor:"/></td>
+													<td><p:inputText value=""  disabled="true"/></td>													
+												</tr>
+												<tr>
+													<td><p:outputLabel value="N° Aula:"/></td>
+													<td><p:inputText value="" size="1" disabled="true"/></td>													
+												</tr>
+											</table>
+										</p:panel>
+								
+							</p:panel>
+														
+							
+						</td>
+						
+						<td valign="top">
+							<p:panel>	
+							<table>
+								<tr>
+								<td style="text-align: left;">
+									<p:panel>									
+									<table style="text-align: left;">
+									<tr>
+									<td colspan="2"><h:outputLabel value="Cursos a Cargo" /></td>
+									</tr>
+									<tr>
+									<td style="text-align: right;"><h:outputLabel value="Asignatura:" /></td>
+									<td style="text-align: left;">
+										<p:selectOneMenu id="idAsignatura" value="Asignatura"  layout="grid" columns="1">	            				
+						            		<f:selectItem itemValue="L" itemLabel="Lenguaje"/>
+						            		<f:selectItem itemValue="M" itemLabel="Matematica"/>
+						            		<f:selectItem itemValue="A" itemLabel="Arte"/>
+						        		</p:selectOneMenu>
+						        	</td>
+									</tr>
+									<tr>
+									<td colspan="2">
+										<p:commandButton id="btnAceptars"								
+										value="Agregar" styleClass="buttonForm"/>
+										<p:commandButton id="btnLimpiar"								
+										value="Limpiar" styleClass="buttonForm"/>
+									</td>
+									</tr>
+									<tr>
+									<td colspan="2">
+										<p:dataTable var="car" value="" style="width:200px;">
+											
+											<p:column headerText="Nombre Curso" styleClass="panelTabla">
+										        <h:outputText value="" />
+										    </p:column>
+			 
+										</p:dataTable>
+									</td>									
+									</tr>
+									</table>
+									
+									</p:panel>								
+								</td>
+								</tr>
+								<tr>
+								<td style="text-align: left;">
+									<p:panel>									
+									<table style="text-align: right;">
+									<tr>
+									<td colspan="2" style="text-align: left;"><h:outputLabel value="Exoneraciones de Curso" /></td>
+									<td/>
+									</tr>
+									<tr>
+									<td><h:outputLabel value="Asignatura:" /></td>
+									<td style="text-align: left;">
+										<p:selectOneMenu id="idAsignaturas" value="Asignatura"  layout="grid" columns="1">	            				
+						            		<f:selectItem itemValue="L" itemLabel="Lenguaje"/>
+						            		<f:selectItem itemValue="M" itemLabel="Matematica"/>
+						            		<f:selectItem itemValue="A" itemLabel="Arte"/>
+						        		</p:selectOneMenu>
+						        	</td>
+						        	</tr>
+						        	<tr>
+						        	<td><h:outputLabel value="Motivo:" /></td>
+						        	<td style="text-align: left;"><p:inputText value=""/></td>
+									</tr>
+									<tr>
+									<td colspan="2" style="text-align: left;">
+										<p:commandButton id="btnAceptarss"								
+										value="Agregar" styleClass="buttonForm"/>
+										<p:commandButton id="btnLimpiarr"								
+										value="Limpiar" styleClass="buttonForm"/>
+									</td>
+									</tr>
+									<tr>
+									<td colspan="2">
+										<p:dataTable var="ca" value="" style="width:400px;">
+											
+											<p:column headerText="Nombre Curso"  styleClass="panelTabla">
+										        <h:outputText value="" />
+										    </p:column>
+										    
+			 								<p:column headerText="Motivo" styleClass="panelTabla">
+										        <h:outputText value="" />
+										    </p:column>
+										    
+										</p:dataTable>
+									</td>
+									</tr>
+									</table>
+									</p:panel>
+								</td>
+								</tr>
+							</table>							
+							</p:panel>
+						</td>						
+					</tr>
+					<tr>
+					<td colspan="2">						
+						<p:commandButton id="btnGuardar"								
+										value="Guardar" styleClass="buttonForm"/>
+						<p:commandButton id="btnLimpiarrr"								
+										value="Limpiar" styleClass="buttonForm"/>	
+						<p:commandButton id="btnImprimir"								
+										value="Imprimir" styleClass="buttonForm"/>					
+					</td>
+					</tr>
+				</table>
+				
+						
+		</p:panel>
+			
+		</h:form>
+	</h:body>
+	</f:view>
+</html>

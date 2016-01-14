@@ -1,0 +1,99 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<f:view contentType="text/html">
+	<h:head>
+		<title>Registro colegio</title>
+		<link type="text/css" rel="stylesheet"
+			href="#{request.contextPath}/css/default.css" />
+		<link type="text/css" rel="stylesheet"
+			href="#{request.contextPath}/css/icons.css" />
+		<script type="text/javacsript"
+			src="#{request.contextPath}/js/jquery-2.1.3.js"></script>
+		<script type="text/javacsript" src="#{request.contextPath}/js/util.js"></script>
+			
+		<style type="text/css">
+			.fieldInputForm {
+				width: 200px;
+			}
+		</style>
+	</h:head>
+	<h:body>
+		<h:form>
+
+			<p:panel id="busqueda" header="Informacion del centro educativo"
+				styleClass="panelBusquedaForm" toggleable="false" closable="false"
+				toggleSpeed="500" closeSpeed="2000" widgetVar="panel">
+				
+				<table>
+				<tr>
+					<td><p:outputLabel value="Razon Social:" /></td>
+					<td><p:inputText value="#{registroColegioMB.razonSocial}" required="true" maxlength="50"/></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><p:outputLabel value="Ruc:" /></td>
+					<td>
+						<p:inputMask id="ruc" value="#{registroColegioMB.ruc}" mask="99999999999"  required="true"/>
+					</td>
+					<td><p:outputLabel  value="Telefono:" /></td>
+					<td>
+						<p:inputMask id="phone" value="#{registroColegioMB.telefono}" mask="999-9999"/>
+					</td>
+				</tr>
+				<tr>
+					<td><p:outputLabel value="Correo:" /></td>
+					<td>
+						<p:inputText id="correo" value="#{registroColegioMB.correo}" validatorMessage="Por favor ingrese un correo">
+					
+							<f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+						</p:inputText>
+					</td>
+					<td><p:outputLabel value="Fax:" /></td>
+					<td><p:inputMask id="fax" value="#{registroColegioMB.fax}" mask="999-9999"/></td>
+				</tr>
+				<tr>
+					<td><p:outputLabel value="Direccion:" /></td>
+					<td><p:inputText value="#{registroColegioMB.direccion}"/></td>
+					<td></td>
+					<td></td>
+				</tr>					
+				<tr>
+					<td><p:outputLabel value="Logo:" /></td>
+					<td> 
+					<h:panelGroup>
+						<p:fileUpload mode="single" cancelLabel="Cancelar" uploadLabel="Subir" label="Elegir"
+										sizeLimit="512000" allowTypes="/(\.|\/)(gif|jpe7g|png)$/"></p:fileUpload>
+						<p:graphicImage ></p:graphicImage>
+					</h:panelGroup>
+					</td>
+					<td></td>
+					<td></td>
+				</tr>
+				</table>
+				<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+				<table align="center">
+				<tr bgcolor="EEEEEE">
+					<td colspan="2" align="left">						
+							
+							<p:commandButton id="btnGuardar" value="Guardar"								
+								action="#{registroColegioMB.registrarColegio}"  styleClass="buttonForm"/>
+							<p:commandButton id="btnEditar"								
+								value="Editar" action="#{registroColegioMB.actualizarRegistroColegio}" styleClass="buttonForm"/>
+							<p:commandButton
+								id="btnCancelar" value="Cancelar" styleClass="buttonForm"/>													
+					</td>
+				</tr>
+			</table>
+			
+			</p:panel>
+			
+
+		</h:form>
+	</h:body>
+</f:view>
+</html>

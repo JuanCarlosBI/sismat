@@ -1,0 +1,91 @@
+<html 
+	xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+<title>Sistemas de Boletas y Facturas</title>
+<link type="text/css" rel="stylesheet" href="#{request.contextPath}/css/login.css" />
+</h:head> 
+ <h:body>
+     <h:form id="form">
+     
+     	<table align="center" cellpadding="0" cellspacing="0" style="margin-top:100px; border:0px;width:600px;">
+			<tr>
+			    <td width="600" height="152" class="login_top_new"></td>
+			</tr>
+			<tr>
+			    <td>
+			        <table cellpadding="0" cellspacing="0" style="border:0px;">
+			        <tr>
+			            <td width="137" height="120" class="login_left_new">
+			            </td>
+			            <td width="325">
+			                <table cellpadding="0" cellspacing="0" align="center" style="border:0px;width:90%;">
+			                    <tr bgcolor="#EEEEEE">
+			                        <td height="10" colspan="2"></td>
+			                    </tr>
+			                    <tr bgcolor="#EEEEEE">
+			                        <td class="label" align="right" width="40%">
+			                        	<h:outputLabel for="usuario" value="usuario : " /></td>
+			                        <td>
+			                            <p:inputText id="usuario" value="#{loginMB.usuario}" style="width:120px" styleClass="menu_int" required="true">
+											<f:validateLength minimum="5" />
+							     		    <p:ajax event="blur" update="usuarioMsg"  />
+							     		</p:inputText>
+							     		<p:message id="usuarioMsg" for="usuario" display="icon"/> 
+			                        </td>
+			                    </tr>
+			                    <tr bgcolor="EEEEEE">
+			                        <td class="label" align="right"><h:outputLabel for="password" value="Clave : " /></td>
+			                        <td>
+			                            <p:password id="password" value="#{loginMB.password}" feedback="false" style="width:120px" styleClass="menu_int" 
+			                            required="true">
+										<f:validateLength minimum="5" /> 
+							     			
+							     			<p:ajax event="blur" update="passwordMsg" />
+							     		</p:password>
+							     		<p:message id="passwordMsg" for="password" display="icon"/> 
+			                        </td>
+			                    </tr>
+			                    <tr bgcolor="#EEEEEE">
+			                        <td height="5" colspan="2"></td>
+			                    </tr>
+			                    <tr bgcolor="EEEEEE">
+			                        <td colspan="2" align="center">			                            
+			                            <p:commandButton id="login" value="Ingresar" styleClass="buttonForm" action="#{loginMB.login}" ajax="false"/>
+			                            <p:commandButton id="reset" value="Limpiar" update="form" styleClass="buttonForm"  ajax="false"  immediate="true">
+		                          <p:resetInput target="form" />
+		                          </p:commandButton>
+<!--   <p:commandButton id="login" value="Ingresar" styleClass="buttonForm" action="main.jsf" ajax="false"/> -->
+<!-- 			                            <p:commandButton id="reset" value="Limpiar" styleClass="buttonForm" action=" " ajax="false"/> -->
+			                        </td>
+			                    </tr>
+			                    <tr bgcolor="#EEEEEE">
+			                        <td height="10" colspan="2" align="center">
+			                        	
+			                        </td>
+			                    </tr>
+			                </table>
+			            </td>
+			            <td width="137" height="120" style="background-image:url(#{request.contextPath}/images/login/login_right_new.jpg);background-repeat:no-repeat"></td>
+			        </tr>
+			        
+			        </table>
+			    </td>
+			</tr>
+			<tr>
+		    	<td width="600" height="24" style="background-image:url(#{request.contextPath}/images/login/Log_In_HMPLC_14_new.jpg);background-repeat:no-repeat"></td>
+		    </tr>
+		    <tr>
+	        	<td align="center">
+	        		<div style="width: 80%;"><p:messages id="mensaje" showDetail="true" autoUpdate="true" style="width:300px;"/></div>
+	        	</td>
+	        </tr>
+		</table>
+     
+     
+	     
+     </h:form>      
+</h:body>
+</html>

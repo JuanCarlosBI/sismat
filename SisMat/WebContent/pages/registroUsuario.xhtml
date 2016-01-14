@@ -1,0 +1,80 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+<f:view contentType="text/html">
+	<h:head>
+		<title>Registro de Usuarios</title>
+		<link type="text/css" rel="stylesheet"
+			href="#{request.contextPath}/css/default.css" />
+		<link type="text/css" rel="stylesheet"
+			href="#{request.contextPath}/css/icons.css" />
+		<script type="text/javacsript"
+			src="#{request.contextPath}/js/jquery-2.1.3.js"></script>
+		<script type="text/javacsript" src="#{request.contextPath}/js/util.js"></script>
+		<style type="text/css">
+			.fieldInputForm {
+				width: 200px;
+			}
+		</style>
+	</h:head>
+	<h:body>
+		<h:form>
+		
+		<p:panel id="Usuarios" header="Ingresar Usuario"
+				styleClass="panelBusquedaForm" toggleable="false" closable="false"
+				toggleSpeed="500" closeSpeed="2000" widgetVar="panel">
+				
+				
+							<table>
+								<tr>
+									<td><p:outputLabel value="Tipo Usuario:" /></td>
+									<td>
+										<p:selectOneMenu id="idTipo" value="">							            
+								            <f:selectItem itemLabel="Administrativo" itemValue="" />
+								            <f:selectItem itemLabel="Alumno" itemValue="" />
+								            <f:selectItem itemLabel="Auxiliar" itemValue="" />
+								            <f:selectItem itemLabel="Profesor" itemValue="" />
+        								</p:selectOneMenu>
+									</td>					
+								</tr>								
+								<tr>
+									<td><p:outputLabel value="Apellidos" /></td>
+									<td><p:inputText value="autocompletado"/></td>					
+								</tr>								
+								<tr>
+									<td><p:outputLabel value="Usuario:" /></td>
+									<td><p:inputText  value="" /></td>					
+								</tr>
+								<tr>
+									<td><p:outputLabel value="contraseña:" /></td>
+									<td><p:inputText value=""/></td>					
+								</tr>
+								<tr>
+									<td><p:outputLabel value="repita contraseña:" /></td>
+									<td><p:inputText value=""/></td>					
+								</tr>								
+							</table>	
+							
+							<table>
+								<tr>
+									<td>
+										
+										<p:commandButton id="btnGuardar"								
+										value="Guardar" styleClass="buttonForm"/>
+										<p:commandButton id="btnLimpiar"								
+										value="Limpiar" styleClass="buttonForm"/>
+										<p:commandButton id="btnCancelar"								
+										value="Cancelar" styleClass="buttonForm"/>																				
+									</td>
+								</tr>
+							</table>					
+				
+		</p:panel>		
+		</h:form>
+	</h:body>
+	</f:view>
+</html>

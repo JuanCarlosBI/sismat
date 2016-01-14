@@ -1,0 +1,42 @@
+.spp_edit{
+	background-image: url("../images/iconos/pencil.png") !important;
+}
+.spp_delete{
+	background-image: url("../images/iconos/delete.png") !important;
+}
+.spp_add{
+	background-image: url("../images/iconos/add.png") !important;
+}
+.spp_new{
+	background-image: url("../images/iconos/nuevo.png") !important;
+}
+.spp_preview{
+	background-image: url("../images/iconos/report.png") !important;
+}
+.spp_save{
+	background-image: url("../images/iconos/save.png") !important;
+}
+.spp_cancel{
+	background-image: url("../images/iconos/cancel.png") !important;
+}
+.spp_sendMail{
+	background-image: url("../images/iconos/sendmail.png") !important;
+}
+.spp_find{
+	background-image: url("../images/iconos/find.png") !important;
+}
+.spp_back{
+	background-image: url("../images/iconos/back.png") !important;
+}
+.spp_aprobar{
+	background-image: url("../images/iconos/aprobar.png") !important;
+}
+.spp_return{
+	background-image: url("../images/iconos/return.png") !important;
+}
+.spp_anular{
+	background-image: url("../images/iconos/anular.png") !important;
+}
+.spp_rechazar{
+	background-image: url("../images/iconos/rechazar.png") !important;
+}

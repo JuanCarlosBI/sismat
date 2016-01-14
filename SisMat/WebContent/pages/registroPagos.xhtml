@@ -1,0 +1,166 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<f:view contentType="text/html">
+	<h:head>
+		<title>Registro de cursos</title>
+		<link type="text/css" rel="stylesheet"
+			href="#{request.contextPath}/css/default.css" />
+		<link type="text/css" rel="stylesheet"
+			href="#{request.contextPath}/css/icons.css" />
+		<script type="text/javacsript"
+			src="#{request.contextPath}/js/jquery-2.1.3.js"></script>
+		<script type="text/javacsript" src="#{request.contextPath}/js/util.js"></script>
+		<style type="text/css">
+			.fieldInputForm {
+				width: 200px;
+			}
+		</style>
+	</h:head>
+	<h:body>
+		<h:form>
+		
+		<p:panel id="idCursos" header="Registro de Pagos"
+				styleClass="panelBusquedaForm" toggleable="false" closable="false"
+				toggleSpeed="500" closeSpeed="2000" widgetVar="panel">
+				
+				<table>
+				<tr>
+				<td>
+					<p:panel>
+					<table>
+						<tr>
+						<td colspan="3"> <p:outputLabel value="Alumno" /></td>
+						</tr>
+						<tr>
+							<td><p:outputLabel value="Codigo alumno:" /></td>
+							<td><p:inputText value=""  /> </td>
+							<td><p:commandButton value="Buscar" styleClass="buttonForm"/> </td>
+						</tr>
+					</table>
+					</p:panel>
+					<p:panel>
+					<table>
+						<tr>
+						<td colspan="6"> <p:outputLabel value="Datos" /></td>
+						</tr>
+						<tr>
+							<td style="text-align: right;"><p:outputLabel value="Nombre:" /></td>
+							<td colspan="5"><p:inputText value="" size="35" disabled="true" /> </td>
+						</tr>
+						<tr>
+							<td><p:outputLabel value="Responsable:" /></td>
+							<td colspan="5"><p:inputText value=""  size="35"  disabled="true"/> </td>
+						</tr>
+						<tr>
+							<td style="text-align: right;"><p:outputLabel value="Grado:" /></td>
+							<td ><p:inputText value=""  size="9" disabled="true"/> </td>
+							<td style="text-align: right;"><p:outputLabel value="Nivel:" /></td>
+							<td ><p:inputText value="" size="9" disabled="true"/> </td>
+							<td style="text-align: right;"><p:outputLabel value="Seccion:" /></td>
+							<td><p:inputText value="" size="1" disabled="true" /> </td>
+						</tr>
+					</table>
+					</p:panel>
+					<p:panel>
+					<table>
+						<tr>
+						<td colspan="3"> <p:outputLabel value="Pagos" /></td>
+						</tr>
+						<tr>
+							<td><p:outputLabel value="Pago pendiente:" /></td>
+							<td><p:inputText value=""  /> </td>
+							<td><p:commandButton value="ver pagos realizados" styleClass="buttonForm"/> </td>
+						</tr>
+					</table>
+					</p:panel>
+				</td>
+				<td valign="top">
+					<p:panel >
+					<table>
+						<tr>
+						<td colspan="4"> <p:outputLabel value="Informacion de pago" /></td>
+						</tr>
+						<tr>
+							<td><p:outputLabel value="N° factura:" /></td>
+							<td><p:inputText value=""  size="9" /> </td>
+							<td><p:outputLabel value="N° boleta:" /></td>
+							<td><p:inputText value="" size="9" /> </td>
+						</tr>
+					</table>
+					</p:panel>
+					<p:panel>
+					<table>
+						<tr>
+						<td colspan="6"> <p:outputLabel value="Detalle" /></td>
+						</tr>
+						<tr>
+							<td style="text-align: right;"><p:outputLabel value="Pension:" /></td>
+							<td>
+							<p:selectOneMenu id="idPension" value="pension"  layout="grid" columns="1">	            				
+						            		<f:selectItem itemValue="M" itemLabel="Matricula"/>
+						            		<f:selectItem itemValue="P" itemLabel="Pension"/>						            		
+						        		</p:selectOneMenu>
+							 </td>
+							<td style="text-align: right;"><p:outputLabel value="Saldo:" /></td>
+							<td colspan="3"><p:inputText value="" disabled="true" size="10" /> </td>							
+						</tr>
+						<tr>
+							<td style="text-align: right;"><p:outputLabel value="A cuenta:" /></td>
+							<td><p:spinner id="basic" min="0.0" stepFactor="0.25" size="4" /> </td>
+							<td style="text-align: right;"><p:outputLabel value="Recargo:" /></td>
+							<td><p:spinner id="basic1" min="2015" stepFactor="0.25" size="4" /> </td>
+							<td style="text-align: right;"><p:outputLabel value="Descuento:" /></td>
+							<td><p:spinner id="basic2" min="2015" stepFactor="0.25" size="4" /> </td>							
+						</tr>						
+						<tr>
+							<td colspan="6">
+							<p:commandButton id="btnAceptar"								
+										value="Agregar" styleClass="buttonForm"/>
+						    <p:commandButton id="btnLimpiar"								
+										value="Limpiar" styleClass="buttonForm"/></td>																				
+						</tr>
+						<tr>
+									<td colspan="6">
+										<p:dataTable var="ca" value="" style="width:400px;">
+											
+											<p:column headerText="Pension"  styleClass="panelTabla">
+										        <h:outputText value="" />
+										    </p:column>
+										    
+			 								<p:column headerText="Descuento" styleClass="panelTabla">
+										        <h:outputText value="" />
+										    </p:column>
+										    
+										    <p:column headerText="Recargo"  styleClass="panelTabla">
+										        <h:outputText value="" />
+										    </p:column>
+										    
+										    <p:column headerText="Importe"  styleClass="panelTabla">
+										        <h:outputText value="" />
+										    </p:column>
+										    
+										</p:dataTable>
+									</td>
+						</tr>
+						<tr>
+							<td><p:commandButton id="btnGuardar"								
+										value="Guardar" styleClass="buttonForm"/>
+							</td>
+							<td colspan="4" style="text-align: right;"><p:outputLabel value="Total:" /></td>
+							<td ><p:inputText value=""  size="5"/></td>																				
+						</tr>
+					</table>
+					</p:panel>
+				</td>
+				</tr>
+				</table>				
+		</p:panel>
+				
+		</h:form>
+	</h:body>
+	</f:view>
+</html>

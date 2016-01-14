@@ -1,0 +1,42 @@
+body{
+	margin-top:0px;
+	margin-left:0px;
+	margin-right:0px;
+	margin-bottom:0px;
+}
+
+.buttonForm{
+	font-size:10px;
+}
+
+.login_top_new{
+	background-image:url(../images/login/login_top_new.png);background-repeat:no-repeat;
+}
+
+.login_left_new{
+	background-image:url(../images/login/login_left_new.jpg);background-repeat:no-repeat;
+}
+
+.menu_int {
+                font-family: Verdana, Arial, Helvetica, sans-serif;
+                font-size: 10px;
+                color: #1e4253;
+                font-weight: 500;
+            }
+.menu_input {
+                font-family: Verdana, Arial, Helvetica, sans-serif;
+                font-size: 10px;
+                color: #FFFFFF;
+                background-color: #27475e!important;
+                font-weight: 400;
+            }
+.label{
+                font-family: arial;
+                font-size: 11px;
+            }
+.labelError{
+                font-family: arial;
+                font-weight: bold;
+                font-size: 11px;
+                color: #FE2E2E;
+            }

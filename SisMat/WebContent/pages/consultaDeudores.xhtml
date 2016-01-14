@@ -1,0 +1,59 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<f:view contentType="text/html">
+	<h:head>
+		<title>Consulta deudores</title>
+		<link type="text/css" rel="stylesheet"
+			href="#{request.contextPath}/css/default.css" />
+		<link type="text/css" rel="stylesheet"
+			href="#{request.contextPath}/css/icons.css" />
+		<script type="text/javacsript"
+			src="#{request.contextPath}/js/jquery-2.1.3.js"></script>
+		<script type="text/javacsript" src="#{request.contextPath}/js/util.js"></script>
+		<style type="text/css">
+			.fieldInputForm {
+				width: 200px;
+			}
+		</style>
+	</h:head>
+	<h:body>
+		<h:form>
+		
+		<p:panel id="consultaDeudores" header="Consulta Deudores"
+				styleClass="panelBusquedaForm" toggleable="false" closable="false"
+				toggleSpeed="500" closeSpeed="2000" widgetVar="panel">
+				
+						<p:dataTable var="ca" value="" style="width:700px;">
+											
+											<p:column headerText="Codigo"  styleClass="panelTabla">
+										        <h:outputText value="" />
+										    </p:column>
+										    
+										    <p:column headerText="Nombre"  styleClass="panelTabla">
+										        <h:outputText value="" />
+										    </p:column>
+										    
+			 								<p:column headerText="Nivel" styleClass="panelTabla">
+										        <h:outputText value="" />
+										    </p:column>
+										    
+										    <p:column headerText="Seccion"  styleClass="panelTabla">
+										        <h:outputText value="" />
+										    </p:column>								    
+										    
+										    <p:column headerText="Monto total"  styleClass="panelTabla">
+										        <h:outputText value="" />
+										    </p:column>
+										    
+										</p:dataTable>
+				
+		</p:panel>
+		
+		</h:form>
+	</h:body>
+	</f:view>
+</html>
