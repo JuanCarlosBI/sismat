@@ -92,33 +92,56 @@
 							<a href="javascript:fn_cerrar_session();" class="textLogout">Cerrar
 								Sesión</a>
 						</div>
-					</div>
+					</div>				
 
-					<div id="hahaha"
+				</div>
+
+			</p:layoutUnit>
+			
+			<p:layoutUnit  position="center">
+							<div id="hahaha" 
 						style="width: 100%; height: 100%; position: fixed; left: 0px; top: 62px;">
 
 						<h:form >
 							<p:growl id="messages" />
 
 							<p:menubar>
-								<p:submenu label="Inicio">
-									<p:submenu label="New" style="float:inherit;">
-										<p:menuitem value="Project" url="#" />
-										<p:menuitem value="Other" url="#" />
-									</p:submenu>
-									<p:menuitem value="Open" url="#" />
-									<p:separator />
-									<p:menuitem value="Quit" url="#" />
-								</p:submenu>
+								
 
 								<p:submenu label="Alumnos">
-									<p:menuitem value="Nuevo" url="#"
+									<p:menuitem value="Nuevo"  onclick="carga_pagina('registroAlumno','','')" url="#"
 										icon="ui-icon-arrowreturnthick-1-w" />
-									<p:menuitem value="informacion" url="#"
+									<p:menuitem value="informacion" onclick="carga_pagina('alumnos','','')" url="#"
 										icon="ui-icon-arrowreturnthick-1-e" />
 								</p:submenu>
+								
+								<p:submenu label="Empleados">
+									<p:menuitem value="Profesores"  onclick="carga_pagina('profesores','','')" url="#"
+										icon="ui-icon-arrowreturnthick-1-w" />
+									<p:menuitem value="Registro Profesor" onclick="carga_pagina('registroProfesor','','')" url="#"
+										icon="ui-icon-arrowreturnthick-1-e" />
+									<p:menuitem value="Regisro Usuarios" onclick="carga_pagina('registroUsuario','','')" url="#"
+										icon="ui-icon-arrowreturnthick-1-e" />
+								</p:submenu>
+								
 
 								<p:submenu label="Horarios">
+									<p:menuitem value="Registro Horarios" onclick="carga_pagina('horarios','','')" url="#"
+										icon="ui-icon-arrowreturnthick-1-e" />
+									<p:menuitem value="Secciones" onclick="carga_pagina('secciones','','')" url="#"
+										icon="ui-icon-arrowreturnthick-1-e" />
+									<p:menuitem value="Registro Secciones" onclick="carga_pagina('registroSecciones','','')" url="#"
+										icon="ui-icon-arrowreturnthick-1-e" />
+									<p:menuitem value="Niveles" onclick="carga_pagina('nivelesAcademicos','','')" url="#"
+										icon="ui-icon-arrowreturnthick-1-e" />
+									<p:menuitem value="Registro Niveles" onclick="carga_pagina('registroNiveles','','')" url="#"
+										icon="ui-icon-arrowreturnthick-1-e" />
+									<p:menuitem value="Cursos" onclick="carga_pagina('cursos','','')" url="#"
+										icon="ui-icon-arrowreturnthick-1-e" />
+									<p:menuitem value="Registro Cursos" onclick="carga_pagina('registroCursos','','')" url="#"
+										icon="ui-icon-arrowreturnthick-1-e" />
+									<p:menuitem value="Matricula" onclick="carga_pagina('matricula','','')" url="#"
+										icon="ui-icon-arrowreturnthick-1-e" />
 								</p:submenu>
 
 								<p:submenu label="Notas">
@@ -128,6 +151,16 @@
 								</p:submenu>
 
 								<p:submenu label="Pagos">
+								<p:menuitem value="Registro Pagos" onclick="carga_pagina('registroPagos','','')" 
+										icon="ui-icon-arrowreturnthick-1-e" />
+								<p:menuitem value="Consulta Deudores" onclick="carga_pagina('consultaDeudores','','')" 
+										icon="ui-icon-arrowreturnthick-1-e" />
+								<p:menuitem value="Estado Cuenta" onclick="carga_pagina('consultaEstadoCuenta','','')" 
+										icon="ui-icon-arrowreturnthick-1-e" />
+								<p:menuitem value="Matricula" onclick="carga_pagina('matricula','','')" 
+										icon="ui-icon-arrowreturnthick-1-e" />
+								<p:menuitem value="matricula normal" onclick="carga_pagina('matriculaNormal','','')" 
+										icon="ui-icon-arrowreturnthick-1-e" />
 								</p:submenu>
 
 								<p:submenu label="Reportes">
@@ -135,13 +168,13 @@
 
 								<p:submenu label="Configuraci&#243;n">
 									<p:submenu label="Usuarios">
-										<p:menuitem value="Profesores" />
-										<p:menuitem value="Auxiliar" />
-										<p:menuitem value="Alumnos" />
+										<p:menuitem value="Registro Usuarios" onclick="carga_pagina('registroUsuario','','')" />
+										<p:menuitem value="Usuarios" onclick="carga_pagina('registroUsuario','','')" />										
 									</p:submenu>
 									<p:submenu label="Colegio">
-										<p:menuitem value="Registro" />
+										<p:menuitem value="Registro" onclick="carga_pagina('registroColegio','','')" />
 									</p:submenu>
+									<p:menuitem value="Periodo" onclick="carga_pagina('periodo','','')" />
 								</p:submenu>
 
 								<p:menuitem value="Cerrar Sesi&#243;n"
@@ -150,27 +183,41 @@
 						</h:form>
 
 					</div>
-
-				</div>
-
+					
+					contenido
+					
+					<div id="contenedor" style="height: 100%;width:100%;">
+						
+					</div>
+			
 			</p:layoutUnit>
-
-
-		</p:layout>
-		<p:layoutUnit id="center" position="center" >
-			<p:layout>
-					<p:layoutUnit position="center" resizable="false" styleClass="nestedUnit" >
-						<div id="contenedor" style="height: 100%;width:100%;">
-						</div>
-					</p:layoutUnit>
-					<p:layoutUnit position="south" styleClass="nestedUnit" resizable="false" size = "50">
+			
+			<p:layoutUnit position="south" styleClass="nestedUnit" resizable="false" size = "50">
 						<p:outputPanel id="mensajeViewer">
 							<h:outputText value="Ambiente : " />
                       		<h:outputText value="Desarrollo"/>
 						</p:outputPanel>
 					</p:layoutUnit>
-				</p:layout>
-		</p:layoutUnit>
+					
+		</p:layout>
+		
+
 	</h:body>
 </f:view>
+
+<script type="text/javascript">
+	function carga_pagina(url, title, idOpcion) {
+		var divContenedor = document.getElementById('contenedor');
+		
+		url = url+".jsf";
+		
+		divContenedor.innerHTML = '<iframe style="margin:0px;padding:0px;" src="'
+				+ url
+				+ '" id="ifr" name="ifr" scrolling="yes" width="100%" height="100%" frameborder="0"></iframe>';
+		divContenedor.style.display = 'block';
+	}
+	function fn_cerrar_session(cerrar) {
+		location.href = 'login.jsf';
+	}
+</script>
 </html>

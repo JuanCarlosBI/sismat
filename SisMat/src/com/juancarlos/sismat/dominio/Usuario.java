@@ -35,9 +35,7 @@ public class Usuario  implements java.io.Serializable {
      private String tipo;
      private String codigoColegio;
 
-//    public Usuario() {
-//    }
-     //usaremos por mientras
+
     public Usuario() {    	
         this.nombreUsuario = "Juan Carlos";        
         this.codigoColegio = "10417015243";

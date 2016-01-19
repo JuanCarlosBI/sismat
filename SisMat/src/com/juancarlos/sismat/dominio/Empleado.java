@@ -48,40 +48,8 @@ public class Empleado  implements java.io.Serializable {
      private Set<Horarios> horarioses = new HashSet<Horarios>(0);
 //     private Set<Usuario> usuarioses = new HashSet<Usuario>(0);
 
-    public Empleado() {
-    }
-	
-    public Empleado(String nombres, String apellidos, String dni, char sexo, Date fechaNacimiento, String direccion, String distrito, String cargo, char estado, String codigoColegio) {
-        this.nombres = nombres;
-        this.apellidos = apellidos;
-        this.dni = dni;
-        this.sexo = sexo;
-        this.fechaNacimiento = fechaNacimiento;
-        this.direccion = direccion;
-        this.distrito = distrito;
-        this.cargo = cargo;
-        this.estado = estado;
-        this.codigoColegio = codigoColegio;
-    }
-    public Empleado(String nombres, String apellidos, String dni, char sexo, Date fechaNacimiento, String telefono, String celular, String direccion, String distrito, String cargo, String especialidad, char estado, String codigoColegio, Set<Nivel> nivelsForTutor, Set<Nivel> nivelsForCoTutor, Set<Horarios> horarioses, Set<Usuario> usuarioses) {
-       this.nombres = nombres;
-       this.apellidos = apellidos;
-       this.dni = dni;
-       this.sexo = sexo;
-       this.fechaNacimiento = fechaNacimiento;
-       this.telefono = telefono;
-       this.celular = celular;
-       this.direccion = direccion;
-       this.distrito = distrito;
-       this.cargo = cargo;
-       this.especialidad = especialidad;
-       this.estado = estado;
-       this.codigoColegio = codigoColegio;
-       this.nivelsForTutor = nivelsForTutor;
-       this.nivelsForCoTutor = nivelsForCoTutor;
-       this.horarioses = horarioses;
-//       this.usuarioses = usuarioses;
-    }
+
+
    
      @Id @GeneratedValue(strategy=IDENTITY)    
     @Column(name="IdEmpleado", unique=true, nullable=false)
