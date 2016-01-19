@@ -27,6 +27,7 @@ public class MainMB  implements Serializable{
 	private String apellido;
 	private Empleado empleado;
 	private String nombreUsuario;
+	private String estoesunapruebadesincronizacion;
 	
 	public void datosUsuario(){
 		System.out.println("datosUsuario()");
