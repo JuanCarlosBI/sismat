@@ -24,7 +24,7 @@
 	<h:body>
 		<h:form>
 		
-		<p:panel id="Profesores" header="Registro de Profesores"
+		<p:panel id="profesores" header="Registro de Profesores"
 				styleClass="panelBusquedaForm" toggleable="false" closable="false"
 				toggleSpeed="500" closeSpeed="2000" widgetVar="panel">
 				
@@ -32,32 +32,35 @@
 							<table style="text-align: right;">
 								<tr>
 									<td><p:outputLabel value="DNI:" /></td>
-									<td><p:inputText value=""/></td>					
+									<td><p:inputMask value="#{registroProfesorMB.dni}" mask="99999999"/></td>					
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Nombres:" /></td>
-									<td><p:inputText value=""/></td>					
+									<td><p:inputText value="#{registroProfesorMB.nombres}"/></td>					
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Apellidos Paterno:" /></td>
-									<td><p:inputText value=""/></td>					
+									<td><p:inputText value="#{registroProfesorMB.apellidoPaterno}"/></td>					
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Apellidos Materno:" /></td>
-									<td><p:inputText value=""/></td>					
+									<td><p:inputText value="#{registroProfesorMB.apellidoMaterno}"/></td>					
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Fecha Nacimiento:" /></td>
-									<td><p:inputText  value="" /></td>					
+									<td>
+										<p:calendar id="fechaNacimiento"  value="#{registroProfesorMB.fechaNacimiento}" showOn="button" readOnlyInputText="true" required="true" locale="es" navigator="true" requiredMessge="La fecha de Nacimiento es requerida" pattern="yyyy-MM-dd"/>
+										<p:message id="fechaNacimeintoerror" for="fechaNacimiento"/>
+									</td>
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Direccion:" /></td>
-									<td><p:inputText value=""/></td>					
+									<td><p:inputText value="#{registroProfesorMB.direccion}"/></td>					
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Sexo:" /></td>
 									<td>
-										<p:selectOneRadio id="idSexo" value="Estado"  layout="grid" columns="1">
+										<p:selectOneRadio id="idSexo" value="#{registroProfesorMB.sexo}"  layout="grid" columns="1">
             								<f:selectItem itemValue="Masculino" itemLabel="Masculino"/>
             								<f:selectItem itemValue="Femenino" itemLabel="Femenino"/>
         								</p:selectOneRadio>
@@ -65,29 +68,30 @@
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Celular:" /></td>
-									<td><p:inputText value=""/></td>					
+									<td><p:inputMask value="#{registroProfesorMB.celular}" mask="999999999"/></td>					
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Distrito:" /></td>
-									<td><p:inputText value=""/></td>					
+									<td><p:inputText value="#{registroProfesorMB.distrito}"/></td>					
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Cargo:" /></td>
-									<td><p:inputText value=""/></td>					
+									<td><p:inputText value="#{registroProfesorMB.cargo}"/></td>					
 								</tr>
 							</table>	
-							
+							 <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+	
 							<table>
 								<tr>
 									<td>
 										
-										<p:commandButton id="btnGuardar"								
-										value="Guardar" styleClass="buttonForm"/>
-										<p:commandButton id="btnLimpiar"								
-										value="Limpiar" styleClass="buttonForm"/>
-										<p:commandButton id="btnCancelar"								
-										value="Cancelar" styleClass="buttonForm"/>																				
-									</td>
+												<p:commandButton id="btnGuardar"								
+										value="Guardar" action="#{registroProfesorMB.registrarEmpleado}" styleClass="buttonForm"/>
+							<p:commandButton value="Limpiar" update="profesores" process="@this" actionListener="#{registroProfesorMB.resetFail}" styleClass="buttonForm" />
+ 							 <p:link id="btnCancelar"				outcome="main"				
+										value="Cancelar"  styleClass="buttonForm"/>
+										
+    </td>
 								</tr>
 							</table>					
 				

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.juancarlos.sismat.dao.EmpleadoDao;
 import com.juancarlos.sismat.dao.UsuarioDao;
+import com.juancarlos.sismat.dominio.Cursos;
 import com.juancarlos.sismat.dominio.Empleado;
 import com.juancarlos.sismat.dominio.Usuario;
 
@@ -58,18 +59,20 @@ public class UsuarioDaoImpl extends HibernateDaoSupport implements  UsuarioDao {
 		
 		 usuarios =  getHibernateTemplate().find(sql);
 		 
-		 if(!usuarios.isEmpty()){
-			 if(usuarios.size() == 1){
-				 idEmpleado = usuarios.get(0).getEmpleados().getIdEmpleado();
-//				 empleado = usuarios.get(0).getEmpleados();
-				 System.out.println("idEmpleado "+idEmpleado);
-				 empleado = empleadoDao.datosEmpleado(idEmpleado);
-			 }			 
-		 }
+		 //if(!usuarios.isEmpty()){
+			// if(usuarios.size() == 1){
+				// idEmpleado = usuarios.get(0).getEmpleados().getIdEmpleado();
+//				// empleado = usuarios.get(0).getEmpleados();
+				// System.out.println("idEmpleado "+idEmpleado);
+				// empleado = empleadoDao.datosEmpleado(idEmpleado);
+			 //}			 
+		 //}
 		
 		return empleado;
 	}
+
 	
+	@Override
 	public boolean registroUsuario(Usuario usuario)  {
 		boolean resultado;
 		
@@ -84,4 +87,32 @@ public class UsuarioDaoImpl extends HibernateDaoSupport implements  UsuarioDao {
 		
 		return resultado;
 	}
+
+	
+	@SuppressWarnings("unchecked")
+	public Usuario encontrarUsuario(Short idUsuario){
+		List<Usuario> usuarios;
+		Usuario usuario = new Usuario();
+		String sql="";
+		try {
+			sql = "from Pruebas where IdCurso='"+idUsuario+"'";
+			usuarios = getHibernateTemplate().find(sql);
+			
+			if(!usuarios.isEmpty()){
+				if(usuarios.size() == 1){
+					usuario = usuarios.get(0);
+				}
+			}
+			else{
+				usuario = null;
+			}
+			
+		} catch (Exception e) {
+			usuario = null;
+		}
+		
+		return usuario;
+	}
+
+	
 }

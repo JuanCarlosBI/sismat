@@ -1,7 +1,7 @@
 package com.juancarlos.sismat.dao;
 
-import com.juancarlos.sismat.dominio.Empleado;
 import com.juancarlos.sismat.dominio.Usuario;
+import com.juancarlos.sismat.dominio.Empleado;
 
 
 public interface UsuarioDao {

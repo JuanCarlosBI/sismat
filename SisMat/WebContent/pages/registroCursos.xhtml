@@ -21,9 +21,9 @@
 		</style>
 	</h:head>
 	<h:body>
-		<h:form>
+		<h:form  id="form">
 		
-		<p:panel id="idCursos" header="Registro de Cursos"
+		<p:panel id="panel" header="Registro de Cursos"
 				styleClass="panelBusquedaForm" toggleable="false" closable="false"
 				toggleSpeed="500" closeSpeed="2000" widgetVar="panel">
 				
@@ -34,17 +34,17 @@
 								<tr>
 									<td><p:outputLabel value="Grado:" /></td>
 									<td style="text-align: left;">
-										<p:selectOneMenu id="idGrado" value="Grado"  layout="grid" columns="1">            								
+										<p:selectOneMenu id="idGrado"  value="#{registroCursosMB.grado}"  layout="grid" columns="1">            								
             								<f:selectItem itemValue="Inicial" itemLabel="Inicial"/>
             								<f:selectItem itemValue="Primaria" itemLabel="Primaria"/>
             								<f:selectItem itemValue="Secundaria" itemLabel="Secundaria"/>
         								</p:selectOneMenu>
-									</td>					
+									</td>				
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Nivel Academico:" /></td>
 									<td style="text-align: left;">
-										<p:selectOneMenu id="idNivel" value="Nivel"  layout="grid" columns="2">											
+										<p:selectOneMenu id="idNivel" value="#{registroCursosMB.nivelAcademico}"  layout="grid" columns="2">											
             								<f:selectItem itemValue="Todos" itemLabel="Todos"/>
             								<f:selectItem itemValue="Normal-1°-Primaria" itemLabel="Normal-1°-Primaria"/>
             								<f:selectItem itemValue="Normal-1°-Secundaria" itemLabel="Normal-1°-Secundaria"/>
@@ -55,22 +55,22 @@
 								<tr>
 									<td><p:outputLabel value="Area:" /></td>
 									<td style="text-align: left;">
-										<p:selectOneMenu id="idArea" value="Area"  layout="grid" columns="2">																					
+										<p:selectOneMenu id="idArea" value="#{registroCursosMB.area}"  layout="grid" columns="2">																					
             								<f:selectItem itemValue="Arte" itemLabel="Arte"/>
             								<f:selectItem itemValue="Ciencias Naturales" itemLabel="Ciencias"/>
-            								<f:selectItem itemValue="Matematica" itemLabel="matematica"/>
+            								<f:selectItem itemValue="Matematica" itemLabel="Matemática"/>
             								<f:selectItem itemValue="Letras" itemLabel="Letras"/>            								
         								</p:selectOneMenu>
         							</td>					
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Curso:" /></td>
-									<td><p:inputText value=""/></td>					
+									<td><p:inputText value="#{registroCursosMB.nombre}"/></td>					
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Estado:" /></td>
 									<td style="text-align: left;">
-										<p:selectOneMenu id="idEstado" value="Estado">							            
+										<p:selectOneMenu id="idEstado" value="#{registroCursosMB.estado}">							            
 								            <f:selectItem itemLabel="Activo" itemValue="A" />
 								            <f:selectItem itemLabel="Inactivo" itemValue="I" />								            
         								</p:selectOneMenu>
@@ -79,14 +79,17 @@
 							</table>
 						</td>						
 					</tr>
+					<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+	
 					<tr>
 						<td>
 							<p:commandButton id="btnGuardar"								
-										value="Guardar" styleClass="buttonForm"/>
-							<p:commandButton id="btnLimpiar"								
-										value="Limpiar" styleClass="buttonForm"/>
-							<p:commandButton id="btnCancelar"								
-										value="Cancelar" styleClass="buttonForm"/>
+										value="Guardar" action="#{registroCursosMB.registrarCurso}" styleClass="buttonForm"/>
+							<p:commandButton value="Limpiar" update="panel" process="@this" actionListener="#{registroCursosMB.resetFail}" styleClass="buttonForm" />
+ 							 <p:link id="btnCancelar"				outcome="main"				
+										value="Cancelar"  styleClass="buttonForm"/>
+										
+    
 						</td>
 					</tr>
 				</table>

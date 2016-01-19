@@ -7,16 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.juancarlos.sismat.dao.AlumnoDao;
+
 import com.juancarlos.sismat.dominio.Alumnos;
 import com.juancarlos.sismat.service.AlumnoService;
 
-
 @Service
 public class AlumnoServiceImpl implements AlumnoService {
-
 	@Autowired
 	AlumnoDao alumnoDao;
-	
+
 	public List<Alumnos> listaAlumnos(String codigoColegio, String dni, String nombre, String apellidoPaterno,String apellidoMaterno, char estado) {
 		System.out.println("en listaAlumnos service");
 		
@@ -24,7 +23,6 @@ public class AlumnoServiceImpl implements AlumnoService {
 
 		return alumnos;
 	}
-	
 	public boolean registroAlumno(String nombres, String apellidoPaterno,
 			String apellidoMaterno, String dni, Date fechaNacimiento,
 			String edad, char sexo, String direccion, String distrito,
@@ -46,6 +44,8 @@ public class AlumnoServiceImpl implements AlumnoService {
 		String apellidosPadre = apellidoPaternoPadre + " " + apellidoMaternoPadre;
 		String apellidosMadre = apellidoPaternoMadre + " " + apellidoMaternoMadre;
 		String apellidosApoderado = apellidoPaternoApoderado + " " + apellidoMaternoApoderado;
+		String apellidos=apellidoPaterno+" "+apellidoMaterno;
+		String nombreCompleto=nombres+" "+apellidos;
 		alumno.setIdAlumno(dni);
 		alumno.setNombres(nombres);
 		alumno.setApellidoPaterno(apellidoPaterno);
@@ -94,8 +94,10 @@ public class AlumnoServiceImpl implements AlumnoService {
 		alumno.setOcupacionApoderado(ocupacionApoderado);
 		alumno.setReligionApoderado(religionApoderado);
 		alumno.setEstaVivoApoderado(estaVivoApoderado);
-		
+		alumno.setNombreCompleto(nombreCompleto);
 		return alumnoDao.registroAlumno(alumno);
 	}
+
+
 
 }

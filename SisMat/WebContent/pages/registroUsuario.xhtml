@@ -22,9 +22,9 @@
 		</style>
 	</h:head>
 	<h:body>
-		<h:form>
+		<h:form  id="form">
 		
-		<p:panel id="Usuarios" header="Ingresar Usuario"
+		<p:panel id="usuarios" header="Ingresar Usuario"
 				styleClass="panelBusquedaForm" toggleable="false" closable="false"
 				toggleSpeed="500" closeSpeed="2000" widgetVar="panel">
 				
@@ -33,42 +33,40 @@
 								<tr>
 									<td><p:outputLabel value="Tipo Usuario:" /></td>
 									<td>
-										<p:selectOneMenu id="idTipo" value="">							            
-								            <f:selectItem itemLabel="Administrativo" itemValue="" />
-								            <f:selectItem itemLabel="Alumno" itemValue="" />
-								            <f:selectItem itemLabel="Auxiliar" itemValue="" />
-								            <f:selectItem itemLabel="Profesor" itemValue="" />
+										<p:selectOneMenu id="idTipo" value="#{registroUsuarioMB.tipo}">							            
+								            <f:selectItem itemLabel="Administrativo" itemValue="Administrativo" />
+								            <f:selectItem itemLabel="Alumno" itemValue="Alumno" />
+								            <f:selectItem itemLabel="Auxiliar" itemValue="Auxiliar" />
+								            <f:selectItem itemLabel="Profesor" itemValue="Profesor" />
         								</p:selectOneMenu>
 									</td>					
 								</tr>								
-								<tr>
-									<td><p:outputLabel value="Apellidos" /></td>
-									<td><p:inputText value="autocompletado"/></td>					
-								</tr>								
+																
 								<tr>
 									<td><p:outputLabel value="Usuario:" /></td>
-									<td><p:inputText  value="" /></td>					
+									<td><p:inputText  value="#{registroUsuarioMB.nombreUsuario}" /></td>					
 								</tr>
 								<tr>
-									<td><p:outputLabel value="contraseña:" /></td>
-									<td><p:inputText value=""/></td>					
+									<td> <h:outputLabel for="pwd1" value="Ingrese Contraseña" /></td>
+      								<td>  <p:password id="pwd1" value="#{registroUsuarioMB.clave}" match="pwd2" label="Ingrese Contraseña" required="true" /></td>
+ 
+      								<td><h:outputLabel for="pwd2" value="Repita Contraseña" /></td>
+     								<td><p:password id="pwd2" value="#{registroUsuarioMB.clave}" label="Repita Contraseña" required="true" /></td>
+    													
 								</tr>
-								<tr>
-									<td><p:outputLabel value="repita contraseña:" /></td>
-									<td><p:inputText value=""/></td>					
-								</tr>								
+																
 							</table>	
-							
+							<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+	
 							<table>
 								<tr>
 									<td>
 										
-										<p:commandButton id="btnGuardar"								
-										value="Guardar" styleClass="buttonForm"/>
-										<p:commandButton id="btnLimpiar"								
-										value="Limpiar" styleClass="buttonForm"/>
-										<p:commandButton id="btnCancelar"								
-										value="Cancelar" styleClass="buttonForm"/>																				
+										<p:commandButton id="btnGuardar"					
+										value="Guardar" action="#{registroUsuarioMB.registrarUsuario}" styleClass="buttonForm"/>
+							<p:commandButton value="Limpiar" update="usuarios" process="@this" actionListener="#{registroUsuarioMB.resetFail}" styleClass="buttonForm" />
+ 							 <p:link id="btnCancelar"				outcome="main"				
+										value="Cancelar"  styleClass="buttonForm"/>																				
 									</td>
 								</tr>
 							</table>					
