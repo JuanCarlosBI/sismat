@@ -22,6 +22,8 @@
 
 <%-- <% response.sendRedirect("pages/registroSecciones.jsf"); %> --%>
 
-<% response.sendRedirect("pages/registroPagos.jsf"); %>
+<%-- <% response.sendRedirect("pages/registroPagos.jsf"); %> --%>
 
 <%-- <% response.sendRedirect("pages/registroUsuario.jsf"); %> --%>
+
+<% response.sendRedirect("pages/matriculaNormal.jsf"); %>

@@ -20,7 +20,7 @@
 }
 </style>
 	</h:head>
-	<h:body>
+	<h:body id="todo">
 		<h:form id="form">
 
 			<p:panel id="Profesores" header="Lista de Alumnos"
@@ -129,7 +129,12 @@
 		</h:form>
 		<h:form id="forma">
 		
-			<p:panel>
+			
+ <p:panel id="idPagos" header="Pagos" toggleable="false"
+				closable="false" toggleSpeed="500" closeSpeed="2000"
+				widgetVar="panel" rowKey="#{listara.id}" style="width:705px; margin-top:-10px;" >
+		
+					
 			<table>
 							<tr>
 								<td><p:outputLabel value="Pago pendiente:" /></td>
@@ -141,11 +146,8 @@
 								</td>
 							</tr>
 						</table>
-			</p:panel>
- <p:panel id="idPagos" header="Pagos" toggleable="false"
-				closable="false" toggleSpeed="500" closeSpeed="2000"
-				widgetVar="panel" rowKey="#{listara.id}" style="width:705px; margin-top:-10px;" >
-		
+			
+					
 					<table>
 						
 						
@@ -157,12 +159,12 @@
 					<!-- 			        <h:outputText value="#{lista.id}" /> -->
 					<!-- 			    </p:column> -->
 
-					<p:column headerText="Nombres" styleClass="panelTabla"
+					<p:column headerText="Monto" styleClass="panelTabla"
 						style="text-align:center;">
 						<h:outputText value="#{listara.saldopagado}" />
 					</p:column>
 
-					<p:column headerText="Responsable" styleClass="panelTabla"
+					<p:column headerText="Fecha" styleClass="panelTabla"
 						style="text-align:center;">
 						<h:outputText value="#{listara.fecha}" />
 					</p:column>
@@ -287,6 +289,7 @@
 
 					</tr>
 				</table>
+				
 			</p:panel>
 
 		</h:form>

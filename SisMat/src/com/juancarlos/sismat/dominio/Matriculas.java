@@ -32,27 +32,29 @@ public class Matriculas  implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private String idMatricula;
+	private Integer idMatricula;
      private String periodo;
      private Character seccion;
      private Date fecha;
      private String hora;
      private String codigoColegio;
      private String idAlumno;
+     private Integer idNivel;
 
     public Matriculas() {
     }
 
 	
-    public Matriculas(String idAlumno, String periodo, Date fecha,  Character seccion,String codigoColegio) {
+    public Matriculas(String idAlumno,Integer idNivel, String periodo, Date fecha,  Character seccion,String codigoColegio) {
        
         this.periodo = periodo;
         this.idAlumno=idAlumno;
         this.seccion = seccion;
         this.fecha = fecha;
         this.codigoColegio = codigoColegio;
+        this.idNivel=idNivel;
     }
-    public Matriculas(String idAlumno, String periodo, Character seccion, Date fecha, String hora, String codigoColegio, Set<Pagos> pagoses) {
+    public Matriculas(String idAlumno,Integer idNivel, String periodo, Character seccion, Date fecha, String hora, String codigoColegio, Set<Pagos> pagoses) {
      
        this.periodo = periodo;
        this.idAlumno=idAlumno;
@@ -60,15 +62,16 @@ public class Matriculas  implements java.io.Serializable {
        this.fecha = fecha;
        this.hora = hora;
        this.codigoColegio = codigoColegio;
+       this.idNivel=idNivel;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
     @Column(name="IdMatricula", unique=true, nullable=false)
-    public String getIdMatricula() {
+    public Integer getIdMatricula() {
         return this.idMatricula;
     }
     
-    public void setIdMatricula(String idMatricula) {
+    public void setIdMatricula(Integer idMatricula) {
         this.idMatricula = idMatricula;
     }
 
@@ -132,6 +135,16 @@ public class Matriculas  implements java.io.Serializable {
     public void setCodigoColegio(String codigoColegio) {
         this.codigoColegio = codigoColegio;
     }
+
+    @Column(name="", nullable=false, length=5)
+    public Integer getIdNivel() {
+		return idNivel;
+	}
+
+
+	public void setIdNivel(Integer idNivel) {
+		this.idNivel = idNivel;
+	}
 
 
 

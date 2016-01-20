@@ -47,7 +47,7 @@ public class PagoServiceImpl implements PagoService {
 		return alumnos;
 	}
 
-	public List<Nivel> listaNivel(String idNivel) {
+	public List<Nivel> listaNivel(Integer idNivel) {
 		System.out.println("en listaNivel service");
 		System.out.println("idNivel " + idNivel);
 
@@ -66,8 +66,8 @@ public class PagoServiceImpl implements PagoService {
 	}
 
 	public boolean registroPago(Integer idMatricula, Date fecha,
-			String factura, String boleta, double recargo, double descuento,
-			double deuda, double saldopagado, String codigoColegio,String pension) {
+			String factura, String boleta, Double recargo, Double descuento,
+			Double deuda, Double saldopagado, String codigoColegio,String pension) {
 
 		Pagos pago = new Pagos();
 		pago.setIdMatricula(idMatricula);

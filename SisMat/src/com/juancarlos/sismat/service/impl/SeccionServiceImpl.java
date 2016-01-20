@@ -21,13 +21,14 @@ public class SeccionServiceImpl implements SeccionService {
 		 return seccionDao.nombreEmpleado(nombres);
 	}
 	
-	public boolean registroSeccion(String idEmpleado, String grado,
+	public boolean registroSeccion(String idTutor,String idCoTutor, String grado,
 			String nivelAcademico, String seccion, String nroVacantes,
 			String nroAula, String periodo){
 		
 		Seccion secciones = new Seccion();
 		String codigoColegio="12345678901";
-		secciones.setIdEmpleado(idEmpleado);
+		secciones.setIdTutor(idTutor);
+		secciones.setIdCoTutor(idCoTutor);
 		secciones.setGrado(grado);
 		secciones.setNivelAcademico(nivelAcademico);
 		secciones.setSeccion(seccion);

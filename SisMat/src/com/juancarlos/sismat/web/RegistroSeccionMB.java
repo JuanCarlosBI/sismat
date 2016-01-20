@@ -23,9 +23,11 @@ import java.util.ArrayList;
 public class RegistroSeccionMB implements Serializable {
 
 	
-	private String idEmpleado;
+	private String idTutor;
+	private String idCoTutor;
 
 	private String nombres;
+	private String nombresco;
 	private String grado;
     private String seccion;
     private String nivelAcademico;
@@ -61,9 +63,10 @@ public class RegistroSeccionMB implements Serializable {
 	public void registrarSeccion() {
 
 		System.out.println("Registro Seccion");
-		idEmpleado= nombres.replaceAll("[^0-9.]", "");
+		idTutor= nombres.replaceAll("[^0-9.]", "");
+		idCoTutor=nombresco.replaceAll("[^0-9.]", "");
 		
-		boolean resultado = seccionService.registroSeccion(idEmpleado,
+		boolean resultado = seccionService.registroSeccion(idTutor,idCoTutor,
 				grado, nivelAcademico, seccion, nroVacantes,nroAula,periodo );
 
 		if (resultado) {
@@ -89,11 +92,9 @@ public class RegistroSeccionMB implements Serializable {
 	        this.nroVacantes = null;
 	        this.nroAula = null;
 	        this.periodo = null;
-	        this.idEmpleado=null;
+	        this.nombresco = null;
 	        
 	        
-	        
-	         
 	        FacesMessage msg = new FacesMessage("Datos limpios");
 	        FacesContext.getCurrentInstance().addMessage(null, msg);
 	    }
@@ -109,13 +110,24 @@ public class RegistroSeccionMB implements Serializable {
 	}
 
 
-	public String getIdEmpleado() {
-		return idEmpleado;
+
+	public String getIdTutor() {
+		return idTutor;
 	}
 
 
-	public void setIdEmpleado(String idEmpleado) {
-		this.idEmpleado = idEmpleado;
+	public void setIdTutor(String idTutor) {
+		this.idTutor = idTutor;
+	}
+
+
+	public String getIdCoTutor() {
+		return idCoTutor;
+	}
+
+
+	public void setIdCoTutor(String idCoTutor) {
+		this.idCoTutor = idCoTutor;
 	}
 
 
@@ -186,6 +198,16 @@ public class RegistroSeccionMB implements Serializable {
 
 	public void setNombres(String nombres) {
 		this.nombres = nombres;
+	}
+
+
+	public String getNombresco() {
+		return nombresco;
+	}
+
+
+	public void setNombresco(String nombresco) {
+		this.nombresco = nombresco;
 	}
 
 
