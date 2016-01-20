@@ -95,52 +95,50 @@
 					</div>				
 
 				</div>
-
-			</p:layoutUnit>
-			
-			<p:layoutUnit  position="center">
-							<div id="hahaha" 
+				
+				
+				<div id="hahaha" 
 						style="width: 100%; height: 100%; position: fixed; left: 0px; top: 62px;">
 
-						<h:form >
+						<h:form id="formMenu">
 							<p:growl id="messages" />
 
 							<p:menubar>
 								
 
 								<p:submenu label="Alumnos">
-									<p:menuitem value="Nuevo"  onclick="carga_pagina('registroAlumno','','')" url="#"
+									<p:menuitem value="Nuevo"  onclick="carga_pagina('registroAlumno','','')"
 										icon="ui-icon-arrowreturnthick-1-w" />
-									<p:menuitem value="informacion" onclick="carga_pagina('alumnos','','')" url="#"
+									<p:menuitem value="informacion" onclick="carga_pagina('alumnos','','')" 
 										icon="ui-icon-arrowreturnthick-1-e" />
 								</p:submenu>
 								
 								<p:submenu label="Empleados">
-									<p:menuitem value="Profesores"  onclick="carga_pagina('profesores','','')" url="#"
+									<p:menuitem value="Profesores"  onclick="carga_pagina('profesores','','')" 
 										icon="ui-icon-arrowreturnthick-1-w" />
-									<p:menuitem value="Registro Profesor" onclick="carga_pagina('registroProfesor','','')" url="#"
+									<p:menuitem value="Registro Profesor" onclick="carga_pagina('registroProfesor','','')" 
 										icon="ui-icon-arrowreturnthick-1-e" />
-									<p:menuitem value="Regisro Usuarios" onclick="carga_pagina('registroUsuario','','')" url="#"
+									<p:menuitem value="Regisro Usuarios" onclick="carga_pagina('registroUsuario','','')" 
 										icon="ui-icon-arrowreturnthick-1-e" />
 								</p:submenu>
 								
 
 								<p:submenu label="Horarios">
-									<p:menuitem value="Registro Horarios" onclick="carga_pagina('horarios','','')" url="#"
+									<p:menuitem value="Registro Horarios" onclick="carga_pagina('horarios','','')" 
 										icon="ui-icon-arrowreturnthick-1-e" />
-									<p:menuitem value="Secciones" onclick="carga_pagina('secciones','','')" url="#"
+									<p:menuitem value="Secciones" onclick="carga_pagina('secciones','','')" 
 										icon="ui-icon-arrowreturnthick-1-e" />
-									<p:menuitem value="Registro Secciones" onclick="carga_pagina('registroSecciones','','')" url="#"
+									<p:menuitem value="Registro Secciones" onclick="carga_pagina('registroSecciones','','')" 
 										icon="ui-icon-arrowreturnthick-1-e" />
-									<p:menuitem value="Niveles" onclick="carga_pagina('nivelesAcademicos','','')" url="#"
+									<p:menuitem value="Niveles" onclick="carga_pagina('nivelesAcademicos','','')" 
 										icon="ui-icon-arrowreturnthick-1-e" />
-									<p:menuitem value="Registro Niveles" onclick="carga_pagina('registroNiveles','','')" url="#"
+									<p:menuitem value="Registro Niveles" onclick="carga_pagina('registroNiveles','','')" 
 										icon="ui-icon-arrowreturnthick-1-e" />
-									<p:menuitem value="Cursos" onclick="carga_pagina('cursos','','')" url="#"
+									<p:menuitem value="Cursos" onclick="carga_pagina('cursos','','')" 
 										icon="ui-icon-arrowreturnthick-1-e" />
-									<p:menuitem value="Registro Cursos" onclick="carga_pagina('registroCursos','','')" url="#"
+									<p:menuitem value="Registro Cursos" onclick="carga_pagina('registroCursos','','')" 
 										icon="ui-icon-arrowreturnthick-1-e" />
-									<p:menuitem value="Matricula" onclick="carga_pagina('matricula','','')" url="#"
+									<p:menuitem value="Matricula" onclick="carga_pagina('matricula','','')" 
 										icon="ui-icon-arrowreturnthick-1-e" />
 								</p:submenu>
 
@@ -182,9 +180,13 @@
 							</p:menubar>
 						</h:form>
 
-					</div>
+					</div>	
 					
-					contenido
+
+			</p:layoutUnit>
+			
+			<p:layoutUnit  position="center">
+			
 					
 					<div id="contenedor" style="height: 100%;width:100%;">
 						
@@ -215,6 +217,7 @@
 				+ url
 				+ '" id="ifr" name="ifr" scrolling="yes" width="100%" height="100%" frameborder="0"></iframe>';
 		divContenedor.style.display = 'block';
+// 		divContenedor.style.display = 'inherit';
 	}
 	function fn_cerrar_session(cerrar) {
 		location.href = 'login.jsf';

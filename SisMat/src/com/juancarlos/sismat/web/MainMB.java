@@ -27,7 +27,7 @@ public class MainMB  implements Serializable{
 	private String apellido;
 	private Empleado empleado;
 	private String nombreUsuario;
-	private String estoesunapruebadesincronizacion;
+	private String codigoColegio;
 	
 	public void datosUsuario(){
 		System.out.println("datosUsuario()");
@@ -38,9 +38,25 @@ public class MainMB  implements Serializable{
 		empleado = usuarioService.datosUsuario(usuario,clave);
 		nombre = empleado.getNombres();
 		apellido = empleado.getApellidos();
-		
-		nombreUsuario = nombre +" "+ apellido;
+		codigoColegio = empleado.getCodigoColegio();
+		nombreUsuario = nombre +" "+ apellido;	
 	
+	}
+
+	public Empleado getEmpleado() {
+		return empleado;
+	}
+
+	public void setEmpleado(Empleado empleado) {
+		this.empleado = empleado;
+	}
+
+	public String getCodigoColegio() {
+		return codigoColegio;
+	}
+
+	public void setCodigoColegio(String codigoColegio) {
+		this.codigoColegio = codigoColegio;
 	}
 
 	public LoginMB getLoginMB() {

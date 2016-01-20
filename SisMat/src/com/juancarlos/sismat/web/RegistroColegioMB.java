@@ -27,10 +27,13 @@ public class RegistroColegioMB implements Serializable {
 	private String fax;
 	@Autowired
 	ColegioService colegioService;
+	@Autowired
+	MainMB loginMB;
 	
 	
 	public void registrarColegio(){
 		System.out.println("registroColegio");
+				
 		
 		boolean resultado = colegioService.registroColegio(razonSocial,ruc,correo,direccion,telefono,fax);
 		
