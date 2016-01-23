@@ -73,24 +73,40 @@ public class RegistroPagoMB implements Serializable  {
 		codigoColegio = "1041701524";//de manera temporal, luego se eliminara ese dato vendra de sesion
 		System.out.println("codigoColegio "+codigoColegio);
 		System.out.println("idAlumno "+idAlumno);
-		
-		
 		alumnos = pagoService.listaAlumnos(codigoColegio, idAlumno);
-		matriculas =pagoService.listaMatricula(codigoColegio, idAlumno);
-		idMatricula=1;
-		String idNivel="1"; // Aqui deberia de captarse el idNivel de la lista"matriculas"
-		nivel=pagoService.listaNivel(idNivel);
-		
-		
 		
 		if(alumnos == null){
 			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"Hubo un problema en la búsqueda",""));
+			this.matriculas=null;
+			this.nivel=null;
+			this.pagos=null;
+			this.deuda=null;
+			this.saldopagado=null;
+			this.recargo=null;
+			this.saldo=null;
+			this.idMatricula=null;
+			this.descuento=null;
 		}
-		else{
-			if(alumnos.isEmpty()){
-				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"No se ecnontro alumnos",""));
-			}	
-		}
+		else if(alumnos.isEmpty()){
+				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"No se encontro alumnos",""));
+				this.matriculas=null;
+				this.nivel=null;
+				this.pagos=null;
+				this.deuda=null;
+				this.saldopagado=null;
+				this.recargo=null;
+				this.saldo=null;
+				this.idMatricula=null;
+				this.descuento=null;
+		}else{
+			matriculas =pagoService.listaMatricula(codigoColegio, idAlumno);
+
+			Matriculas matricula=matriculas.get(0); 
+			Integer idNivel=matricula.getIdNivel();
+			idMatricula=matricula.getIdMatricula();
+			nivel=pagoService.listaNivel(idNivel);}
+		
+		
 		return;
 	}
 	public void verPagos(){
@@ -136,7 +152,7 @@ public class RegistroPagoMB implements Serializable  {
 			FacesContext.getCurrentInstance().addMessage(
 					null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR,
-							"Hubo un error en guardar la información", ""));
+							"Por favor revise que los datos del alumno esten correctos", ""));
 		}
 		
 

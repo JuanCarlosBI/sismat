@@ -28,7 +28,8 @@ public class Seccion  implements java.io.Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private Short idSeccion;
-     private String idEmpleado;
+     private String idTutor;
+     private String idCoTutor;
      private String grado;
      private String nivelAcademico;
      private String seccion;
@@ -47,12 +48,13 @@ public class Seccion  implements java.io.Serializable {
 	}
 
    
-     public Seccion(Short idSeccion, String idEmpleado, String grado,
+     public Seccion(Short idSeccion, String idTutor,String idCoTutor, String grado,
 			String nivelAcademico, String seccion, String nroVacantes,
 			String nroAula, String periodo,String codigoColegio) {
 		super();
 		this.idSeccion = idSeccion;
-		this.idEmpleado = idEmpleado;
+		this.idTutor = idTutor;
+		this.idCoTutor = idCoTutor;
 		this.grado = grado;
 		this.nivelAcademico = nivelAcademico;
 		this.seccion = seccion;
@@ -76,17 +78,30 @@ public class Seccion  implements java.io.Serializable {
     }
 
    
-    @Column(name="idEmpleado", nullable=false, length=8)
-	public String getIdEmpleado() {
-		return idEmpleado;
+    @Column(name="idTutor", nullable=false, length=8)
+	public String getIdTutor() {
+		return idTutor;
 	}
 
 
-	public void setIdEmpleado(String idEmpleado) {
-		this.idEmpleado = idEmpleado;
+	public void setIdTutor(String idTutor) {
+		this.idTutor = idTutor;
 	}
 
-    @Column(name="grado", nullable=false, length=20)
+	
+	
+	@Column(name="idCoTutor", nullable=false, length=8)
+	public String getIdCoTutor() {
+		return idCoTutor;
+	}
+
+
+	public void setIdCoTutor(String idCoTutor) {
+		this.idCoTutor = idCoTutor;
+	}
+
+
+	@Column(name="grado", nullable=false, length=20)
 	public String getGrado() {
 		return grado;
 	}

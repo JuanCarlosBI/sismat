@@ -21,9 +21,9 @@
 		</style>
 	</h:head>
 	<h:body>
-		<h:form>
+		<h:form id="form">
 		
-		<p:panel id="horarios" header="Ficha de Matricula Normal"
+		<p:panel id="infoalumno" header="Ficha de Matricula Normal"
 				styleClass="panelBusquedaForm" toggleable="false" closable="false"
 				toggleSpeed="500" closeSpeed="2000" widgetVar="panel" >
 				
@@ -35,41 +35,67 @@
 								<table style="text-align: right;">
 									<tr>										
 										<td><p:outputLabel value="Alumno:"/></td>
-										<td colspan="3"><p:inputText value="" disabled="true"/></td>
-										<td>
-											<p:commandButton id="btnBusca"								
-												value="Buscar" styleClass="buttonForm"/>
-										</td>									
+										<td colspan="3"><p:autoComplete value="#{matriculaNormalMB.nombres}"
+										completeMethod="#{matriculaNormalMB.autoCompletadoAlumno}"
+										style="width:250px;text-align:left; " />
+							</td>
+										<td><p:commandButton id="btnBuscar" value="Buscar"
+										action="#{matriculaNormalMB.listaAlumnos}"
+										update=":form:infoalumno" styleClass="buttonForm" />
+
+								</td>									
 									</tr>
 									<tr>										
 										<td><p:outputLabel value="Responsable:"/></td>
-										<td colspan="3"><p:inputText value="" disabled="true"/> </td>
+										<td colspan="3"><p:inputText value="#{matriculaNormalMB.responsable}" disabled="true"/> </td>
 										<td/>									
 									</tr>
 									<tr>
 										<td><p:outputLabel value="Direccion:"/></td>
-										<td colspan="3"><p:inputText value="" disabled="true"/> </td>
+										<td colspan="3"><p:inputText value="#{matriculaNormalMB.direccion}" disabled="true"/> </td>
 										<td/>										
 									</tr>
 									<tr>
 										<td><p:outputLabel value="Edad:"/></td>
-										<td><p:inputText value="" size="1" disabled="true"/></td>
-										<td><p:outputLabel value="Ocupacion:"/></td>
-										<td><p:inputText value="" size="1" disabled="true"/></td>
+										<td><p:inputText value="#{matriculaNormalMB.edad}" size="1" disabled="true"/></td>
 										<td/>
 									</tr>
 									<tr>
 										<td><p:outputLabel value="Sexo:"/></td>
 										<td colspan="3">
-										<p:selectOneRadio id="idSexo" value="Sexo"  layout="grid" columns="3" disabled="true">	            				
+										<p:selectOneRadio id="idSexo" value="#{matriculaNormalMB.sexo}"  layout="grid" columns="3" disabled="true">	            				
 				            				<f:selectItem itemValue="M" itemLabel="Masculino"/>
 				            				<f:selectItem itemValue="F" itemLabel="Femenino"/>				            				
 				        				</p:selectOneRadio>
 										</td>	
 										<td/>									
-									</tr>									
+									</tr>	
+																	
 								</table>
 								
+								
+							</p:panel>
+										
+						</td>
+						
+												
+					</tr>
+					<tr>
+						<p:messages id="messages" showDetail="true" autoUpdate="true"
+							closable="true" />
+
+					</tr>
+				</table>
+				
+						
+		</p:panel>
+			
+		</h:form>
+		<h:form>
+		<p:panel  id="regalumno" 
+				styleClass="panelBusquedaForm" toggleable="false" closable="false"
+				toggleSpeed="500" closeSpeed="2000" widgetVar="panel" >
+							
 								<table style="text-align: right;">
 											<tr>
 												<td><p:outputLabel value="Situacion:"/></td>
@@ -115,7 +141,7 @@
 											</tr>
 										</table>
 										
-										<p:panel>				
+								<p:panel>				
 											<p:outputLabel value="Informacion de la seccion" />
 											<table>
 												<tr>
@@ -132,12 +158,7 @@
 												</tr>
 											</table>
 										</p:panel>
-								
-							</p:panel>
-														
-							
-						</td>
-						
+					
 						<td valign="top">
 							<p:panel>	
 							<table>
@@ -234,8 +255,7 @@
 							</table>							
 							</p:panel>
 						</td>						
-					</tr>
-					<tr>
+			<tr>
 					<td colspan="2">						
 						<p:commandButton id="btnGuardar"								
 										value="Guardar" styleClass="buttonForm"/>
@@ -245,11 +265,7 @@
 										value="Imprimir" styleClass="buttonForm"/>					
 					</td>
 					</tr>
-				</table>
-				
-						
-		</p:panel>
-			
+							</p:panel>	
 		</h:form>
 	</h:body>
 	</f:view>

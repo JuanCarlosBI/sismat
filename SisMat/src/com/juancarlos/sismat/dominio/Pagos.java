@@ -37,10 +37,10 @@ public class Pagos  implements java.io.Serializable {
     private Date fecha;
      private String factura;
      private String boleta;
-     private double recargo;
-     private double descuento;
-    private double deuda;
-     private double saldopagado;
+     private Double recargo;
+     private Double descuento;
+    private Double deuda;
+     private Double saldopagado;
      private String codigoColegio;
      private String pension;
 
@@ -50,8 +50,8 @@ public class Pagos  implements java.io.Serializable {
 	
    
      public Pagos(Integer idMatricula, Date fecha, String factura,
-			String boleta, double recargo, double descuento, double deuda,
-			double saldopagado,String pension) {
+			String boleta, Double recargo, Double descuento, Double deuda,
+			Double saldopagado,String pension) {
 		this.idMatricula = idMatricula;
 		this.fecha = fecha;
 		this.factura = factura;
@@ -66,8 +66,8 @@ public class Pagos  implements java.io.Serializable {
 
 
 	public Pagos(Integer idPago, Integer idMatricula, Date fecha,
-			String factura, String boleta, double recargo, double descuento,
-			double deuda, double saldopagado, String codigoColegio,String pension) {
+			String factura, String boleta, Double recargo, Double descuento,
+			Double deuda, Double saldopagado, String codigoColegio,String pension) {
 		
 		this.idPago = idPago;
 		this.idMatricula = idMatricula;
@@ -146,52 +146,52 @@ public class Pagos  implements java.io.Serializable {
 
 
     @Column(name="Recargo", nullable=false, length=10)
-	public double getRecargo() {
+	public Double getRecargo() {
 		return recargo;
 	}
 
 
 
-	public void setRecargo(double recargo) {
+	public void setRecargo(Double recargo) {
 		this.recargo = recargo;
 	}
 
 
 
     @Column(name="Descuento", nullable=false, length=10)
-	public double getDescuento() {
+	public Double getDescuento() {
 		return descuento;
 	}
 
 
 
-	public void setDescuento(double descuento) {
+	public void setDescuento(Double descuento) {
 		this.descuento = descuento;
 	}
 
 
 
     @Column(name="Deuda", nullable=false, length=10)
-	public double getDeuda() {
+	public Double getDeuda() {
 		return deuda;
 	}
 
 
 
-	public void setDeuda(double deuda) {
+	public void setDeuda(Double deuda) {
 		this.deuda = deuda;
 	}
 
 
 
     @Column(name="Saldopagado", nullable=false, length=10)
-	public double getSaldopagado() {
+	public Double getSaldopagado() {
 		return saldopagado;
 	}
 
 
 
-	public void setSaldopagado(double saldopagado) {
+	public void setSaldopagado(Double saldopagado) {
 		this.saldopagado = saldopagado;
 	}
 

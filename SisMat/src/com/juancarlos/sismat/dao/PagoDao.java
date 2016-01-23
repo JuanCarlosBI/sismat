@@ -13,7 +13,7 @@ public interface PagoDao {
 
 	public List<Alumnos> listaAlumnos(String codigoColegio, String idAlumno);
 
-	public List<Nivel> listaNivel(String idNivel) ;
+	public List<Nivel> listaNivel(Integer idNivel) ;
 	public List<Pagos> listaPago(Integer idMatricula);
 	public boolean registroPago(Pagos pago);
 }

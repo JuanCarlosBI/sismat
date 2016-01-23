@@ -116,14 +116,14 @@ public class PagoDaoImpl extends HibernateDaoSupport implements PagoDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Nivel> listaNivel(String idNivel) {
+	public List<Nivel> listaNivel(Integer idNivel) {
 		logger.info("en listaMatricula");
 		System.out.println("en listaMatricula dao");
 		String sql = "";
 		List<Nivel> nivel = new ArrayList<Nivel>();
 
 		try {
-			sql = "from Nivel where idNivel='" + idNivel.trim() + "'";
+			sql = "from Nivel where idNivel='" + idNivel + "'";
 
 			nivel = getHibernateTemplate().find(sql);
 			System.out.println("nivel tamanio " + nivel.size());
