@@ -61,7 +61,7 @@
 
 	</h:head>
 	<h:body>
-
+<h:form id="formMenu">
 		<p:layout fullPage="true">
 
 			<p:layoutUnit id="top" size="100" position="north">
@@ -100,11 +100,10 @@
 				<div id="hahaha" 
 						style="width: 100%; height: 100%; position: fixed; left: 0px; top: 62px;">
 
-						<h:form id="formMenu">
+<!-- 						<h:form id="formMenu"> -->
 							<p:growl id="messages" />
 
-							<p:menubar>
-								
+							<p:menubar>						
 
 								<p:submenu label="Alumnos">
 									<p:menuitem value="Nuevo"  onclick="carga_pagina('registroAlumno','','')"
@@ -178,7 +177,7 @@
 								<p:menuitem value="Cerrar Sesi&#243;n"
 									url="http://www.primefaces.org" />
 							</p:menubar>
-						</h:form>
+<!-- 						</h:form> -->
 
 					</div>	
 					
@@ -192,18 +191,10 @@
 						
 					</div>
 			
-			</p:layoutUnit>
-			
-			<p:layoutUnit position="south" styleClass="nestedUnit" resizable="false" size = "50">
-						<p:outputPanel id="mensajeViewer">
-							<h:outputText value="Ambiente : " />
-                      		<h:outputText value="Desarrollo"/>
-						</p:outputPanel>
-					</p:layoutUnit>
-					
+			</p:layoutUnit>					
 		</p:layout>
 		
-
+</h:form>
 	</h:body>
 </f:view>
 

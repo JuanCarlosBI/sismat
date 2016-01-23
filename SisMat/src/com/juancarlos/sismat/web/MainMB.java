@@ -29,6 +29,7 @@ public class MainMB  implements Serializable{
 	private String nombreUsuario;
 	private String codigoColegio;
 	
+	
 	public void datosUsuario(){
 		System.out.println("datosUsuario()");
 		
@@ -38,7 +39,7 @@ public class MainMB  implements Serializable{
 		empleado = usuarioService.datosUsuario(usuario,clave);
 		nombre = empleado.getNombres();
 		apellido = empleado.getApellidos();
-		codigoColegio = empleado.getCodigoColegio();
+//		codigoColegio = empleado.getCodigoColegio();
 		nombreUsuario = nombre +" "+ apellido;	
 	
 	}

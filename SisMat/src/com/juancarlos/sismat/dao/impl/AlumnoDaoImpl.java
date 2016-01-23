@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 import com.juancarlos.sismat.dao.AlumnoDao;
 import com.juancarlos.sismat.dominio.Alumnos;
 
-
 @Repository
 public class AlumnoDaoImpl extends HibernateDaoSupport implements AlumnoDao {
 
@@ -25,7 +24,9 @@ public class AlumnoDaoImpl extends HibernateDaoSupport implements AlumnoDao {
 		
 		return getHibernateTemplate().get(Alumnos.class, idAlumno);
 	}
+
 	
+
 	public boolean registroAlumno(Alumnos alumno){
 		boolean resultado;
 		
@@ -41,7 +42,35 @@ public class AlumnoDaoImpl extends HibernateDaoSupport implements AlumnoDao {
 		
 		return resultado;
 	}
-	
+
+
+
+	@SuppressWarnings("unchecked")
+	public Alumnos encontrarAlumno(String string){
+		List<Alumnos> alumnos;
+		Alumnos alumno = new Alumnos();
+		String sql="";
+		try {
+			sql = "from Alumnos where IdAlumno='"+string+"'";
+			alumnos = getHibernateTemplate().find(sql);
+			
+			if(!alumnos.isEmpty()){
+				if(alumnos.size() == 1){
+					alumno = alumnos.get(0);
+				}
+			}
+			else{
+				alumno = null;
+			}
+			
+		} catch (Exception e) {
+			alumno = null;
+		}
+		
+		return alumno;
+	}
+
+
 	@SuppressWarnings("unchecked")
 	public List<Alumnos> listaAlumnos(String codigoColegio, String dni, String nombre, String apellidoPaterno,String apellidoMaterno, char estado) {	
 		logger.info("en listaAlumnos");
@@ -134,4 +163,7 @@ public class AlumnoDaoImpl extends HibernateDaoSupport implements AlumnoDao {
 		return alumnos;
 	}
 
+
+
 }
+

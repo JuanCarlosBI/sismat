@@ -34,24 +34,20 @@ public class Alumnos  implements java.io.Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-//	private Integer idAlumno;
 	private String idAlumno;
      private String nombres;
      private String apellidoPaterno;
      private String apellidoMaterno;
      private String dni;
-     private char sexo;
      private Date fechaNacimiento;
-     private String telefono;
-     private String celular;
+     private String edad;
+     private char sexo;
      private String direccion;
      private String distrito;
-     private char estado;
-     private String codigoColegio;
-     
-     private String edad;
      private String responsable;
      private String religion;
+     private byte[] foto;
+     private char estado;
      private String nombrePadre;
      private String apellidosPadre;
      private String dniPadre;
@@ -88,123 +84,138 @@ public class Alumnos  implements java.io.Serializable {
      private String ocupacionApoderado;
      private String religionApoderado;
      private String estaVivoApoderado;
+     private String nombreCompleto;
+ 
      
-     
-     private Set<Matriculas> matriculases = new HashSet<Matriculas>(0);
 
     public Alumnos() {
     }
+    
+     
+    public Alumnos(String idAlumno) {
+		super();
+		this.idAlumno = idAlumno;
+	}
+
+
+
+	public Alumnos(String idAlumno, String nombres, String apellidoPaterno,
+			String apellidoMaterno, String dni, Date fechaNacimiento,
+			String edad, char sexo, String direccion, String distrito,
+			String responsable, String religion, byte[] foto,String nombrePadre,
+			String apellidosPadre, String dniPadre, Date fechaNacPadre,
+			String estadoCivilPadre, String telefonoPadre, String celularPadre,
+			String direccionPadre, String distritoPadre, String ocupacionPadre,
+			String religionPadre, String estaVivoPadre,String nombreMadre,
+			String apellidosMadre, String dniMadre, Date fechaNacMadre,
+			String estadoCivilMadre, String telefonoMadre, String celularMadre,
+			String direccionMadre, String distritoMadre, String ocupacionMadre,String religionMadre,String estaVivoMadre,String nombreApoderado,
+			String apellidosApoderado, String dniApoderado,
+			Date fechaNacApoderado, String estadoCivilApoderado,
+			String telefonoApoderado, String celularApoderado,
+			String direccionApoderado, String distritoApoderado,
+			String ocupacionApoderado,char estado, String religionApoderado,String estaVivoApoderado,String nombreCompleto) {
+		super();
+		this.idAlumno = idAlumno;
+		this.nombres = nombres;
+		this.apellidoPaterno = apellidoPaterno;
+		this.apellidoMaterno = apellidoMaterno;
+		this.dni = dni;
+		this.fechaNacimiento = fechaNacimiento;
+		this.edad = edad;
+		this.sexo = sexo;
+		this.direccion = direccion;
+		this.distrito = distrito;
+		this.responsable = responsable;
+		this.religion = religion;
+		this.foto = foto;
+		this.nombrePadre = nombrePadre;
+		this.apellidosPadre = apellidosPadre;
+		this.dniPadre = dniPadre;
+		this.fechaNacPadre = fechaNacPadre;
+		this.estadoCivilPadre = estadoCivilPadre;
+		this.telefonoPadre = telefonoPadre;
+		this.celularPadre = celularPadre;
+		this.direccionPadre = direccionPadre;
+		this.distritoPadre = distritoPadre;
+		this.ocupacionPadre = ocupacionPadre;
+		this.religionPadre = religionPadre;
+		this.estaVivoPadre = estaVivoPadre;
+
+		this.nombreMadre = nombreMadre;
+		this.apellidosMadre = apellidosMadre;
+		this.dniMadre = dniMadre;
+		this.fechaNacMadre = fechaNacMadre;
+		this.estadoCivilMadre = estadoCivilMadre;
+		this.telefonoMadre = telefonoMadre;
+		this.celularMadre = celularMadre;
+		this.direccionMadre = direccionMadre;
+		this.distritoMadre = distritoMadre;
+		this.ocupacionMadre = ocupacionMadre;
+		this.religionMadre=religionMadre;
+		this.estaVivoMadre=estaVivoMadre;
+		this.nombreApoderado = nombreApoderado;
+		this.apellidosApoderado = apellidosApoderado;
+		this.dniApoderado = dniApoderado;
+		this.fechaNacApoderado = fechaNacApoderado;
+		this.estadoCivilApoderado = estadoCivilApoderado;
+		this.telefonoApoderado = telefonoApoderado;
+		this.celularApoderado = celularApoderado;
+		this.direccionApoderado = direccionApoderado;
+		this.distritoApoderado = distritoApoderado;
+		this.ocupacionApoderado = ocupacionApoderado;
+		this.religionApoderado = religionApoderado;
+		this.estaVivoApoderado = estaVivoApoderado;
+		this.nombreCompleto=nombreCompleto;
+		this.estado = estado;
+			}
+
 
 	
-    public Alumnos(String nombres, String apellidos, String dni, char sexo, Date fechaNacimiento, String nombrePadre, String nombreMadre, String nombreApoderado, String direccion, String distrito, char estado, String codigoColegio) {
-        this.nombres = nombres;
-        
-        this.dni = dni;
-        this.sexo = sexo;
-        this.fechaNacimiento = fechaNacimiento;
-        this.nombrePadre = nombrePadre;
-        this.nombreMadre = nombreMadre;
-        this.nombreApoderado = nombreApoderado;
-        this.direccion = direccion;
-        this.distrito = distrito;
-        this.estado = estado;
-        this.codigoColegio = codigoColegio;
-    }
-    public Alumnos(String nombres, String apellidos, String dni, char sexo, Date fechaNacimiento, String nombrePadre, String nombreMadre, String nombreApoderado, String telefono, String celular, String direccion, String distrito, char estado, String codigoColegio, Set<Matriculas> matriculases) {
-       this.nombres = nombres;
-       
-       this.dni = dni;
-       this.sexo = sexo;
-       this.fechaNacimiento = fechaNacimiento;
-       this.nombrePadre = nombrePadre;
-       this.nombreMadre = nombreMadre;
-       this.nombreApoderado = nombreApoderado;
-       this.telefono = telefono;
-       this.celular = celular;
-       this.direccion = direccion;
-       this.distrito = distrito;
-       this.estado = estado;
-       this.codigoColegio = codigoColegio;
-       this.matriculases = matriculases;
-    }
-   
-     @Id @GeneratedValue(strategy=IDENTITY)
-
-    
-    @Column(name="IdAlumno", unique=true, nullable=false)
-     
-     public String getIdAlumno() {
- 		return idAlumno;
- 	}
+	public Alumnos(String idAlumno, String nombres, String apellidoPaterno,
+			String apellidoMaterno, String dni, Date fechaNacimiento,
+			String edad, char sexo, String direccion, String distrito,
+			String responsable, String religion, byte[] foto) {
+		super();
+		this.idAlumno = idAlumno;
+		this.nombres = nombres;
+		this.apellidoPaterno = apellidoPaterno;
+		this.apellidoMaterno = apellidoMaterno;
+		this.dni = dni;
+		this.fechaNacimiento = fechaNacimiento;
+		this.edad = edad;
+		this.sexo = sexo;
+		this.direccion = direccion;
+		this.distrito = distrito;
+		this.responsable = responsable;
+		this.religion = religion;
+		this.foto = foto;		
+	
+	}
 
 
- 	public void setIdAlumno(String idAlumno) {
- 		this.idAlumno = idAlumno;
- 	}
-//    public Integer getIdAlumno() {
-//        return this.idAlumno;
-//    }
-//    
-//    public void setIdAlumno(Integer idAlumno) {
-//        this.idAlumno = idAlumno;
-//    }
-
-    
-    @Column(name="Nombres", nullable=false, length=70)
-    public String getNombres() {
-        return this.nombres;
-    }
+	@Id 
+    @Column(name="IdAlumno", unique=true, nullable=false, length = 8)
+    public String getIdAlumno() {
+		return idAlumno;
+	}
 
 
+	public void setIdAlumno(String idAlumno) {
+		this.idAlumno = idAlumno;
+	}
+
+	@Column(name = "Nombres", nullable = false, length = 70)
+	public String getNombres() {
+		return nombres;
+	}
 
 	public void setNombres(String nombres) {
-        this.nombres = nombres;
-    }
+		this.nombres = nombres;
+	}
 
-    
-
-
-    
-    @Column(name="Dni", nullable=false, length=8)
-    public String getDni() {
-        return this.dni;
-    }
-    
-    public void setDni(String dni) {
-        this.dni = dni;
-    }
-
-    
-    @Column(name="Sexo", nullable=false, length=1)
-    public char getSexo() {
-        return this.sexo;
-    }
-    
-    public void setSexo(char sexo) {
-        this.sexo = sexo;
-    }
-
-    @Temporal(TemporalType.DATE)    
-    @Column(name="FechaNacimiento", nullable=true)
-    public Date getFechaNacimiento() {
-        return this.fechaNacimiento;
-    }
-    
-    public void setFechaNacimiento(Date fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
-    }
-
-    
-    @Column(name="NombrePadre", nullable=false, length=150)
-    public String getNombrePadre() {
-        return this.nombrePadre;
-    }
-    
-    public void setNombrePadre(String nombrePadre) {
-        this.nombrePadre = nombrePadre;
-    }
-    @Column(name="ApellidoPaterno", nullable=false, length=50)
-    public String getApellidoPaterno() {
+	@Column(name = "ApellidoPaterno", nullable = false, length = 50)
+	public String getApellidoPaterno() {
 		return apellidoPaterno;
 	}
 
@@ -212,108 +223,73 @@ public class Alumnos  implements java.io.Serializable {
 		this.apellidoPaterno = apellidoPaterno;
 	}
 
-	@Column(name="ApellidoMaterno", nullable=false, length=50)
+	@Column(name = "ApellidoMaterno", nullable = false, length = 50)
 	public String getApellidoMaterno() {
 		return apellidoMaterno;
 	}
-
 
 	public void setApellidoMaterno(String apellidoMaterno) {
 		this.apellidoMaterno = apellidoMaterno;
 	}
 
-
-	@Column(name="NombreMadre", nullable=false, length=150)
-    public String getNombreMadre() {
-        return this.nombreMadre;
-    }
-    
-    public void setNombreMadre(String nombreMadre) {
-        this.nombreMadre = nombreMadre;
-    }
-
-    
-    @Column(name="NombreApoderado", nullable=false, length=150)
-    public String getNombreApoderado() {
-        return this.nombreApoderado;
-    }
-    
-    public void setNombreApoderado(String nombreApoderado) {
-        this.nombreApoderado = nombreApoderado;
-    }
-
-    
-    @Column(name="Telefono", length=11)
-    public String getTelefono() {
-        return this.telefono;
-    }
-    
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    
-    @Column(name="Celular", length=9)
-    public String getCelular() {
-        return this.celular;
-    }
-    
-    public void setCelular(String celular) {
-        this.celular = celular;
-    }
-
-    
-    @Column(name="Direccion", nullable=false, length=180)
-    public String getDireccion() {
-        return this.direccion;
-    }
-    
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-
-    
-    @Column(name="Distrito", nullable=false, length=90)
-    public String getDistrito() {
-        return this.distrito;
-    }
-    
-    public void setDistrito(String distrito) {
-        this.distrito = distrito;
-    }
-
-    
-    @Column(name="Estado", nullable=false, length=1)
-    public char getEstado() {
-        return this.estado;
-    }
-    
-    public void setEstado(char estado) {
-        this.estado = estado;
-    }
-
-    
-    @Column(name="CodigoColegio", nullable=false, length=11)
-    public String getCodigoColegio() {
-        return this.codigoColegio;
-    }
-    
-    public void setCodigoColegio(String codigoColegio) {
-        this.codigoColegio = codigoColegio;
-    }
-    
-    
-
-public String getEdad() {
-		return edad;
+	@Column(name = "DNI", nullable = false, length = 8)
+	public String getDni() {
+		return dni;
 	}
 
+	public void setDni(String dni) {
+		this.dni = dni;
+	}
+
+	@Temporal(TemporalType.DATE)
+	@Column(name = "FechaNacimiento", nullable = false, length = 30)
+	public Date getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+
+	public void setFechaNacimiento(Date fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
+	}
+
+	@Column(name = "Edad", nullable = false, length = 2)
+	public String getEdad() {
+		return edad;
+	}
 
 	public void setEdad(String edad) {
 		this.edad = edad;
 	}
 
+	@Column(name = "Sexo", nullable = false, length = 1)
+	public char getSexo() {
+		return sexo;
+	}
 
+	public void setSexo(char sexo) {
+		this.sexo = sexo;
+	}
+
+	@Column(name = "Direccion", nullable = false, length = 180)
+	public String getDireccion() {
+		return direccion;
+	}
+
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+
+	@Column(name = "Distrito", nullable = false, length = 90)
+	public String getDistrito() {
+		return distrito;
+	}
+
+
+	public void setDistrito(String distrito) {
+		this.distrito = distrito;
+	}
+
+	@Column(name = "Responsable", nullable = false, length = 10)
 	public String getResponsable() {
 		return responsable;
 	}
@@ -323,7 +299,7 @@ public String getEdad() {
 		this.responsable = responsable;
 	}
 
-
+	@Column(name = "Religion", nullable = false, length = 20)
 	public String getReligion() {
 		return religion;
 	}
@@ -333,7 +309,29 @@ public String getEdad() {
 		this.religion = religion;
 	}
 
+	 @Column(name="Foto")
+	public byte[] getFoto() {
+		return foto;
+	}
 
+
+	public void setFoto(byte[] foto) {
+		this.foto = foto;
+	}
+
+	
+	@Column(name = "NombrePadre", nullable = false, length = 150)
+	public String getNombrePadre() {
+		return nombrePadre;
+	}
+
+
+	public void setNombrePadre(String nombrePadre) {
+		this.nombrePadre = nombrePadre;
+	}
+
+
+	@Column(name = "ApellidosPadre", nullable = false, length = 150)
 	public String getApellidosPadre() {
 		return apellidosPadre;
 	}
@@ -343,7 +341,7 @@ public String getEdad() {
 		this.apellidosPadre = apellidosPadre;
 	}
 
-
+	@Column(name = "DNIPadre", nullable = false, length = 8)
 	public String getDniPadre() {
 		return dniPadre;
 	}
@@ -354,6 +352,8 @@ public String getEdad() {
 	}
 
 
+	@Temporal(TemporalType.DATE)
+	@Column(name = "FechaNacPadre", nullable = false, length = 30)
 	public Date getFechaNacPadre() {
 		return fechaNacPadre;
 	}
@@ -363,7 +363,7 @@ public String getEdad() {
 		this.fechaNacPadre = fechaNacPadre;
 	}
 
-
+	@Column(name = "EstadoCivilPadre", nullable = false, length = 20)
 	public String getEstadoCivilPadre() {
 		return estadoCivilPadre;
 	}
@@ -373,17 +373,17 @@ public String getEdad() {
 		this.estadoCivilPadre = estadoCivilPadre;
 	}
 
-
+	@Column(name = "TelefonoPadre", nullable = false, length = 10)
 	public String getTelefonoPadre() {
 		return telefonoPadre;
 	}
 
-
+	
 	public void setTelefonoPadre(String telefonoPadre) {
 		this.telefonoPadre = telefonoPadre;
 	}
 
-
+	@Column(name = "CelularPadre", nullable = false, length = 9)
 	public String getCelularPadre() {
 		return celularPadre;
 	}
@@ -393,7 +393,7 @@ public String getEdad() {
 		this.celularPadre = celularPadre;
 	}
 
-
+	@Column(name = "DireccionPadre", nullable = false, length = 180)
 	public String getDireccionPadre() {
 		return direccionPadre;
 	}
@@ -403,7 +403,7 @@ public String getEdad() {
 		this.direccionPadre = direccionPadre;
 	}
 
-
+	@Column(name = "DistritoPadre", nullable = false, length = 90)
 	public String getDistritoPadre() {
 		return distritoPadre;
 	}
@@ -413,7 +413,7 @@ public String getEdad() {
 		this.distritoPadre = distritoPadre;
 	}
 
-
+	@Column(name = "OcupacionPadre", nullable = false, length = 100)
 	public String getOcupacionPadre() {
 		return ocupacionPadre;
 	}
@@ -423,7 +423,7 @@ public String getEdad() {
 		this.ocupacionPadre = ocupacionPadre;
 	}
 
-
+	@Column(name = "ReligionPadre", nullable = false, length = 20)
 	public String getReligionPadre() {
 		return religionPadre;
 	}
@@ -433,7 +433,7 @@ public String getEdad() {
 		this.religionPadre = religionPadre;
 	}
 
-
+	@Column(name = "EstaVivoPadre", nullable = false, length = 2)
 	public String getEstaVivoPadre() {
 		return estaVivoPadre;
 	}
@@ -443,7 +443,17 @@ public String getEdad() {
 		this.estaVivoPadre = estaVivoPadre;
 	}
 
+	@Column(name = "NombreMadre", nullable = false, length = 150)
+	public String getNombreMadre() {
+		return nombreMadre;
+	}
 
+
+	public void setNombreMadre(String nombreMadre) {
+		this.nombreMadre = nombreMadre;
+	}
+
+	@Column(name = "ApellidosMadre", nullable = false, length = 150)
 	public String getApellidosMadre() {
 		return apellidosMadre;
 	}
@@ -453,7 +463,7 @@ public String getEdad() {
 		this.apellidosMadre = apellidosMadre;
 	}
 
-
+	@Column(name = "DNIMadre", nullable = false, length = 8)
 	public String getDniMadre() {
 		return dniMadre;
 	}
@@ -464,6 +474,8 @@ public String getEdad() {
 	}
 
 
+	@Temporal(TemporalType.DATE)
+	@Column(name = "FechaNacMadre", nullable = false, length = 30)
 	public Date getFechaNacMadre() {
 		return fechaNacMadre;
 	}
@@ -474,6 +486,7 @@ public String getEdad() {
 	}
 
 
+	@Column(name = "EstadoCivilMadre", nullable = false, length = 20)
 	public String getEstadoCivilMadre() {
 		return estadoCivilMadre;
 	}
@@ -483,7 +496,7 @@ public String getEdad() {
 		this.estadoCivilMadre = estadoCivilMadre;
 	}
 
-
+	@Column(name = "TelefonoMadre", nullable = false, length = 10)
 	public String getTelefonoMadre() {
 		return telefonoMadre;
 	}
@@ -493,7 +506,7 @@ public String getEdad() {
 		this.telefonoMadre = telefonoMadre;
 	}
 
-
+	@Column(name = "CelularMadre", nullable = false, length = 9)
 	public String getCelularMadre() {
 		return celularMadre;
 	}
@@ -503,7 +516,7 @@ public String getEdad() {
 		this.celularMadre = celularMadre;
 	}
 
-
+	@Column(name = "DireccionMadre", nullable = false, length = 180)
 	public String getDireccionMadre() {
 		return direccionMadre;
 	}
@@ -513,7 +526,7 @@ public String getEdad() {
 		this.direccionMadre = direccionMadre;
 	}
 
-
+	@Column(name = "DistritoMadre", nullable = false, length = 90)
 	public String getDistritoMadre() {
 		return distritoMadre;
 	}
@@ -523,7 +536,7 @@ public String getEdad() {
 		this.distritoMadre = distritoMadre;
 	}
 
-
+	@Column(name = "OcupacionMadre", nullable = false, length = 100)
 	public String getOcupacionMadre() {
 		return ocupacionMadre;
 	}
@@ -533,8 +546,8 @@ public String getEdad() {
 		this.ocupacionMadre = ocupacionMadre;
 	}
 
-
-	public String getReligionMadre() {
+	@Column(name = "ReligionMadre", nullable = false, length = 20)	
+public String getReligionMadre() {
 		return religionMadre;
 	}
 
@@ -543,7 +556,7 @@ public String getEdad() {
 		this.religionMadre = religionMadre;
 	}
 
-
+	@Column(name = "EstaVivoMadre", nullable = false, length = 2)
 	public String getEstaVivoMadre() {
 		return estaVivoMadre;
 	}
@@ -553,7 +566,18 @@ public String getEdad() {
 		this.estaVivoMadre = estaVivoMadre;
 	}
 
+	@Column(name = "NombreApoderado", nullable = false, length = 150)
+	public String getNombreApoderado() {
+		return nombreApoderado;
+	}
 
+
+	public void setNombreApoderado(String nombreApoderado) {
+		this.nombreApoderado = nombreApoderado;
+	}
+
+
+	@Column(name = "ApellidosApoderado", nullable = false, length = 150)
 	public String getApellidosApoderado() {
 		return apellidosApoderado;
 	}
@@ -563,7 +587,7 @@ public String getEdad() {
 		this.apellidosApoderado = apellidosApoderado;
 	}
 
-
+	@Column(name = "DNIApoderado", nullable = false, length = 8)
 	public String getDniApoderado() {
 		return dniApoderado;
 	}
@@ -574,6 +598,8 @@ public String getEdad() {
 	}
 
 
+	@Temporal(TemporalType.DATE)
+	@Column(name = "FechaNacApoderado", nullable = false, length = 30)
 	public Date getFechaNacApoderado() {
 		return fechaNacApoderado;
 	}
@@ -583,7 +609,7 @@ public String getEdad() {
 		this.fechaNacApoderado = fechaNacApoderado;
 	}
 
-
+	@Column(name = "EstadoCivilApoderado", nullable = false, length = 20)
 	public String getEstadoCivilApoderado() {
 		return estadoCivilApoderado;
 	}
@@ -593,7 +619,7 @@ public String getEdad() {
 		this.estadoCivilApoderado = estadoCivilApoderado;
 	}
 
-
+	@Column(name = "TelefonoApoderado", nullable = false, length = 10)
 	public String getTelefonoApoderado() {
 		return telefonoApoderado;
 	}
@@ -603,7 +629,7 @@ public String getEdad() {
 		this.telefonoApoderado = telefonoApoderado;
 	}
 
-
+	@Column(name = "CelularApoderado", nullable = false, length = 9)
 	public String getCelularApoderado() {
 		return celularApoderado;
 	}
@@ -613,7 +639,7 @@ public String getEdad() {
 		this.celularApoderado = celularApoderado;
 	}
 
-
+	@Column(name = "DireccionApoderado", nullable = false, length = 180)
 	public String getDireccionApoderado() {
 		return direccionApoderado;
 	}
@@ -623,7 +649,7 @@ public String getEdad() {
 		this.direccionApoderado = direccionApoderado;
 	}
 
-
+	@Column(name = "DistritoApoderado", nullable = false, length = 90)
 	public String getDistritoApoderado() {
 		return distritoApoderado;
 	}
@@ -633,7 +659,7 @@ public String getEdad() {
 		this.distritoApoderado = distritoApoderado;
 	}
 
-
+	@Column(name = "OcupacionApoderado", nullable = false, length = 100)
 	public String getOcupacionApoderado() {
 		return ocupacionApoderado;
 	}
@@ -643,7 +669,7 @@ public String getEdad() {
 		this.ocupacionApoderado = ocupacionApoderado;
 	}
 
-
+	@Column(name = "ReligionApoderado", nullable = false, length = 20)
 	public String getReligionApoderado() {
 		return religionApoderado;
 	}
@@ -653,7 +679,7 @@ public String getEdad() {
 		this.religionApoderado = religionApoderado;
 	}
 
-
+	@Column(name = "EstaVivoApoderado", nullable = false, length = 2)
 	public String getEstaVivoApoderado() {
 		return estaVivoApoderado;
 	}
@@ -664,16 +690,33 @@ public String getEdad() {
 	}
 
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="alumnos")
-    public Set<Matriculas> getMatriculases() {
-        return this.matriculases;
-    }
-    
-    public void setMatriculases(Set<Matriculas> matriculases) {
-        this.matriculases = matriculases;
-    }
+	
+	
+	
+
+	@Column(name = "nombreCompleto", nullable = false, length = 100)
+	public String getNombreCompleto() {
+		return nombreCompleto;
+	}
+
+
+	public void setNombreCompleto(String nombreCompleto) {
+		this.nombreCompleto = nombreCompleto;
+	}
+
+	  @Column(name="estado", nullable=false, length=1)
+	    public char getEstado() {
+	        return this.estado;
+	    }
+	    
+	    public void setEstado(char estado) {
+	        this.estado = estado;
+	    }
+
 
 
 }
+
+
 
 

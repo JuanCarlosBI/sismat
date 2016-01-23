@@ -35,54 +35,58 @@
 							<table style="text-align: right;">								
 								<tr>
 									<td><p:outputLabel value="Nombres:" /></td>
-									<td><p:inputText value=""/></td>					
+									<td><p:inputText value="#{registroAlumnosMB.nombres}" required="true" maxlength="70"/></td>					
 								
 									<td><p:outputLabel value="Apellido Paterno:" /></td>
-									<td><p:inputText value=""/></td>					
+									<td><p:inputText value="#{registroAlumnosMB.apellidoPaterno}" required="true" maxlength="70"/></td>					
 								
 									<td><p:outputLabel value="Apellido Materno:" /></td>
-									<td><p:inputText value=""/></td>					
+									<td><p:inputText value="#{registroAlumnosMB.apellidoMaterno}" required="true" maxlength="70"/></td>					
 								</tr>
 								<tr>
 									<td><p:outputLabel value="DNI:" /></td>
-									<td><p:inputText value=""/></td>					
+									<td><p:inputMask value="#{registroAlumnosMB.dni}" mask="99999999"/></td>					
 								
 									<td><p:outputLabel value="Fecha Nacimiento:" /></td>
-									<td><p:inputText  value="" /></td>					
-								
+									<td>
+										<p:calendar id="fechaNacimiento"  value="#{registroAlumnosMB.fechaNacimiento}" showOn="button" readOnlyInputText="true" required="true" locale="es" navigator="true" requiredMessge="La fecha de Nacimiento es requerida" pattern="yyyy-MM-dd"/>
+										<p:message id="fechaNacimientoerror1" for="fechaNacimiento"/>
+									</td>
 									<td><p:outputLabel value="Edad:" /></td>
-									<td><p:inputText value=""/></td>					
+									<td><p:inputMask value="#{registroAlumnosMB.edad}" mask="99"/></td>					
+													
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Sexo:" /></td>
 									<td>
-										<p:selectOneRadio id="idSexo" value="Estado"  layout="grid" columns="2">
+										<p:selectOneRadio id="idSexo" value="#{registroAlumnosMB.sexo}"  layout="grid" columns="1">
             								<f:selectItem itemValue="Masculino" itemLabel="Masculino"/>
-            								<f:selectItem itemValue="Femenino" itemLabel="Femenino"/>
+            								<f:selectItem itemValue="Femenino" itemLabel="Femenino" />
         								</p:selectOneRadio>
         							</td>					
 								
 									<td><p:outputLabel value="Direccion:" /></td>
-									<td colspan="3" style="text-align: left;"><p:inputText value=""/></td>			
-														
+									<td colspan="3" style="text-align: left;"><p:inputText id="direccion" value="#{registroAlumnosMB.direccion}" required="true" maxlength="50"/>
+									</td>	
 								</tr>
 								<tr>									
 									<td><p:outputLabel value="Distrito:" /></td>
 									<td style="text-align: left;">
-										<p:selectOneMenu id="idDistrito" value="Distrito">							            
-								            <f:selectItem itemLabel="San Miguel" itemValue="" />
-								            <f:selectItem itemLabel="San Borja" itemValue="" />								            
+										<p:selectOneMenu id="idDistrito" value="#{registroAlumnosMB.distrito}" layout="grid" columns="1">							            
+								            <f:selectItem itemLabel="San Miguel" itemValue="San Miguel" />
+								            <f:selectItem itemLabel="San Borja" itemValue="San Borja" />								            
         								</p:selectOneMenu>
 									</td>								
 									<td><p:outputLabel value="Responsable:" /></td>
 									<td style="text-align: left;">
-										<p:selectOneMenu id="idResponsable" value="Responsable">							            
-								            <f:selectItem itemLabel="Mama" itemValue="" />
-								            <f:selectItem itemLabel="Papa" itemValue="" />								            
+										<p:selectOneMenu id="idResponsable" value="#{registroAlumnosMB.responsable}" layout="grid" columns="1">							            
+								            <f:selectItem itemLabel="Mamá" itemValue="Mamá" />
+								            <f:selectItem itemLabel="Papá" itemValue="Papá" />								            
         								</p:selectOneMenu>
 									</td>
 									<td><p:outputLabel value="Religion:" /></td>
-									<td><p:inputText value=""/></td>
+									<td><p:inputText id="religion" value="#{registroAlumnosMB.religion}" required="true" maxlength="20"/>
+									</td>
 								</tr>	
 								
 								<tr><td colspan="6"><br/></td></tr>
@@ -113,24 +117,29 @@
 							<table style="text-align: right;">								
 								<tr>
 									<td><p:outputLabel value="Nombres:" /></td>
-									<td><p:inputText value=""/></td>					
+									<td><p:inputText value="#{registroAlumnosMB.nombrePadre}" required="true" maxlength="70"/></td>					
 								
 									<td><p:outputLabel value="Apellido Paterno:" /></td>
-									<td><p:inputText value=""/></td>					
+									<td><p:inputText value="#{registroAlumnosMB.apellidoPaternoPadre}" required="true" maxlength="70"/></td>					
 								
 									<td><p:outputLabel value="Apellido Materno:" /></td>
-									<td><p:inputText value=""/></td>					
+									<td><p:inputText value="#{registroAlumnosMB.apellidoMaternoPadre}" required="true" maxlength="70"/></td>					
+													
 								</tr>
 								<tr>
 									<td><p:outputLabel value="DNI:" /></td>
-									<td><p:inputText value=""/></td>					
+									<td><p:inputMask value="#{registroAlumnosMB.dniPadre}" mask="99999999"/></td>						
 								
 									<td><p:outputLabel value="Fecha Nacimiento:" /></td>
-									<td><p:inputText  value="" /></td>					
+									<td>
+										<p:calendar id="fechaNacimiento1"  value="#{registroAlumnosMB.fechaNacPadre}" showOn="button" readOnlyInputText="true" required="true" locale="es" navigator="true" requiredMessge="La fecha de Nacimiento es requerida" pattern="yyyy-MM-dd"/>
+										<p:message id="fechaNacimientoerror2" for="fechaNacimiento"/>
+									</td>
+														
 								
 									<td><p:outputLabel value="Estado Civil:" /></td>
 									<td>
-										<p:selectOneRadio id="idEstado" value="Estado"  layout="grid" columns="2">
+										<p:selectOneRadio id="idEstado1" value="#{registroAlumnosMB.estadoCivilPadre}"  layout="grid" columns="2">
             								<f:selectItem itemValue="Soltero" itemLabel="Soltero"/>
             								<f:selectItem itemValue="Casado" itemLabel="Casado"/>
             								<f:selectItem itemValue="Viudo" itemLabel="Viudo"/>
@@ -140,32 +149,44 @@
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Telefono:" /></td>
-									<td><p:inputText value=""/></td>					
+									<td>
+										<p:inputMask id="telefono1" value="#{registroAlumnosMB.telefonoPadre}" mask="999-9999"/>
+									</td>				
 								
 									<td><p:outputLabel value="Celular:" /></td>
-									<td><p:inputText value=""/></td>													
+									<td>
+										<p:inputMask id="celular1" value="#{registroAlumnosMB.celularPadre}" mask="999999999"/>
+									</td>													
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Direccion:" /></td>
-									<td><p:inputText value=""/></td>									
+									<td><p:inputText value="#{registroAlumnosMB.direccionPadre}" required="true" maxlength="180"/></td>					
+																
 									<td><p:outputLabel value="Distrito:" /></td>
 									<td style="text-align: left;">
-										<p:selectOneMenu id="idDistrito1" value="Distrito">							            
-								            <f:selectItem itemLabel="San Miguel" itemValue="" />
-								            <f:selectItem itemLabel="San Borja" itemValue="" />								            
+										<p:selectOneMenu id="idDistrito2" value="#{registroAlumnosMB.distritoPadre}">							            
+								            <f:selectItem itemLabel="San Miguel" itemValue="San Miguel" />
+								            <f:selectItem itemLabel="San Borja" itemValue="San Borja" />								            
         								</p:selectOneMenu>
 									</td>
 									<td><p:outputLabel value="Ocupacion:" /></td>
-									<td><p:inputText value=""/></td>								
+									<td><p:inputText value="#{registroAlumnosMB.ocupacionPadre}" required="true" maxlength="100"/></td>					
+																	
 								</tr>	
 								
 								<tr><td colspan="6"><br/></td></tr>
 															
 								<tr>																			
 									<td><p:outputLabel value="Religion:" /></td>
-									<td><p:inputText value=""/></td>
+									<td><p:inputText value="#{registroAlumnosMB.religionPadre}" required="true" maxlength="20"/></td>					
+									
 									<td><p:outputLabel value="Esta Vivo:" /></td>
-									<td style="text-align: left;"><h:selectBooleanCheckbox value=""/></td>											
+									<td style="text-align: left;">
+										<p:selectOneMenu id="idEstaVivo1" value="#{registroAlumnosMB.estaVivoPadre}">							            
+								            <f:selectItem itemLabel="Si" itemValue="Si" />
+								            <f:selectItem itemLabel="No" itemValue="No" />								            
+        								</p:selectOneMenu>
+									</td>
 								</tr>								
 							</table>											
 				
@@ -184,24 +205,29 @@
 							<table style="text-align: right;">								
 								<tr>
 									<td><p:outputLabel value="Nombres:" /></td>
-									<td><p:inputText value=""/></td>					
+									<td><p:inputText value="#{registroAlumnosMB.nombreMadre}" required="true" maxlength="70"/></td>					
 								
 									<td><p:outputLabel value="Apellido Paterno:" /></td>
-									<td><p:inputText value=""/></td>					
+									<td><p:inputText value="#{registroAlumnosMB.apellidoPaternoMadre}" required="true" maxlength="70"/></td>					
 								
 									<td><p:outputLabel value="Apellido Materno:" /></td>
-									<td><p:inputText value=""/></td>					
+									<td><p:inputText value="#{registroAlumnosMB.apellidoMaternoMadre}" required="true" maxlength="70"/></td>					
+													
 								</tr>
 								<tr>
 									<td><p:outputLabel value="DNI:" /></td>
-									<td><p:inputText value=""/></td>					
+									<td><p:inputMask value="#{registroAlumnosMB.dniMadre}" mask="99999999"/></td>						
 								
 									<td><p:outputLabel value="Fecha Nacimiento:" /></td>
-									<td><p:inputText  value="" /></td>					
+									<td>
+										<p:calendar id="fechaNacimiento2"  value="#{registroAlumnosMB.fechaNacMadre}" showOn="button" readOnlyInputText="true" required="true" locale="es" navigator="true" requiredMessge="La fecha de Nacimiento es requerida" pattern="yyyy-MM-dd"/>
+										<p:message id="fechaNacimeintoerror3" for="fechaNacimiento"/>
+									</td>
+														
 								
 									<td><p:outputLabel value="Estado Civil:" /></td>
 									<td>
-										<p:selectOneRadio id="idEstado2" value="Estado"  layout="grid" columns="2">
+										<p:selectOneRadio id="idEstado2" value="#{registroAlumnosMB.estadoCivilMadre}"  layout="grid" columns="2">
             								<f:selectItem itemValue="Soltera" itemLabel="Soltera"/>
             								<f:selectItem itemValue="Casada" itemLabel="Casada"/>
             								<f:selectItem itemValue="Viuda" itemLabel="Viuda"/>
@@ -211,34 +237,47 @@
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Telefono:" /></td>
-									<td><p:inputText value=""/></td>					
+									<td>
+										<p:inputMask id="telefono2" value="#{registroAlumnosMB.telefonoMadre}" mask="999-9999"/>
+									</td>				
 								
 									<td><p:outputLabel value="Celular:" /></td>
-									<td><p:inputText value=""/></td>													
+									<td>
+										<p:inputMask id="celular2" value="#{registroAlumnosMB.celularMadre}" mask="999999999"/>
+									</td>													
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Direccion:" /></td>
-									<td><p:inputText value=""/></td>									
+									<td><p:inputText value="#{registroAlumnosMB.direccionMadre}" required="true" maxlength="180"/></td>					
+																
 									<td><p:outputLabel value="Distrito:" /></td>
 									<td style="text-align: left;">
-										<p:selectOneMenu id="idDistrito2" value="Distrito">							            
-								            <f:selectItem itemLabel="San Miguel" itemValue="" />
-								            <f:selectItem itemLabel="San Borja" itemValue="" />								            
+										<p:selectOneMenu id="idDistrito3" value="#{registroAlumnosMB.distritoMadre}">							            
+								            <f:selectItem itemLabel="San Miguel" itemValue="San Miguel" />
+								            <f:selectItem itemLabel="San Borja" itemValue="San Borja" />								            
         								</p:selectOneMenu>
 									</td>
 									<td><p:outputLabel value="Ocupacion:" /></td>
-									<td><p:inputText value=""/></td>								
+									<td><p:inputText value="#{registroAlumnosMB.ocupacionMadre}" required="true" maxlength="100"/></td>					
+																	
 								</tr>	
 								
 								<tr><td colspan="6"><br/></td></tr>
 															
 								<tr>																			
 									<td><p:outputLabel value="Religion:" /></td>
-									<td><p:inputText value=""/></td>
+									<td><p:inputText value="#{registroAlumnosMB.religionMadre}" required="true" maxlength="20"/></td>					
+									
 									<td><p:outputLabel value="Esta Viva:" /></td>
-									<td style="text-align: left;"><h:selectBooleanCheckbox value=""/></td>											
+									<td style="text-align: left;">
+										<p:selectOneMenu id="idEstaVivo2" value="#{registroAlumnosMB.estaVivoMadre}">							            
+								            <f:selectItem itemLabel="Si" itemValue="Si" />
+								            <f:selectItem itemLabel="No" itemValue="No" />								            
+        								</p:selectOneMenu>
+									</td>	
 								</tr>								
-							</table>												
+							</table>											
+														
 				
 			</p:panel> 
                 
@@ -252,27 +291,33 @@
 					toggleSpeed="500" closeSpeed="2000" widgetVar="panel">
 				
 				
+							
 							<table style="text-align: right;">								
 								<tr>
 									<td><p:outputLabel value="Nombres:" /></td>
-									<td><p:inputText value=""/></td>					
+									<td><p:inputText value="#{registroAlumnosMB.nombreApoderado}" required="true" maxlength="70"/></td>					
 								
 									<td><p:outputLabel value="Apellido Paterno:" /></td>
-									<td><p:inputText value=""/></td>					
+									<td><p:inputText value="#{registroAlumnosMB.apellidoPaternoApoderado}" required="true" maxlength="70"/></td>					
 								
 									<td><p:outputLabel value="Apellido Materno:" /></td>
-									<td><p:inputText value=""/></td>					
+									<td><p:inputText value="#{registroAlumnosMB.apellidoMaternoApoderado}" required="true" maxlength="70"/></td>					
+													
 								</tr>
 								<tr>
 									<td><p:outputLabel value="DNI:" /></td>
-									<td><p:inputText value=""/></td>					
+									<td><p:inputMask value="#{registroAlumnosMB.dniApoderado}" mask="99999999"/></td>						
 								
 									<td><p:outputLabel value="Fecha Nacimiento:" /></td>
-									<td><p:inputText  value="" /></td>					
+									<td>
+										<p:calendar id="fechaNacimiento3"  value="#{registroAlumnosMB.fechaNacApoderado}" showOn="button" readOnlyInputText="true" required="true" locale="es" navigator="true" requiredMessge="La fecha de Nacimiento es requerida" pattern="yyyy-MM-dd"/>
+										<p:message id="fechaNacimeintoerror4" for="fechaNacimiento"/>
+									</td>
+														
 								
 									<td><p:outputLabel value="Estado Civil:" /></td>
 									<td>
-										<p:selectOneRadio id="idEstado3" value="Estado"  layout="grid" columns="2">
+										<p:selectOneRadio id="idEstado3" value="#{registroAlumnosMB.estadoCivilApoderado}"  layout="grid" columns="2">
             								<f:selectItem itemValue="Soltero" itemLabel="Soltero"/>
             								<f:selectItem itemValue="Casado" itemLabel="Casado"/>
             								<f:selectItem itemValue="Viudo" itemLabel="Viudo"/>
@@ -282,49 +327,62 @@
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Telefono:" /></td>
-									<td><p:inputText value=""/></td>					
+									<td>
+										<p:inputMask id="telefono3" value="#{registroAlumnosMB.telefonoApoderado}" mask="999-9999"/>
+									</td>				
 								
 									<td><p:outputLabel value="Celular:" /></td>
-									<td><p:inputText value=""/></td>													
+									<td>
+										<p:inputMask id="celular3" value="#{registroAlumnosMB.celularApoderado}" mask="999999999"/>
+									</td>													
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Direccion:" /></td>
-									<td><p:inputText value=""/></td>									
+									<td><p:inputText value="#{registroAlumnosMB.direccionApoderado}" required="true" maxlength="180"/></td>					
+																
 									<td><p:outputLabel value="Distrito:" /></td>
 									<td style="text-align: left;">
-										<p:selectOneMenu id="idDistrito3" value="Distrito">							            
-								            <f:selectItem itemLabel="San Miguel" itemValue="" />
-								            <f:selectItem itemLabel="San Borja" itemValue="" />								            
+										<p:selectOneMenu id="idDistrito4" value="#{registroAlumnosMB.distritoApoderado}">							            
+								            <f:selectItem itemLabel="San Miguel" itemValue="San Miguel" />
+								            <f:selectItem itemLabel="San Borja" itemValue="San Borja" />								            
         								</p:selectOneMenu>
 									</td>
 									<td><p:outputLabel value="Ocupacion:" /></td>
-									<td><p:inputText value=""/></td>								
+									<td><p:inputText value="#{registroAlumnosMB.ocupacionApoderado}" required="true" maxlength="100"/></td>					
+																	
 								</tr>	
 								
 								<tr><td colspan="6"><br/></td></tr>
 															
 								<tr>																			
 									<td><p:outputLabel value="Religion:" /></td>
-									<td><p:inputText value=""/></td>
+									<td><p:inputText value="#{registroAlumnosMB.religionApoderado}" required="true" maxlength="20"/></td>					
+									
 									<td><p:outputLabel value="Esta Vivo:" /></td>
-									<td style="text-align: left;"><h:selectBooleanCheckbox value=""/></td>											
+									<td style="text-align: left;">
+										<p:selectOneMenu id="idEstaVivo3" value="#{registroAlumnosMB.estaVivoApoderado}">							            
+								            <f:selectItem itemLabel="Si" itemValue="Si" />
+								            <f:selectItem itemLabel="No" itemValue="No" />								            
+        								</p:selectOneMenu>
+									</td>
 								</tr>								
 							</table>											
-				
+					
 			</p:panel> 
                 
             </h:panelGrid>
         </p:tab>       
         
-    </p:tabView>	
-    
+  </p:tabView>	
+    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+				
     <table>
 			<tr>
 				<td>								
-					<p:commandButton id="btnGuardar"								
-						value="Guardar" styleClass="buttonForm"/>
-					<p:commandButton id="btnCancelar"								
-						value="Cancelar" styleClass="buttonForm"/>																				
+					<p:commandButton id="btnGuardar"	value="Guardar" 
+										action="#{registroAlumnosMB.registrarAlumno}" styleClass="buttonForm"/>
+										<p:link id="btnCancelar"				outcome="main"				
+										value="Cancelar"  styleClass="buttonForm"/>																				
 				</td>
 			</tr>
 	</table>

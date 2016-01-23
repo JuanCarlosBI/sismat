@@ -29,77 +29,49 @@ public class Nivel  implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Short idNivel;
-     private Empleado empleadosByTutor;
-     private Empleado empleadosByCoTutor;
+	private Integer idNivel;
+     private String tipo;
      private String grado;
      private String orden;
-     
-     private char estado;
-     private String tipo;
      private String nroVacantes;
-     public String getTipo() {
-		return tipo;
-	}
-
-
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
-
-
-	 @Column(name="NroVacantes", nullable=false)
-	public String getNroVacantes() {
-		return nroVacantes;
-	}
-
-
-	public void setNroVacantes(String nroVacantes) {
-		this.nroVacantes = nroVacantes;
-	}
-
-
-
-	private String codigoColegio;
-     private Set<Horarios> horarioses = new HashSet<Horarios>(0);
-     private Set<Matriculas> matriculases = new HashSet<Matriculas>(0);
-
+     private char estado;
+     private String codigoColegio;
     public Nivel() {
     }
 
-
+	
+    public Nivel(String tipo,String grado, String orden, String nroVacantes, char estado) {
+    	this.tipo=tipo;
+        this.grado = grado;
+        this.orden = orden;
+        this.nroVacantes = nroVacantes;
+        this.estado = estado;
+    }
+ 
    
-     @Id @GeneratedValue(strategy=IDENTITY)
+     public Nivel(Integer idNivel, String tipo, String grado, String orden,String codigoColegio,
+			String nroVacantes, char estado) {
+		super();
+		this.idNivel = idNivel;
+		this.tipo = tipo;
+		this.grado = grado;
+		this.orden = orden;
+		this.nroVacantes = nroVacantes;
+		this.estado = estado;
+		this.codigoColegio = codigoColegio;
+	}
 
-    
+
+	@Id @GeneratedValue(strategy=IDENTITY)
     @Column(name="IdNivel", unique=true, nullable=false)
-    public Short getIdNivel() {
+    public Integer getIdNivel() {
         return this.idNivel;
     }
     
-    public void setIdNivel(Short idNivel) {
+    public void setIdNivel(Integer idNivel) {
         this.idNivel = idNivel;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="Tutor", nullable=false)
-    public Empleado getEmpleadosByTutor() {
-        return this.empleadosByTutor;
-    }
-    
-    public void setEmpleadosByTutor(Empleado empleadosByTutor) {
-        this.empleadosByTutor = empleadosByTutor;
-    }
-
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="CoTutor", nullable=false)
-    public Empleado getEmpleadosByCoTutor() {
-        return this.empleadosByCoTutor;
-    }
-    
-    public void setEmpleadosByCoTutor(Empleado empleadosByCoTutor) {
-        this.empleadosByCoTutor = empleadosByCoTutor;
-    }
 
     
     @Column(name="Grado", nullable=false, length=60)
@@ -122,7 +94,14 @@ public class Nivel  implements java.io.Serializable {
     }
 
     
-   
+    @Column(name="NroVacantes", nullable=false, length=6)
+    public String getNroVacantes() {
+        return this.nroVacantes;
+    }
+    
+    public void setNroVacantes(String nroVacantes) {
+        this.nroVacantes = nroVacantes;
+    }
 
     
     @Column(name="Estado", nullable=false, length=1)
@@ -133,34 +112,29 @@ public class Nivel  implements java.io.Serializable {
     public void setEstado(char estado) {
         this.estado = estado;
     }
+    
+    @Column(name="Tipo", nullable=false, length=10)
+
+    public String getTipo() {
+		return tipo;
+	}
+
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
 
     
-    @Column(name="CodigoColegio", nullable=false, length=11)
-    public String getCodigoColegio() {
-        return this.codigoColegio;
-    }
     
-    public void setCodigoColegio(String codigoColegio) {
-        this.codigoColegio = codigoColegio;
-    }
+    @Column(name="codigoColegio", nullable=false, length=11)
+   public String getCodigoColegio() {
+      return this.codigoColegio;
+   }
+    
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="nivel")
-    public Set<Horarios> getHorarioses() {
-        return this.horarioses;
-    }
-    
-    public void setHorarioses(Set<Horarios> horarioses) {
-        this.horarioses = horarioses;
-    }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="nivel")
-    public Set<Matriculas> getMatriculases() {
-        return this.matriculases;
-    }
-    
-    public void setMatriculases(Set<Matriculas> matriculases) {
-        this.matriculases = matriculases;
-    }
+public void setCodigoColegio(String codigoColegio) {
+      this.codigoColegio = codigoColegio;
+ }
 
 
 

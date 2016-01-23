@@ -35,21 +35,18 @@ public class Usuario  implements java.io.Serializable {
      private String tipo;
      private String codigoColegio;
 
-
-    public Usuario() {    	
-        this.nombreUsuario = "Juan Carlos";        
-        this.codigoColegio = "10417015243";
+    public Usuario() {
     }
 
-    public Usuario(Empleado empleado, String nombreUsuario, String clave, String tipo, String codigoColegio) {
-       this.empleado = empleado;
+    public Usuario( String nombreUsuario, String clave, String tipo, String codigoColegio) {
+     
        this.nombreUsuario = nombreUsuario;
        this.clave = clave;
        this.tipo = tipo;
-       this.codigoColegio = codigoColegio;
     }
    
-     @Id @GeneratedValue(strategy=IDENTITY)    
+     @Id @GeneratedValue(strategy=IDENTITY)  
+     
     @Column(name="IdUsuario", unique=true, nullable=false)
     public Short getIdUsuario() {
         return this.idUsuario;
@@ -59,19 +56,19 @@ public class Usuario  implements java.io.Serializable {
         this.idUsuario = idUsuario;
     }
 
-@OneToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="IdEmpleado", nullable=false)
-    public Empleado getEmpleados() {
-        return this.empleado;
-    }
+//@OneToOne(fetch=FetchType.LAZY)
+  //  @JoinColumn(name="IdEmpleado", nullable=false)
+   // public Empleado getEmpleados() {
+     //   return this.empleado;
+    //}
     
 
-	public void setEmpleados(Empleado empleado) {
-        this.empleado = empleado;
-    }
+	//public void setEmpleados(Empleado empleado) {
+      //  this.empleado = empleado;
+    //}
 
     
-    @Column(name="nombreUsuario", nullable=false, length=20)
+    @Column(name="NombreUsuario", nullable=false, length=20)
     public String getNombreUsuario() {
         return this.nombreUsuario;
     }
@@ -101,14 +98,7 @@ public class Usuario  implements java.io.Serializable {
     }
 
     
-    @Column(name="CodigoColegio", nullable=false, length=10)
-    public String getCodigoColegio() {
-        return this.codigoColegio;
-    }
-    
-    public void setCodigoColegio(String codigoColegio) {
-        this.codigoColegio = codigoColegio;
-    }
+
 }
 
 

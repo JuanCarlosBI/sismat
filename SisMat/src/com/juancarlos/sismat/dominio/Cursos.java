@@ -29,26 +29,39 @@ public class Cursos  implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	private Short idCurso;
      private String nombre;
-     private char estado;
      private String grado;
      private String nivelAcademico;
      private String area;
-     private String codigoColegio;
+     private char estado;
+    // private String codigoColegio;
      private Set<Horarios> horarioses = new HashSet<Horarios>(0);
 
     public Cursos() {
     }
 
 	
-    public Cursos(String nombre, char estado, String codigoColegio) {
-        this.nombre = nombre;
-        this.estado = estado;
-        this.codigoColegio = codigoColegio;
-    }
-    public Cursos(String nombre, char estado, String codigoColegio, Set<Horarios> horarioses) {
+    public Cursos(Short idCurso) {
+		super();
+		this.idCurso = idCurso;
+	}
+
+
+	
+    public Cursos(String nombre, String grado,
+			String nivelAcademico, String area, char estado) {
+		super();
+		this.nombre = nombre;
+		this.grado = grado;
+		this.nivelAcademico = nivelAcademico;
+		this.area = area;
+		this.estado = estado;
+	}
+
+
+	public Cursos(String nombre, char estado, Set<Horarios> horarioses) {
        this.nombre = nombre;
        this.estado = estado;
-       this.codigoColegio = codigoColegio;
+     //  this.codigoColegio = codigoColegio;
        this.horarioses = horarioses;
     }
    
@@ -75,6 +88,48 @@ public class Cursos  implements java.io.Serializable {
     }
 
     
+
+    
+ //   @Column(name="CodigoColegio", nullable=false, length=11)
+   // public String getCodigoColegio() {
+     //   return this.codigoColegio;
+   // }
+    
+    //public void setCodigoColegio(String codigoColegio) {
+      //  this.codigoColegio = codigoColegio;
+    //}
+
+    
+    @Column(name="Grado", nullable=false, length=50)
+    public String getGrado() {
+		return grado;
+	}
+
+
+	public void setGrado(String grado) {
+		this.grado = grado;
+	}
+
+	@Column(name="NivelAcademico", nullable=false, length=50)
+	public String getNivelAcademico() {
+		return nivelAcademico;
+	}
+
+
+	public void setNivelAcademico(String nivelAcademico) {
+		this.nivelAcademico = nivelAcademico;
+	}
+
+	@Column(name="Area", nullable=false, length=50)
+	public String getArea() {
+		return area;
+	}
+
+
+	public void setArea(String area) {
+		this.area = area;
+	}
+
     @Column(name="Estado", nullable=false, length=1)
     public char getEstado() {
         return this.estado;
@@ -82,16 +137,6 @@ public class Cursos  implements java.io.Serializable {
     
     public void setEstado(char estado) {
         this.estado = estado;
-    }
-
-    
-    @Column(name="CodigoColegio", nullable=false, length=11)
-    public String getCodigoColegio() {
-        return this.codigoColegio;
-    }
-    
-    public void setCodigoColegio(String codigoColegio) {
-        this.codigoColegio = codigoColegio;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="cursos")
@@ -102,36 +147,6 @@ public class Cursos  implements java.io.Serializable {
     public void setHorarioses(Set<Horarios> horarioses) {
         this.horarioses = horarioses;
     }
-
-
-	public String getGrado() {
-		return grado;
-	}
-
-
-	public void setGrado(String grado) {
-		this.grado = grado;
-	}
-
-
-	public String getNivelAcademico() {
-		return nivelAcademico;
-	}
-
-
-	public void setNivelAcademico(String nivelAcademico) {
-		this.nivelAcademico = nivelAcademico;
-	}
-
-
-	public String getArea() {
-		return area;
-	}
-
-
-	public void setArea(String area) {
-		this.area = area;
-	}
 
 
 

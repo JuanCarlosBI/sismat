@@ -32,71 +32,58 @@ public class Matriculas  implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Integer idMatricula;
-     private Nivel nivel;
-     private Alumnos alumnos;
+	private String idMatricula;
      private String periodo;
      private Character seccion;
      private Date fecha;
      private String hora;
      private String codigoColegio;
-     private Set<Pagos> pagoses = new HashSet<Pagos>(0);
+     private String idAlumno;
 
     public Matriculas() {
     }
 
 	
-    public Matriculas(Nivel nivel, Alumnos alumnos, String periodo, Date fecha, String codigoColegio) {
-        this.nivel = nivel;
-        this.alumnos = alumnos;
+    public Matriculas(String idAlumno, String periodo, Date fecha,  Character seccion,String codigoColegio) {
+       
         this.periodo = periodo;
+        this.idAlumno=idAlumno;
+        this.seccion = seccion;
         this.fecha = fecha;
         this.codigoColegio = codigoColegio;
     }
-    public Matriculas(Nivel nivel, Alumnos alumnos, String periodo, Character seccion, Date fecha, String hora, String codigoColegio, Set<Pagos> pagoses) {
-       this.nivel = nivel;
-       this.alumnos = alumnos;
+    public Matriculas(String idAlumno, String periodo, Character seccion, Date fecha, String hora, String codigoColegio, Set<Pagos> pagoses) {
+     
        this.periodo = periodo;
+       this.idAlumno=idAlumno;
        this.seccion = seccion;
        this.fecha = fecha;
        this.hora = hora;
        this.codigoColegio = codigoColegio;
-       this.pagoses = pagoses;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
-
-    
     @Column(name="IdMatricula", unique=true, nullable=false)
-    public Integer getIdMatricula() {
+    public String getIdMatricula() {
         return this.idMatricula;
     }
     
-    public void setIdMatricula(Integer idMatricula) {
+    public void setIdMatricula(String idMatricula) {
         this.idMatricula = idMatricula;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="IdNivel", nullable=false)
-    public Nivel getNivel() {
-        return this.nivel;
-    }
     
-    public void setNivel(Nivel nivel) {
-        this.nivel = nivel;
-    }
 
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="IdAlumno", nullable=false)
-    public Alumnos getAlumnos() {
-        return this.alumnos;
-    }
-    
-    public void setAlumnos(Alumnos alumnos) {
-        this.alumnos = alumnos;
-    }
+    @Column(name="IdAlumno", nullable=false, length=8)
+   public String getIdAlumno() {
+		return idAlumno;
+	}
 
-    
+	public void setIdAlumno(String idAlumno) {
+		this.idAlumno = idAlumno;
+	}
+
+	     
     @Column(name="Periodo", nullable=false, length=6)
     public String getPeriodo() {
         return this.periodo;
@@ -137,22 +124,13 @@ public class Matriculas  implements java.io.Serializable {
     }
 
     
-    @Column(name="CodigoColegio", nullable=false, length=11)
+    @Column(name="codigoColegio", nullable=false, length=11)
     public String getCodigoColegio() {
         return this.codigoColegio;
     }
     
     public void setCodigoColegio(String codigoColegio) {
         this.codigoColegio = codigoColegio;
-    }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="matriculas")
-    public Set<Pagos> getPagoses() {
-        return this.pagoses;
-    }
-    
-    public void setPagoses(Set<Pagos> pagoses) {
-        this.pagoses = pagoses;
     }
 
 

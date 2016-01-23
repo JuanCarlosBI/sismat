@@ -13,7 +13,7 @@ import com.juancarlos.sismat.dominio.Nivel;
 @Repository
 public class NivelDaoImpl extends HibernateDaoSupport implements NivelDao {
 
-
+	
 	@Autowired
 	public NivelDaoImpl(SessionFactory sessionFactory){
 		setSessionFactory(sessionFactory);
