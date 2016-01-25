@@ -27,7 +27,7 @@ public class Seccion  implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Short idSeccion;
+	private Integer idSeccion;
      private String idTutor;
      private String idCoTutor;
      private String grado;
@@ -42,13 +42,13 @@ public class Seccion  implements java.io.Serializable {
     }
 
 	
-    public Seccion(Short idSeccion) {
+    public Seccion(Integer idSeccion) {
 		super();
 		this.idSeccion = idSeccion;
 	}
 
    
-     public Seccion(Short idSeccion, String idTutor,String idCoTutor, String grado,
+     public Seccion(Integer idSeccion, String idTutor,String idCoTutor, String grado,
 			String nivelAcademico, String seccion, String nroVacantes,
 			String nroAula, String periodo,String codigoColegio) {
 		super();
@@ -69,11 +69,11 @@ public class Seccion  implements java.io.Serializable {
 
     
     @Column(name="idSeccion", unique=true, nullable=false)
-    public Short getIdSeccion() {
+    public Integer getIdSeccion() {
         return this.idSeccion;
     }
     
-    public void setIdSeccion(Short idSeccion) {
+    public void setIdSeccion(Integer idSeccion) {
         this.idSeccion = idSeccion;
     }
 

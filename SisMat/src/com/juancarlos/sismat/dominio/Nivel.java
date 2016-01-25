@@ -31,34 +31,37 @@ public class Nivel  implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer idNivel;
      private String tipo;
-     private String grado;
+     private String nivelAcademico;
      private String orden;
      private String nroVacantes;
      private char estado;
      private String codigoColegio;
+     private String nivel;
     public Nivel() {
     }
 
 	
-    public Nivel(String tipo,String grado, String orden, String nroVacantes, char estado) {
+    public Nivel(String tipo,String nivelAcademico,String nivel, String orden, String nroVacantes, char estado) {
     	this.tipo=tipo;
-        this.grado = grado;
+        this.nivelAcademico = nivelAcademico;
         this.orden = orden;
         this.nroVacantes = nroVacantes;
         this.estado = estado;
+        this.nivel=nivel;
     }
  
    
-     public Nivel(Integer idNivel, String tipo, String grado, String orden,String codigoColegio,
+     public Nivel(Integer idNivel, String tipo, String nivelAcademico, String nivel,String orden,String codigoColegio,
 			String nroVacantes, char estado) {
 		super();
 		this.idNivel = idNivel;
 		this.tipo = tipo;
-		this.grado = grado;
+		this.nivelAcademico = nivelAcademico;
 		this.orden = orden;
 		this.nroVacantes = nroVacantes;
 		this.estado = estado;
 		this.codigoColegio = codigoColegio;
+		this.nivel=nivel;
 	}
 
 
@@ -74,13 +77,13 @@ public class Nivel  implements java.io.Serializable {
 
 
     
-    @Column(name="Grado", nullable=false, length=60)
-    public String getGrado() {
-        return this.grado;
+    @Column(name="nivelAcademico", nullable=false, length=60)
+    public String getNivelAcademico() {
+        return this.nivelAcademico;
     }
     
-    public void setGrado(String grado) {
-        this.grado = grado;
+    public void setNivelAcademico(String nivelAcademico) {
+        this.nivelAcademico = nivelAcademico;
     }
 
     
@@ -135,6 +138,16 @@ public class Nivel  implements java.io.Serializable {
 public void setCodigoColegio(String codigoColegio) {
       this.codigoColegio = codigoColegio;
  }
+
+@Column(name="nivel", nullable=false, length=60)
+public String getNivel() {
+	return nivel;
+}
+
+
+public void setNivel(String nivel) {
+	this.nivel = nivel;
+}
 
 
 

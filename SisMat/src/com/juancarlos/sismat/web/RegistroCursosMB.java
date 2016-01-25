@@ -1,6 +1,7 @@
 package com.juancarlos.sismat.web;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -10,6 +11,7 @@ import javax.faces.context.FacesContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.juancarlos.sismat.dominio.Nivel;
 import com.juancarlos.sismat.service.AlumnoService;
 import com.juancarlos.sismat.service.CursoService;
 import org.primefaces.context.RequestContext;
@@ -24,15 +26,29 @@ public class RegistroCursosMB implements Serializable{
 	private String nombre;
     private String grado;
     private String nivelAcademico;
+    private String codigoColegio;
+	private List<Nivel> nivel;
+	 private String[] listanivel;
     private String area;
     private char estado;
    
 	@Autowired
 	CursoService cursoService;
 
+	public void listaNivel(){
+
+		codigoColegio="1041701524";
+		nivel = cursoService.listaNivel(codigoColegio);
+		listanivel=new String[nivel.size()];
+		for(int i=0;i<nivel.size();i++){
+			Nivel niveles=nivel.get(i);
+			listanivel[i]=niveles.getNivelAcademico();
+		}
+		return;
+	}
 	public void registrarCurso() {
 		boolean resultado = cursoService.registroCurso(nombre,
-				grado, nivelAcademico, area, estado );
+				grado, nivelAcademico, area, estado,codigoColegio );
 
 		if (resultado) {
 			FacesContext.getCurrentInstance().addMessage(
@@ -99,6 +115,30 @@ public class RegistroCursosMB implements Serializable{
 
 	public void setEstado(char estado) {
 		this.estado = estado;
+	}
+	public String getCodigoColegio() {
+		return codigoColegio;
+	}
+	public void setCodigoColegio(String codigoColegio) {
+		this.codigoColegio = codigoColegio;
+	}
+	public List<Nivel> getNivel() {
+		return nivel;
+	}
+	public void setNivel(List<Nivel> nivel) {
+		this.nivel = nivel;
+	}
+	public String[] getListanivel() {
+		return listanivel;
+	}
+	public void setListanivel(String[] listanivel) {
+		this.listanivel = listanivel;
+	}
+	public CursoService getCursoService() {
+		return cursoService;
+	}
+	public void setCursoService(CursoService cursoService) {
+		this.cursoService = cursoService;
 	}
 	
 }

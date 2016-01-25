@@ -34,36 +34,28 @@ public class Matriculas  implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer idMatricula;
      private String periodo;
-     private Character seccion;
-     private Date fecha;
-     private String hora;
+  //   private Date fecha;
+    // private String hora;
      private String codigoColegio;
      private String idAlumno;
-     private Integer idNivel;
+     private Integer idSeccion;
+     private String situacion;
+     private String antcolegio;
 
     public Matriculas() {
     }
 
 	
-    public Matriculas(String idAlumno,Integer idNivel, String periodo, Date fecha,  Character seccion,String codigoColegio) {
+    public Matriculas(String idAlumno,Integer idSeccion, String periodo,String codigoColegio,String situacion,String antcolegio) {
        
         this.periodo = periodo;
         this.idAlumno=idAlumno;
-        this.seccion = seccion;
-        this.fecha = fecha;
+        this.idSeccion = idSeccion;
+        this.situacion = situacion;
         this.codigoColegio = codigoColegio;
-        this.idNivel=idNivel;
+        this.antcolegio=antcolegio;
     }
-    public Matriculas(String idAlumno,Integer idNivel, String periodo, Character seccion, Date fecha, String hora, String codigoColegio, Set<Pagos> pagoses) {
-     
-       this.periodo = periodo;
-       this.idAlumno=idAlumno;
-       this.seccion = seccion;
-       this.fecha = fecha;
-       this.hora = hora;
-       this.codigoColegio = codigoColegio;
-       this.idNivel=idNivel;
-    }
+   
    
      @Id @GeneratedValue(strategy=IDENTITY)
     @Column(name="IdMatricula", unique=true, nullable=false)
@@ -97,33 +89,13 @@ public class Matriculas  implements java.io.Serializable {
     }
 
     
-    @Column(name="Seccion", length=1)
-    public Character getSeccion() {
-        return this.seccion;
+    @Column(name="idSeccion", length=5)
+    public Integer getIdSeccion() {
+        return this.idSeccion;
     }
     
-    public void setSeccion(Character seccion) {
-        this.seccion = seccion;
-    }
-
-    @Temporal(TemporalType.DATE)
-    @Column(name="Fecha", nullable=false, length=10)
-    public Date getFecha() {
-        return this.fecha;
-    }
-    
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
-
-    
-    @Column(name="Hora", length=10)
-    public String getHora() {
-        return this.hora;
-    }
-    
-    public void setHora(String hora) {
-        this.hora = hora;
+    public void setIdSeccion(Integer idSeccion) {
+        this.idSeccion = idSeccion;
     }
 
     
@@ -136,15 +108,28 @@ public class Matriculas  implements java.io.Serializable {
         this.codigoColegio = codigoColegio;
     }
 
-    @Column(name="", nullable=false, length=5)
-    public Integer getIdNivel() {
-		return idNivel;
+
+    @Column(name="Situacion", nullable=false, length=20)
+	public String getSituacion() {
+		return situacion;
 	}
 
 
-	public void setIdNivel(Integer idNivel) {
-		this.idNivel = idNivel;
+	public void setSituacion(String situacion) {
+		this.situacion = situacion;
 	}
+
+
+    @Column(name="AntColegio", nullable=false, length=20)
+	public String getAntcolegio() {
+		return antcolegio;
+	}
+
+
+	public void setAntcolegio(String antcolegio) {
+		this.antcolegio = antcolegio;
+	}
+
 
 
 

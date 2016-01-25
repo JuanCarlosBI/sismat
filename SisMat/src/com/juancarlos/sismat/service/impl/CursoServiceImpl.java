@@ -1,10 +1,13 @@
 package com.juancarlos.sismat.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.juancarlos.sismat.dao.CursoDao;
 import com.juancarlos.sismat.dominio.Cursos;
+import com.juancarlos.sismat.dominio.Nivel;
 import com.juancarlos.sismat.service.CursoService;
 
 @Service
@@ -12,18 +15,23 @@ public class CursoServiceImpl implements CursoService {
 	@Autowired
 	CursoDao cursoDao;
 	public boolean registroCurso(String nombre, String grado,
-			String nivelAcademico, String area, char estado){
+			String nivelAcademico, String area, char estado,String codigoColegio){
 		Cursos curso = new Cursos();
 		curso.setArea(area);
 		curso.setEstado(estado);
 		curso.setGrado(grado);
 		curso.setNivelAcademico(nivelAcademico);
 		curso.setNombre(nombre);
+		curso.setCodigoColegio(codigoColegio);
 		
 		
 		return cursoDao.registroCurso(curso);
 		
 
+	}
+	public List<Nivel> listaNivel(String codigoColegio) {
+		List<Nivel> nivel = cursoDao.listaNivel(codigoColegio);
+		return nivel;
 	}
 }
 

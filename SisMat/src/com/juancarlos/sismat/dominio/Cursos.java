@@ -33,7 +33,7 @@ public class Cursos  implements java.io.Serializable {
      private String nivelAcademico;
      private String area;
      private char estado;
-    // private String codigoColegio;
+     private String codigoColegio;
      private Set<Horarios> horarioses = new HashSet<Horarios>(0);
 
     public Cursos() {
@@ -48,20 +48,21 @@ public class Cursos  implements java.io.Serializable {
 
 	
     public Cursos(String nombre, String grado,
-			String nivelAcademico, String area, char estado) {
+			String nivelAcademico, String area, char estado,String codigoColegio) {
 		super();
 		this.nombre = nombre;
 		this.grado = grado;
 		this.nivelAcademico = nivelAcademico;
 		this.area = area;
 		this.estado = estado;
+		this.codigoColegio = codigoColegio;
 	}
 
 
-	public Cursos(String nombre, char estado, Set<Horarios> horarioses) {
+	public Cursos(String nombre, char estado, Set<Horarios> horarioses,String codigoColegio) {
        this.nombre = nombre;
        this.estado = estado;
-     //  this.codigoColegio = codigoColegio;
+       this.codigoColegio = codigoColegio;
        this.horarioses = horarioses;
     }
    
@@ -90,14 +91,14 @@ public class Cursos  implements java.io.Serializable {
     
 
     
- //   @Column(name="CodigoColegio", nullable=false, length=11)
-   // public String getCodigoColegio() {
-     //   return this.codigoColegio;
-   // }
+    @Column(name="codigoColegio", nullable=false, length=11)
+   public String getCodigoColegio() {
+        return this.codigoColegio;
+    }
     
-    //public void setCodigoColegio(String codigoColegio) {
-      //  this.codigoColegio = codigoColegio;
-    //}
+    public void setCodigoColegio(String codigoColegio) {
+        this.codigoColegio = codigoColegio;
+    }
 
     
     @Column(name="Grado", nullable=false, length=50)

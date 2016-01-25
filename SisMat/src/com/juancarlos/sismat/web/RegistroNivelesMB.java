@@ -20,7 +20,7 @@ import com.juancarlos.sismat.service.NivelService;
 public class RegistroNivelesMB implements Serializable{
 
 	private String tipo;
-    private String grado;
+    private String nivel;
 
 	private String codigoColegio; 
     private String orden;
@@ -33,7 +33,7 @@ public class RegistroNivelesMB implements Serializable{
 	public void registrarNivel() {
 		codigoColegio = "1041701524";
 		boolean resultado = nivelService.registroNivel(tipo,
-				grado, orden, nroVacantes, estado ,codigoColegio);
+				nivel, orden, nroVacantes, estado ,codigoColegio);
 
 		if (resultado) {
 			FacesContext.getCurrentInstance().addMessage(
@@ -52,7 +52,7 @@ public class RegistroNivelesMB implements Serializable{
 
 	 public void resetFail() {
 	        this.tipo = null;
-	        this.grado = null;
+	        this.nivel = null;
 	        this.orden = null;
 	        this.nroVacantes = null;
 	        
@@ -71,13 +71,7 @@ public class RegistroNivelesMB implements Serializable{
 		this.tipo = tipo;
 	}
 
-	public String getGrado() {
-		return grado;
-	}
 
-	public void setGrado(String grado) {
-		this.grado = grado;
-	}
 
 	public String getOrden() {
 		return orden;
@@ -109,6 +103,14 @@ public class RegistroNivelesMB implements Serializable{
 
 	public void setCodigoColegio(String codigoColegio) {
 		this.codigoColegio = codigoColegio;
+	}
+
+	public String getNivel() {
+		return nivel;
+	}
+
+	public void setNivel(String nivel) {
+		this.nivel = nivel;
 	}
 	 
 	 

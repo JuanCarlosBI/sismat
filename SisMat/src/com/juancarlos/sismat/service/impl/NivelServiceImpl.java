@@ -11,21 +11,25 @@ import com.juancarlos.sismat.service.NivelService;
 public class NivelServiceImpl implements NivelService {
 	@Autowired
 	NivelDao nivelDao;
-	public boolean registroNivel(String tipo,String grado,String orden, String nroVacantes, char estado, String codigoColegio){
-		Nivel nivel = new Nivel();
+	public boolean registroNivel(String tipo,String nivel,String orden, String nroVacantes, char estado, String codigoColegio){
+		
+		Nivel niveles = new Nivel();
+		String nivelAcademico=tipo+"-"+orden+"°-"+nivel;
 		System.out.println(tipo);
-		System.out.println(grado);
+		System.out.println(nivelAcademico);
 		System.out.println(orden);
 		System.out.println(nroVacantes);
 		System.out.println(estado);
-		nivel.setTipo(tipo);
-		nivel.setGrado(grado);
-		nivel.setOrden(orden);
-		nivel.setNroVacantes(nroVacantes);
-		nivel.setEstado(estado);
-		nivel.setCodigoColegio(codigoColegio);
+		niveles.setTipo(tipo);
+		niveles.setNivel(nivel);
+		niveles.setNivelAcademico(nivelAcademico);
+		niveles.setOrden(orden);
+		niveles.setNroVacantes(nroVacantes);
+		niveles.setEstado(estado);
+		
+		niveles.setCodigoColegio(codigoColegio);
 
-		return nivelDao.registroNivel(nivel);
+		return nivelDao.registroNivel(niveles);
 		
 		
 	}

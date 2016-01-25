@@ -1,5 +1,6 @@
 package com.juancarlos.sismat.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.juancarlos.sismat.dao.CursoDao;
 import com.juancarlos.sismat.dominio.Cursos;
+import com.juancarlos.sismat.dominio.Nivel;
 
 @Repository
 public class CursoDaoImpl extends HibernateDaoSupport implements CursoDao {
@@ -68,4 +70,33 @@ public class CursoDaoImpl extends HibernateDaoSupport implements CursoDao {
 		
 		return curso;
 	}
+
+	@SuppressWarnings("unchecked")
+	public List<Nivel> listaNivel(String codigoColegio) {
+		logger.info("en listaSeccion");
+		System.out.println("en listaSeccion dao");
+	
+		String sql = "";
+		List<Nivel> nivel = new ArrayList<Nivel>();
+
+		try {
+			sql = "from Nivel where codigoColegio = '" + codigoColegio.trim()
+					 +  "'";
+
+			nivel = getHibernateTemplate().find(sql);
+			System.out.println("seccion tamanio " + nivel.size());
+
+			if (nivel.isEmpty()) {
+				nivel = new ArrayList<Nivel>();
+			}
+
+		} catch (Exception e) {
+			System.out.println(e);
+			nivel = null;
+		}
+
+		return nivel;
+	}
+
+
 }

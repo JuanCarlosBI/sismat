@@ -22,28 +22,25 @@
 	</h:head>
 	<h:body>
 		<h:form id="form">
-		
-		<p:panel id="infoalumno" header="Ficha de Matricula Normal"
+			<p:panel id="infoalumno" header="Ficha de Matricula Normal"
 				styleClass="panelBusquedaForm" toggleable="false" closable="false"
 				toggleSpeed="500" closeSpeed="2000" widgetVar="panel" >
-				
 				<table>
 					<tr>
-						<td>
+						<td valign="top">
 							<p:panel>				
 								<p:outputLabel value="Informacion del alumno" />
-								<table style="text-align: right;">
+								<table>
 									<tr>										
 										<td><p:outputLabel value="Alumno:"/></td>
 										<td colspan="3"><p:autoComplete value="#{matriculaNormalMB.nombres}"
 										completeMethod="#{matriculaNormalMB.autoCompletadoAlumno}"
 										style="width:250px;text-align:left; " />
-							</td>
+										</td>
 										<td><p:commandButton id="btnBuscar" value="Buscar"
 										action="#{matriculaNormalMB.listaAlumnos}"
-										update=":form:infoalumno" styleClass="buttonForm" />
-
-								</td>									
+										update=":form:infoalumno:" styleClass="buttonForm" />
+										</td>									
 									</tr>
 									<tr>										
 										<td><p:outputLabel value="Responsable:"/></td>
@@ -70,97 +67,91 @@
 										</td>	
 										<td/>									
 									</tr>	
-																	
-								</table>
-								
-								
-							</p:panel>
-										
-						</td>
-						
-												
-					</tr>
-					<tr>
-						<p:messages id="messages" showDetail="true" autoUpdate="true"
-							closable="true" />
-
-					</tr>
-				</table>
-				
-						
-		</p:panel>
-			
-		</h:form>
-		<h:form>
-		<p:panel  id="regalumno" 
-				styleClass="panelBusquedaForm" toggleable="false" closable="false"
-				toggleSpeed="500" closeSpeed="2000" widgetVar="panel" >
-							
-								<table style="text-align: right;">
-											<tr>
+									<tr>
 												<td><p:outputLabel value="Situacion:"/></td>
 												<td style="text-align: left;">
-												<p:selectOneMenu id="idSituacion" value="Situacion"  layout="grid" columns="1">	            				
-						            				<f:selectItem itemValue="N" itemLabel="Nuevo"/>
-						            				<f:selectItem itemValue="R" itemLabel="Ratificacion"/>
+												<p:selectOneMenu id="idSituacion" value="#{matriculaNormalMB.situacion}"  layout="grid" columns="1">	            				
+						            				<f:selectItem itemValue="Nuevo" itemLabel="Nuevo"/>
+						            				<f:selectItem itemValue="Ratificacion" itemLabel="Ratificacion"/>
 						        				</p:selectOneMenu>
 												</td>												
 												<td style="text-align: left;"><p:outputLabel value="Ant. colegio:"/></td>
-												<td colspan="3"><p:inputText value=""/></td>
+												<td colspan="3"><p:inputText value="#{matriculaNormalMB.antColegio}"/></td>
 											</tr>
+													
 											<tr>
 												<td><p:outputLabel value="Grado:"/></td>
 												<td style="text-align: left;">
-												<p:selectOneMenu id="idGrado" value="Grado"  layout="grid" columns="1">	            				
-						            				<f:selectItem itemValue="I" itemLabel="Inicial"/>
-						            				<f:selectItem itemValue="P" itemLabel="Primaria"/>
-						            				<f:selectItem itemValue="S" itemLabel="Secundaria"/>
-						        				</p:selectOneMenu>
+												<p:selectOneMenu id="idGrado" value="#{matriculaNormalMB.grado}"  layout="grid" columns="1">	            				
+						            			   	<p:ajax update="idNivel" listener="#{matriculaNormalMB.listaNivel}"/> 
+						            			 <f:selectItem itemLabel="Elegir:" itemValue="" />
+            							     <f:selectItem itemLabel="1°" itemValue="1°" />
+								            <f:selectItem itemLabel="2°" itemValue="2°" />	
+								            <f:selectItem itemLabel="3°" itemValue="3°" />	
+								            <f:selectItem itemLabel="4°" itemValue="4°" />
+								            <f:selectItem itemLabel="5°" itemValue="5°" />	
+								            <f:selectItem itemLabel="6°" itemValue="6°" />						            
+        								</p:selectOneMenu>
 												</td>												
 												<td><p:outputLabel value="Nivel:"/></td>
 												<td colspan="3" style="text-align: left;">
-												<p:selectOneMenu id="idNivel" value="Nivel"  layout="grid" columns="1">	            				
-						            				<f:selectItem itemValue="Normal-1°-Primaria" itemLabel="Normal-1°-Primaria"/>
-						            				<f:selectItem itemValue="Normal-1°-Secundaria" itemLabel="Normal-1°-Secundaria"/>
-						            				<f:selectItem itemValue="Verano-1°-Primaria" itemLabel="Verano-1°-Primaria"/>
-						        				</p:selectOneMenu>
+												<p:selectOneMenu id="idNivel" value="#{matriculaNormalMB.nivelAcademico}"    layout="grid" columns="1">	            				
+						            				<p:ajax update="idSeccion" listener="#{matriculaNormalMB.listaSeccion}"/> 
+						            			    <f:selectItem itemLabel="Elegir:" itemValue="" />
+            					    		<f:selectItems value="#{matriculaNormalMB.listanivel}" />
+						            	</p:selectOneMenu>
 												</td>
+												
+												
+
 											</tr>
 											<tr>
-												<td><p:outputLabel value="Seccion:"/></td>
+											<td><p:outputLabel value="Periodo:"/></td>
+												<td style="text-align: left;"><p:spinner id="basic" min="2015" max="2050"  value="#{matriculaNormalMB.periodo}" size="1"/></td>
+											<td><p:outputLabel value="Seccion:"/></td>
 												<td style="text-align: left;">
-												<p:selectOneMenu id="idSeccion" value="Seccion"  layout="grid" columns="1">	            				
-						            				<f:selectItem itemValue="N" itemLabel="Nuevo"/>
-						            				<f:selectItem itemValue="R" itemLabel="Ratificacion"/>
+												<p:selectOneMenu id="idSeccion" value="#{matriculaNormalMB.nombreSeccion}"  layout="grid" columns="1">	            				
+						            				 	<p:ajax update="regalumno,asignatura" listener="#{matriculaNormalMB.nombSeccion}"/> 
+						            						 
+           											 	<f:selectItem itemLabel="Elegir:" itemValue="" />
+						            		<f:selectItems value="#{matriculaNormalMB.listaseccion}" />
+						            				
 						        				</p:selectOneMenu>
-												</td>
-												<td><p:outputLabel value="Vacantes:"/></td>
-												<td style="text-align: left;"><p:inputText value="" disabled="true" size="1"/></td>
-												<td><p:outputLabel value="Periodo:"/></td>
-												<td style="text-align: left;"><p:spinner id="basic" min="2015" max="2050" size="1"/></td>
+						        				</td>
+																							
 											</tr>
-										</table>
-										
-								<p:panel>				
-											<p:outputLabel value="Informacion de la seccion" />
-											<table>
 												<tr>
-													<td><p:outputLabel value="Tutor:"/></td>
-													<td><p:inputText value=""  disabled="true"/></td>													
-												</tr>
-												<tr>
-													<td><p:outputLabel value="Co-Tutor:"/></td>
-													<td><p:inputText value=""  disabled="true"/></td>													
-												</tr>
-												<tr>
-													<td><p:outputLabel value="N° Aula:"/></td>
-													<td><p:inputText value="" size="1" disabled="true"/></td>													
-												</tr>
-											</table>
-										</p:panel>
-					
+						
+
+					</tr>	
+					<p:messages id="messages" showDetail="true" autoUpdate="true"
+							closable="true" />			
+								</table>
+							
+							</p:panel>
+							<p:panel id="regalumno">
+								<table style="text-align: right;">
+									<tr>
+										<td><p:outputLabel value="Vacantes:"/></td>
+										<td style="text-align: left;"><p:inputText value="#{matriculaNormalMB.vacantes}" disabled="true" size="1"/></td>
+									</tr>
+									<tr>
+										<td><p:outputLabel value="Tutor:"/></td>
+										<td><p:inputText value="#{matriculaNormalMB.nombretutor}"  disabled="true"/></td>													
+									</tr>
+									<tr>													<td><p:outputLabel value="Co-Tutor:"/></td>
+										<td><p:inputText value="#{matriculaNormalMB.nombrecotutor}"  disabled="true"/></td>													
+									</tr>
+									<tr>
+										<td><p:outputLabel value="N° Aula:"/></td>
+										<td><p:inputText value="#{matriculaNormalMB.aula}" size="1" disabled="true"/></td>													
+									</tr>
+								</table>
+							</p:panel>
+															
+						</td>
 						<td valign="top">
-							<p:panel>	
+							<p:panel id="asignatura">	
 							<table>
 								<tr>
 								<td style="text-align: left;">
@@ -170,33 +161,41 @@
 									<td colspan="2"><h:outputLabel value="Cursos a Cargo" /></td>
 									</tr>
 									<tr>
-									<td style="text-align: right;"><h:outputLabel value="Asignatura:" /></td>
+									<td style="text-align: right;"><h:outputLabel value="Asignatura" /></td>
 									<td style="text-align: left;">
-										<p:selectOneMenu id="idAsignatura" value="Asignatura"  layout="grid" columns="1">	            				
-						            		<f:selectItem itemValue="L" itemLabel="Lenguaje"/>
-						            		<f:selectItem itemValue="M" itemLabel="Matematica"/>
-						            		<f:selectItem itemValue="A" itemLabel="Arte"/>
-						        		</p:selectOneMenu>
-						        	</td>
+										<p:selectCheckboxMenu id="idAsignatura" label="Elegir curso:" value="#{matriculaNormalMB.nombrecurso}"  filter="true" filterMatchMode="startsWith" panelStyle="width:250px">	            				
+						            		
+						            		<f:selectItems value="#{matriculaNormalMB.listacurso}" />
+						            	</p:selectCheckboxMenu>
+        				        	</td>
+									</tr>
+									<tr>
+									<td colspan="6"><p:commandButton id="btnAceptar"
+												value="Agregar" styleClass="buttonForm"
+												update="display" actionListener="#{matriculaNormalMB.agregar}" /> 
+												<p:commandButton
+												value="Limpiar" update="display" process="@this"
+												actionListener="#{matriculaNormalMB.resetFail}"
+												styleClass="buttonForm" /></td>
 									</tr>
 									<tr>
 									<td colspan="2">
-										<p:commandButton id="btnAceptars"								
-										value="Agregar" styleClass="buttonForm"/>
-										<p:commandButton id="btnLimpiar"								
-										value="Limpiar" styleClass="buttonForm"/>
-									</td>
-									</tr>
-									<tr>
-									<td colspan="2">
+									<p:outputPanel id="display" >
 										<p:dataTable var="car" value="" style="width:200px;">
 											
 											<p:column headerText="Nombre Curso" styleClass="panelTabla">
-										        <h:outputText value="" />
+										        <p:dataList value="#{matriculaNormalMB.nombrecurso}" var="curso" emptyMessage="No hay cursos selecionados">
+           							 #{curso}
+        						</p:dataList>
 										    </p:column>
 			 
 										</p:dataTable>
-									</td>									
+										
+        						</p:outputPanel>
+									</td>				
+								
+        
+    					
 									</tr>
 									</table>
 									
@@ -212,42 +211,71 @@
 									<td/>
 									</tr>
 									<tr>
-									<td><h:outputLabel value="Asignatura:" /></td>
+									<td style="text-align: right;"><h:outputLabel value="Asignatura" /></td>
 									<td style="text-align: left;">
-										<p:selectOneMenu id="idAsignaturas" value="Asignatura"  layout="grid" columns="1">	            				
-						            		<f:selectItem itemValue="L" itemLabel="Lenguaje"/>
-						            		<f:selectItem itemValue="M" itemLabel="Matematica"/>
-						            		<f:selectItem itemValue="A" itemLabel="Arte"/>
-						        		</p:selectOneMenu>
-						        	</td>
+										<p:selectOneMenu id="iddAsignatura"  value="#{matriculaNormalMB.nombrecursoexo}"  filter="true" filterMatchMode="startsWith" panelStyle="width:350px">	            				
+						            		<f:selectItem itemLabel="Elegir Curso" itemValue="" />
+						            		<f:selectItems value="#{matriculaNormalMB.listacurso}" />
+						            	</p:selectOneMenu>
+        				        	</td>
 						        	</tr>
 						        	<tr>
 						        	<td><h:outputLabel value="Motivo:" /></td>
-						        	<td style="text-align: left;"><p:inputText value=""/></td>
+						        	<td><p:inputText value="#{matriculaNormalMB.motivo}"/></td>
 									</tr>
 									<tr>
 									<td colspan="2" style="text-align: left;">
-										<p:commandButton id="btnAceptarss"								
-										value="Agregar" styleClass="buttonForm"/>
-										<p:commandButton id="btnLimpiarr"								
-										value="Limpiar" styleClass="buttonForm"/>
+										<p:commandButton id="btnAceptarr"
+												value="Agregar" styleClass="buttonForm" update="exo"
+												actionListener="#{matriculaNormalMB.addAction}" /> 
+												
+												
 									</td>
 									</tr>
 									<tr>
 									<td colspan="2">
-										<p:dataTable var="ca" value="" style="width:400px;">
-											
-											<p:column headerText="Nombre Curso"  styleClass="panelTabla">
-										        <h:outputText value="" />
-										    </p:column>
-										    
-			 								<p:column headerText="Motivo" styleClass="panelTabla">
-										        <h:outputText value="" />
-										    </p:column>
-										    
-										</p:dataTable>
+									<p:outputPanel id="exo" >
+										
+										<p:dataTable value="#{matriculaNormalMB.orderList}" var="o"  style="width: 400px;" editable="true">
+                    
+                    <p:ajax event="rowEdit" listener="#{matriculaNormalMB.onEdit}" update=":form:messages" />  
+                    <p:ajax event="rowEditCancel" listener="#{matriculaNormalMB.onCancel}" update=":form:messages" /> 
+                    <p:column headerText="Nombre Curso">
+                        
+                        <p:cellEditor>  
+                            <f:facet name="output">  
+                                <h:outputText value="#{o.nombrecursoexo}" />  
+                            </f:facet>  
+                            <f:facet name="input">  
+                                <p:inputText value="#{o.nombrecursoexo}" />  
+                            </f:facet>  
+                        </p:cellEditor> 
+                    </p:column>
+ 
+                    <p:column headerText="Motivo">
+                       
+                        <p:cellEditor>  
+                            <f:facet name="output">  
+                                <h:outputText value="#{o.motivo}" />  
+                            </f:facet>  
+                            <f:facet name="input">  
+                                <p:inputText value="#{o.motivo}" />  
+                            </f:facet>  
+                        </p:cellEditor>
+                    </p:column>
+ <p:column headerText="Opciones" style="width:70px">  
+                        <p:rowEditor />  
+                    </p:column> 
+                                  
+                     
+                </p:dataTable>
+										</p:outputPanel>
+										
+										
 									</td>
 									</tr>
+									
+									
 									</table>
 									</p:panel>
 								</td>
@@ -255,18 +283,27 @@
 							</table>							
 							</p:panel>
 						</td>						
-			<tr>
+					</tr>
+					<tr>
 					<td colspan="2">						
 						<p:commandButton id="btnGuardar"								
-										value="Guardar" styleClass="buttonForm"/>
-						<p:commandButton id="btnLimpiarrr"								
-										value="Limpiar" styleClass="buttonForm"/>	
-						<p:commandButton id="btnImprimir"								
-										value="Imprimir" styleClass="buttonForm"/>					
+										value="Guardar"  actionListener="#{matriculaNormalMB.registrarMatricula}"	 styleClass="buttonForm"/>
+										
+						<p:commandButton id="btnLimpiarrr"	 update=":form:infoalumno:"			
+						process="@this" actionListener="#{matriculaNormalMB.reset}"				
+										value="Limpiar" styleClass="buttonForm"/>
+						<p:commandButton value="Imprimir" type="button" icon="ui-icon-print" styleClass="buttonForm">
+    						<p:printer target="infoalumno" />
+						</p:commandButton>					
 					</td>
 					</tr>
-							</p:panel>	
+				</table>
+				
+						
+		</p:panel>
+			
 		</h:form>
+	
 	</h:body>
 	</f:view>
 </html>

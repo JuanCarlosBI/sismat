@@ -9,12 +9,10 @@ import org.springframework.stereotype.Service;
 import com.juancarlos.sismat.dao.PagoDao;
 import com.juancarlos.sismat.dao.SeccionDao;
 import com.juancarlos.sismat.dominio.Alumnos;
-import com.juancarlos.sismat.dominio.Cursos;
-import com.juancarlos.sismat.dominio.Empleado;
 import com.juancarlos.sismat.dominio.Matriculas;
-import com.juancarlos.sismat.dominio.Nivel;
 import com.juancarlos.sismat.dominio.Pagos;
 import com.juancarlos.sismat.service.PagoService;
+import com.juancarlos.sismat.dominio.Seccion;
 
 @Service
 public class PagoServiceImpl implements PagoService {
@@ -47,13 +45,13 @@ public class PagoServiceImpl implements PagoService {
 		return alumnos;
 	}
 
-	public List<Nivel> listaNivel(Integer idNivel) {
-		System.out.println("en listaNivel service");
-		System.out.println("idNivel " + idNivel);
+	 public List<Seccion> listaSeccion(Integer idSeccion) {
+		System.out.println("en listaSeccion service");
+		System.out.println("idSeccion " + idSeccion);
 
-		List<Nivel> nivel = pagoDao.listaNivel(idNivel);
+		List<Seccion> seccion = pagoDao.listaSeccion(idSeccion);
 
-		return nivel;
+		return seccion;
 	}
 
 	public List<Pagos> listaPago(Integer idMatricula) {

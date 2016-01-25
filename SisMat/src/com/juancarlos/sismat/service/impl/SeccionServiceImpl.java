@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.juancarlos.sismat.dao.SeccionDao;
 
+import com.juancarlos.sismat.dominio.Nivel;
 import com.juancarlos.sismat.dominio.Seccion;
 import com.juancarlos.sismat.dominio.Empleado;
 import com.juancarlos.sismat.service.SeccionService;
@@ -23,10 +24,9 @@ public class SeccionServiceImpl implements SeccionService {
 	
 	public boolean registroSeccion(String idTutor,String idCoTutor, String grado,
 			String nivelAcademico, String seccion, String nroVacantes,
-			String nroAula, String periodo){
+			String nroAula, String periodo,String codigoColegio){
 		
 		Seccion secciones = new Seccion();
-		String codigoColegio="12345678901";
 		secciones.setIdTutor(idTutor);
 		secciones.setIdCoTutor(idCoTutor);
 		secciones.setGrado(grado);
@@ -40,5 +40,9 @@ public class SeccionServiceImpl implements SeccionService {
 
 		 return seccionDao.registroSeccion(secciones);
 		
+	}
+	public List<Nivel> listaNivel(String codigoColegio) {
+		List<Nivel> nivel = seccionDao.listaNivel(codigoColegio);
+		return nivel;
 	}
 }

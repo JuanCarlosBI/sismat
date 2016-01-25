@@ -1,6 +1,8 @@
 package com.juancarlos.sismat.dao.impl;
 
 import java.util.ArrayList;
+
+import com.juancarlos.sismat.dominio.Seccion;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
@@ -116,28 +118,28 @@ public class PagoDaoImpl extends HibernateDaoSupport implements PagoDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Nivel> listaNivel(Integer idNivel) {
-		logger.info("en listaMatricula");
-		System.out.println("en listaMatricula dao");
+		public List<Seccion> listaSeccion(Integer idSeccion) {
+		logger.info("en listaSeccion");
+		System.out.println("en listaSeccion dao");
 		String sql = "";
-		List<Nivel> nivel = new ArrayList<Nivel>();
+		List<Seccion> seccion = new ArrayList<Seccion>();
 
 		try {
-			sql = "from Nivel where idNivel='" + idNivel + "'";
+			sql = "from Seccion where idSeccion='" + idSeccion + "'";
 
-			nivel = getHibernateTemplate().find(sql);
-			System.out.println("nivel tamanio " + nivel.size());
+			seccion = getHibernateTemplate().find(sql);
+			System.out.println("nivel tamanio " + seccion.size());
 
-			if (nivel.isEmpty()) {
-				nivel = new ArrayList<Nivel>();
+			if (seccion.isEmpty()) {
+				seccion = new ArrayList<Seccion>();
 			}
 
 		} catch (Exception e) {
 			System.out.println(e);
-			nivel = null;
+			seccion = null;
 		}
 
-		return nivel;
+		return seccion;
 	}
 
 	@SuppressWarnings("unchecked")

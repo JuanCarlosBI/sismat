@@ -6,6 +6,7 @@ import com.juancarlos.sismat.dominio.Alumnos;
 import com.juancarlos.sismat.dominio.Matriculas;
 import com.juancarlos.sismat.dominio.Nivel;
 import com.juancarlos.sismat.dominio.Pagos;
+import com.juancarlos.sismat.dominio.Seccion;
 
 public interface PagoDao {
 	public  List<Alumnos> idAlumno(String idAlumno);
@@ -13,7 +14,7 @@ public interface PagoDao {
 
 	public List<Alumnos> listaAlumnos(String codigoColegio, String idAlumno);
 
-	public List<Nivel> listaNivel(Integer idNivel) ;
+	public List<Seccion> listaSeccion(Integer idSeccion) ;
 	public List<Pagos> listaPago(Integer idMatricula);
 	public boolean registroPago(Pagos pago);
 }

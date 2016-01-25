@@ -1,5 +1,6 @@
 package com.juancarlos.sismat.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -15,6 +16,7 @@ import com.juancarlos.sismat.dao.SeccionDao;
 import com.juancarlos.sismat.dominio.Alumnos;
 import com.juancarlos.sismat.dominio.Cursos;
 import com.juancarlos.sismat.dominio.Empleado;
+import com.juancarlos.sismat.dominio.Nivel;
 import com.juancarlos.sismat.dominio.Seccion;
 
 @Repository
@@ -73,6 +75,34 @@ public class SeccionDaoImpl extends HibernateDaoSupport implements SeccionDao {
          
           return empleados;
       }
+
+	@SuppressWarnings("unchecked")
+	public List<Nivel> listaNivel(String codigoColegio) {
+		logger.info("en listaSeccion");
+		System.out.println("en listaSeccion dao");
+	
+		String sql = "";
+		List<Nivel> nivel = new ArrayList<Nivel>();
+
+		try {
+			sql = "from Nivel where codigoColegio = '" + codigoColegio.trim()
+					 +  "'";
+
+			nivel = getHibernateTemplate().find(sql);
+			System.out.println("seccion tamanio " + nivel.size());
+
+			if (nivel.isEmpty()) {
+				nivel = new ArrayList<Nivel>();
+			}
+
+		} catch (Exception e) {
+			System.out.println(e);
+			nivel = null;
+		}
+
+		return nivel;
+	}
+
 
 	@SuppressWarnings("unchecked")
 	public Seccion encontrarSeccion(Short idSeccion){

@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.juancarlos.sismat.dominio.Empleado;
+import com.juancarlos.sismat.dominio.Nivel;
+import com.juancarlos.sismat.dominio.Seccion;
 import com.juancarlos.sismat.service.SeccionService;
 
 import java.io.Serializable;
@@ -27,6 +29,8 @@ public class RegistroSeccionMB implements Serializable {
 	private String idCoTutor;
 
 	private String nombres;
+
+	private List<Nivel> nivel;
 	private String nombresco;
 	private String grado;
     private String seccion;
@@ -34,6 +38,8 @@ public class RegistroSeccionMB implements Serializable {
     private String nroVacantes;
     private String nroAula;
     private String periodo;
+private String codigoColegio;
+	 private String[] listanivel;
     
 	@Autowired
 	SeccionService seccionService;
@@ -45,7 +51,8 @@ public class RegistroSeccionMB implements Serializable {
 		
 		List<String> results = new ArrayList<String>();
 		List<Empleado> listaNombresProductos = new ArrayList<Empleado>();		
-		
+
+		codigoColegio="1041701524";
 		listaNombresProductos = seccionService.nombreEmpleado(query.toUpperCase());
 		
 		
@@ -58,6 +65,15 @@ public class RegistroSeccionMB implements Serializable {
 		return results;
 
 	}
+	public void listaNivel(){
+		nivel = seccionService.listaNivel(codigoColegio);
+		listanivel=new String[nivel.size()];
+		for(int i=0;i<nivel.size();i++){
+			Nivel niveles=nivel.get(i);
+			listanivel[i]=niveles.getNivelAcademico();
+		}
+		return;
+	}
 
 
 	public void registrarSeccion() {
@@ -67,7 +83,7 @@ public class RegistroSeccionMB implements Serializable {
 		idCoTutor=nombresco.replaceAll("[^0-9.]", "");
 		
 		boolean resultado = seccionService.registroSeccion(idTutor,idCoTutor,
-				grado, nivelAcademico, seccion, nroVacantes,nroAula,periodo );
+				grado, nivelAcademico, seccion, nroVacantes,nroAula,periodo,codigoColegio );
 
 		if (resultado) {
 			FacesContext.getCurrentInstance().addMessage(
@@ -208,6 +224,36 @@ public class RegistroSeccionMB implements Serializable {
 
 	public void setNombresco(String nombresco) {
 		this.nombresco = nombresco;
+	}
+
+
+	public List<Nivel> getNivel() {
+		return nivel;
+	}
+
+
+	public void setNivel(List<Nivel> nivel) {
+		this.nivel = nivel;
+	}
+
+
+	public String getCodigoColegio() {
+		return codigoColegio;
+	}
+
+
+	public void setCodigoColegio(String codigoColegio) {
+		this.codigoColegio = codigoColegio;
+	}
+
+
+	public String[] getListanivel() {
+		return listanivel;
+	}
+
+
+	public void setListanivel(String[] listanivel) {
+		this.listanivel = listanivel;
 	}
 
 

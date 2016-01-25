@@ -73,6 +73,7 @@ public class RegistroAlumnosMB implements Serializable {
 	private String estaVivoApoderado;
 	
 	
+	
 	@Autowired
 	AlumnoService alumnoService;
 

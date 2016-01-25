@@ -15,6 +15,7 @@ import com.juancarlos.sismat.dominio.Alumnos;
 import com.juancarlos.sismat.dominio.Matriculas;
 import com.juancarlos.sismat.dominio.Nivel;
 import com.juancarlos.sismat.dominio.Pagos;
+import com.juancarlos.sismat.dominio.Seccion;
 import com.juancarlos.sismat.service.PagoService;
 @SuppressWarnings("serial")
 @ManagedBean(name="registroPagoMB")
@@ -26,7 +27,7 @@ public class RegistroPagoMB implements Serializable  {
 
 	private List<Matriculas> matriculas;
 	private List<Alumnos> alumnos;
-	private List<Nivel> nivel;
+	private List<Seccion> seccion;
 	private List<Pagos> pagos ;
 	private String codigoColegio;   
 	private Double saldo;
@@ -78,7 +79,7 @@ public class RegistroPagoMB implements Serializable  {
 		if(alumnos == null){
 			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"Hubo un problema en la búsqueda",""));
 			this.matriculas=null;
-			this.nivel=null;
+			this.seccion=null;
 			this.pagos=null;
 			this.deuda=null;
 			this.saldopagado=null;
@@ -90,7 +91,7 @@ public class RegistroPagoMB implements Serializable  {
 		else if(alumnos.isEmpty()){
 				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"No se encontro alumnos",""));
 				this.matriculas=null;
-				this.nivel=null;
+				this.seccion=null;
 				this.pagos=null;
 				this.deuda=null;
 				this.saldopagado=null;
@@ -102,9 +103,10 @@ public class RegistroPagoMB implements Serializable  {
 			matriculas =pagoService.listaMatricula(codigoColegio, idAlumno);
 
 			Matriculas matricula=matriculas.get(0); 
-			Integer idNivel=matricula.getIdNivel();
+			Integer idSeccion=matricula.getIdSeccion();
 			idMatricula=matricula.getIdMatricula();
-			nivel=pagoService.listaNivel(idNivel);}
+			seccion=pagoService.listaSeccion(idSeccion);
+			}
 		
 		
 		return;
@@ -210,12 +212,12 @@ public class RegistroPagoMB implements Serializable  {
 		this.matriculas = matriculas;
 	}
 
-	public List<Nivel> getNivel() {
-		return nivel;
+	public List<Seccion> getSeccion() {
+		return seccion;
 	}
 
-	public void setNivel(List<Nivel> nivel) {
-		this.nivel = nivel;
+	public void setSeccion(List<Seccion> seccion) {
+		this.seccion = seccion;
 	}
 
 
