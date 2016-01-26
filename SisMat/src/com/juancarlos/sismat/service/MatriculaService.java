@@ -5,6 +5,8 @@ import java.util.List;
 import com.juancarlos.sismat.dominio.Alumnos;
 import com.juancarlos.sismat.dominio.Cursos;
 import com.juancarlos.sismat.dominio.Empleado;
+import com.juancarlos.sismat.dominio.MatriculaCurso;
+import com.juancarlos.sismat.dominio.Matriculas;
 import com.juancarlos.sismat.dominio.Nivel;
 import com.juancarlos.sismat.dominio.Seccion;
 
@@ -19,6 +21,8 @@ public interface MatriculaService {
 		public List<Nivel> listaNivel(String codigoColegio);
 		public boolean registroMatricula(String idAlumno, Integer idSeccion,
 				String periodo, String situacion, String antColegio,String codigoColegio);
-
+		public List<Matriculas> idMatricula(String idAlumno);
+		public boolean registroMatriculaCurso(Integer idMatricula,String idCurso,String tipo,String motivo,String codigoColegio);
+			
 		
 }

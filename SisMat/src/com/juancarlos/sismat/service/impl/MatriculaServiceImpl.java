@@ -10,6 +10,7 @@ import com.juancarlos.sismat.dao.PagoDao;
 import com.juancarlos.sismat.dominio.Alumnos;
 import com.juancarlos.sismat.dominio.Cursos;
 import com.juancarlos.sismat.dominio.Empleado;
+import com.juancarlos.sismat.dominio.MatriculaCurso;
 import com.juancarlos.sismat.dominio.Matriculas;
 import com.juancarlos.sismat.dominio.Nivel;
 import com.juancarlos.sismat.dominio.Seccion;
@@ -86,4 +87,22 @@ public class MatriculaServiceImpl implements MatriculaService {
 		
 
 	}
+
+
+	public List<Matriculas> idMatricula(String idAlumno) {
+		List<Matriculas> idMatricula = matriculaDao.idMatricula(idAlumno);
+		return idMatricula;
+	}
+
+	public boolean registroMatriculaCurso(Integer idMatricula,String idCurso,String tipo,String motivo,String codigoColegio){
+		
+		MatriculaCurso matriculacurso=new MatriculaCurso();
+		matriculacurso.setIdCurso(idCurso);
+		matriculacurso.setIdMatricula(idMatricula);
+		matriculacurso.setMotivo(motivo);
+		matriculacurso.setTipo(tipo);
+		matriculacurso.setCodigoColegio(codigoColegio);
+		return matriculaDao.registroMatriculaCurso(matriculacurso);
+	}
+	
 }

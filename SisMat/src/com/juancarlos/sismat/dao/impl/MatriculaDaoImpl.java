@@ -13,6 +13,7 @@ import com.juancarlos.sismat.dao.MatriculaDao;
 import com.juancarlos.sismat.dominio.Alumnos;
 import com.juancarlos.sismat.dominio.Cursos;
 import com.juancarlos.sismat.dominio.Empleado;
+import com.juancarlos.sismat.dominio.MatriculaCurso;
 import com.juancarlos.sismat.dominio.Matriculas;
 import com.juancarlos.sismat.dominio.Nivel;
 import com.juancarlos.sismat.dominio.Seccion;
@@ -224,5 +225,50 @@ public class MatriculaDaoImpl extends HibernateDaoSupport implements MatriculaDa
 		
 		return resultado;
 	}
+	
+	
+	@Override
+	public boolean registroMatriculaCurso(MatriculaCurso matriculacurso) {
+		boolean resultado;
+		
+		try {
+			getHibernateTemplate().save(matriculacurso);	
+			getHibernateTemplate().flush();
+			resultado = true;
+			
+			
+		} catch (Exception e) {
+			resultado = false;
+		}	
+		
+		return resultado;
+	}
+	@SuppressWarnings("unchecked")
+	public List<Matriculas> idMatricula(String idAlumno) {
+		logger.info("en idMatricula");
+		System.out.println("en listaSeccion dao");
+	
+		String sql = "";
+		List<Matriculas> matriculas = new ArrayList<Matriculas>();
+
+		try {
+			sql = "from Matriculas where idAlumno = '" + idAlumno.trim()
+					 + "'";
+
+			matriculas = getHibernateTemplate().find(sql);
+			System.out.println("lista seccion tamanio " + matriculas.size());
+
+			if (matriculas.isEmpty()) {
+				matriculas = new ArrayList<Matriculas>();
+			}
+
+		} catch (Exception e) {
+			System.out.println(e);
+			matriculas = null;
+		}
+
+		return matriculas;
+	}
+
 
 }
