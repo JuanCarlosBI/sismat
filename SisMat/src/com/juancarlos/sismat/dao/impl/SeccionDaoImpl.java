@@ -58,7 +58,38 @@ public class SeccionDaoImpl extends HibernateDaoSupport implements SeccionDao {
 	}
 
     
-    
+
+	@Override
+	public boolean eliminar(Seccion seccion) {
+		boolean resultado;
+		
+		try {
+			getHibernateTemplate().delete(seccion);
+			resultado = true;
+			
+		} catch (Exception e) {
+			resultado = false;
+		}	
+		
+		return resultado;
+	}    
+	
+	@Override
+	public boolean editar(Seccion editarseccion) {
+		boolean resultado;
+		
+		try {
+			getHibernateTemplate().update(editarseccion);
+			resultado = true;
+			
+		} catch (Exception e) {
+			resultado = false;
+		}	
+		
+		return resultado;
+	}  
+	
+	
     @SuppressWarnings("unchecked")
       public List<Empleado> nombreEmpleado(String nombreProfesor){
           List<Empleado> empleados=null;
@@ -126,6 +157,33 @@ public class SeccionDaoImpl extends HibernateDaoSupport implements SeccionDao {
 			seccion = null;
 		}
 		
+		return seccion;
+	}
+	@SuppressWarnings("unchecked")
+	public List<Seccion> listaSeccion(String codigoColegio, String grado,String nivelAcademico) {
+		logger.info("en listaSeccion");
+		System.out.println("en listaSeccion dao");
+	
+		System.out.println(grado);
+		String sql = "";
+		List<Seccion> seccion = new ArrayList<Seccion>();
+
+		try {
+			sql = "from Seccion where codigoColegio = '" + codigoColegio.trim()
+					 + "' AND grado='"+grado + "' AND nivelAcademico='" + nivelAcademico + "'";
+
+			seccion = getHibernateTemplate().find(sql);
+			System.out.println("seccion tamanio " + seccion.size());
+
+			if (seccion.isEmpty()) {
+				seccion = new ArrayList<Seccion>();
+			}
+
+		} catch (Exception e) {
+			System.out.println(e);
+			seccion = null;
+		}
+
 		return seccion;
 	}
     

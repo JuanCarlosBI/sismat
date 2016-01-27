@@ -37,6 +37,7 @@ public class Seccion  implements java.io.Serializable {
      private String nroAula;
      private String periodo;
      private String codigoColegio;
+     private String tutor;
 
     public Seccion() {
     }
@@ -50,7 +51,7 @@ public class Seccion  implements java.io.Serializable {
    
      public Seccion(Integer idSeccion, String idTutor,String idCoTutor, String grado,
 			String nivelAcademico, String seccion, String nroVacantes,
-			String nroAula, String periodo,String codigoColegio) {
+			String nroAula, String periodo,String codigoColegio,String tutor) {
 		super();
 		this.idSeccion = idSeccion;
 		this.idTutor = idTutor;
@@ -62,6 +63,7 @@ public class Seccion  implements java.io.Serializable {
 		this.nroAula = nroAula;
 		this.periodo = periodo;
 		this.codigoColegio=codigoColegio;
+		this.tutor=tutor;
 	}
 
 
@@ -174,6 +176,19 @@ public class Seccion  implements java.io.Serializable {
  public void setCodigoColegio(String codigoColegio) {
    this.codigoColegio = codigoColegio;
  }
+
+
+ @Column(name="Tutor", nullable=false, length=100)
+public String getTutor() {
+	return tutor;
+}
+
+
+public void setTutor(String tutor) {
+	this.tutor = tutor;
+}
+ 
+
 
 
 

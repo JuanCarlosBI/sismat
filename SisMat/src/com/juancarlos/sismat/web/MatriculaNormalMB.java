@@ -1,6 +1,7 @@
 package com.juancarlos.sismat.web;
 
 import java.io.Serializable;
+import org.primefaces.context.RequestContext;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -310,8 +311,8 @@ public class MatriculaNormalMB implements Serializable {
 		this.nombrecurso = null;
 		this.nombrecursoexo = null;
 		this.motivo = null;
-		this.orderList = null;
-
+		MatriculaNormalMB.orderList.clear();
+		
 		FacesMessage msg = new FacesMessage("Datos limpios");
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}

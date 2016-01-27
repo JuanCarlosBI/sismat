@@ -13,4 +13,7 @@ public interface SeccionDao {
 	public Seccion datosSeccion(Short idSeccion);
 	public boolean registroSeccion(Seccion seccion);
 	public List<Nivel> listaNivel(String codigoColegio);
+	public List<Seccion> listaSeccion(String codigoColegio, String grado,String nivelAcademico);
+	public boolean eliminar(Seccion seccion);
+	public boolean editar(Seccion editarseccion);
 }

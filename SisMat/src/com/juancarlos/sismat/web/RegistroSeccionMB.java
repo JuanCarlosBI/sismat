@@ -37,6 +37,7 @@ public class RegistroSeccionMB implements Serializable {
     private String nivelAcademico;
     private String nroVacantes;
     private String nroAula;
+    private String tutor;
     private String periodo;
 private String codigoColegio;
 	 private String[] listanivel;
@@ -79,11 +80,13 @@ private String codigoColegio;
 	public void registrarSeccion() {
 
 		System.out.println("Registro Seccion");
-		idTutor= nombres.replaceAll("[^0-9.]", "");
-		idCoTutor=nombresco.replaceAll("[^0-9.]", "");
+		idTutor= nombres.replaceAll("[^0-9.]", ""); 
 		
+		idCoTutor=nombresco.replaceAll("[^0-9.]", "");
+		tutor=nombres.replaceAll( "[^a-zA-Z ]", "");
+		System.out.println(tutor);
 		boolean resultado = seccionService.registroSeccion(idTutor,idCoTutor,
-				grado, nivelAcademico, seccion, nroVacantes,nroAula,periodo,codigoColegio );
+				grado, nivelAcademico, seccion, nroVacantes,nroAula,periodo,codigoColegio,tutor );
 
 		if (resultado) {
 			FacesContext.getCurrentInstance().addMessage(
