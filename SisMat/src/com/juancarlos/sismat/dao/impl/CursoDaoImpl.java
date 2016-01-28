@@ -9,8 +9,10 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
 
 import com.juancarlos.sismat.dao.CursoDao;
+import com.juancarlos.sismat.dominio.Alumnos;
 import com.juancarlos.sismat.dominio.Cursos;
 import com.juancarlos.sismat.dominio.Nivel;
+import com.juancarlos.sismat.dominio.Seccion;
 
 @Repository
 public class CursoDaoImpl extends HibernateDaoSupport implements CursoDao {
@@ -84,7 +86,7 @@ public class CursoDaoImpl extends HibernateDaoSupport implements CursoDao {
 					 +  "'";
 
 			nivel = getHibernateTemplate().find(sql);
-			System.out.println("seccion tamanio " + nivel.size());
+			System.out.println("nivel tamanio " + nivel.size());
 
 			if (nivel.isEmpty()) {
 				nivel = new ArrayList<Nivel>();
@@ -99,4 +101,80 @@ public class CursoDaoImpl extends HibernateDaoSupport implements CursoDao {
 	}
 
 
+	@SuppressWarnings("unchecked")
+	 public List<Cursos> nombreCurso(String nombcurso){
+		List<Cursos> cursos = null;
+
+		String sql = "from Cursos where nombre like '%" + nombcurso + "%'";
+		try {
+
+			cursos = getHibernateTemplate().find(sql);
+
+		} catch (Exception e) {
+			System.out.println(e);
+			cursos = null;
+		}
+
+		return cursos;
+	}
+	public List<Cursos> listaCurso(String codigoColegio, String nombcurso,String nivelAcademico,char estado){
+		logger.info("en listaCursos");
+		System.out.println("en listaCurso dao");
+	
+		String sql = "";
+		List<Cursos> listcurso = new ArrayList<Cursos>();
+
+		try {
+			sql = "from Cursos where codigoColegio = '" + codigoColegio.trim()
+					 + "' AND nombre='"+nombcurso + "' AND nivelAcademico='" + nivelAcademico + "' AND estado='"+estado  + "'";
+
+			listcurso = getHibernateTemplate().find(sql);
+			System.out.println("listcurso tamanio " + listcurso.size());
+
+			if (listcurso.isEmpty()) {
+				listcurso = new ArrayList<Cursos>();
+			}
+
+		} catch (Exception e) {
+			System.out.println(e);
+			listcurso = null;
+		}
+
+		return listcurso;
+	
+	
+	}
+	
+	
+	
+	@Override
+	public boolean eliminar(Cursos curso) {
+		boolean resultado;
+		
+		try {
+			getHibernateTemplate().delete(curso);
+			resultado = true;
+			
+		} catch (Exception e) {
+			resultado = false;
+		}	
+		
+		return resultado;
+	}    
+	
+	@Override
+	public boolean editar(Cursos editarcurso) {
+		boolean resultado;
+		
+		try {
+			getHibernateTemplate().update(editarcurso);
+			resultado = true;
+			
+		} catch (Exception e) {
+			resultado = false;
+		}	
+		
+		return resultado;
+	}  
+	
 }

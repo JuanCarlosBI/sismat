@@ -11,4 +11,10 @@ public interface CursoDao {
 	public boolean registroCurso(Cursos curso);
 
 	public List<Nivel> listaNivel(String codigoColegio);
+	 public List<Cursos> nombreCurso(String nombcurso);
+	 public List<Cursos> listaCurso(String codigoColegio, String nombcurso,String nivelAcademico,char estado);
+		public boolean eliminar(Cursos curso);
+		public boolean editar(Cursos editarcurso);
+
+	
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.juancarlos.sismat.dao.CursoDao;
 import com.juancarlos.sismat.dominio.Cursos;
 import com.juancarlos.sismat.dominio.Nivel;
+import com.juancarlos.sismat.dominio.Seccion;
 import com.juancarlos.sismat.service.CursoService;
 
 @Service
@@ -33,5 +34,23 @@ public class CursoServiceImpl implements CursoService {
 		List<Nivel> nivel = cursoDao.listaNivel(codigoColegio);
 		return nivel;
 	}
+	
+	 public List<Cursos> nombreCurso(String nombcurso){
+		 
+		 return cursoDao.nombreCurso(nombcurso);
+	 }
+		public List<Cursos> listaCurso(String codigoColegio, String nombcurso,String nivelAcademico,char estado){
+			
+			List<Cursos> curso = cursoDao.listaCurso(codigoColegio,
+					nombcurso,nivelAcademico,estado);
+			return curso;
+		}
+
+		public boolean eliminar(Cursos curso){
+			return cursoDao.eliminar(curso);
+		}
+		public boolean editar(Cursos editarcurso){
+			return cursoDao.editar(editarcurso);
+		}
 }
 

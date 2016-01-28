@@ -21,9 +21,9 @@
 		</style>
 	</h:head>
 	<h:body>
-		<h:form>
+		<h:form id="form">
 		
-		<p:panel id="idCursos" header="Cursos Academicos"
+		<p:panel id="Cursos" header="Cursos Academicos"
 				styleClass="panelBusquedaForm" toggleable="false" closable="false"
 				toggleSpeed="500" closeSpeed="2000" widgetVar="panel">
 				
@@ -32,51 +32,55 @@
 						<td>
 							<table>
 								<tr>
-									<td>
-										<p:outputLabel value="Curso:" />
-									</td>
-									<td>
-										<p:inputText id="idCurso" value="" />
-									</td>
-									<td><p:outputLabel value="Nivel Academico:" /></td>
-									<td>
-										<p:selectOneMenu id="idGrado" value="Grado"  layout="grid" columns="2">											
-            								<f:selectItem itemValue="Todos" itemLabel="Todos"/>
-            								<f:selectItem itemValue="Normal-1°-Primaria" itemLabel="Normal-1°-Primaria"/>
-            								<f:selectItem itemValue="Normal-1°-Secundaria" itemLabel="Normal-1°-Secundaria"/>
-            								<f:selectItem itemValue="Verano-1°-Primaria" itemLabel="Verano-1°-Primaria"/>
-        								</p:selectOneMenu>
-        							</td>
+									
+									
+									<td><p:outputLabel value="Curso:" /></td>
+									
+										<td><p:autoComplete value="#{cursosMB.nombcurso}"
+										completeMethod="#{cursosMB.autoCompletadoCurso}" 
+										/> 
+						            			
+										</td>
+									
+									
 								</tr>
-							</table>
-						</td>
-						<td>
-							<table>
 								<tr>
-									<td>
-										<p:outputLabel value="Estado:" />
+						<td>
+										<p:outputLabel value="Estado:"  />
 									</td>
 									<td>
-										<p:selectOneRadio id="idEstado" value="Estado"  layout="grid" columns="2">
-            								<f:selectItem itemValue="Activo" itemLabel="Activo"/>
-            								<f:selectItem itemValue="Inactivo" itemLabel="Inactivo"/>
+										<p:selectOneRadio id="idEstado" value="#{cursosMB.estado}"  columns="2">
+            								
+											<p:ajax update="idNivel" />
+            								<f:selectItem itemValue="A" itemLabel="Activo"/>
+            								<f:selectItem itemValue="I" itemLabel="Inactivo"/>
         								</p:selectOneRadio>
 									</td>
-								</tr>
+						</tr>
+						<tr>
+						<td><p:outputLabel value="Nivel Academico:"  /></td>
+									<td>
+										<p:selectOneMenu id="idNivel" value="#{cursosMB.nivelAcademico}"    columns="1">	            				
+						            			    <f:selectItem itemLabel="Elegir:" itemValue="" />
+            					    		<f:selectItems value="#{cursosMB.listanivel}" />
+						            	</p:selectOneMenu>
+        							</td>
+						</tr>
 							</table>
 						</td>
+						
 						</tr>
+						
+						
 						<tr>
 						<td colspan="2">
 							<table>
 								<tr>
 									<td>
-										<p:commandButton id="btnbuscar"								
-										value="Buscar" styleClass="buttonForm"/>										
-										<p:commandButton id="btnNuevo"								
-										value="Nuevo" styleClass="buttonForm"/>
-										<p:commandButton id="btnEditar"								
-										value="Editar" styleClass="buttonForm"/>																														
+										<p:commandButton id="btnBuscar" value="Buscar"
+										action="#{cursosMB.listaCurso}"
+										update=":form:idCursos" styleClass="buttonForm" />
+																																							
 									</td>
 								</tr>
 							</table>
@@ -88,33 +92,74 @@
 				
 		</p:panel>
 		
-		<p:panel id="idNivelAcademico" menuTitle="Niveles Academicos" header="Niveles Academicos" 
+		<p:panel id="idCursos" menuTitle="Cursos" header="Cursos" 
 				styleClass="panelTabla" toggleable="false" closable="false"
 				toggleSpeed="500" closeSpeed="2000" widgetVar="panel">
 				
-			<p:dataTable var="car" value="" >
+			<p:dataTable  rowIndexVar="row" var="lista" value="#{cursosMB.curso}" editable="true" >
 			   
+			   
+			     <p:ajax event="rowEdit" listener="#{cursosMB.onEdit}" update=":form:messages" label="Editar"/>  
+                    <p:ajax event="rowEditCancel" listener="#{cursosMB.onCancel}" update=":form:messages" label="Eliminar"/> 
+             
 			    <p:column headerText="Id" styleClass="panelTabla">
-			        <h:outputText value="" />
-			    </p:column>
+				<h:outputText value="#{row + 1}"/>
+				</p:column>
 			 
 			    <p:column headerText="Area" styleClass="panelTabla">
-			        <h:outputText value="" />
+			        <p:cellEditor>  
+                            <f:facet name="output">  
+                                <h:outputText value="#{lista.area}" />
+                            </f:facet>  
+                            <f:facet name="input">  
+                                <p:inputText value="#{lista.area}" />  
+                            </f:facet>  
+                    </p:cellEditor>
 			    </p:column>
 			 
 			    <p:column headerText="Curso" styleClass="panelTabla">
-			        <h:outputText value="" />
+			        <p:cellEditor>  
+                            <f:facet name="output">  
+                                <h:outputText value="#{lista.nombre}" />
+                            </f:facet>  
+                            <f:facet name="input">  
+                                <p:inputText value="#{lista.nombre}" />  
+                            </f:facet>  
+                    </p:cellEditor>
 			    </p:column>
 			 
 			    <p:column headerText="Nivel" styleClass="panelTabla">
-			        <h:outputText value="" />
+			        <p:cellEditor>  
+                            <f:facet name="output">  
+                                <h:outputText value="#{lista.nivelAcademico}" />
+                            </f:facet>  
+                            <f:facet name="input">  
+                                <p:inputText value="#{lista.nivelAcademico}" />  
+                            </f:facet>  
+                    </p:cellEditor>
 			    </p:column>
 			    
 			    <p:column headerText="Estado" styleClass="panelTabla">
-			        <h:outputText value="" />
-			    </p:column>	    
+			        <p:cellEditor>  
+                            <f:facet name="output">  
+                                <h:outputText value="#{lista.estado}" />
+                            </f:facet>  
+                            <f:facet name="input">  
+                                <p:inputText value="#{lista.estado}" />  
+                            </f:facet>  
+                    </p:cellEditor>
+			    </p:column>	
+			     <p:column headerText="Opciones" styleClass="panelTabla" >  
+                        <p:rowEditor /> 
+                     
+                    </p:column> 
+			    
+		  
 			    
 			</p:dataTable>
+			
+				<p:messages id="messages" showDetail="true" autoUpdate="true"
+							closable="true" />	
 				
 		</p:panel>
 		

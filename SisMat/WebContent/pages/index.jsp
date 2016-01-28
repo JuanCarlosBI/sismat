@@ -22,10 +22,11 @@
 
 <%-- <% response.sendRedirect("pages/registroSecciones.jsf"); %> --%>
 
-<% response.sendRedirect("pages/secciones.jsf"); %>
+<%-- <% response.sendRedirect("pages/secciones.jsf"); %> --%>
 
 <%-- <% response.sendRedirect("pages/registroPagos.jsf"); %> --%>
 
 <%-- <% response.sendRedirect("pages/registroUsuario.jsf"); %> --%>
 
 <%-- <% response.sendRedirect("pages/matriculaNormal.jsf"); %> --%>
+<% response.sendRedirect("pages/cursos.jsf"); %>
