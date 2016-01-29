@@ -34,14 +34,14 @@ public class Nivel  implements java.io.Serializable {
      private String nivelAcademico;
      private String orden;
      private String nroVacantes;
-     private char estado;
+     private String estado;
      private String codigoColegio;
      private String nivel;
     public Nivel() {
     }
 
 	
-    public Nivel(String tipo,String nivelAcademico,String nivel, String orden, String nroVacantes, char estado) {
+    public Nivel(String tipo,String nivelAcademico,String nivel, String orden, String nroVacantes, String estado) {
     	this.tipo=tipo;
         this.nivelAcademico = nivelAcademico;
         this.orden = orden;
@@ -52,7 +52,7 @@ public class Nivel  implements java.io.Serializable {
  
    
      public Nivel(Integer idNivel, String tipo, String nivelAcademico, String nivel,String orden,String codigoColegio,
-			String nroVacantes, char estado) {
+			String nroVacantes, String estado) {
 		super();
 		this.idNivel = idNivel;
 		this.tipo = tipo;
@@ -108,11 +108,11 @@ public class Nivel  implements java.io.Serializable {
 
     
     @Column(name="Estado", nullable=false, length=1)
-    public char getEstado() {
+    public String getEstado() {
         return this.estado;
     }
     
-    public void setEstado(char estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
     

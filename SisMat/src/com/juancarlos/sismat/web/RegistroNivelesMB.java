@@ -25,7 +25,7 @@ public class RegistroNivelesMB implements Serializable{
 	private String codigoColegio; 
     private String orden;
     private String nroVacantes;
-    private char estado;
+    private String estado;
     
 	@Autowired
 	NivelService nivelService;
@@ -89,11 +89,11 @@ public class RegistroNivelesMB implements Serializable{
 		this.nroVacantes = nroVacantes;
 	}
 
-	public char getEstado() {
+	public String getEstado() {
 		return estado;
 	}
 
-	public void setEstado(char estado) {
+	public void setEstado(String estado) {
 		this.estado = estado;
 	}
 

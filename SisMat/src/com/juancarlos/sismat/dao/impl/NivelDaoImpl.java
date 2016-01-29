@@ -1,5 +1,6 @@
 package com.juancarlos.sismat.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
@@ -8,6 +9,7 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
 
 import com.juancarlos.sismat.dao.NivelDao;
+import com.juancarlos.sismat.dominio.Cursos;
 import com.juancarlos.sismat.dominio.Nivel;
 
 @Repository
@@ -44,29 +46,63 @@ public class NivelDaoImpl extends HibernateDaoSupport implements NivelDao {
 		return resultado;
 	}
 
+	public List<Nivel> listaNivel(String codigoColegio, String nivel,String estado){
+		logger.info("en listaNivel");
+		System.out.println("en listaNivel dao");
 	
-	@SuppressWarnings("unchecked")
-	public Nivel encontrarNivel(Short idNivel){
-		List<Nivel> niveles;
-		Nivel nivel = new Nivel();
-		String sql="";
+		String sql = "";
+		List<Nivel> listnivel = new ArrayList<Nivel>();
+
 		try {
-			sql = "from Pruebas where IdCurso='"+idNivel+"'";
-			niveles = getHibernateTemplate().find(sql);
-			
-			if(!niveles.isEmpty()){
-				if(niveles.size() == 1){
-					nivel = niveles.get(0);
-				}
+			sql = "from Nivel where codigoColegio = '" + codigoColegio.trim()
+					 + "' AND nivel='"+nivel + "' AND estado='"+estado  + "'";
+
+			listnivel = getHibernateTemplate().find(sql);
+			System.out.println("listcurso tamanio " + listnivel.size());
+
+			if (listnivel.isEmpty()) {
+				listnivel = new ArrayList<Nivel>();
 			}
-			else{
-				nivel = null;
-			}
+
+		} catch (Exception e) {
+			System.out.println(e);
+			listnivel = null;
+		}
+
+		return listnivel;
+	
+	
+	}
+	
+	
+	@Override
+	public boolean eliminar(Nivel nivel) {
+		boolean resultado;
+		
+		try {
+			getHibernateTemplate().delete(nivel);
+			resultado = true;
 			
 		} catch (Exception e) {
-			nivel = null;
-		}
+			resultado = false;
+		}	
 		
-		return nivel;
-	}
+		return resultado;
+	}    
+	
+	@Override
+	public boolean editar(Nivel editarnivel) {
+		boolean resultado;
+		
+		try {
+			getHibernateTemplate().update(editarnivel);
+			resultado = true;
+			
+		} catch (Exception e) {
+			resultado = false;
+		}	
+		
+		return resultado;
+	}  
+	
 }

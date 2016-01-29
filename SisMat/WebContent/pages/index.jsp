@@ -29,4 +29,6 @@
 <%-- <% response.sendRedirect("pages/registroUsuario.jsf"); %> --%>
 
 <%-- <% response.sendRedirect("pages/matriculaNormal.jsf"); %> --%>
-<% response.sendRedirect("pages/cursos.jsf"); %>
+<%-- <% response.sendRedirect("pages/cursos.jsf"); %> --%>
+
+<% response.sendRedirect("pages/nivelesAcademicos.jsf"); %>

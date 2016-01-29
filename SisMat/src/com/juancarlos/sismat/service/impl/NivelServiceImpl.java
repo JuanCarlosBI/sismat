@@ -1,9 +1,12 @@
 package com.juancarlos.sismat.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.juancarlos.sismat.dao.NivelDao;
+import com.juancarlos.sismat.dominio.Cursos;
 import com.juancarlos.sismat.dominio.Nivel;
 import com.juancarlos.sismat.service.NivelService;
 
@@ -11,7 +14,7 @@ import com.juancarlos.sismat.service.NivelService;
 public class NivelServiceImpl implements NivelService {
 	@Autowired
 	NivelDao nivelDao;
-	public boolean registroNivel(String tipo,String nivel,String orden, String nroVacantes, char estado, String codigoColegio){
+	public boolean registroNivel(String tipo,String nivel,String orden, String nroVacantes, String estado, String codigoColegio){
 		
 		Nivel niveles = new Nivel();
 		String nivelAcademico=tipo+"-"+orden+"°-"+nivel;
@@ -32,5 +35,16 @@ public class NivelServiceImpl implements NivelService {
 		return nivelDao.registroNivel(niveles);
 		
 		
+	}
+	public List<Nivel> listaNivel(String codigoColegio, String nivel,String estado){
+		
+		List<Nivel> listanivel=nivelDao.listaNivel(codigoColegio,nivel,estado);
+		return listanivel;
+	}
+	public boolean eliminar(Nivel nivel){
+		return nivelDao.eliminar(nivel);
+	}
+	public boolean editar(Nivel editarnivel){
+		return nivelDao.editar(editarnivel);
 	}
 }

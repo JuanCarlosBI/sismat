@@ -21,7 +21,7 @@
 		</style>
 	</h:head>
 	<h:body>
-		<h:form>
+		<h:form id="form">
 		
 		<p:panel id="nivelesAcademicos" header="Lista de Registro de Niveles Academicos"
 				styleClass="panelBusquedaForm" toggleable="false" closable="false"
@@ -33,10 +33,10 @@
 							<table>
 								<tr>
 									<td>
-										<p:outputLabel value="Grado:" />
+										<p:outputLabel value="Nivel:" />
 									</td>
 									<td>
-										<p:selectOneMenu id="idGrado" value="Grado"  layout="grid" columns="1">
+										<p:selectOneMenu id="idNivel" value="#{nivelesAcademicosMB.nivel}"  layout="grid" columns="1">
             								<f:selectItem itemValue="Todos" itemLabel="Todos"/>
             								<f:selectItem itemValue="Inicial" itemLabel="Inicial"/>
             								<f:selectItem itemValue="Primaria" itemLabel="Primaria"/>
@@ -53,7 +53,7 @@
 										<p:outputLabel value="Estado:" />
 									</td>
 									<td>
-										<p:selectOneRadio id="idEstado" value="Estado"  layout="grid" columns="2">
+										<p:selectOneRadio id="idEstado" value="#{nivelesAcademicosMB.estado}"  layout="grid" columns="2">
             								<f:selectItem itemValue="Activo" itemLabel="Activo"/>
             								<f:selectItem itemValue="Inactivo" itemLabel="Inactivo"/>
         								</p:selectOneRadio>
@@ -67,15 +67,10 @@
 							<table>
 								<tr>
 									<td>										
-										<p:commandButton id="btnNuevo"								
-										value="Nuevo" styleClass="buttonForm"/>
-										<p:commandButton id="btnEditar"								
-										value="Editar" styleClass="buttonForm"/>
-										<p:commandButton id="btnAlta"								
-										value="Dar de alta" styleClass="buttonForm"/>
-										<p:commandButton id="btnBaja"								
-										value="Dar de baja" styleClass="buttonForm"/>																				
-									</td>
+										<p:commandButton id="btnBuscar" value="Buscar"
+											action="#{nivelesAcademicosMB.listaNiveles}" update=":form:idNivelAcademico"
+											styleClass="buttonForm" />
+										</td>
 								</tr>
 							</table>
 						</td>
@@ -89,35 +84,103 @@
 		<p:panel id="idNivelAcademico" menuTitle="Niveles Academicos" header="Niveles Academicos" 
 				styleClass="panelTabla" toggleable="false" closable="false"
 				toggleSpeed="500" closeSpeed="2000" widgetVar="panel">
+			
 				
-			<p:dataTable var="car" value="" >
-			   
-			    <p:column headerText="Id" styleClass="panelTabla">
-			        <h:outputText value="" />
-			    </p:column>
-			 
-			    <p:column headerText="Tipo" styleClass="panelTabla">
-			        <h:outputText value="" />
-			    </p:column>
-			    
-			    <p:column headerText="Grado" styleClass="panelTabla">
-			        <h:outputText value="" />
-			    </p:column>
-			 
-			    <p:column headerText="Orden" styleClass="panelTabla">
-			        <h:outputText value="" />
-			    </p:column>
-			 
-			    <p:column headerText="Descripcion" styleClass="panelTabla">
-			        <h:outputText value="" />
-			    </p:column>
-			    
-			    <p:column headerText="Estado" styleClass="panelTabla">
-			        <h:outputText value="" />
-			    </p:column>	    
-			    
-			</p:dataTable>
-				
+			<p:dataTable rowIndexVar="row" var="lista" value="#{nivelesAcademicosMB.listnivel}"
+					editable="true">
+
+
+					<p:ajax event="rowEdit" listener="#{nivelesAcademicosMB.onEdit}"
+						update=":form:messages" label="Editar" />
+
+					<p:column headerText="Id" styleClass="panelTabla">
+						<h:outputText value="#{row + 1}" />
+					</p:column>
+
+					<p:column headerText="Tipo" styleClass="panelTabla">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{lista.tipo}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{lista.tipo}" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					
+					<p:column headerText="Nivel" styleClass="panelTabla">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{lista.nivel}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{lista.nivel}" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+
+					<p:column headerText="Orden" styleClass="panelTabla">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{lista.orden}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{lista.orden}" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+					<p:column headerText="Nro de Vacantes" styleClass="panelTabla">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{lista.nroVacantes}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{lista.nroVacantes}" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+					<p:column headerText="Descripcion" styleClass="panelTabla">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{lista.nivelAcademico}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{lista.nivelAcademico}" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+					<p:column headerText="Estado" styleClass="panelTabla">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{lista.estado}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{lista.estado}" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="Opciones" styleClass="panelTabla" >
+					
+						<p:rowEditor style="display:inline-block;" />
+						<div style="margin-top:-20px; margin-left:30px;">
+						 <p:commandButton icon="ui-icon-circle-arrow-s"  action="#{nivelesAcademicosMB.darBaja(lista)}"  title="Dar de Baja"
+						 update=":form:idNivelAcademico" resetValues="true" />
+			<p:commandButton icon="ui-icon-circle-arrow-n" action="#{nivelesAcademicosMB.darAlta(lista)}"  title="Dar de Alta"
+						 update=":form:idNivelAcademico" resetValues="true" style="margin-left:10px;" />
+			</div>
+						 
+					</p:column>
+
+
+
+				</p:dataTable>
+
+				<p:messages id="messages" showDetail="true" autoUpdate="true"
+					closable="true" />	
 		</p:panel>
 		
 		</h:form>

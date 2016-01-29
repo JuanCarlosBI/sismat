@@ -298,3 +298,9 @@ legend{
     /*height: 16px;*/
     color: #696969;
 }
+.ui-icon-search .ui-row-editor{ display: inline; }
+
+
+.ui-datatable .ui-row-editor .ui-icon-pencil {
+	display: inline; 
+}

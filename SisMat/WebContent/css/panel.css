@@ -11,6 +11,8 @@ body{
     height: 100%;
 }
 
+.ui-row-editor{ display: inline; }
+
 .headerTitle {
     float: left;
     width: 500px;
