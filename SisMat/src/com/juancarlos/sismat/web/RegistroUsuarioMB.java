@@ -22,14 +22,18 @@ public class RegistroUsuarioMB implements Serializable{
     private String clave;
     private String tipo;
     private String contrasenia2;
+    private String nombreCompleto;
+    private String estado;
+    private String codigoColegio;
     @Autowired
 	UsuarioService usuarioService;
 
     public void registrarUsuario() {
 		
 			System.out.println("registroUsuario");
+			codigoColegio = "1041701524";
 			boolean resultado = usuarioService.registroUsuario(nombreUsuario,
-					clave, tipo );
+					clave, tipo, nombreCompleto,estado,codigoColegio );
 			if (resultado) {
 				FacesContext.getCurrentInstance().addMessage(
 						null,
@@ -91,6 +95,38 @@ public class RegistroUsuarioMB implements Serializable{
 
 	public void setContrasenia2(String contrasenia2) {
 		this.contrasenia2 = contrasenia2;
+	}
+
+	public String getNombreCompleto() {
+		return nombreCompleto;
+	}
+
+	public void setNombreCompleto(String nombreCompleto) {
+		this.nombreCompleto = nombreCompleto;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+	public UsuarioService getUsuarioService() {
+		return usuarioService;
+	}
+
+	public void setUsuarioService(UsuarioService usuarioService) {
+		this.usuarioService = usuarioService;
+	}
+
+	public String getCodigoColegio() {
+		return codigoColegio;
+	}
+
+	public void setCodigoColegio(String codigoColegio) {
+		this.codigoColegio = codigoColegio;
 	}
 
 

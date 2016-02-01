@@ -29,7 +29,8 @@ public class Usuario  implements java.io.Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private Short idUsuario;
-     private Empleado empleado;
+	private String nombreCompleto;
+	private String estado;
      private String nombreUsuario;
      private String clave;
      private String tipo;
@@ -44,8 +45,22 @@ public class Usuario  implements java.io.Serializable {
        this.clave = clave;
        this.tipo = tipo;
     }
+    
+     
+    
    
-     @Id @GeneratedValue(strategy=IDENTITY)  
+     public Usuario(String nombreCompleto, String estado, String nombreUsuario,
+			String clave, String tipo, String codigoColegio) {
+		super();
+		this.nombreCompleto = nombreCompleto;
+		this.estado = estado;
+		this.nombreUsuario = nombreUsuario;
+		this.clave = clave;
+		this.tipo = tipo;
+		this.codigoColegio = codigoColegio;
+	}
+
+	@Id @GeneratedValue(strategy=IDENTITY)  
      
     @Column(name="IdUsuario", unique=true, nullable=false)
     public Short getIdUsuario() {
@@ -56,16 +71,6 @@ public class Usuario  implements java.io.Serializable {
         this.idUsuario = idUsuario;
     }
 
-//@OneToOne(fetch=FetchType.LAZY)
-  //  @JoinColumn(name="IdEmpleado", nullable=false)
-   // public Empleado getEmpleados() {
-     //   return this.empleado;
-    //}
-    
-
-	//public void setEmpleados(Empleado empleado) {
-      //  this.empleado = empleado;
-    //}
 
     
     @Column(name="NombreUsuario", nullable=false, length=20)
@@ -96,6 +101,32 @@ public class Usuario  implements java.io.Serializable {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+
+    
+    @Column(name="NombreCompleto", nullable=false, length=100)
+    public String getNombreCompleto() {
+		return nombreCompleto;
+	}
+
+	public void setNombreCompleto(String nombreCompleto) {
+		this.nombreCompleto = nombreCompleto;
+	}
+	@Column(name="Estado", nullable=false, length=10)
+    public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+	@Column(name="codigoColegio", nullable=false, length=11)
+    public String getCodigoColegio() {
+		return codigoColegio;
+	}
+
+	public void setCodigoColegio(String codigoColegio) {
+		this.codigoColegio = codigoColegio;
+	}
 
     
 

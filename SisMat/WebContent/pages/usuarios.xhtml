@@ -21,9 +21,9 @@
 		</style>
 	</h:head>
 	<h:body>
-		<h:form>
+		<h:form id="form">
 		
-		<p:panel id="Profesores" header="Lista de Usuarios"
+		<p:panel id="Usuarios" header="Lista de Usuarios"
 				styleClass="panelBusquedaForm" toggleable="false" closable="false"
 				toggleSpeed="500" closeSpeed="2000" widgetVar="panel">
 				
@@ -31,11 +31,21 @@
 					<tr>
 						<td>
 							<table>
-								<tr>
-									<td><p:outputLabel value="Nombre:" /></td>
-									<td><p:inputText value=""/></td>					
-								</tr>								
+															
+							<tr>
+										<p:outputLabel value="Nombre:" /><p:autoComplete 
+                                                    value="#{usuariosMB.nombreCompleto}" completeMethod="#{usuariosMB.autoCompletadoProducto}"
+                                                        style="width:400px;text-align:left;"/>
+                                                
+					
+										
+										
+										
+										
+									</tr>
+							
 							</table>
+							
 						</td>
 					</tr>
 						<tr>
@@ -59,17 +69,10 @@
 						<td>
 							<table>
 								<tr>
-									<td>										
-										<p:commandButton id="btnBuscar"								
-										value="Buscar" styleClass="buttonForm"/>
-										<p:commandButton id="btnNuevo"								
-										value="Nuevo" styleClass="buttonForm"/>
-										<p:commandButton id="btnEditar"								
-										value="Editar" styleClass="buttonForm"/>
-										<p:commandButton id="btnBaja"								
-										value="Dar de baja" styleClass="buttonForm"/>
-										<p:commandButton id="btnAlta"								
-										value="Dar de alta" styleClass="buttonForm"/>										
+									<td>			
+									<p:commandButton id="btnBuscar" value="Buscar"
+											action="#{usuariosMB.listaUsuario}" update=":form:idUsuario"
+											styleClass="buttonForm" />								
 									</td>
 								</tr>
 							</table>
@@ -81,31 +84,66 @@
 				
 		</p:panel>
 		
-		<p:panel id="idTabaProfesores" 
+		
+		<p:panel id="idUsuario" menuTitle="Usuarios" header="Usuarios" 
 				styleClass="panelTabla" toggleable="false" closable="false"
-				toggleSpeed="500" closeSpeed="2000" widgetVar="panel">
-				
-			<p:dataTable var="car" value="">
-			   
-			    <p:column headerText="Id" styleClass="panelTabla">
-			        <h:outputText value="" />
-			    </p:column>
+				toggleSpeed="500" closeSpeed="2000" widgetVar="panel">		
+			
+			<p:dataTable rowIndexVar="row" var="lista" value="#{usuariosMB.listaUsuario}"
+					editable="true">   
+					
+					<p:ajax event="rowEdit" listener="#{usuariosMB.onEdit}"
+						update=":form:messages" label="Editar" />
+					
+			    	<p:column headerText="Id" styleClass="panelTabla">
+						<h:outputText value="#{row + 1}" />
+					</p:column>
+
 			 
-			    <p:column headerText="Nombres" styleClass="panelTabla">
-			        <h:outputText value="" />
-			    </p:column>
+			    <p:column headerText="Nombre Completo" styleClass="panelTabla">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{lista.nombreCompleto}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{lista.nombreCompleto}" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
 			 
 			    <p:column headerText="Usuario" styleClass="panelTabla">
-			        <h:outputText value="" />
-			    </p:column>
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{lista.nombreUsuario}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{lista.nombreUsuario}" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
 			 
-			    <p:column headerText="Estado" styleClass="panelTabla">
-			        <h:outputText value="" />
-			    </p:column>
+			   			<p:column headerText="Estado" styleClass="panelTabla">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{lista.estado}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{lista.estado}" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+		
 			    
 			    <p:column headerText="Tipo de Usuario" styleClass="panelTabla">
-			        <h:outputText value="" />
-			    </p:column>
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{lista.tipo}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{lista.tipo}" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
 			    
 			    <p:column headerText="Fecha Registro" styleClass="panelTabla">
 			        <h:outputText value="" />
@@ -115,9 +153,30 @@
 			        <h:outputText value="" />
 			    </p:column>			   
 			    
+			    
+					<p:column headerText="Opciones" styleClass="panelTabla" >
+					
+						<p:rowEditor style="display:inline-block;" />
+						<div style="margin-top:-20px; margin-left:30px;">
+						 <p:commandButton icon="ui-icon-circle-arrow-s"  action="#{usuariosMB.darBaja(lista)}"  title="Dar de Baja"
+						 update=":form:idUsuario" resetValues="true" />
+			<p:commandButton icon="ui-icon-circle-arrow-n" action="#{usuariosMB.darAlta(lista)}"  title="Dar de Alta"
+						 update=":form:idUsuario" resetValues="true" style="margin-left:10px;" />
+			</div>
+						 
+					</p:column>
 			</p:dataTable>
 				
+				<p:messages id="messages" showDetail="true" autoUpdate="true"
+					closable="true" />	
 		</p:panel>
+		
+
+
+
+
+
+		
 		
 		</h:form>
 	</h:body>

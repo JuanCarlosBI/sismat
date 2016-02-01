@@ -41,6 +41,11 @@
         								</p:selectOneMenu>
 									</td>					
 								</tr>								
+								
+								<tr>
+									<td><p:outputLabel value="Nombre Completo:" /></td>
+									<td><p:inputText  value="#{registroUsuarioMB.nombreCompleto}" /></td>					
+								</tr>
 																
 								<tr>
 									<td><p:outputLabel value="Usuario:" /></td>
@@ -53,6 +58,15 @@
       								<td><h:outputLabel for="pwd2" value="Repita Contraseña" /></td>
      								<td><p:password id="pwd2" value="#{registroUsuarioMB.clave}" label="Repita Contraseña" required="true" /></td>
     													
+								</tr>
+								<tr>
+									<td><p:outputLabel value="Estado:" /></td>
+									<td>
+										<p:selectOneMenu id="idEstado" value="#{registroUsuarioMB.estado}">							            
+								            <f:selectItem itemLabel="Activo" itemValue="Activo" />
+								            <f:selectItem itemLabel="Inactivo" itemValue="Inactivo" />								            
+        								</p:selectOneMenu>
+        							</td>					
 								</tr>
 																
 							</table>	
