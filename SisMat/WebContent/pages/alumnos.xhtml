@@ -22,16 +22,14 @@
 	</h:head>
 	<h:body>
 	<br />
-		<h:form id="form">
+			<h:form id="form">
 		
-		<p:panel id="Profesores" header="Lista de Alumnos"
+		<p:panel id="Alumnos" header="Lista de Alumnos"
 				styleClass="panelBusquedaForm" toggleable="false" closable="false"
 				toggleSpeed="500" closeSpeed="2000" widgetVar="panel">
 				
 				<table>
-					<tr>
-						<td>
-							<table>
+					<table>
 								<tr>
 									<td><p:outputLabel value="DNI:" /></td>
 									<td><p:inputText value="#{alumnosMB.dni}"/></td>					
@@ -48,107 +46,146 @@
 									<td><p:outputLabel value="Apellido Materno:" /></td>
 									<td><p:inputText value="#{alumnosMB.apellidoMaterno}"/></td>					
 								</tr>
-							</table>
-						</td>
-						</tr>
-						<tr>						
-						<td>
-							<table>
 								<tr>
 									<td>
 										<p:outputLabel value="Estado:" />
 									</td>
 									<td>
 										<p:selectOneRadio id="idEstado" value="#{alumnosMB.estado}"  layout="grid" columns="2">
-            								<f:selectItem itemValue="A" itemLabel="Activo" />
-            								<f:selectItem itemValue="I" itemLabel="Inactivo"/>
+            								<f:selectItem itemValue="Activo" itemLabel="Activo" />
+            								<f:selectItem itemValue="Inactivo" itemLabel="Inactivo"/>
         								</p:selectOneRadio>
 									</td>
 								</tr>
 							</table>
-						</td>
-						</tr>
 						<tr>
-						<td>
+						<td colspan="2">
 							<table>
 								<tr>
-									<td>
+									<td>										
 										<p:commandButton id="btnBuscar"								
 										value="Buscar" action="#{alumnosMB.listaAlumnos}" update=":form:idpanelTablaAlumnos"  styleClass="buttonForm"/>			
-										<p:commandButton id="btnEditar"								
-										value="Editar" styleClass="buttonForm" />										
-										<p:commandButton id="btnBaja"								
-										value="Dar de baja" styleClass="buttonForm"/>
-										<p:commandButton id="btnAlta"								
-										value="Dar de alta" styleClass="buttonForm"/>
-										<p:commandButton id="btnLimpiar"								
-										value="limpiar" action="#{alumnosMB.limpia}" update=":form:" styleClass="buttonForm" />										
-									</td>
+										<p:commandButton id="btnLimpiarrr"	 update="Alumnos,idpanelTablaAlumnos"			
+										process="@this" actionListener="#{alumnosMB.reset}"				
+										value="Limpiar" styleClass="buttonForm"/>
+										</td>
 								</tr>
 							</table>
-						</td>						
-						</tr>
+						</td>
+					</tr>
 				</table>
 				
-				<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
 				
 				
 		</p:panel>
 		
-		<p:panel id="idpanelTablaAlumnos" 
+		<p:panel id="idpanelTablaAlumnos" menuTitle="Alumnos" header="Alumnos" 
 				styleClass="panelTabla" toggleable="false" closable="false"
-				toggleSpeed="500" closeSpeed="2000" widgetVar="panel" rowKey="#{lista.id}">
+				toggleSpeed="500" closeSpeed="2000" widgetVar="panel">
+			
 				
-			<p:dataTable var="lista" value="#{alumnosMB.alumnos}">
-			   
-<!-- 			    <p:column headerText="Id" styleClass="panelTabla"> -->
-<!-- 			        <h:outputText value="#{lista.id}" /> -->
-<!-- 			    </p:column> -->
-			 
-			    <p:column headerText="Nombres" styleClass="panelTabla">
-			        <h:outputText value="#{lista.nombres}" />
-			    </p:column>
-			 
-			    <p:column headerText="Apellido Paterno" styleClass="panelTabla">
-			        <h:outputText value="#{lista.apellidoPaterno}" />
-			    </p:column>
-			 
-			    <p:column headerText="Apellido Materno" styleClass="panelTabla">
-			        <h:outputText value="#{lista.apellidoMaterno}" />
-			    </p:column>
-			    
-			    <p:column headerText="DNI" styleClass="panelTabla">
-			        <h:outputText value="#{lista.dni}" />
-			    </p:column>
-			    
-			    <p:column headerText="Sexo" styleClass="panelTabla">
-			        <h:outputText value="#{lista.sexo}" />
-			    </p:column>
-			    
-			    <p:column headerText="Fecha Nacimiento" styleClass="panelTabla">
-			        <h:outputText value="#{lista.fechaNacimiento}" />
-			    </p:column>
-			    
-			    <p:column headerText="Estado" styleClass="panelTabla">
-			        <h:outputText value="#{lista.estado}" />
-			    </p:column>
-			    
-			    <p:column headerText="Editable" styleClass="panelTabla">
-					    <p:cellEditor>  
-				        <f:facet name="output">  
-				            <h:outputText value="" />  
-				        </f:facet>  
-				        <f:facet name="input">  
-				            <p:inputText id ="name" value=""  label="#{msg['app_text_4']}"/>  
-				        </f:facet>  
-				    </p:cellEditor>
-			    </p:column>
-			    
-			</p:dataTable>
-				
+			<p:dataTable rowIndexVar="row" var="lista" value="#{alumnosMB.alumnos}"
+					editable="true">
+
+
+					<p:ajax event="rowEdit" listener="#{alumnosMB.onEdit}"
+						update=":form:messages" label="Editar" />
+
+					<p:column headerText="Id" styleClass="panelTabla">
+						<h:outputText value="#{row + 1}" />
+					</p:column>
+
+					<p:column headerText="Nombres" styleClass="panelTabla">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{lista.nombres}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{lista.nombres}" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					
+					<p:column headerText="Apellido Paterno" styleClass="panelTabla">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{lista.apellidoPaterno}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{lista.apellidoPaterno}" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+
+					<p:column headerText="Apellido Materno" styleClass="panelTabla">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{lista.apellidoMaterno}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{lista.apellidoMaterno}" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+					<p:column headerText="DNI" styleClass="panelTabla">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{lista.dni}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{lista.dni}" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+					<p:column headerText="Sexo" styleClass="panelTabla">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{lista.sexo}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{lista.sexo}" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="Fecha Nacimiento" styleClass="panelTabla">
+						<h:outputText value="#{lista.fechaNacimiento}" />
+					</p:column>
+					
+
+					<p:column headerText="Estado" styleClass="panelTabla">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{lista.estado}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{lista.estado}" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="Opciones" styleClass="panelTabla" >
+					
+						<p:rowEditor style="display:inline-block;" />
+						<div style="margin-top:-20px; margin-left:30px;">
+						 <p:commandButton icon="ui-icon-circle-arrow-s"  action="#{alumnosMB.darBaja(lista)}"  title="Dar de Baja"
+						 update=":form:idpanelTablaAlumnos" resetValues="true" />
+			<p:commandButton icon="ui-icon-circle-arrow-n" action="#{alumnosMB.darAlta(lista)}"  title="Dar de Alta"
+						 update=":form:idpanelTablaAlumnos" resetValues="true" style="margin-left:10px;" />
+			</div>
+						 
+					</p:column>
+
+
+
+				</p:dataTable>
+
+				<p:messages id="messages" showDetail="true" autoUpdate="true"
+					closable="true" />	
 		</p:panel>
 		
 		</h:form>
-	</h:body>
+		</h:body>
 	</f:view>
 </html>

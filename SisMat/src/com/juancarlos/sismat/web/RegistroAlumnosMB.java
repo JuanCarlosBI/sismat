@@ -75,6 +75,7 @@ public class RegistroAlumnosMB implements Serializable {
 	private String religionApoderado;
 	private String estaVivoApoderado;
 	private String codigoColegio;
+	private String estado = "Activo";
 
 	@Autowired
 	AlumnoService alumnoService;
@@ -93,6 +94,8 @@ public class RegistroAlumnosMB implements Serializable {
 	public void registrarAlumno() {
 		System.out.println("registroAlumno");
 		System.out.println(nombrefoto);
+
+		mainMB.datosUsuario();
 		codigoColegio = mainMB.getCodigoColegio();
 		System.out.println(codigoColegio);
 
@@ -110,7 +113,7 @@ public class RegistroAlumnosMB implements Serializable {
 				apellidoMaternoApoderado, dniApoderado, fechaNacApoderado,
 				estadoCivilApoderado, telefonoApoderado, celularApoderado,
 				direccionApoderado, distritoApoderado, ocupacionApoderado,
-				religionApoderado, estaVivoApoderado, codigoColegio);
+				religionApoderado, estaVivoApoderado, codigoColegio, estado);
 		if (resultado) {
 			FacesContext.getCurrentInstance().addMessage(
 					null,
@@ -554,6 +557,14 @@ public class RegistroAlumnosMB implements Serializable {
 
 	public void setMainMB(MainMB mainMB) {
 		this.mainMB = mainMB;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 
 }

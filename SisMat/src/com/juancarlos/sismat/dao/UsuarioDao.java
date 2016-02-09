@@ -8,7 +8,7 @@ import com.juancarlos.sismat.dominio.Empleado;
 
 public interface UsuarioDao {
 	public boolean iniciaSession(String nombreUsuario,String clave);
-	public Empleado datosUsuario(String nombreUsuario,String clave);
+	public List<Usuario>  datosUsuario(String nombreUsuario,String clave);
 	public boolean registroUsuario(Usuario usuario);
 	  public List<Usuario> nombreUsuario(String nombreUsuario);
 	  public List<Usuario> listaUsuario(String codigoColegio, String idUsuario);

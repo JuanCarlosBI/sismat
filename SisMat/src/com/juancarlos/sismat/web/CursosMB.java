@@ -50,6 +50,7 @@ public class CursosMB implements Serializable {
 		listaNombresCursos = cursoService.nombreCurso(query.toUpperCase());
 	//	codigoColegio = "1041701524";
 
+		mainMB.datosUsuario();
 		codigoColegio=mainMB.getCodigoColegio();
 		nivel = cursoService.listaNivel(codigoColegio);
 		listanivel = new String[nivel.size()];
@@ -81,11 +82,17 @@ public class CursosMB implements Serializable {
 	}
 	
 	public void listaCurso() {
-		curso = cursoService.listaCurso(codigoColegio, nombcurso,
+		 curso = cursoService.listaCurso(codigoColegio, nombcurso,
 				nivelAcademico,estado);
-
-		return;
-
+		 int resultado=curso.size();
+		 if (resultado==0) {
+			 FacesContext.getCurrentInstance().addMessage(
+						null,
+						new FacesMessage(FacesMessage.SEVERITY_ERROR,
+								"Curso no encontrado", ""));
+			} 
+	
+		 return;
 	}
 	
 	

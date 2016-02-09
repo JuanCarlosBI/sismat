@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.juancarlos.sismat.dao.AlumnoDao;
 
 import com.juancarlos.sismat.dominio.Alumnos;
+import com.juancarlos.sismat.dominio.Nivel;
 import com.juancarlos.sismat.service.AlumnoService;
 
 @Service
@@ -16,7 +17,7 @@ public class AlumnoServiceImpl implements AlumnoService {
 	@Autowired
 	AlumnoDao alumnoDao;
 
-	public List<Alumnos> listaAlumnos(String codigoColegio, String dni, String nombre, String apellidoPaterno,String apellidoMaterno, char estado) {
+	public List<Alumnos> listaAlumnos(String codigoColegio, String dni, String nombre, String apellidoPaterno,String apellidoMaterno, String estado) {
 		System.out.println("en listaAlumnos service");
 		
 		List<Alumnos> alumnos = alumnoDao.listaAlumnos(codigoColegio, dni, nombre,  apellidoPaterno,apellidoMaterno, estado);
@@ -39,7 +40,7 @@ public class AlumnoServiceImpl implements AlumnoService {
 			String telefonoApoderado, String celularApoderado,
 			String direccionApoderado, String distritoApoderado,
 			String ocupacionApoderado, String religionApoderado,
-			String estaVivoApoderado,String codigoColegio) {
+			String estaVivoApoderado,String codigoColegio,String estado) {
 		Alumnos alumno = new Alumnos();
 		String apellidosPadre = apellidoPaternoPadre + " " + apellidoMaternoPadre;
 		String apellidosMadre = apellidoPaternoMadre + " " + apellidoMaternoMadre;
@@ -97,9 +98,12 @@ public class AlumnoServiceImpl implements AlumnoService {
 		alumno.setEstaVivoApoderado(estaVivoApoderado);
 		alumno.setNombreCompleto(nombreCompleto);
 		alumno.setCodigoColegio(codigoColegio);
+		alumno.setEstado(estado);
 		return alumnoDao.registroAlumno(alumno);
 	}
 
-
+	public boolean editar(Alumnos editarAlumno){
+		return alumnoDao.editar(editarAlumno);
+	}
 
 }

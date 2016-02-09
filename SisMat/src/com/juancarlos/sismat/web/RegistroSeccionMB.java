@@ -55,6 +55,8 @@ private MainMB mainMB;
 		
 		List<String> results = new ArrayList<String>();
 		List<Empleado> listaNombresProductos = new ArrayList<Empleado>();		
+
+		mainMB.datosUsuario();
 		codigoColegio=mainMB.getCodigoColegio();
 		
 		//codigoColegio="1041701524";

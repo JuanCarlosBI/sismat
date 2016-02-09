@@ -39,7 +39,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 		
 	}
 	
-	public Empleado datosUsuario(String nombreUsuario, String clave) {
+	public List<Usuario> datosUsuario(String nombreUsuario, String clave) {
 		
 		return usuarioDao.datosUsuario(nombreUsuario, clave);
 	}

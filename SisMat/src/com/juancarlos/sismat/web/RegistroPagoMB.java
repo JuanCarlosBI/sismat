@@ -72,6 +72,8 @@ public class RegistroPagoMB implements Serializable  {
 	public void listaAlumnos(){
 
 		System.out.println("listaAlumnos()");
+
+		mainMB.datosUsuario();
 		codigoColegio=mainMB.getCodigoColegio();
 		
 		//codigoColegio = "1041701524";//de manera temporal, luego se eliminara ese dato vendra de sesion

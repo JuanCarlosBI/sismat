@@ -4,8 +4,9 @@ import java.util.Date;
 import java.util.List;
 
 import com.juancarlos.sismat.dominio.Alumnos;
+import com.juancarlos.sismat.dominio.Nivel;
 public interface AlumnoService {
-	public List<Alumnos> listaAlumnos(String codigoColegio, String dni, String nombre, String apellidoPaterno,String apellidoMaterno, char estado);
+	public List<Alumnos> listaAlumnos(String codigoColegio, String dni, String nombre, String apellidoPaterno,String apellidoMaterno, String estado);
 	
 	public boolean registroAlumno(String nombres, String apellidoPaterno,
 			String apellidoMaterno, String dni, Date fechaNacimiento,
@@ -23,5 +24,6 @@ public interface AlumnoService {
 			String telefonoApoderado, String celularApoderado,
 			String direccionApoderado, String distritoApoderado,
 			String ocupacionApoderado, String religionApoderado,
-			String estaVivoApoderado,String codigoColegio);
+			String estaVivoApoderado,String codigoColegio,String estado);
+	public boolean editar(Alumnos editarAlumno);
 }

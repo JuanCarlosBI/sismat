@@ -35,6 +35,8 @@ public class ProfesoresMB implements Serializable {
 	
 	public void listaProfesores(){
 		System.out.println("listaProfesores()");
+
+		mainMB.datosUsuario();
 		codigoColegio=mainMB.getCodigoColegio();
 		
 	//	codigoColegio = "1041701524";//de manera temporal, luego se eliminara ese dato vendra de sesion

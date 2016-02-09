@@ -43,7 +43,9 @@ UsuarioService usuarioService;
 		System.out.println("query "+query);
 		
 		List<String> results = new ArrayList<String>();
-		List<Usuario> listaNombresProductos = new ArrayList<Usuario>();		
+		List<Usuario> listaNombresProductos = new ArrayList<Usuario>();	
+
+		mainMB.datosUsuario();
 		codigoColegio=mainMB.getCodigoColegio();
 		
 		//codigoColegio="1041701524";
@@ -65,12 +67,17 @@ UsuarioService usuarioService;
 	
 
 	public void listaUsuario() {
-		codigoColegio = "1041701524";
 		idUsuario= nombreCompleto.replaceAll("[^0-9.]", ""); 
 		
 		listaUsuario = usuarioService.listaUsuario(codigoColegio, idUsuario);
-
-		return;
+		int resultado=listaUsuario.size();
+		 if (resultado==0) {
+			 FacesContext.getCurrentInstance().addMessage(
+						null,
+						new FacesMessage(FacesMessage.SEVERITY_ERROR,
+								"Usuario no encontrado", ""));
+			} 
+		 return;
 
 	}
 

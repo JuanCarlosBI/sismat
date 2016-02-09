@@ -2,6 +2,7 @@ package com.juancarlos.sismat.web;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -10,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.juancarlos.sismat.dominio.Empleado;
+import com.juancarlos.sismat.dominio.Seccion;
+import com.juancarlos.sismat.dominio.Usuario;
 import com.juancarlos.sismat.service.UsuarioService;
 
 @SuppressWarnings("serial")
@@ -24,7 +27,7 @@ public class MainMB  implements Serializable{
 	private UsuarioService usuarioService;
 	private String nombre;
 	private String apellido;
-	private Empleado empleado;
+	private List<Usuario> usuarios;
 	private String nombreUsuario;
 	private String codigoColegio;
 	
@@ -39,11 +42,11 @@ public class MainMB  implements Serializable{
 		System.out.println("usuario "+usuario);
 		System.out.println("clave "+clave);
 		
-		empleado = usuarioService.datosUsuario(usuario,clave);
-		nombre = empleado.getNombres();
-		apellido = empleado.getApellidos();
-		//codigoColegio = empleado.getCodigoColegio();
-		codigoColegio = "1041701524";
+		usuarios = usuarioService.datosUsuario(usuario,clave);
+		Usuario empleado = usuarios.get(0);
+		
+		nombre = empleado.getNombreCompleto();
+		codigoColegio = empleado.getCodigoColegio();
 		System.out.println("codigoColegio "+codigoColegio);
 		System.out.println("nombre "+nombre);
 		System.out.println("apellido "+apellido);
@@ -52,13 +55,19 @@ public class MainMB  implements Serializable{
 	
 	}
 
-	public Empleado getEmpleado() {
-		return empleado;
+
+
+	public List<Usuario> getUsuarios() {
+		return usuarios;
 	}
 
-	public void setEmpleado(Empleado empleado) {
-		this.empleado = empleado;
+
+
+	public void setUsuarios(List<Usuario> usuarios) {
+		this.usuarios = usuarios;
 	}
+
+
 
 	public String getCodigoColegio() {
 		return codigoColegio;

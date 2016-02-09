@@ -35,6 +35,7 @@ public class NivelesAcademicosMB implements Serializable {
 	public void listaNiveles() {
 		//codigoColegio = "1041701524";
 
+		mainMB.datosUsuario();
 		codigoColegio=mainMB.getCodigoColegio();
 
 		listnivel = nivelService.listaNivel(codigoColegio, nivel, estado);

@@ -36,6 +36,8 @@ public class RegistroUsuarioMB implements Serializable{
     public void registrarUsuario() {
 		
 			System.out.println("registroUsuario");
+
+			mainMB.datosUsuario();
 			codigoColegio=mainMB.getCodigoColegio();
 			
 			//codigoColegio = "1041701524";

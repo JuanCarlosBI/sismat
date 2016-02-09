@@ -35,8 +35,9 @@ public class RegistroNivelesMB implements Serializable{
 	
 	public void registrarNivel() {
 		//codigoColegio = "1041701524";
+		mainMB.datosUsuario();
 		codigoColegio=mainMB.getCodigoColegio();
-		
+		System.out.println(codigoColegio);
 		boolean resultado = nivelService.registroNivel(tipo,
 				nivel, orden, nroVacantes, estado ,codigoColegio);
 

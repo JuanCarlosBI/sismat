@@ -38,6 +38,8 @@ public class SeccionesMB implements Serializable {
 
 	public void listaNivel() {
 	//	codigoColegio = "1041701524";
+
+		mainMB.datosUsuario();
 		codigoColegio=mainMB.getCodigoColegio();
 		
 		nivel = seccionService.listaNivel(codigoColegio);
@@ -53,12 +55,18 @@ public class SeccionesMB implements Serializable {
 	public void listaSeccion() {
 		seccion = seccionService.listaSeccion(codigoColegio, grado,
 				nivelAcademico);
-
-		return;
+		int resultado=seccion.size();
+		 if (resultado==0) {
+			 FacesContext.getCurrentInstance().addMessage(
+						null,
+						new FacesMessage(FacesMessage.SEVERITY_ERROR,
+								"Seccion no encontrada", ""));
+			} 
+		 return;
 	}
 
 	public void onEdit(RowEditEvent event) {
-		FacesMessage msg = new FacesMessage("Curso Editado",
+		FacesMessage msg = new FacesMessage("Seccion Editado",
 				((Seccion) event.getObject()).getSeccion());
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 		boolean resultado = seccionService.editar((Seccion) event.getObject());

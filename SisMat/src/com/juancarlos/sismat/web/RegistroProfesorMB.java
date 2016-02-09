@@ -49,6 +49,8 @@ private String codigoColegio;
 		System.out.println(apellidoMaterno);
 		System.out.println(fechaNacimiento);
 		System.out.println(sexo);
+
+		mainMB.datosUsuario();
 		codigoColegio=mainMB.getCodigoColegio();
 		
 		//codigoColegio="1041701524";

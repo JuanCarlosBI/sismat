@@ -109,6 +109,7 @@ public class MatriculaNormalMB implements Serializable {
 	//	codigoColegio = "1041701524";// de manera temporal, luego se eliminara
 										// ese dato vendra de sesion
 
+		mainMB.datosUsuario();
 		codigoColegio=mainMB.getCodigoColegio();
 
 		alumnos = matriculaService.listaAlumnos(codigoColegio, idAlumno);

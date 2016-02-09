@@ -38,6 +38,8 @@ public class RegistroCursosMB implements Serializable{
 	CursoService cursoService;
 
 	public void listaNivel(){
+
+		mainMB.datosUsuario();
 		codigoColegio=mainMB.getCodigoColegio();
 		
 		//codigoColegio="1041701524";

@@ -47,7 +47,7 @@ public class Alumnos  implements java.io.Serializable {
      private String responsable;
      private String religion;
      private byte[] foto;
-     private char estado;
+     private String estado;
      private String nombrePadre;
      private String apellidosPadre;
      private String dniPadre;
@@ -114,7 +114,7 @@ public class Alumnos  implements java.io.Serializable {
 			Date fechaNacApoderado, String estadoCivilApoderado,
 			String telefonoApoderado, String celularApoderado,
 			String direccionApoderado, String distritoApoderado,
-			String ocupacionApoderado,char estado, String religionApoderado,String estaVivoApoderado,String nombreCompleto,String codigoColegio) {
+			String ocupacionApoderado,String estado, String religionApoderado,String estaVivoApoderado,String nombreCompleto,String codigoColegio) {
 		super();
 		this.idAlumno = idAlumno;
 		this.nombres = nombres;
@@ -705,12 +705,12 @@ public String getReligionMadre() {
 		this.nombreCompleto = nombreCompleto;
 	}
 
-	  @Column(name="estado", nullable=false, length=1)
-	    public char getEstado() {
+	  @Column(name="estado", nullable=false, length=10)
+	    public String getEstado() {
 	        return this.estado;
 	    }
 	    
-	    public void setEstado(char estado) {
+	    public void setEstado(String estado) {
 	        this.estado = estado;
 	    }
 
