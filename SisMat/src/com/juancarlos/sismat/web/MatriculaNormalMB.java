@@ -54,7 +54,6 @@ public class MatriculaNormalMB implements Serializable {
 	private List<Empleado> cotutor;
 	private String idCurso;
 	private List<Nivel> nivel;
-
 	private String[] listanivel;
 	private String idtutor;
 	private String idcotutor;
@@ -73,6 +72,11 @@ public class MatriculaNormalMB implements Serializable {
 	private String nombreSeccion;
 	@Autowired
 	MatriculaService matriculaService;
+	@Autowired
+	private LoginMB loginMB;
+
+	@Autowired
+	private MainMB mainMB;
 
 	public List<String> autoCompletadoAlumno(String query) {
 
@@ -100,9 +104,12 @@ public class MatriculaNormalMB implements Serializable {
 
 		System.out.println("listaAlumnos()");
 		idAlumno = nombres.replaceAll("[^0-9.]", "");
-
-		codigoColegio = "1041701524";// de manera temporal, luego se eliminara
+		// loginMB.datosUsuario();
+		// loginMB.getCodigoColegio();
+	//	codigoColegio = "1041701524";// de manera temporal, luego se eliminara
 										// ese dato vendra de sesion
+
+		codigoColegio=mainMB.getCodigoColegio();
 
 		alumnos = matriculaService.listaAlumnos(codigoColegio, idAlumno);
 
@@ -312,7 +319,7 @@ public class MatriculaNormalMB implements Serializable {
 		this.nombrecursoexo = null;
 		this.motivo = null;
 		MatriculaNormalMB.orderList.clear();
-		
+
 		FacesMessage msg = new FacesMessage("Datos limpios");
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}

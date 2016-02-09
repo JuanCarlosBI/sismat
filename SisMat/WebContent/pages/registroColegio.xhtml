@@ -22,6 +22,7 @@
 		</style>
 	</h:head>
 	<h:body>
+	<br />
 		<h:form id="formColegio">
 
 			<p:panel id="busqueda" header="Informacion del centro educativo"
@@ -49,9 +50,8 @@
 					<td><p:outputLabel value="Correo:" /></td>
 					<td>
 						<p:inputText id="correo" value="#{registroColegioMB.correo}" validatorMessage="Por favor ingrese un correo">
-					
-							<f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
-						</p:inputText>
+					   <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" /> 		
+					</p:inputText>
 					</td>
 					<td><p:outputLabel value="Fax:" /></td>
 					<td><p:inputMask id="fax" value="#{registroColegioMB.fax}" mask="999-9999"/></td>
@@ -84,8 +84,9 @@
 								action="#{registroColegioMB.registrarColegio}"  styleClass="buttonForm"/>
 							<p:commandButton id="btnEditar"								
 								value="Editar" action="#{registroColegioMB.actualizarRegistroColegio}" styleClass="buttonForm"/>
-							<p:commandButton
-								id="btnCancelar" value="Cancelar" styleClass="buttonForm"/>													
+							<p:link id="btnCancelar"				outcome="pagina"				
+										value="Cancelar"  styleClass="buttonForm"/>
+																				
 					</td>
 				</tr>
 			</table>

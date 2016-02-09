@@ -25,6 +25,9 @@ public class ProfesoresMB implements Serializable {
 	private String apellidos;
 	private char cargo;
 	private char estado;
+
+	@Autowired
+	private MainMB mainMB;
 	@Autowired
 	private EmpleadoService empleadoService;
 	private String codigoColegio;
@@ -32,8 +35,9 @@ public class ProfesoresMB implements Serializable {
 	
 	public void listaProfesores(){
 		System.out.println("listaProfesores()");
+		codigoColegio=mainMB.getCodigoColegio();
 		
-		codigoColegio = "1041701524";//de manera temporal, luego se eliminara ese dato vendra de sesion
+	//	codigoColegio = "1041701524";//de manera temporal, luego se eliminara ese dato vendra de sesion
 		System.out.println("codigoColegio "+codigoColegio);
 		System.out.println("dni "+dni);
 		System.out.println("nombres "+nombres);

@@ -22,6 +22,7 @@
 		</style>
 	</h:head>
 	<h:body>
+	<br />
 		<h:form  id="form">
 		
 		<p:panel id="usuarios" header="Ingresar Usuario"
@@ -40,11 +41,24 @@
 								            <f:selectItem itemLabel="Profesor" itemValue="Profesor" />
         								</p:selectOneMenu>
 									</td>					
-								</tr>								
+								</tr>						
+								
+								<tr>
+									<td><p:outputLabel value="Fecha Actual:" /></td>
+									<td><p:calendar id="fecha" value="#{registroUsuarioMB.fecha}"
+									showOn="button" readOnlyInputText="true" required="true"
+									locale="es" navigator="true"
+									requiredMessge="La fecha de Actual es requerida"
+									pattern="yyyy-MM-dd" /> <p:message id="fechaerror" for="fecha" />
+									</td>
+								</tr>		
 								
 								<tr>
 									<td><p:outputLabel value="Nombre Completo:" /></td>
-									<td><p:inputText  value="#{registroUsuarioMB.nombreCompleto}" /></td>					
+									<td><p:inputText  value="#{registroUsuarioMB.nombreCompleto}" required="true" maxlength="70" validatorMessage="Por favor ingrese el Nombre Completo Correctamente">
+									<f:validateRegex pattern="[a-zA-Z ]+"/> 		
+									</p:inputText></td>
+								
 								</tr>
 																
 								<tr>
@@ -79,7 +93,7 @@
 										<p:commandButton id="btnGuardar"					
 										value="Guardar" action="#{registroUsuarioMB.registrarUsuario}" styleClass="buttonForm"/>
 							<p:commandButton value="Limpiar" update="usuarios" process="@this" actionListener="#{registroUsuarioMB.resetFail}" styleClass="buttonForm" />
- 							 <p:link id="btnCancelar"				outcome="main"				
+ 							 <p:link id="btnCancelar"				outcome="pagina"				
 										value="Cancelar"  styleClass="buttonForm"/>																				
 									</td>
 								</tr>

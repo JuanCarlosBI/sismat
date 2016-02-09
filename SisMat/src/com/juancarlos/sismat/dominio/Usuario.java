@@ -2,11 +2,15 @@ package com.juancarlos.sismat.dominio;
 // Generated 20-abr-2015 23:35:22 by Hibernate Tools 3.6.0
 
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
@@ -31,6 +35,8 @@ public class Usuario  implements java.io.Serializable {
 	private Short idUsuario;
 	private String nombreCompleto;
 	private String estado;
+
+    private Date fecha;
      private String nombreUsuario;
      private String clave;
      private String tipo;
@@ -50,7 +56,7 @@ public class Usuario  implements java.io.Serializable {
     
    
      public Usuario(String nombreCompleto, String estado, String nombreUsuario,
-			String clave, String tipo, String codigoColegio) {
+			String clave, String tipo, String codigoColegio,Date fecha) {
 		super();
 		this.nombreCompleto = nombreCompleto;
 		this.estado = estado;
@@ -58,6 +64,7 @@ public class Usuario  implements java.io.Serializable {
 		this.clave = clave;
 		this.tipo = tipo;
 		this.codigoColegio = codigoColegio;
+		this.fecha=fecha;
 	}
 
 	@Id @GeneratedValue(strategy=IDENTITY)  
@@ -126,6 +133,15 @@ public class Usuario  implements java.io.Serializable {
 
 	public void setCodigoColegio(String codigoColegio) {
 		this.codigoColegio = codigoColegio;
+	}
+	  @Temporal(TemporalType.DATE)
+	    @Column(name="FechaRegistro", nullable=false, length=10)
+	 public Date getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
 	}
 
     

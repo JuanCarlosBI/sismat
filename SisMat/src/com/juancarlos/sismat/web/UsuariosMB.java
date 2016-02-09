@@ -29,6 +29,9 @@ private String nombreCompleto;
 private String idUsuario;
 private String estado;
 
+@Autowired
+private MainMB mainMB;
+
 private List<Usuario> listaUsuario;
 @Autowired
 UsuarioService usuarioService;
@@ -41,8 +44,9 @@ UsuarioService usuarioService;
 		
 		List<String> results = new ArrayList<String>();
 		List<Usuario> listaNombresProductos = new ArrayList<Usuario>();		
-
-		codigoColegio="1041701524";
+		codigoColegio=mainMB.getCodigoColegio();
+		
+		//codigoColegio="1041701524";
 		listaNombresProductos = usuarioService.nombreUsuario(query.toUpperCase());
 		
 		

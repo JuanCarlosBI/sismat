@@ -31,6 +31,7 @@ public class Empleado  implements java.io.Serializable {
 	     private String celular;
 	     private String cargo;
 	     private String nombreCompleto;
+	     private String codigoColegio;
 	     
 	  
 	  //   private String cargo;
@@ -43,7 +44,7 @@ public class Empleado  implements java.io.Serializable {
 	    
 	    
 	   
-	     public Empleado(String idEmpleado, String nombreCompleto,String nombres, String apellidos, Date fechaNacimiento, char sexo,String direccion,String distrito,String celular,String cargo) {
+	     public Empleado(String idEmpleado, String nombreCompleto,String nombres, String apellidos, Date fechaNacimiento, char sexo,String direccion,String distrito,String celular,String cargo,String codigoColegio) {
 			super();
 			this.idEmpleado = idEmpleado;
 			this.nombres = nombres;
@@ -55,6 +56,7 @@ public class Empleado  implements java.io.Serializable {
 			this.celular=celular;
 			 this.cargo=cargo;
 			 this.nombreCompleto=nombreCompleto;
+			 this.codigoColegio=codigoColegio;
 		}
 
 	    @Id
@@ -136,8 +138,18 @@ public class Empleado  implements java.io.Serializable {
 	public void setNombreCompleto(String nombreCompleto) {
 		this.nombreCompleto = nombreCompleto;
 	}
+	
+	@Column(name="codigoColegio", length=11)
+	public String getCodigoColegio() {
+		return codigoColegio;
+	}
+	public void setCodigoColegio(String codigoColegio) {
+		this.codigoColegio = codigoColegio;
+	}
     
 
+	
+	
 //@OneToOne(fetch=FetchType.LAZY, mappedBy="empleados")
 //    public Set<Usuario> getUsuarioses() {
 //        return this.usuarioses;

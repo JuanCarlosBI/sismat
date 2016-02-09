@@ -33,6 +33,9 @@ public class CursosMB implements Serializable {
 
 	private List<Cursos> curso;
     private char estado;
+
+	@Autowired
+	private MainMB mainMB;
 	@Autowired
 	CursoService cursoService;
 
@@ -45,7 +48,9 @@ public class CursosMB implements Serializable {
 		List<Cursos> listaNombresCursos = new ArrayList<Cursos>();
 
 		listaNombresCursos = cursoService.nombreCurso(query.toUpperCase());
-		codigoColegio = "1041701524";
+	//	codigoColegio = "1041701524";
+
+		codigoColegio=mainMB.getCodigoColegio();
 		nivel = cursoService.listaNivel(codigoColegio);
 		listanivel = new String[nivel.size()];
 		for (int i = 0; i < nivel.size(); i++) {
@@ -82,6 +87,7 @@ public class CursosMB implements Serializable {
 		return;
 
 	}
+	
 	
 	
 

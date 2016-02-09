@@ -41,6 +41,8 @@ public class RegistroPagoMB implements Serializable  {
 	private String pension;
 
 	@Autowired
+	private MainMB mainMB;
+	@Autowired
 	PagoService pagoService;
 	Integer idMatricula;
 	
@@ -70,8 +72,9 @@ public class RegistroPagoMB implements Serializable  {
 	public void listaAlumnos(){
 
 		System.out.println("listaAlumnos()");
+		codigoColegio=mainMB.getCodigoColegio();
 		
-		codigoColegio = "1041701524";//de manera temporal, luego se eliminara ese dato vendra de sesion
+		//codigoColegio = "1041701524";//de manera temporal, luego se eliminara ese dato vendra de sesion
 		System.out.println("codigoColegio "+codigoColegio);
 		System.out.println("idAlumno "+idAlumno);
 		alumnos = pagoService.listaAlumnos(codigoColegio, idAlumno);
@@ -101,7 +104,6 @@ public class RegistroPagoMB implements Serializable  {
 				this.descuento=null;
 		}else{
 			matriculas =pagoService.listaMatricula(codigoColegio, idAlumno);
-
 			Matriculas matricula=matriculas.get(0); 
 			Integer idSeccion=matricula.getIdSeccion();
 			idMatricula=matricula.getIdMatricula();

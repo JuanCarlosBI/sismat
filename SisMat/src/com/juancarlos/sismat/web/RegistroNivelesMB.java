@@ -29,9 +29,14 @@ public class RegistroNivelesMB implements Serializable{
     
 	@Autowired
 	NivelService nivelService;
+
+	@Autowired
+	private MainMB mainMB;
 	
 	public void registrarNivel() {
-		codigoColegio = "1041701524";
+		//codigoColegio = "1041701524";
+		codigoColegio=mainMB.getCodigoColegio();
+		
 		boolean resultado = nivelService.registroNivel(tipo,
 				nivel, orden, nroVacantes, estado ,codigoColegio);
 

@@ -22,7 +22,6 @@ public class MainMB  implements Serializable{
 	private LoginMB loginMB;
 	@Autowired
 	private UsuarioService usuarioService;
-	
 	private String nombre;
 	private String apellido;
 	private Empleado empleado;
@@ -30,17 +29,26 @@ public class MainMB  implements Serializable{
 	private String codigoColegio;
 	
 	
+	
+	
 	public void datosUsuario(){
 		System.out.println("datosUsuario()");
 		
 		String usuario = loginMB.getUsuario();
 		String  clave = loginMB.getPassword();
+		System.out.println("usuario "+usuario);
+		System.out.println("clave "+clave);
 		
 		empleado = usuarioService.datosUsuario(usuario,clave);
 		nombre = empleado.getNombres();
 		apellido = empleado.getApellidos();
-//		codigoColegio = empleado.getCodigoColegio();
+		//codigoColegio = empleado.getCodigoColegio();
+		codigoColegio = "1041701524";
+		System.out.println("codigoColegio "+codigoColegio);
+		System.out.println("nombre "+nombre);
+		System.out.println("apellido "+apellido);
 		nombreUsuario = nombre +" "+ apellido;	
+		System.out.println("nombreUsuario "+nombreUsuario);
 	
 	}
 

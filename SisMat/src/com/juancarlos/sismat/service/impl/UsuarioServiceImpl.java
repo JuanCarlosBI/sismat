@@ -1,5 +1,6 @@
 package com.juancarlos.sismat.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 	@Autowired
 	UsuarioDao usuarioDao;
 	
-	public boolean registroUsuario(String nombreUsuario,String clave,String tipo,String nombreCompleto,String estado, String codigoColegio){
+	public boolean registroUsuario(String nombreUsuario,String clave,String tipo,String nombreCompleto,String estado, String codigoColegio,Date fecha){
 		Usuario usuario = new Usuario();
 		
 		usuario.setNombreUsuario(nombreUsuario);
@@ -28,6 +29,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 		usuario.setNombreCompleto(nombreCompleto);
 		usuario.setEstado(estado);
 		usuario.setCodigoColegio(codigoColegio);
+		usuario.setFecha(fecha);
 		return usuarioDao.registroUsuario(usuario);
 	}
 	

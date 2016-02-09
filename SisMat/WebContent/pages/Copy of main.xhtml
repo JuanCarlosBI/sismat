@@ -1,10 +1,11 @@
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-   xmlns:h="http://java.sun.com/jsf/html"
-   xmlns:f="http://java.sun.com/jsf/core"
-   xmlns:p="http://primefaces.org/ui"
-   xmlns:ui="http://java.sun.com/jsf/facelets">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 
-<h:head title="Primefaces Test">
+
+<f:view contentType="text/html">
+	<h:head>
 		<f:facet name="first">
 			<meta http-equiv="X-UA-Compatible" content="EmulateIE8" />
 			<meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
@@ -21,31 +22,56 @@
 		<script type="text/javacsript"
 			src="#{request.contextPath}/js/jquery-2.1.3.js"></script>
 		<script type="text/javacsript" src="#{request.contextPath}/js/util.js"></script>
-   <style type="text/css">
-.ui-layout-north {
-   z-index: 20 !important;
-   overflow: visible !important;
+
+		<!-- 		<style type="text/css"> 
+ 			.fieldInputForm { */
+				width: 200px; */
+			} */
+		</style> 	-->
+		<style type="text/css">
+.nestedUnit {
+	border: 0px none !important;
 }
 
-.ui-layout-north .ui-layout-unit-content {
-   overflow: visible !important;
+.ui-layout-center .ui-layout-resizer {
+	border: 1px solid #A8A8A8 !important;
 }
 
+.ui-tree-item span {
+	float: left !important;
+}
+
+.ui-tree {
+	border: 0px none !important;
+}
+
+.ui-tabs {
+	border: 0px none !important;
+}
+
+#top .ui-layout-unit-content {
+	padding: 0px !important;
+	background: <h:outputText value="#0A2856"/>!important;
+}
+
+#top {
+	background: <h:outputText value="#0A2800"/>!important;
+}
 </style>
-</h:head>
 
-<h:body>
-   <h:form>
-      <p:layout fullPage="true">
-         <p:layoutUnit id="top" position="north" size="80" style="height: height: 150px;">
-         
-         		<div id="header" STYLE="background-color:#0A2856">
+	</h:head>
+	<h:body>
+<h:form id="formMenu">
+		<p:layout fullPage="true">
 
-					<div id="headerTitle" class="headerTitle" >
+			<p:layoutUnit id="top" size="100" position="north">
+
+				<div id="header">
+
+					<div id="headerTitle" class="headerTitle">
 						<div id="headerTitleText" class="headerTitleText">
 							<h:outputText id="nombreApp" value="Sistema de Gestión de Colegios" />
-							<br /> 
-							<span style="font-size: 9px; color: #EEEEEE"> <h:outputText
+							<br /> <span style="font-size: 9px; color: #EEEEEE"> <h:outputText
 									id="servidorBD" value="SisMat " /> <h:outputText
 									id="appVersion" value="1.0" />
 							</span>
@@ -58,22 +84,26 @@
 							Bienvenido: 
 							<h:outputText id="txtUsuario" value="#{mainMB.nombreUsuario}" />
 						</div>
-						<div id="headerDateTime" class="headerDateTime" style="background-color:#0A2856">
+						<div id="headerDateTime" class="headerDateTime">
 							Fecha: 
-							<p:clock pattern="dd/MM/yyyy HH:mm:ss" style="background-color:#0A2856"/>
+							<p:clock pattern="dd/MM/yyyy HH:mm:ss" />
 						</div>
 						<div id="headerLogout" class="headerLogout">
 							<a href="javascript:fn_cerrar_session();" class="textLogout">Cerrar
 								Sesión</a>
 						</div>
-					</div>		
-					
-		
+					</div>				
+
 				</div>
+			
 				
-				<div class="headerDataDefaultMenu">
-					
-						<p:menubar>						
+<!-- 				<div id="hahaha"  -->
+<!-- 						style="width: 100%; height: 100%; position: fixed; left: 0px; top: 62px;"> -->
+
+<!-- 						<h:form id="formMenu"> -->
+							<p:growl id="messages" />
+
+							<p:menubar>						
 
 								<p:submenu label="Alumnos">
 									<p:menuitem value="Nuevo"  onclick="carga_pagina('registroAlumno','','')"
@@ -136,7 +166,7 @@
 								<p:submenu label="Configuraci&#243;n">
 									<p:submenu label="Usuarios">
 										<p:menuitem value="Registro Usuarios" onclick="carga_pagina('registroUsuario','','')" />
-										<p:menuitem value="Usuarios" onclick="carga_pagina('usuarios','','')" />										
+										<p:menuitem value="Usuarios" onclick="carga_pagina('registroUsuario','','')" />										
 									</p:submenu>
 									<p:submenu label="Colegio">
 										<p:menuitem value="Registro" onclick="carga_pagina('registroColegio','','')" />
@@ -147,21 +177,27 @@
 								<p:menuitem value="Cerrar Sesi&#243;n"
 									url="http://www.primefaces.org" />
 							</p:menubar>
-					
-				</div>
+<!-- 						</h:form> -->
 
-				
-         	<div>				
-				
-							
+<!-- 					</div>	 -->
+					
+
+			</p:layoutUnit>
+			
+			<p:layoutUnit  position="center">
+			
+					
+					<div id="contenedor" style="height: 100%;width:100%;">
+						
 					</div>
-         </p:layoutUnit>
-         <p:layoutUnit position="center">
-            <div id="contenedor" style="height: 100%;width:100%;"/>
-         </p:layoutUnit>
-      </p:layout>
-   </h:form>
-</h:body>
+			
+			</p:layoutUnit>					
+		</p:layout>
+		
+</h:form>
+	</h:body>
+</f:view>
+
 <script type="text/javascript">
 	function carga_pagina(url, title, idOpcion) {
 		var divContenedor = document.getElementById('contenedor');

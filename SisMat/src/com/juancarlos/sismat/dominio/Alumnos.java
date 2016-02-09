@@ -85,7 +85,7 @@ public class Alumnos  implements java.io.Serializable {
      private String religionApoderado;
      private String estaVivoApoderado;
      private String nombreCompleto;
- 
+     private String codigoColegio;
      
 
     public Alumnos() {
@@ -114,7 +114,7 @@ public class Alumnos  implements java.io.Serializable {
 			Date fechaNacApoderado, String estadoCivilApoderado,
 			String telefonoApoderado, String celularApoderado,
 			String direccionApoderado, String distritoApoderado,
-			String ocupacionApoderado,char estado, String religionApoderado,String estaVivoApoderado,String nombreCompleto) {
+			String ocupacionApoderado,char estado, String religionApoderado,String estaVivoApoderado,String nombreCompleto,String codigoColegio) {
 		super();
 		this.idAlumno = idAlumno;
 		this.nombres = nombres;
@@ -168,6 +168,7 @@ public class Alumnos  implements java.io.Serializable {
 		this.estaVivoApoderado = estaVivoApoderado;
 		this.nombreCompleto=nombreCompleto;
 		this.estado = estado;
+		this.codigoColegio=codigoColegio;
 			}
 
 
@@ -713,6 +714,16 @@ public String getReligionMadre() {
 	        this.estado = estado;
 	    }
 
+	    @Column(name="codigoColegio", nullable=false, length=11)
+		public String getCodigoColegio() {
+			return codigoColegio;
+		}
+
+		  public void setCodigoColegio(String codigoColegio) {
+			this.codigoColegio = codigoColegio;
+		}
+
+	    
 
 
 }

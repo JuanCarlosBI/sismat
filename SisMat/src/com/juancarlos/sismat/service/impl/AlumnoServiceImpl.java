@@ -26,7 +26,7 @@ public class AlumnoServiceImpl implements AlumnoService {
 	public boolean registroAlumno(String nombres, String apellidoPaterno,
 			String apellidoMaterno, String dni, Date fechaNacimiento,
 			String edad, char sexo, String direccion, String distrito,
-			String responsable, String religion,String nombrePadre,
+			String responsable, String religion,byte[] foto,String nombrePadre,
 			String apellidoPaternoPadre,String apellidoMaternoPadre, String dniPadre, Date fechaNacPadre,
 			String estadoCivilPadre, String telefonoPadre, String celularPadre,
 			String direccionPadre, String distritoPadre, String ocupacionPadre,
@@ -39,7 +39,7 @@ public class AlumnoServiceImpl implements AlumnoService {
 			String telefonoApoderado, String celularApoderado,
 			String direccionApoderado, String distritoApoderado,
 			String ocupacionApoderado, String religionApoderado,
-			String estaVivoApoderado) {
+			String estaVivoApoderado,String codigoColegio) {
 		Alumnos alumno = new Alumnos();
 		String apellidosPadre = apellidoPaternoPadre + " " + apellidoMaternoPadre;
 		String apellidosMadre = apellidoPaternoMadre + " " + apellidoMaternoMadre;
@@ -58,6 +58,7 @@ public class AlumnoServiceImpl implements AlumnoService {
 		alumno.setDistrito(distrito);
 		alumno.setResponsable(responsable);
 		alumno.setReligion(religion);
+		alumno.setFoto(foto);
 		alumno.setNombrePadre(nombrePadre);
 		alumno.setApellidosPadre(apellidosPadre);
 		alumno.setDniPadre(dniPadre);
@@ -95,6 +96,7 @@ public class AlumnoServiceImpl implements AlumnoService {
 		alumno.setReligionApoderado(religionApoderado);
 		alumno.setEstaVivoApoderado(estaVivoApoderado);
 		alumno.setNombreCompleto(nombreCompleto);
+		alumno.setCodigoColegio(codigoColegio);
 		return alumnoDao.registroAlumno(alumno);
 	}
 

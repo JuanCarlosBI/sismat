@@ -1,6 +1,7 @@
 package com.juancarlos.sismat.web;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -25,15 +26,21 @@ public class RegistroUsuarioMB implements Serializable{
     private String nombreCompleto;
     private String estado;
     private String codigoColegio;
+	private Date fecha;
+
+	@Autowired
+	private MainMB mainMB;
     @Autowired
 	UsuarioService usuarioService;
 
     public void registrarUsuario() {
 		
 			System.out.println("registroUsuario");
-			codigoColegio = "1041701524";
+			codigoColegio=mainMB.getCodigoColegio();
+			
+			//codigoColegio = "1041701524";
 			boolean resultado = usuarioService.registroUsuario(nombreUsuario,
-					clave, tipo, nombreCompleto,estado,codigoColegio );
+					clave, tipo, nombreCompleto,estado,codigoColegio,fecha );
 			if (resultado) {
 				FacesContext.getCurrentInstance().addMessage(
 						null,
@@ -57,6 +64,8 @@ public class RegistroUsuarioMB implements Serializable{
 	        this.nombreUsuario = null;
 	        this.clave = null;
 	        this.tipo = null;
+	        this.contrasenia2=null;
+	        this.nombreCompleto=null;
 	        
 	        
 	        
@@ -127,6 +136,14 @@ public class RegistroUsuarioMB implements Serializable{
 
 	public void setCodigoColegio(String codigoColegio) {
 		this.codigoColegio = codigoColegio;
+	}
+
+	public Date getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
 	}
 
 

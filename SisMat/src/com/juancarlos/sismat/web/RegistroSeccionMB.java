@@ -40,6 +40,9 @@ public class RegistroSeccionMB implements Serializable {
     private String tutor;
     private String periodo;
 private String codigoColegio;
+
+@Autowired
+private MainMB mainMB;
 	 private String[] listanivel;
     
 	@Autowired
@@ -52,8 +55,9 @@ private String codigoColegio;
 		
 		List<String> results = new ArrayList<String>();
 		List<Empleado> listaNombresProductos = new ArrayList<Empleado>();		
-
-		codigoColegio="1041701524";
+		codigoColegio=mainMB.getCodigoColegio();
+		
+		//codigoColegio="1041701524";
 		listaNombresProductos = seccionService.nombreEmpleado(query.toUpperCase());
 		
 		

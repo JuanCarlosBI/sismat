@@ -25,7 +25,7 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 		return null;
 	}
 	
-	public boolean registroEmpleado(String dni,String nombres,String apellidoPaterno,String apellidoMaterno, Date fechaNacimiento,char sexo,String direccion,String distrito,String celular,String cargo){
+	public boolean registroEmpleado(String dni,String nombres,String apellidoPaterno,String apellidoMaterno, Date fechaNacimiento,char sexo,String direccion,String distrito,String celular,String cargo,String codigoColegio){
 		Empleado empleado = new Empleado();
 		String apellidos=apellidoPaterno+" "+apellidoMaterno;
 		String nombreCompleto=nombres+" "+apellidos;
@@ -39,12 +39,12 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 		empleado.setCelular(celular);
 		empleado.setCargo(cargo);
 		empleado.setNombreCompleto(nombreCompleto);
-		
+		empleado.setCodigoColegio(codigoColegio);
 			
 		return empleadoDao.registroEmpleado(empleado);
 	}
 
-	public boolean actualizarRegistroEmpleado(String dni,String nombres,String apellidoPaterno,String apellidoMaterno, Date fechaNacimiento,char sexo,String direccion,String distrito,String celular,String cargo){
+	public boolean actualizarRegistroEmpleado(String dni,String nombres,String apellidoPaterno,String apellidoMaterno, Date fechaNacimiento,char sexo,String direccion,String distrito,String celular,String cargo,String codigoColegio){
 		
 		Empleado empleado = new Empleado();
 		String apellidos=apellidoPaterno+" "+apellidoMaterno;
@@ -57,6 +57,7 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 		empleado.setDistrito(distrito);
 		empleado.setCelular(celular);
 		empleado.setCargo(cargo);
+		empleado.setCodigoColegio(codigoColegio);
 		
 			
 		

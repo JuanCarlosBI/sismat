@@ -32,6 +32,11 @@ public class RegistroProfesorMB implements Serializable{
 	private String distrito;
 	private String celular;
 	private String cargo;
+
+	@Autowired
+	private MainMB mainMB;
+
+private String codigoColegio;
 	DateFormat df = new SimpleDateFormat("yyyy-MM-d");
 	@Autowired
 	EmpleadoService empleadoService;
@@ -44,8 +49,10 @@ public class RegistroProfesorMB implements Serializable{
 		System.out.println(apellidoMaterno);
 		System.out.println(fechaNacimiento);
 		System.out.println(sexo);
+		codigoColegio=mainMB.getCodigoColegio();
 		
-		boolean resultado = empleadoService.registroEmpleado(dni,nombres,apellidoPaterno,apellidoMaterno,fechaNacimiento,sexo,direccion,distrito,celular,cargo);
+		//codigoColegio="1041701524";
+		boolean resultado = empleadoService.registroEmpleado(dni,nombres,apellidoPaterno,apellidoMaterno,fechaNacimiento,sexo,direccion,distrito,celular,cargo,codigoColegio);
 		
 		if(resultado){
 			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Se registro correctamente",""));
@@ -58,7 +65,7 @@ public class RegistroProfesorMB implements Serializable{
 	public void actualizarRegistroEmpleado(){
 		System.out.println("actualizarRegistrarEmpleado");
 		
-		boolean resultado = empleadoService.registroEmpleado(dni,nombres,apellidoPaterno,apellidoMaterno,fechaNacimiento,sexo,direccion,distrito,celular,cargo);
+		boolean resultado = empleadoService.registroEmpleado(dni,nombres,apellidoPaterno,apellidoMaterno,fechaNacimiento,sexo,direccion,distrito,celular,cargo,codigoColegio);
 		
 		if(resultado){
 			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Se actualizo correctamente",""));

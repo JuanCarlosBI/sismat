@@ -56,7 +56,7 @@
 						<br />
 						<div id="headerUser" class="headerUser">
 							Bienvenido: 
-							<h:outputText id="txtUsuario" value="#{mainMB.nombreUsuario}" />
+							<h:outputText id="txtUsuario" value="" />
 						</div>
 						<div id="headerDateTime" class="headerDateTime" style="background-color:#0A2856">
 							Fecha: 
@@ -136,7 +136,7 @@
 								<p:submenu label="Configuraci&#243;n">
 									<p:submenu label="Usuarios">
 										<p:menuitem value="Registro Usuarios" onclick="carga_pagina('registroUsuario','','')" />
-										<p:menuitem value="Usuarios" onclick="carga_pagina('usuarios','','')" />										
+										<p:menuitem value="Usuarios" onclick="carga_pagina('registroUsuario','','')" />										
 									</p:submenu>
 									<p:submenu label="Colegio">
 										<p:menuitem value="Registro" onclick="carga_pagina('registroColegio','','')" />

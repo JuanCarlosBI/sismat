@@ -29,10 +29,15 @@ public class NivelesAcademicosMB implements Serializable {
 	@Autowired
 	NivelService nivelService;
 
-	public void listaNiveles() {
-		codigoColegio = "1041701524";
-		listnivel = nivelService.listaNivel(codigoColegio, nivel, estado);
+	@Autowired
+	private MainMB mainMB;
 
+	public void listaNiveles() {
+		//codigoColegio = "1041701524";
+
+		codigoColegio=mainMB.getCodigoColegio();
+
+		listnivel = nivelService.listaNivel(codigoColegio, nivel, estado);
 		return;
 
 	}

@@ -11,10 +11,10 @@ public interface EmpleadoService {
 	public boolean registroEmpleado(String dni, String nombres,
 			String apellidoPaterno, String apellidoMaterno,
 			Date fechaNacimiento, char sexo, String direccion, String distrito,
-			String celular, String cargo);
+			String celular, String cargo,String codigoColegio);
 
 	public boolean actualizarRegistroEmpleado(String dni, String nombres,
 			String apellidoPaterno, String apellidoMaterno,
 			Date fechaNacimiento, char sexo, String direccion, String distrito,
-			String celular, String cargo);
+			String celular, String cargo,String codigoColegio);
 }

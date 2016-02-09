@@ -30,11 +30,16 @@ public class SeccionesMB implements Serializable {
 	private List<Seccion> seccion;
 	private String nivelAcademico;
 	private String[] listanivel;
+
+	@Autowired
+	private MainMB mainMB;
 	@Autowired
 	SeccionService seccionService;
 
 	public void listaNivel() {
-		codigoColegio = "1041701524";
+	//	codigoColegio = "1041701524";
+		codigoColegio=mainMB.getCodigoColegio();
+		
 		nivel = seccionService.listaNivel(codigoColegio);
 		listanivel = new String[nivel.size()];
 		for (int i = 0; i < nivel.size(); i++) {
@@ -57,16 +62,17 @@ public class SeccionesMB implements Serializable {
 				((Seccion) event.getObject()).getSeccion());
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 		boolean resultado = seccionService.editar((Seccion) event.getObject());
-
 	}
 
-	public void onCancel(RowEditEvent event) {
-		FacesMessage msg = new FacesMessage("Curso cancelado");
-		FacesContext.getCurrentInstance().addMessage(null, msg);
-		seccion.remove((Seccion) event.getObject());
-		boolean resultado = seccionService
-				.eliminar((Seccion) event.getObject());
 
+	
+	public void eliminar(Seccion lista) {
+		seccion.remove(lista);
+		boolean resultado = seccionService.eliminar(lista);
+		FacesMessage msg = new FacesMessage("Curso Eliminado",
+				lista.getSeccion());
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+		
 	}
 
 	public void reset() {

@@ -21,6 +21,7 @@
 </style>
 	</h:head>
 	<h:body id="todo">
+	<br />
 		<h:form id="form">
 
 			<p:panel id="Profesores" header="Lista de Alumnos"
@@ -44,7 +45,13 @@
 						</table>
 					</td>
 
-
+					<td><p:outputLabel value="Fecha Actual:" /></td>
+					<td><p:calendar id="fecha" value="#{registroPagoMB.fecha}"
+							showOn="button" readOnlyInputText="true" required="true"
+							locale="es" navigator="true"
+							requiredMessge="La fecha de Actual es requerida"
+							pattern="yyyy-MM-dd" /> <p:message id="fechaerror" for="fecha" />
+					</td>
 
 					<td>
 						<table>
@@ -57,16 +64,6 @@
 							</tr>
 						</table>
 					</td>
-
-					<td><p:outputLabel value="Fecha Actual:" /></td>
-					<td><p:calendar id="fecha" value="#{registroPagoMB.fecha}"
-							showOn="button" readOnlyInputText="true" required="true"
-							locale="es" navigator="true"
-							requiredMessge="La fecha de Nacimiento es requerida"
-							pattern="yyyy-MM-dd" /> <p:message id="fechaerror" for="fecha" />
-					</td>
-
-
 				</table>
 
 

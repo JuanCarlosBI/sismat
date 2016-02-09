@@ -21,6 +21,7 @@
 		</style>
 	</h:head>
 	<h:body>
+	<br />
 		<h:form id="form">
 		
 		<p:panel id="idCursos" header="Buscar Secciones"
@@ -90,7 +91,6 @@
 	 	<p:dataTable  rowIndexVar="row" var="lista" value="#{seccionesMB.seccion}" editable="true">
 			   
 			  <p:ajax event="rowEdit" listener="#{seccionesMB.onEdit}" update=":form:messages" label="Editar"/>  
-                    <p:ajax event="rowEditCancel" listener="#{seccionesMB.onCancel}" update=":form:messages" label="Eliminar"/> 
                       
 			   <p:column headerText="Id" styleClass="panelTabla">
 				<h:outputText value="#{row + 1}"/>
@@ -141,7 +141,8 @@
 			    </p:column>	
 			     <p:column headerText="Opciones" styleClass="panelTabla" >  
                         <p:rowEditor /> 
-                     
+                      <p:commandButton style="margin-top:-20px; margin-left:30px;" icon="ui-icon-trash"  action="#{seccionesMB.eliminar(lista)}"  title="Eliminar"
+						 update=":form:idSecciones" resetValues="true" />
                     </p:column> 
 			    
 			</p:dataTable>

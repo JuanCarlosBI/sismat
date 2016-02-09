@@ -22,7 +22,8 @@
 		</style>
 	</h:head>
 	<h:body>
-		<h:form>
+	<br />
+		<h:form id="basicUpload" enctype="multipart/form-data">
 		
 	<p:tabView>
         <p:tab title="Alumno">
@@ -35,13 +36,20 @@
 							<table style="text-align: right;">								
 								<tr>
 									<td><p:outputLabel value="Nombres:" /></td>
-									<td><p:inputText value="#{registroAlumnosMB.nombres}" required="true" maxlength="70"/></td>					
-								
+														
+									<td><p:inputText value="#{registroAlumnosMB.nombres}" required="true" maxlength="70" validatorMessage="Por favor ingrese el Nombre Correctamente">
+									<f:validateRegex pattern="[a-zA-Z]+"/> 		
+							
+					</p:inputText></td>
 									<td><p:outputLabel value="Apellido Paterno:" /></td>
-									<td><p:inputText value="#{registroAlumnosMB.apellidoPaterno}" required="true" maxlength="70"/></td>					
-								
+									<td><p:inputText  value="#{registroAlumnosMB.apellidoPaterno}" required="true" maxlength="70" validatorMessage="Por favor ingrese el Apellido Paterno Correctamente">
+										<f:validateRegex pattern="[a-zA-Z]+"/> 	
+									</p:inputText></td>
+																
 									<td><p:outputLabel value="Apellido Materno:" /></td>
-									<td><p:inputText value="#{registroAlumnosMB.apellidoMaterno}" required="true" maxlength="70"/></td>					
+									<td><p:inputText  value="#{registroAlumnosMB.apellidoMaterno}" required="true" maxlength="70" validatorMessage="Por favor ingrese el Apellido Materno Correctamente">
+										<f:validateRegex pattern="[a-zA-Z]+"/> 	
+									</p:inputText></td>
 								</tr>
 								<tr>
 									<td><p:outputLabel value="DNI:" /></td>
@@ -49,7 +57,7 @@
 								
 									<td><p:outputLabel value="Fecha Nacimiento:" /></td>
 									<td>
-										<p:calendar id="fechaNacimiento"  value="#{registroAlumnosMB.fechaNacimiento}" showOn="button" readOnlyInputText="true" required="true" locale="es" navigator="true" requiredMessge="La fecha de Nacimiento es requerida" pattern="yyyy-MM-dd"/>
+										<p:calendar id="fechaNacimiento"  yearRange = "c-60: c + 10" value="#{registroAlumnosMB.fechaNacimiento}" showOn="button" readOnlyInputText="true" required="true" locale="es" navigator="true" requiredMessge="La fecha de Nacimiento es requerida" pattern="yyyy-MM-dd"/>
 										<p:message id="fechaNacimientoerror1" for="fechaNacimiento"/>
 									</td>
 									<td><p:outputLabel value="Edad:" /></td>
@@ -85,8 +93,10 @@
         								</p:selectOneMenu>
 									</td>
 									<td><p:outputLabel value="Religion:" /></td>
-									<td><p:inputText id="religion" value="#{registroAlumnosMB.religion}" required="true" maxlength="20"/>
-									</td>
+									
+									<td><p:inputText id="religion" value="#{registroAlumnosMB.religion}" required="true" maxlength="20" validatorMessage="Por favor ingrese la Religión Correctamente">
+										<f:validateRegex pattern="[a-zA-Z]+"/> 	
+									</p:inputText></td>
 								</tr>	
 								
 								<tr><td colspan="6"><br/></td></tr>
@@ -94,12 +104,9 @@
 								<tr>																			
 									<td><p:outputLabel value="Foto:" /></td>
 									<td colspan="2">									
-									<h:panelGroup>
-										<p:fileUpload mode="single" cancelLabel="Cancelar" uploadLabel="Subir" label="Elegir"
-														sizeLimit="512000" allowTypes="/(\.|\/)(gif|jpe7g|png)$/"></p:fileUpload>
-										<p:graphicImage ></p:graphicImage>
-									</h:panelGroup>		
-									</td>		
+										<p:fileUpload fileUploadListener="#{registroAlumnosMB.handleFileUpload}"  
+	  mode="advanced"  multiple="true"  sizeLimit="1000000000000000000"   allowTypes="/(\.|\/)(gif|jpe?g|png)$/" /> 
+	    								</td>		
 								</tr>								
 							</table>	
 											
@@ -112,27 +119,31 @@
                 <p:panel id="Profesores1" header="Ingresar Datos"
 					styleClass="panelBusquedaForm" toggleable="false" closable="false"
 					toggleSpeed="500" closeSpeed="2000" widgetVar="panel">
-				
-				
-							<table style="text-align: right;">								
+					
+							<table style="text-align: right;">						
 								<tr>
 									<td><p:outputLabel value="Nombres:" /></td>
-									<td><p:inputText value="#{registroAlumnosMB.nombrePadre}" required="true" maxlength="70"/></td>					
-								
-									<td><p:outputLabel value="Apellido Paterno:" /></td>
-									<td><p:inputText value="#{registroAlumnosMB.apellidoPaternoPadre}" required="true" maxlength="70"/></td>					
-								
+									
+									<td><p:inputText value="#{registroAlumnosMB.nombrePadre}"  required="true" maxlength="70" validatorMessage="Por favor ingrese el Nombre del Padre Correctamente">
+										<f:validateRegex pattern="[a-zA-Z]+"/> 	
+									</p:inputText></td>
+									<td><p:outputLabel value="Apellido Paterno:" /></td>					
+									<td><p:inputText value="#{registroAlumnosMB.apellidoPaternoPadre}"  required="true" maxlength="70" validatorMessage="Por favor ingrese el Apellido Paterno del Padre Correctamente">
+										<f:validateRegex pattern="[a-zA-Z]+"/> 	
+									</p:inputText></td>
 									<td><p:outputLabel value="Apellido Materno:" /></td>
-									<td><p:inputText value="#{registroAlumnosMB.apellidoMaternoPadre}" required="true" maxlength="70"/></td>					
-													
+									<td><p:inputText value="#{registroAlumnosMB.apellidoMaternoPadre}"  required="true" maxlength="70" validatorMessage="Por favor ingrese el Apellido Materno del Padre Correctamente">
+										<f:validateRegex pattern="[a-zA-Z]+"/> 	
+									</p:inputText></td>
 								</tr>
+								
 								<tr>
 									<td><p:outputLabel value="DNI:" /></td>
 									<td><p:inputMask value="#{registroAlumnosMB.dniPadre}" mask="99999999"/></td>						
 								
 									<td><p:outputLabel value="Fecha Nacimiento:" /></td>
 									<td>
-										<p:calendar id="fechaNacimiento1"  value="#{registroAlumnosMB.fechaNacPadre}" showOn="button" readOnlyInputText="true" required="true" locale="es" navigator="true" requiredMessge="La fecha de Nacimiento es requerida" pattern="yyyy-MM-dd"/>
+										<p:calendar id="fechaNacimiento1" yearRange = "c-60: c + 10" value="#{registroAlumnosMB.fechaNacPadre}" showOn="button" readOnlyInputText="true" required="true" locale="es" navigator="true" requiredMessge="La fecha de Nacimiento es requerida" pattern="yyyy-MM-dd"/>
 										<p:message id="fechaNacimientoerror2" for="fechaNacimiento"/>
 									</td>
 														
@@ -169,17 +180,19 @@
 								            <f:selectItem itemLabel="San Borja" itemValue="San Borja" />								            
         								</p:selectOneMenu>
 									</td>
-									<td><p:outputLabel value="Ocupacion:" /></td>
-									<td><p:inputText value="#{registroAlumnosMB.ocupacionPadre}" required="true" maxlength="100"/></td>					
-																	
+									<td><p:outputLabel value="Ocupacion:" /></td>				
+									<td><p:inputText  value="#{registroAlumnosMB.ocupacionPadre}"   required="true" maxlength="70" validatorMessage="Por favor ingrese la ocupacíón del Padre Correctamente">
+										<f:validateRegex pattern="[a-zA-Z]+"/> 	
+									</p:inputText></td>
 								</tr>	
 								
 								<tr><td colspan="6"><br/></td></tr>
 															
 								<tr>																			
-									<td><p:outputLabel value="Religion:" /></td>
-									<td><p:inputText value="#{registroAlumnosMB.religionPadre}" required="true" maxlength="20"/></td>					
-									
+									<td><p:outputLabel value="Religion:" /></td>				
+									<td><p:inputText  value="#{registroAlumnosMB.religionPadre}"  required="true" maxlength="20" validatorMessage="Por favor ingrese la Religion del Padre Correctamente">
+										<f:validateRegex pattern="[a-zA-Z]+"/> 	
+									</p:inputText></td>
 									<td><p:outputLabel value="Esta Vivo:" /></td>
 									<td style="text-align: left;">
 										<p:selectOneMenu id="idEstaVivo1" value="#{registroAlumnosMB.estaVivoPadre}">							            
@@ -204,15 +217,18 @@
 				
 							<table style="text-align: right;">								
 								<tr>
-									<td><p:outputLabel value="Nombres:" /></td>
-									<td><p:inputText value="#{registroAlumnosMB.nombreMadre}" required="true" maxlength="70"/></td>					
-								
-									<td><p:outputLabel value="Apellido Paterno:" /></td>
-									<td><p:inputText value="#{registroAlumnosMB.apellidoPaternoMadre}" required="true" maxlength="70"/></td>					
-								
-									<td><p:outputLabel value="Apellido Materno:" /></td>
-									<td><p:inputText value="#{registroAlumnosMB.apellidoMaternoMadre}" required="true" maxlength="70"/></td>					
-													
+									<td><p:outputLabel value="Nombres:" /></td>			
+									<td><p:inputText  value="#{registroAlumnosMB.nombreMadre}"   required="true" maxlength="70" validatorMessage="Por favor ingrese el Nombre de la Madre Correctamente">
+					   <f:validateRegex pattern="[a-zA-Z]+"/> 			
+						</p:inputText></td>
+									<td><p:outputLabel value="Apellido Paterno:" /></td>				
+									<td><p:inputText  value="#{registroAlumnosMB.apellidoPaternoMadre}"  required="true" maxlength="70" validatorMessage="Por favor ingrese el Apellido Paterno de la Madre Correctamente">
+										<f:validateRegex pattern="[a-zA-Z]+"/> 	
+									</p:inputText></td>
+									<td><p:outputLabel value="Apellido Materno:" /></td>			
+									<td><p:inputText  value="#{registroAlumnosMB.apellidoMaternoMadre}"   required="true" maxlength="70" validatorMessage="Por favor ingrese el Apellido Materno de la Madre Correctamente">
+										<f:validateRegex pattern="[a-zA-Z]+"/> 	
+									</p:inputText></td>
 								</tr>
 								<tr>
 									<td><p:outputLabel value="DNI:" /></td>
@@ -220,7 +236,7 @@
 								
 									<td><p:outputLabel value="Fecha Nacimiento:" /></td>
 									<td>
-										<p:calendar id="fechaNacimiento2"  value="#{registroAlumnosMB.fechaNacMadre}" showOn="button" readOnlyInputText="true" required="true" locale="es" navigator="true" requiredMessge="La fecha de Nacimiento es requerida" pattern="yyyy-MM-dd"/>
+										<p:calendar id="fechaNacimiento2" yearRange = "c-60: c + 10" value="#{registroAlumnosMB.fechaNacMadre}" showOn="button" readOnlyInputText="true" required="true" locale="es" navigator="true" requiredMessge="La fecha de Nacimiento es requerida" pattern="yyyy-MM-dd"/>
 										<p:message id="fechaNacimeintoerror3" for="fechaNacimiento"/>
 									</td>
 														
@@ -258,16 +274,18 @@
         								</p:selectOneMenu>
 									</td>
 									<td><p:outputLabel value="Ocupacion:" /></td>
-									<td><p:inputText value="#{registroAlumnosMB.ocupacionMadre}" required="true" maxlength="100"/></td>					
-																	
+									<td><p:inputText  value="#{registroAlumnosMB.ocupacionMadre}"   required="true" maxlength="70" validatorMessage="Por favor ingrese la Ocupacíón de la Madre Correctamente">
+										<f:validateRegex pattern="[a-zA-Z]+"/> 	
+									</p:inputText></td>
 								</tr>	
 								
 								<tr><td colspan="6"><br/></td></tr>
 															
 								<tr>																			
-									<td><p:outputLabel value="Religion:" /></td>
-									<td><p:inputText value="#{registroAlumnosMB.religionMadre}" required="true" maxlength="20"/></td>					
-									
+									<td><p:outputLabel value="Religion:" /></td>				
+									<td><p:inputText value="#{registroAlumnosMB.religionMadre}"   required="true" maxlength="20" validatorMessage="Por favor ingrese la Religion de la Madre Correctamente">
+										<f:validateRegex pattern="[a-zA-Z]+"/> 	
+									</p:inputText></td>
 									<td><p:outputLabel value="Esta Viva:" /></td>
 									<td style="text-align: left;">
 										<p:selectOneMenu id="idEstaVivo2" value="#{registroAlumnosMB.estaVivoMadre}">							            
@@ -294,23 +312,26 @@
 							
 							<table style="text-align: right;">								
 								<tr>
-									<td><p:outputLabel value="Nombres:" /></td>
-									<td><p:inputText value="#{registroAlumnosMB.nombreApoderado}" required="true" maxlength="70"/></td>					
-								
+									<td><p:outputLabel value="Nombres:" /></td>				
+									<td><p:inputText value="#{registroAlumnosMB.nombreApoderado}" required="true" maxlength="70" validatorMessage="Por favor ingrese el Nombre del Apoderado Correctamente">
+										<f:validateRegex pattern="[a-zA-Z]+"/> 	
+									</p:inputText></td>
 									<td><p:outputLabel value="Apellido Paterno:" /></td>
-									<td><p:inputText value="#{registroAlumnosMB.apellidoPaternoApoderado}" required="true" maxlength="70"/></td>					
-								
+									<td><p:inputText value="#{registroAlumnosMB.apellidoPaternoApoderado}" required="true" maxlength="70" validatorMessage="Por favor ingrese el Apellido Paterno del Apoderado Correctamente">
+										<f:validateRegex pattern="[a-zA-Z]+"/> 	
+									</p:inputText></td>
 									<td><p:outputLabel value="Apellido Materno:" /></td>
-									<td><p:inputText value="#{registroAlumnosMB.apellidoMaternoApoderado}" required="true" maxlength="70"/></td>					
-													
+									<td><p:inputText value="#{registroAlumnosMB.apellidoMaternoApoderado}" required="true" maxlength="70" validatorMessage="Por favor ingrese el Apellido Materno del Apoderado Correctamente">
+										<f:validateRegex pattern="[a-zA-Z]+"/> 	
+									</p:inputText></td>				
 								</tr>
 								<tr>
 									<td><p:outputLabel value="DNI:" /></td>
-									<td><p:inputMask value="#{registroAlumnosMB.dniApoderado}" mask="99999999"/></td>						
+									<td><p:inputMask value="#{registroAlumnosMB.dniApoderado}" required="true" mask="99999999"/></td>						
 								
 									<td><p:outputLabel value="Fecha Nacimiento:" /></td>
 									<td>
-										<p:calendar id="fechaNacimiento3"  value="#{registroAlumnosMB.fechaNacApoderado}" showOn="button" readOnlyInputText="true" required="true" locale="es" navigator="true" requiredMessge="La fecha de Nacimiento es requerida" pattern="yyyy-MM-dd"/>
+										<p:calendar id="fechaNacimiento3" yearRange = "c-60: c + 10" value="#{registroAlumnosMB.fechaNacApoderado}"  required="true" showOn="button" readOnlyInputText="true"  locale="es" navigator="true" pattern="yyyy-MM-dd"/>
 										<p:message id="fechaNacimeintoerror4" for="fechaNacimiento"/>
 									</td>
 														
@@ -328,12 +349,12 @@
 								<tr>
 									<td><p:outputLabel value="Telefono:" /></td>
 									<td>
-										<p:inputMask id="telefono3" value="#{registroAlumnosMB.telefonoApoderado}" mask="999-9999"/>
+										<p:inputMask id="telefono3"  required="true" value="#{registroAlumnosMB.telefonoApoderado}" mask="999-9999"/>
 									</td>				
 								
 									<td><p:outputLabel value="Celular:" /></td>
 									<td>
-										<p:inputMask id="celular3" value="#{registroAlumnosMB.celularApoderado}" mask="999999999"/>
+										<p:inputMask id="celular3"  required="true" value="#{registroAlumnosMB.celularApoderado}" mask="999999999"/>
 									</td>													
 								</tr>
 								<tr>
@@ -347,17 +368,19 @@
 								            <f:selectItem itemLabel="San Borja" itemValue="San Borja" />								            
         								</p:selectOneMenu>
 									</td>
-									<td><p:outputLabel value="Ocupacion:" /></td>
-									<td><p:inputText value="#{registroAlumnosMB.ocupacionApoderado}" required="true" maxlength="100"/></td>					
-																	
+									<td><p:outputLabel value="Ocupacion:" /></td>		
+									<td><p:inputText  value="#{registroAlumnosMB.ocupacionApoderado}"  required="true" maxlength="20" validatorMessage="Por favor ingrese la Ocupacion del Apoderado Correctamente">
+										<f:validateRegex pattern="[a-zA-Z]+"/> 	
+									</p:inputText></td>						
 								</tr>	
 								
 								<tr><td colspan="6"><br/></td></tr>
 															
 								<tr>																			
-									<td><p:outputLabel value="Religion:" /></td>
-									<td><p:inputText value="#{registroAlumnosMB.religionApoderado}" required="true" maxlength="20"/></td>					
-									
+									<td><p:outputLabel value="Religion:" /></td>				
+									<td><p:inputText value="#{registroAlumnosMB.religionApoderado}" required="true"  maxlength="20" validatorMessage="Por favor ingrese la Religion del Apoderado Correctamente">
+										<f:validateRegex pattern="[a-zA-Z]+"/> 	
+									</p:inputText></td>
 									<td><p:outputLabel value="Esta Vivo:" /></td>
 									<td style="text-align: left;">
 										<p:selectOneMenu id="idEstaVivo3" value="#{registroAlumnosMB.estaVivoApoderado}">							            
@@ -372,16 +395,17 @@
                 
             </h:panelGrid>
         </p:tab>       
+      
         
   </p:tabView>	
-    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
-				
+  		  <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+		
     <table>
 			<tr>
 				<td>								
 					<p:commandButton id="btnGuardar"	value="Guardar" 
 										action="#{registroAlumnosMB.registrarAlumno}" styleClass="buttonForm"/>
-										<p:link id="btnCancelar"				outcome="main"				
+										<p:link id="btnCancelar"				outcome="pagina"				
 										value="Cancelar"  styleClass="buttonForm"/>																				
 				</td>
 			</tr>

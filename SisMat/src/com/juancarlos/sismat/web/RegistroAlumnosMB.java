@@ -1,18 +1,19 @@
 package com.juancarlos.sismat.web;
 
 import javax.faces.bean.ManagedBean;
+
+import java.io.IOException;
+
 import java.io.Serializable;
 import java.util.Date;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.UploadedFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import com.ibm.icu.text.DateFormat;
-import com.ibm.icu.text.SimpleDateFormat;
 import com.juancarlos.sismat.service.AlumnoService;
 
 @SuppressWarnings("serial")
@@ -31,6 +32,8 @@ public class RegistroAlumnosMB implements Serializable {
 	private String distrito;
 	private String responsable;
 	private String religion;
+	private byte[] foto;
+	private String nombrefoto;
 	private String nombrePadre;
 	private String apellidoPaternoPadre;
 	private String apellidoMaternoPadre;
@@ -71,41 +74,43 @@ public class RegistroAlumnosMB implements Serializable {
 	private String ocupacionApoderado;
 	private String religionApoderado;
 	private String estaVivoApoderado;
-	
-	
-	
+	private String codigoColegio;
+
 	@Autowired
 	AlumnoService alumnoService;
 
+	@Autowired
+	private MainMB mainMB;
+
+	public void handleFileUpload(FileUploadEvent event) {
+		FacesMessage msg = new FacesMessage("Ok", "Fichero "
+				+ event.getFile().getFileName() + " subido correctamente.");
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+		foto = event.getFile().getContents();
+		nombrefoto = event.getFile().getFileName();
+	}
+
 	public void registrarAlumno() {
 		System.out.println("registroAlumno");
-		System.out.println(nombres);
-		System.out.println(apellidoPaterno);
-		System.out.println(apellidoMaterno);
-		System.out.println(dni);
-		System.out.println(fechaNacimiento);
-		System.out.println(edad);
-		System.out.println(sexo);
-		System.out.println(direccion);
-		System.out.println(distrito);
-		System.out.println(responsable);
-		System.out.println(religion);
-		System.out.println("DATOS MADRE");
-				
+		System.out.println(nombrefoto);
+		codigoColegio = mainMB.getCodigoColegio();
+		System.out.println(codigoColegio);
+
 		boolean resultado = alumnoService.registroAlumno(nombres,
 				apellidoPaterno, apellidoMaterno, dni, fechaNacimiento, edad,
-				sexo, direccion, distrito, responsable, religion,nombrePadre, apellidoPaternoPadre,
-				apellidoMaternoPadre, dniPadre, fechaNacPadre,
-				estadoCivilPadre, telefonoPadre, celularPadre, direccionPadre,
-				distritoPadre, ocupacionPadre, religionPadre, estaVivoPadre, nombreMadre,
+				sexo, direccion, distrito, responsable, religion, foto,
+				nombrePadre, apellidoPaternoPadre, apellidoMaternoPadre,
+				dniPadre, fechaNacPadre, estadoCivilPadre, telefonoPadre,
+				celularPadre, direccionPadre, distritoPadre, ocupacionPadre,
+				religionPadre, estaVivoPadre, nombreMadre,
 				apellidoPaternoMadre, apellidoMaternoMadre, dniMadre,
 				fechaNacMadre, estadoCivilMadre, telefonoMadre, celularMadre,
-				direccionMadre, distritoMadre, ocupacionMadre, religionMadre,estaVivoMadre,	nombreApoderado, apellidoPaternoApoderado,
+				direccionMadre, distritoMadre, ocupacionMadre, religionMadre,
+				estaVivoMadre, nombreApoderado, apellidoPaternoApoderado,
 				apellidoMaternoApoderado, dniApoderado, fechaNacApoderado,
 				estadoCivilApoderado, telefonoApoderado, celularApoderado,
 				direccionApoderado, distritoApoderado, ocupacionApoderado,
-				religionApoderado, estaVivoApoderado);
-
+				religionApoderado, estaVivoApoderado, codigoColegio);
 		if (resultado) {
 			FacesContext.getCurrentInstance().addMessage(
 					null,
@@ -206,7 +211,7 @@ public class RegistroAlumnosMB implements Serializable {
 	public void setReligion(String religion) {
 		this.religion = religion;
 	}
-	
+
 	public String getNombrePadre() {
 		return nombrePadre;
 	}
@@ -311,8 +316,6 @@ public class RegistroAlumnosMB implements Serializable {
 		this.estaVivoPadre = estaVivoPadre;
 	}
 
-
-	
 	public String getNombreMadre() {
 		return nombreMadre;
 	}
@@ -520,7 +523,37 @@ public class RegistroAlumnosMB implements Serializable {
 	public void setEstaVivoApoderado(String estaVivoApoderado) {
 		this.estaVivoApoderado = estaVivoApoderado;
 	}
-	
 
-	
+	public byte[] getFoto() {
+		return foto;
+	}
+
+	public void setFoto(byte[] foto) {
+		this.foto = foto;
+	}
+
+	public String getNombrefoto() {
+		return nombrefoto;
+	}
+
+	public void setNombrefoto(String nombrefoto) {
+		this.nombrefoto = nombrefoto;
+	}
+
+	public String getCodigoColegio() {
+		return codigoColegio;
+	}
+
+	public void setCodigoColegio(String codigoColegio) {
+		this.codigoColegio = codigoColegio;
+	}
+
+	public MainMB getMainMB() {
+		return mainMB;
+	}
+
+	public void setMainMB(MainMB mainMB) {
+		this.mainMB = mainMB;
+	}
+
 }

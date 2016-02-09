@@ -31,13 +31,16 @@ public class RegistroCursosMB implements Serializable{
 	 private String[] listanivel;
     private String area;
     private char estado;
-   
+
+	@Autowired
+	private MainMB mainMB;
 	@Autowired
 	CursoService cursoService;
 
 	public void listaNivel(){
-
-		codigoColegio="1041701524";
+		codigoColegio=mainMB.getCodigoColegio();
+		
+		//codigoColegio="1041701524";
 		nivel = cursoService.listaNivel(codigoColegio);
 		listanivel=new String[nivel.size()];
 		for(int i=0;i<nivel.size();i++){
