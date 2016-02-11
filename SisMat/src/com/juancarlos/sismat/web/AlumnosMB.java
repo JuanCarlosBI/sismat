@@ -103,6 +103,7 @@ public class AlumnosMB implements Serializable {
 		this.apellidoPaterno = null;
 
 		this.apellidoMaterno = null;
+		alumnos=null;
 
 		FacesMessage msg = new FacesMessage("Datos limpios");
 		FacesContext.getCurrentInstance().addMessage(null, msg);

@@ -9,11 +9,9 @@ public interface EmpleadoDao {
 
 	public Empleado datosEmpleado(String idEmpleado);
 	public boolean registroEmpleado(Empleado empleado);
-	public boolean actualizarRegistroEmpleado(Empleado empleado);
-	public boolean eliminaEmpleado(Empleado empleado);
-	public List<Empleado> listaProfesores(String codigoColegio, String dni, String nombre, String apellidos, char estado, char cargo);
+	public List<Empleado> listaProfesores(String codigoColegio, String dni, String nombre, String apellidos, String estado);
 
-	public boolean guardarEmpleado(Empleado empleado);
+	public boolean editar(Empleado editarEmpleado);
 
 	
 }

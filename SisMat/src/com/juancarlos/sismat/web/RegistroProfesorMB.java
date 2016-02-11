@@ -17,11 +17,11 @@ import com.ibm.icu.text.SimpleDateFormat;
 import com.juancarlos.sismat.service.EmpleadoService;
 
 @SuppressWarnings("serial")
-@ManagedBean(name="registroProfesorMB")
+@ManagedBean(name = "registroProfesorMB")
 @SessionScoped
 @Component
-public class RegistroProfesorMB implements Serializable{
-	
+public class RegistroProfesorMB implements Serializable {
+
 	private String dni;
 	private String nombres;
 	private String apellidoPaterno;
@@ -32,16 +32,17 @@ public class RegistroProfesorMB implements Serializable{
 	private String distrito;
 	private String celular;
 	private String cargo;
+	private String especialidad;
 
 	@Autowired
 	private MainMB mainMB;
 
-private String codigoColegio;
+	private String codigoColegio;
 	DateFormat df = new SimpleDateFormat("yyyy-MM-d");
 	@Autowired
 	EmpleadoService empleadoService;
-	
-	public void registrarEmpleado(){
+
+	public void registrarEmpleado() {
 		System.out.println("registroEmpleado");
 		System.out.println(dni);
 		System.out.println(nombres);
@@ -51,69 +52,71 @@ private String codigoColegio;
 		System.out.println(sexo);
 
 		mainMB.datosUsuario();
-		codigoColegio=mainMB.getCodigoColegio();
-		
-		//codigoColegio="1041701524";
-		boolean resultado = empleadoService.registroEmpleado(dni,nombres,apellidoPaterno,apellidoMaterno,fechaNacimiento,sexo,direccion,distrito,celular,cargo,codigoColegio);
-		
-		if(resultado){
-			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Se registro correctamente",""));
+		codigoColegio = mainMB.getCodigoColegio();
+
+		// codigoColegio="1041701524";
+		boolean resultado = empleadoService.registroEmpleado(dni, nombres,
+				apellidoPaterno, apellidoMaterno, fechaNacimiento, sexo,
+				direccion, distrito, celular, cargo, especialidad,
+				codigoColegio);
+
+		if (resultado) {
+			FacesContext.getCurrentInstance().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_INFO,
+							"Se registro correctamente", ""));
+		} else {
+			FacesContext.getCurrentInstance().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR,
+							"Hubo un error en guardar la información", ""));
 		}
-		else{
-			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"Hubo un error en guardar la información",""));
-		}		
 	}
-	
-	public void actualizarRegistroEmpleado(){
-		System.out.println("actualizarRegistrarEmpleado");
-		
-		boolean resultado = empleadoService.registroEmpleado(dni,nombres,apellidoPaterno,apellidoMaterno,fechaNacimiento,sexo,direccion,distrito,celular,cargo,codigoColegio);
-		
-		if(resultado){
-			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Se actualizo correctamente",""));
-		}
-		else{
-			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"Hubo un error en actualizar la información",""));
-		}		
+
+	public void resetFail() {
+		this.dni = null;
+		this.nombres = null;
+		this.apellidoPaterno = null;
+		this.apellidoMaterno = null;
+		this.fechaNacimiento = null;
+		this.cargo = null;
+		this.direccion = null;
+		this.distrito = null;
+		this.celular = null;
+		this.especialidad = null;
+
+		FacesMessage msg = new FacesMessage("Datos limpios");
+		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
-	 public void resetFail() {
-	        this.dni = null;
-	        this.nombres = null;
-	        this.apellidoPaterno = null;
-	        this.apellidoMaterno = null;
-	        this.fechaNacimiento = null;
-	        this.cargo = null;
-	        this.direccion = null;
-	        this.distrito = null;
-	        this.celular = null;
-	        
-	        
-	        
-	         
-	        FacesMessage msg = new FacesMessage("Datos limpios");
-	        FacesContext.getCurrentInstance().addMessage(null, msg);
-	    }
+
 	public String getDni() {
 		return dni;
 	}
+
 	public void setDni(String dni) {
 		this.dni = dni;
 	}
+
 	public String getNombres() {
 		return nombres;
 	}
+
 	public void setNombres(String nombres) {
 		this.nombres = nombres;
 	}
+
 	public String getApellidoPaterno() {
 		return apellidoPaterno;
 	}
+
 	public void setApellidoPaterno(String apellidoPaterno) {
 		this.apellidoPaterno = apellidoPaterno;
 	}
+
 	public String getApellidoMaterno() {
 		return apellidoMaterno;
 	}
+
 	public void setApellidoMaterno(String apellidoMaterno) {
 		this.apellidoMaterno = apellidoMaterno;
 	}
@@ -134,22 +137,68 @@ private String codigoColegio;
 		this.sexo = sexo;
 	}
 
-	public String getDireccion() {		return direccion;	}
+	public String getDireccion() {
+		return direccion;
+	}
 
-	public void setDireccion(String direccion) {		this.direccion = direccion;	}
-	public String getDistrito() {		return distrito;	}
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
 
-	public void setDistrito(String distrito) {		this.distrito = distrito;	}
+	public String getDistrito() {
+		return distrito;
+	}
 
+	public void setDistrito(String distrito) {
+		this.distrito = distrito;
+	}
 
-	public String getCelular() {		return celular;	}
+	public String getCelular() {
+		return celular;
+	}
 
-	public void setCelular(String celular) {		this.celular = celular;	}
+	public void setCelular(String celular) {
+		this.celular = celular;
+	}
 
+	public String getCargo() {
+		return cargo;
+	}
 
-	public String getCargo() {		return cargo;	}
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
+	}
 
-	public void setCargo(String cargo) {		this.cargo = cargo;	}	
-	
+	public String getEspecialidad() {
+		return especialidad;
+	}
+
+	public void setEspecialidad(String especialidad) {
+		this.especialidad = especialidad;
+	}
+
+	public MainMB getMainMB() {
+		return mainMB;
+	}
+
+	public void setMainMB(MainMB mainMB) {
+		this.mainMB = mainMB;
+	}
+
+	public String getCodigoColegio() {
+		return codigoColegio;
+	}
+
+	public void setCodigoColegio(String codigoColegio) {
+		this.codigoColegio = codigoColegio;
+	}
+
+	public EmpleadoService getEmpleadoService() {
+		return empleadoService;
+	}
+
+	public void setEmpleadoService(EmpleadoService empleadoService) {
+		this.empleadoService = empleadoService;
+	}
 
 }

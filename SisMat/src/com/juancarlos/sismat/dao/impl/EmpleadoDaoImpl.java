@@ -1,5 +1,6 @@
 package com.juancarlos.sismat.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -12,99 +13,74 @@ import org.springframework.stereotype.Repository;
 import com.juancarlos.sismat.dao.EmpleadoDao;
 import com.juancarlos.sismat.dominio.Alumnos;
 import com.juancarlos.sismat.dominio.Colegio;
+import com.juancarlos.sismat.dominio.Cursos;
 import com.juancarlos.sismat.dominio.Empleado;
 
 @Repository
 public class EmpleadoDaoImpl extends HibernateDaoSupport implements EmpleadoDao {
 
 	@Autowired
-	public EmpleadoDaoImpl(SessionFactory sessionFactory){
+	public EmpleadoDaoImpl(SessionFactory sessionFactory) {
 		setSessionFactory(sessionFactory);
 	}
-	
+
 	public Empleado datosEmpleado(String idEmpleado) {
 		logger.info("en datosEmpleado()");
-		
+
 		return getHibernateTemplate().get(Empleado.class, idEmpleado);
 	}
 
-	
-	public boolean guardarEmpleado(Empleado empleado) {
-		
-		return false;
-	}
-
-	
-	public boolean eliminaEmpleado(String idEmpleado) {
-		boolean resultado = false;
-		
-		Colegio colegio = new Colegio(); //encontrar(idEmpleado);
-		
-		if(!(colegio == null)){				
-			try {
-				getHibernateTemplate().delete(colegio);
-				resultado = true;
-			} catch (Exception e) {
-				resultado = false;
-			}				
-		}
-//		else{
-//			resultado = false;
-//		}
-	
-		
-		return false;
-	}
-
-	
-	public boolean eliminaEmpleado(Empleado empleado) {
-		
-		return false;
-	}
-
-	
 	public List<Empleado> listaProfesores(String codigoColegio, String dni,
-			String nombre, String apellidos,
-			char estado, char cargo) {
-		System.out.println("en listaProfesores dao");
-		
-//		getSession().createCriteria(Empleado.class).add(Restrictions.or(Restrictions.eq("codigoColegio", codigoColegio), null));
-		
-		if(dni.length()==0 && nombre.length()==0 && apellidos.length()==0 && estado == ' ' && cargo == ' '){
-			
+			String nombre, String apellidos, String estado) {
+
+		logger.info("en listaEmpleado");
+		System.out.println("en listaEmpleado dao");
+
+		String sql = "";
+		List<Empleado> empleado = new ArrayList<Empleado>();
+
+		try {
+			sql = "from Empleado where codigoColegio = '"
+					+ codigoColegio.trim() + "' AND idEmpleado='" + dni
+					+ "' AND nombres='" + nombre + "' AND apellidos='"
+					+ apellidos + "' AND estado='" + estado + "'";
+
+			empleado = getHibernateTemplate().find(sql);
+			System.out.println("empleado tamanio " + empleado.size());
+
+			if (empleado.isEmpty()) {
+				empleado = new ArrayList<Empleado>();
+			}
+
+		} catch (Exception e) {
+			System.out.println(e);
+			empleado = null;
 		}
-		
-		return null;
+
+		return empleado;
+
 	}
 
-	public boolean actualizarRegistroEmpleado(Empleado empleado) {
+	public boolean registroEmpleado(Empleado empleado) {
 		boolean resultado;
-		boolean eliminado;
-		
-		try {	
-			eliminado = eliminaEmpleado(empleado.getIdEmpleado());
-			
-			if(eliminado){
-				getHibernateTemplate().update(empleado);	
-				getHibernateTemplate().flush();
-				resultado = true;
-			}
-			else{
-				resultado = false;
-			}			
+
+		try {
+			getHibernateTemplate().save(empleado);
+			getHibernateTemplate().flush();
+			resultado = true;
+
 		} catch (Exception e) {
 			resultado = false;
-		}	
-		
-		return resultado;	
-	}
+		}
 
-	public boolean registroEmpleado(Empleado empleado){
+		return resultado;
+	}
+	@Override
+	public boolean editar(Empleado editarEmpleado) {
 		boolean resultado;
 		
 		try {
-			getHibernateTemplate().save(empleado);	
-			getHibernateTemplate().flush();
+			getHibernateTemplate().update(editarEmpleado);
 			resultado = true;
 			
 		} catch (Exception e) {
@@ -112,6 +88,6 @@ public class EmpleadoDaoImpl extends HibernateDaoSupport implements EmpleadoDao 
 		}	
 		
 		return resultado;
-	}
+	} 
 
 }

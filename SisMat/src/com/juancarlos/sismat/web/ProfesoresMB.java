@@ -9,9 +9,11 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 
+import org.primefaces.event.RowEditEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.juancarlos.sismat.dominio.Alumnos;
 import com.juancarlos.sismat.dominio.Empleado;
 import com.juancarlos.sismat.service.EmpleadoService;
 
@@ -23,8 +25,7 @@ public class ProfesoresMB implements Serializable {
 	private String dni;
 	private String nombres;
 	private String apellidos;
-	private char cargo;
-	private char estado;
+	private String estado;
 
 	@Autowired
 	private MainMB mainMB;
@@ -38,25 +39,9 @@ public class ProfesoresMB implements Serializable {
 
 		mainMB.datosUsuario();
 		codigoColegio=mainMB.getCodigoColegio();
+
 		
-	//	codigoColegio = "1041701524";//de manera temporal, luego se eliminara ese dato vendra de sesion
-		System.out.println("codigoColegio "+codigoColegio);
-		System.out.println("dni "+dni);
-		System.out.println("nombres "+nombres);
-		System.out.println("apellidoPaterno "+apellidos);		
-		System.out.println("estado "+estado);
-		if(!(estado=='A'||estado=='I')){
-			estado = ' ';
-		}
-		System.out.println("estado "+estado);
-		
-		System.out.println("cargo "+cargo);
-		if(!(cargo=='T'||cargo=='P')){
-			cargo = ' ';
-		}
-		System.out.println("cargo "+cargo);		
-		
-		listaProfesores = empleadoService.listaProfesores(codigoColegio, dni, nombres,  apellidos, estado, cargo);
+		listaProfesores = empleadoService.listaProfesores(codigoColegio, dni, nombres,  apellidos, estado);
 		
 		if(listaProfesores == null){
 			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"Hubo un problema en la búsqueda",""));
@@ -68,6 +53,42 @@ public class ProfesoresMB implements Serializable {
 		}
 	}
 	
+
+	public void onEdit(RowEditEvent event) {
+		FacesMessage msg = new FacesMessage("Alumno Editado",
+				((Empleado) event.getObject()).getNombreCompleto());
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+		boolean resultado = empleadoService.editar((Empleado) event.getObject());
+
+	}
+
+	public void darBaja(Empleado lista) {
+		estado = "Inactivo";
+		lista.setEstado(getEstado());
+
+		empleadoService.editar(lista);
+	}
+	
+
+	public void darAlta(Empleado lista) {
+		estado = "Activo";
+		lista.setEstado(getEstado());
+
+		empleadoService.editar(lista);
+	}
+	
+	public void reset() {
+		this.dni = null;
+		this.nombres = null;
+
+		this.apellidos = null;
+		listaProfesores=null;
+
+		FacesMessage msg = new FacesMessage("Datos limpios");
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+
+
 	
 	public String getDni() {
 		return dni;
@@ -87,16 +108,11 @@ public class ProfesoresMB implements Serializable {
 	public void setApellidos(String apellidos) {
 		this.apellidos = apellidos;
 	}
-	public char getCargo() {
-		return cargo;
-	}
-	public void setCargo(char cargo) {
-		this.cargo = cargo;
-	}
-	public char getEstado() {
+
+	public String getEstado() {
 		return estado;
 	}
-	public void setEstado(char estado) {
+	public void setEstado(String estado) {
 		this.estado = estado;
 	}
 	public EmpleadoService getEmpleadoService() {
@@ -104,6 +120,26 @@ public class ProfesoresMB implements Serializable {
 	}
 	public void setEmpleadoService(EmpleadoService empleadoService) {
 		this.empleadoService = empleadoService;
+	}
+
+
+	public String getCodigoColegio() {
+		return codigoColegio;
+	}
+
+
+	public void setCodigoColegio(String codigoColegio) {
+		this.codigoColegio = codigoColegio;
+	}
+
+
+	public List<Empleado> getListaProfesores() {
+		return listaProfesores;
+	}
+
+
+	public void setListaProfesores(List<Empleado> listaProfesores) {
+		this.listaProfesores = listaProfesores;
 	}
 
 }

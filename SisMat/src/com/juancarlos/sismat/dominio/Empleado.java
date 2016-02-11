@@ -31,7 +31,9 @@ public class Empleado  implements java.io.Serializable {
 	     private String celular;
 	     private String cargo;
 	     private String nombreCompleto;
+	     private String especialidad;
 	     private String codigoColegio;
+	     private String estado;
 	     
 	  
 	  //   private String cargo;
@@ -44,7 +46,7 @@ public class Empleado  implements java.io.Serializable {
 	    
 	    
 	   
-	     public Empleado(String idEmpleado, String nombreCompleto,String nombres, String apellidos, Date fechaNacimiento, char sexo,String direccion,String distrito,String celular,String cargo,String codigoColegio) {
+	     public Empleado(String idEmpleado, String nombreCompleto,String nombres, String apellidos, Date fechaNacimiento, char sexo,String direccion,String distrito,String celular,String cargo,String especialidad,String codigoColegio,String estado) {
 			super();
 			this.idEmpleado = idEmpleado;
 			this.nombres = nombres;
@@ -56,7 +58,9 @@ public class Empleado  implements java.io.Serializable {
 			this.celular=celular;
 			 this.cargo=cargo;
 			 this.nombreCompleto=nombreCompleto;
+			 this.especialidad=especialidad;
 			 this.codigoColegio=codigoColegio;
+			 this.estado=estado;
 		}
 
 	    @Id
@@ -145,6 +149,22 @@ public class Empleado  implements java.io.Serializable {
 	}
 	public void setCodigoColegio(String codigoColegio) {
 		this.codigoColegio = codigoColegio;
+	}
+	
+	@Column(name="especialidad", length=90)
+	public String getEspecialidad() {
+		return especialidad;
+	}
+	public void setEspecialidad(String especialidad) {
+		this.especialidad = especialidad;
+	}
+
+	@Column(name="estado", length=10)
+	public String getEstado() {
+		return estado;
+	}
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
     
 

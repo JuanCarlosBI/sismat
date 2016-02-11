@@ -58,8 +58,9 @@
 								<tr>
 									<td><p:outputLabel value="Fecha Nacimiento:" /></td>
 									<td>
-										<p:calendar id="fechaNacimiento"  value="#{registroProfesorMB.fechaNacimiento}" showOn="button" readOnlyInputText="true" required="true" locale="es" navigator="true" requiredMessge="La fecha de Nacimiento es requerida" pattern="yyyy-MM-dd"/>
-										<p:message id="fechaNacimeintoerror" for="fechaNacimiento"/>
+										
+										<p:calendar id="fechaNacimiento"  yearRange = "c-60: c + 10" value="#{registroProfesorMB.fechaNacimiento}" showOn="button" readOnlyInputText="true" required="true" locale="es" navigator="true" requiredMessge="La fecha de Nacimiento es requerida" pattern="yyyy-MM-dd"/>
+										<p:message id="fechaNacimientoerror1" for="fechaNacimiento"/>
 									</td>
 								</tr>
 								<tr>
@@ -91,6 +92,13 @@
 									<f:validateRegex pattern="[a-zA-Z]+"/> 		
 									</p:inputText></td>
 								</tr>
+								<tr>
+									<td><p:outputLabel value="Especialidad" /></td>		
+									<td><p:inputText value="#{registroProfesorMB.especialidad}" required="true" maxlength="70" validatorMessage="Por favor ingrese la Especialidad">
+									<f:validateRegex pattern="[a-zA-Z]+"/> 		
+									</p:inputText></td>
+								</tr>
+								
 							</table>	
 							 <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
 	
