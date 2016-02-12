@@ -2,8 +2,13 @@ package com.juancarlos.sismat.web;
 
 import java.io.Serializable;
 import org.primefaces.context.RequestContext;
+
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,10 +18,15 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
+import jxl.write.DateTime;
+
 import org.primefaces.event.RowEditEvent;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
+import com.ibm.icu.text.DateFormat;
+import com.ibm.icu.text.SimpleDateFormat;
 import com.juancarlos.sismat.dominio.Alumnos;
 import com.juancarlos.sismat.dominio.Cursos;
 import com.juancarlos.sismat.dominio.Empleado;
@@ -65,6 +75,8 @@ public class MatriculaNormalMB implements Serializable {
 	private List<Cursos> curso;
 	private String motivo;
 	private String nombrecursoexo;
+	private String fecha;
+	private String hora;
 	private Integer idSeccion;
 	private Integer idMatricula;
 	OrderBean order;
@@ -106,11 +118,18 @@ public class MatriculaNormalMB implements Serializable {
 		idAlumno = nombres.replaceAll("[^0-9.]", "");
 		// loginMB.datosUsuario();
 		// loginMB.getCodigoColegio();
-	//	codigoColegio = "1041701524";// de manera temporal, luego se eliminara
-										// ese dato vendra de sesion
+		// codigoColegio = "1041701524";// de manera temporal, luego se
+		// eliminara
+		// ese dato vendra de sesion
 
 		mainMB.datosUsuario();
-		codigoColegio=mainMB.getCodigoColegio();
+		codigoColegio = mainMB.getCodigoColegio();
+		System.out.println("Fecha y Hora Actual");
+		Date date = new Date();
+		DateFormat hourFormat = new SimpleDateFormat("HH:mm:ss");
+		hora = hourFormat.format(date);
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		fecha = dateFormat.format(date);
 
 		alumnos = matriculaService.listaAlumnos(codigoColegio, idAlumno);
 
@@ -255,7 +274,8 @@ public class MatriculaNormalMB implements Serializable {
 
 	public void registrarMatricula() {
 		boolean resultado = matriculaService.registroMatricula(idAlumno,
-				idSeccion, periodo, situacion, antColegio, codigoColegio);
+				idSeccion, periodo, situacion, antColegio, codigoColegio,
+				fecha, hora);
 
 		if (resultado) {
 			FacesContext.getCurrentInstance().addMessage(
@@ -623,6 +643,38 @@ public class MatriculaNormalMB implements Serializable {
 
 	public void setIdMatricula(Integer idMatricula) {
 		this.idMatricula = idMatricula;
+	}
+
+	public LoginMB getLoginMB() {
+		return loginMB;
+	}
+
+	public void setLoginMB(LoginMB loginMB) {
+		this.loginMB = loginMB;
+	}
+
+	public MainMB getMainMB() {
+		return mainMB;
+	}
+
+	public void setMainMB(MainMB mainMB) {
+		this.mainMB = mainMB;
+	}
+
+	public String getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
+	}
+
+	public String getHora() {
+		return hora;
+	}
+
+	public void setHora(String hora) {
+		this.hora = hora;
 	}
 
 }

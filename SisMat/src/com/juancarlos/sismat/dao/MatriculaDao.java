@@ -24,5 +24,6 @@ public interface MatriculaDao {
 	public List<Matriculas> idMatricula(String idAlumno);
 	public boolean registroMatriculaCurso(MatriculaCurso matriculacurso);
 		
-		
+	public List<Matriculas> listaMatricula(String codigoColegio, String dni,String estado);
+	public List<Seccion> nombreSeccion(String codigoColegio, int idSeccion) ;
 }

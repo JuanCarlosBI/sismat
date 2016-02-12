@@ -271,4 +271,59 @@ public class MatriculaDaoImpl extends HibernateDaoSupport implements MatriculaDa
 	}
 
 
+	public List<Matriculas> listaMatricula(String codigoColegio, String dni,String estado){
+		logger.info("en listaMatricula");
+		System.out.println("en listaMatricula dao");
+	
+		String sql = "";
+		List<Matriculas> listaMatricula = new ArrayList<Matriculas>();
+
+		try {
+			sql = "from Matriculas where codigoColegio = '" + codigoColegio.trim()
+					 + "' AND idAlumno='"+dni + "' AND estado='" + estado  + "'";
+			
+			listaMatricula = getHibernateTemplate().find(sql);
+			System.out.println("listaMatricula tamanio " + listaMatricula.size());
+
+			if (listaMatricula.isEmpty()) {
+				listaMatricula = new ArrayList<Matriculas>();
+			}
+
+		} catch (Exception e) {
+			System.out.println(e);
+			listaMatricula = null;
+		}
+
+		return listaMatricula;
+	
+	
+	}
+	@SuppressWarnings("unchecked")
+	public List<Seccion> nombreSeccion(String codigoColegio, int idSeccion) {
+		logger.info("en listaSeccion");
+		System.out.println("en listaSeccion dao");
+	
+		String sql = "";
+		List<Seccion> nombseccion = new ArrayList<Seccion>();
+
+		try {
+			sql = "from Seccion where codigoColegio = '" + codigoColegio.trim()
+					 + "' AND idSeccion='"+idSeccion + "'";
+
+			nombseccion = getHibernateTemplate().find(sql);
+			System.out.println("lista seccion tamanio " + nombseccion.size());
+
+			if (nombseccion.isEmpty()) {
+				nombseccion = new ArrayList<Seccion>();
+			}
+
+		} catch (Exception e) {
+			System.out.println(e);
+			nombseccion = null;
+		}
+
+		return nombseccion;
+	}
+	
+	
 }

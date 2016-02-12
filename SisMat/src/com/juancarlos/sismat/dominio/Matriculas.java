@@ -29,30 +29,40 @@ public class Matriculas  implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer idMatricula;
      private String periodo;
-  //   private Date fecha;
-    // private String hora;
+   private String fecha;
+     private String hora;
      private String codigoColegio;
      private String idAlumno;
      private Integer idSeccion;
      private String situacion;
      private String antcolegio;
-
+     private String estado;
     public Matriculas() {
     }
 
 	
-    public Matriculas(String idAlumno,Integer idSeccion, String periodo,String codigoColegio,String situacion,String antcolegio) {
-       
-        this.periodo = periodo;
-        this.idAlumno=idAlumno;
-        this.idSeccion = idSeccion;
-        this.situacion = situacion;
-        this.codigoColegio = codigoColegio;
-        this.antcolegio=antcolegio;
-    }
    
    
-     @Id @GeneratedValue(strategy=IDENTITY)
+     public Matriculas(Integer idMatricula, String periodo, String fecha,
+			String hora, String codigoColegio, String idAlumno,
+			Integer idSeccion, String situacion, String antcolegio,String estado) {
+		super();
+		this.idMatricula = idMatricula;
+		this.periodo = periodo;
+		this.fecha = fecha;
+		this.hora = hora;
+		this.codigoColegio = codigoColegio;
+		this.idAlumno = idAlumno;
+		this.idSeccion = idSeccion;
+		this.situacion = situacion;
+		this.antcolegio = antcolegio;
+		this.estado=estado;
+	}
+
+
+
+
+	@Id @GeneratedValue(strategy=IDENTITY)
     @Column(name="IdMatricula", unique=true, nullable=false)
     public Integer getIdMatricula() {
         return this.idMatricula;
@@ -123,6 +133,48 @@ public class Matriculas  implements java.io.Serializable {
 
 	public void setAntcolegio(String antcolegio) {
 		this.antcolegio = antcolegio;
+	}
+
+
+
+	 @Column(name="Fecha", nullable=false, length=10)
+		public String getFecha() {
+		return fecha;
+	}
+
+
+
+
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
+	}
+
+
+
+	 @Column(name="Hora", nullable=false, length=10)
+		public String getHora() {
+		return hora;
+	}
+
+
+
+
+	public void setHora(String hora) {
+		this.hora = hora;
+	}
+
+
+
+	 @Column(name="Estado", nullable=false, length=10)
+	public String getEstado() {
+		return estado;
+	}
+
+
+
+
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 
 

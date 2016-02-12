@@ -68,7 +68,7 @@ public class MatriculaServiceImpl implements MatriculaService {
 	}
 
 	public boolean registroMatricula(String idAlumno, Integer idSeccion,
-			String periodo, String situacion, String antColegio,String codigoColegio){
+			String periodo, String situacion, String antColegio,String codigoColegio,String fecha,String hora){
 		Matriculas matricula = new Matriculas();
 		System.out.println(idAlumno);
 		System.out.println(idSeccion);
@@ -76,12 +76,16 @@ public class MatriculaServiceImpl implements MatriculaService {
 		System.out.println(situacion);
 		System.out.println(antColegio);
 		System.out.println(codigoColegio);
+		String estado="Activo";
 		matricula.setIdAlumno(idAlumno);
 		matricula.setIdSeccion(idSeccion);
 		matricula.setPeriodo(periodo);
 		matricula.setSituacion(situacion);
 		matricula.setAntcolegio(antColegio);
 		matricula.setCodigoColegio(codigoColegio);
+		matricula.setFecha(fecha);
+		matricula.setHora(hora);
+		matricula.setEstado(estado);
 		
 		return matriculaDao.registroMatricula(matricula);
 		
@@ -104,5 +108,15 @@ public class MatriculaServiceImpl implements MatriculaService {
 		matriculacurso.setCodigoColegio(codigoColegio);
 		return matriculaDao.registroMatriculaCurso(matriculacurso);
 	}
+	public List<Matriculas> listaMatricula(String codigoColegio, String dni,String estado){
+		List<Matriculas> matriculas = matriculaDao.listaMatricula(codigoColegio,
+				dni,estado);
+		return matriculas;
 	
+	}
+	
+	public List<Seccion> nombreSeccion(String codigoColegio, int idSeccion) {
+		List<Seccion> nseccion = matriculaDao.nombreSeccion(codigoColegio, idSeccion);
+		return nseccion;
+	}
 }

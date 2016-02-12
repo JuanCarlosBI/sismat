@@ -20,9 +20,9 @@ public interface MatriculaService {
 		public List<Seccion> nombreSec(String codigoColegio, String nombreSeccion, String grado,String nivelAcademico);
 		public List<Nivel> listaNivel(String codigoColegio);
 		public boolean registroMatricula(String idAlumno, Integer idSeccion,
-				String periodo, String situacion, String antColegio,String codigoColegio);
+				String periodo, String situacion, String antColegio,String codigoColegio,String fecha,String hora);
 		public List<Matriculas> idMatricula(String idAlumno);
 		public boolean registroMatriculaCurso(Integer idMatricula,String idCurso,String tipo,String motivo,String codigoColegio);
-			
-		
+		public List<Matriculas> listaMatricula(String codigoColegio, String dni,String estado);	
+		public List<Seccion> nombreSeccion(String codigoColegio, int idSeccion) ;
 }

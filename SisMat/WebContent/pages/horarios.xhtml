@@ -6,7 +6,7 @@
 
 <f:view contentType="text/html">
 	<h:head>
-		<title>Matricula de alumnos</title>
+		<title>Horarios de clase</title>
 		<link type="text/css" rel="stylesheet"
 			href="#{request.contextPath}/css/default.css" />
 		<link type="text/css" rel="stylesheet"
@@ -24,79 +24,134 @@
 	<br />
 		<h:form>
 		
-		<p:panel id="horarios" header="Busqueda de Alumnos"
+		<p:panel id="horarios" header="Busqueda Horarios de Clase"
 				styleClass="panelBusquedaForm" toggleable="false" closable="false"
 				toggleSpeed="500" closeSpeed="2000" widgetVar="panel">
 				
 				<table>
 				<tr>
-					<td><p:outputLabel value="Alumno:" /></td>
-					<td><p:inputText value=""/></td>  
-					<td><p:outputLabel value="Estado:" /></td>
-						<td>
-							<p:selectOneRadio id="idEstado" value="Estado" columns="2">							            
-						   		<f:selectItem itemLabel="Activo" itemValue="A" />
-						    	<f:selectItem itemLabel="Inactivo" itemValue="I" />								            
-        					</p:selectOneRadio>
-        			    </td> 
-        			</tr> 
-        			<tr><td colspan="4"><br/></td></tr>
-        			<tr>   			
-					<td colspan="4">
+					<td><p:outputLabel value="Dia de la Semana:" /></td>
+					<td>
+						<p:selectOneMenu id="idDiaSemana" value="DiaSemana"  layout="grid" columns="1">            				
+            				<f:selectItem itemValue="Lunes" itemLabel="Lunes"/>
+            				<f:selectItem itemValue="Martes" itemLabel="Martes"/>
+            				<f:selectItem itemValue="Miercoles" itemLabel="Miercoles"/>
+            				<f:selectItem itemValue="Jueves" itemLabel="Jueves"/>
+            				<f:selectItem itemValue="Viernes" itemLabel="Viernes"/>
+        				</p:selectOneMenu>
+        			</td>
+        			<td><p:outputLabel value="Nivel:" /></td>
+					<td>
+						<p:selectOneMenu id="idNivel" value="Nivel"  layout="grid" columns="1">	            				
+            				<f:selectItem itemValue="Normal-1°-Primaria" itemLabel="Normal-1°-Primaria"/>
+            				<f:selectItem itemValue="Normal-1°-Secundaria" itemLabel="Normal-1°-Secundaria"/>
+            				<f:selectItem itemValue="Verano-1°-Primaria" itemLabel="Verano-1°-Primaria"/>
+        				</p:selectOneMenu>
+        			</td>
+					<td><p:outputLabel value="Seccion:" /></td>
+					<td>
+						<p:selectOneMenu id="idSeccion" value="Seccion"  layout="grid" columns="1">	            				
+            				<f:selectItem itemValue="A" itemLabel="A"/>
+            				<f:selectItem itemValue="B" itemLabel="B"/>
+            				<f:selectItem itemValue="C" itemLabel=""/>
+        				</p:selectOneMenu>
+        			</td>
+					<td>
 						<p:commandButton id="btnBuscar"								
 										value="Buscar" styleClass="buttonForm"/>
-						<p:commandButton id="btnNuevo"								
-										value="Nuevo" styleClass="buttonForm"/>
-						<p:commandButton id="btnEditar"								
-										value="Editar" styleClass="buttonForm"/>
-						<p:commandButton id="btnEliminar"								
-										value="Eliminar" styleClass="buttonForm"/>
-						<p:commandButton id="btnLimpiar"								
-										value="Limpiar" styleClass="buttonForm"/>
 					</td>
 				</tr>
 				</table>
 				
 		</p:panel>
+		
+		<p:panel id="idhorarios" header="crear Horarios de Clase"
+				styleClass="panelBusquedaForm" toggleable="false" closable="false"
+				toggleSpeed="500" closeSpeed="2000" widgetVar="panel">
 				
-		<p:panel id="idAlumnosMatriculados" header="Alumnos Matriculados"
+				<table style="text-align: right;">
+				<tr>
+					<td><p:outputLabel value="Curso:" /></td>
+					<td style="text-align: left;">
+						<p:selectOneMenu id="idCurso" value="Curso"  layout="grid" columns="1">	            				
+            				<f:selectItem itemValue="Comunicacion" itemLabel="Comunicacion"/>
+            				<f:selectItem itemValue="Lenguaje" itemLabel="Lenguaje"/>
+            				<f:selectItem itemValue="Ingles" itemLabel="Ingles"/>
+        				</p:selectOneMenu>
+        			</td>
+        			<td><p:outputLabel value="Docente:" /></td>
+					<td style="text-align: left;">
+						<p:selectOneMenu id="idDocente" value="Docente"  layout="grid" columns="1">           				
+            				<f:selectItem itemValue="Juan Blas Blas" itemLabel="Juan Blas Blas"/>
+            				<f:selectItem itemValue="Jose Vega Blas" itemLabel="Jose Vega Blas"/>
+            				<f:selectItem itemValue="Juan Vega Blas" itemLabel="Juan Vega Blas"/>
+        				</p:selectOneMenu>
+        			</td>
+        			<td><p:outputLabel value="N° Aula:" /></td>
+					<td style="text-align: left;"><p:inputText value="" size="2"/></td>
+        			</tr>
+        			
+        			<tr>
+					<td><p:outputLabel value="Horario:" /></td>
+					<td style="text-align: left;"><p:inputText value="" size="3" disabled="true"/></td>
+					
+					<td><p:outputLabel value="Hora Inicio:" /></td>
+					<td style="text-align: left;"><p:inputText value="" size="3" placeholder="8:00" disabled="true"/></td>
+					
+					<td><p:outputLabel value="Hora Fin:" /></td>
+					<td style="text-align: left;"><p:inputText value="" size="3"  placeholder="8:40" disabled="true" /></td>					
+				</tr>
+				<tr><td><br/></td></tr>
+				<tr>
+					<td colspan="6" style="text-align: left;">
+						<p:commandButton id="btnAceptars"								
+										value="Aceptar" styleClass="buttonForm"/>
+						<p:commandButton id="btnLimpiar"								
+										value="Limpiar" styleClass="buttonForm"/>
+					</td>	
+				</tr>
+				</table>
+				
+		</p:panel>
+		
+		<p:panel id="idTablaHorariosClase" header="Horarios de clase"
 				styleClass="panelTabla" toggleable="false" closable="false"
 				toggleSpeed="500" closeSpeed="2000" widgetVar="panel">
 				
 			<p:dataTable var="car" value="">
 			   
 			    <p:column headerText="Id" styleClass="panelTabla">
-			        <h:outputText value="1" />
+			        <h:outputText value="" />
 			    </p:column>
 			 
-			    <p:column headerText="Cod. Matricula" styleClass="panelTabla">
-			        <h:outputText value="MAT0001" />
+			    <p:column headerText="Dia" styleClass="panelTabla">
+			        <h:outputText value="" />
 			    </p:column>
 			 
-			    <p:column headerText="Cod. Alumno" styleClass="panelTabla">
-			        <h:outputText value="ALU0001" />
+			    <p:column headerText="Docente" styleClass="panelTabla">
+			        <h:outputText value="" />
 			    </p:column>
 			 
-			    <p:column headerText="Alumno" styleClass="panelTabla">
-			        <h:outputText value="JUAN JOSE VEGA GONZALES" />
+			    <p:column headerText="Curso" styleClass="panelTabla">
+			        <h:outputText value="" />
 			    </p:column>
 			    
-			    <p:column headerText="Nivel" styleClass="panelTabla">
-			        <h:outputText value="5° SECUNDARIA" />
+			    <p:column headerText="Orden" styleClass="panelTabla">
+			        <h:outputText value="" />
 			    </p:column>
 			    
-			    <p:column headerText="Seccion" styleClass="panelTabla">
-			        <h:outputText value="A" />
+			    <p:column headerText="Inicio" styleClass="panelTabla">
+			        <h:outputText value="" />
 			    </p:column>
 			    
-			    <p:column headerText="Fecha" styleClass="panelTabla">
-			        <h:outputText value="05/04/2015" />
+			    <p:column headerText="Fin" styleClass="panelTabla">
+			        <h:outputText value="" />
 			    </p:column>
 			    
-			    <p:column headerText="Estado" styleClass="panelTabla">
-			        <h:outputText value="Activo" />
-			    </p:column>
-			    			    
+			    <p:column headerText="N° Aula" styleClass="panelTabla">
+			        <h:outputText value="" />
+			    </p:column>			    			   
+			    
 			</p:dataTable>
 				
 		</p:panel>
