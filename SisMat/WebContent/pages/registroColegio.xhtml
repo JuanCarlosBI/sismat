@@ -1,7 +1,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 
 <f:view contentType="text/html">
@@ -23,23 +24,128 @@
 	</h:head>
 	<h:body>
 	<br />
-		<h:form id="formColegio">
+		<h:form id="form"  enctype="multipart/form-data">
 
-			<p:panel id="busqueda" header="Informacion del centro educativo"
+			<p:panel id="busquedaColegio" header="Busqueda de Colegio"
+				styleClass="panelBusquedaForm" toggleable="false" closable="false"
+				toggleSpeed="500" closeSpeed="2000" widgetVar="panel">
+				
+				<table>
+				<tr>
+					<td><p:outputLabel value="Alumno:"/></td>
+										<td colspan="3"><p:autoComplete value="#{registroColegioMB.nombreColegio}"
+										completeMethod="#{registroColegioMB.autoCompletadoColegio}"
+										style="width:250px;text-align:left; " />
+										</td>
+										<td><p:commandButton id="btnBuscar" value="Buscar"
+										action="#{registroColegioMB.listaColegio}"
+										update=":form:idColegio:" styleClass="buttonForm" />
+										
+										</td>	
+				</tr>
+				</table>
+				
+					
+		</p:panel>
+
+		<p:panel id="idColegio" menuTitle="Colegio" header="Colegio" 
+				styleClass="panelTabla" toggleable="false" closable="false" 
+				toggleSpeed="500" closeSpeed="2000" widgetVar="panel" rowKey="#{lista.id}" >
+				
+			
+	 	<p:dataTable  rowIndexVar="row" var="lista" value="#{registroColegioMB.colegios}" editable="true">
+			   
+			  <p:ajax event="rowEdit" listener="#{registroColegioMB.onEdit}" update=":form:messages" label="Editar"/>  
+                      
+			   <p:column headerText="Id" styleClass="panelTabla">
+				<h:outputText value="#{row + 1}"/>
+				</p:column>
+			 
+			    <p:column headerText="Razon Social" styleClass="panelTabla">
+			        <p:cellEditor>  
+                            <f:facet name="output">  
+                                <h:outputText value="#{lista.razonSocial}" />
+                            </f:facet>  
+                            <f:facet name="input">  
+                                <p:inputText value="#{lista.razonSocial}" />  
+                            </f:facet>  
+                    </p:cellEditor>
+			    </p:column>
+			 
+			    <p:column headerText="RUC" styleClass="panelTabla">
+			        <p:cellEditor>  
+                            <f:facet name="output">  
+                                <h:outputText value="#{lista.codigoColegio}" />
+                            </f:facet>  
+                            <f:facet name="input">  
+                                <p:inputText value="#{lista.codigoColegio}" />  
+                            </f:facet>  
+                    </p:cellEditor>
+			    </p:column>
+			 
+			    <p:column headerText="Correo" styleClass="panelTabla">
+			        <p:cellEditor>  
+                            <f:facet name="output">  
+                                <h:outputText value="#{lista.correo}" />
+                            </f:facet>  
+                            <f:facet name="input">  
+                                <p:inputText value="#{lista.correo}" />  
+                            </f:facet>  
+                    </p:cellEditor>
+			    </p:column>
+			    
+			    <p:column headerText="Direccion" styleClass="panelTabla">
+			        <p:cellEditor>  
+                            <f:facet name="output">  
+                                <h:outputText value="#{lista.direccion}" />
+                            </f:facet>  
+                            <f:facet name="input">  
+                                <p:inputText value="#{lista.direccion}" />  
+                            </f:facet>  
+                    </p:cellEditor>
+			    </p:column>	
+			    <p:column headerText="Telefono" styleClass="panelTabla">
+			        <p:cellEditor>  
+                            <f:facet name="output">  
+                                <h:outputText value="#{lista.telefono}" />
+                            </f:facet>  
+                            <f:facet name="input">  
+                                <p:inputText value="#{lista.telefono}" />  
+                            </f:facet>  
+                    </p:cellEditor>
+ 			    </p:column>	 
+ 			    <p:column headerText="Fax" styleClass="panelTabla"> 
+			        <p:cellEditor>   
+                             <f:facet name="output">   
+                                 <h:outputText value="#{lista.fax}" /> 
+                             </f:facet>   
+                             <f:facet name="input">  
+                                <p:inputText value="#{lista.fax}" />   
+                             </f:facet>   
+                     </p:cellEditor>
+ 			    </p:column>	 
+ 			     <p:column headerText="Opciones" styleClass="panelTabla" >  
+                         <p:rowEditor />  
+                    </p:column>  
+			    
+ 			</p:dataTable>		
+					
+ 		</p:panel> 
+ 		<p:panel id="busqueda" header="Informacion del centro educativo"
 				styleClass="panelBusquedaForm" toggleable="false" closable="false"
 				toggleSpeed="500" closeSpeed="2000" widgetVar="panel">
 				
 				<table>
 				<tr>
 					<td><p:outputLabel value="Razon Social:" /></td>
-					<td><p:inputText value="#{registroColegioMB.razonSocial}" required="true" maxlength="50"/></td>
+					<td><p:inputText value="#{registroColegioMB.razonSocial}"  required="#{not empty param.includeGuardar}" maxlength="50"/></td>
 					<td></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td><p:outputLabel value="Ruc:" /></td>
 					<td>
-						<p:inputMask id="ruc" value="#{registroColegioMB.ruc}" mask="99999999999"  required="true"/>
+						<p:inputMask id="ruc" value="#{registroColegioMB.ruc}" mask="99999999999"   required="#{not empty param.includeGuardar}"/>
 					</td>
 					<td><p:outputLabel  value="Telefono:" /></td>
 					<td>
@@ -62,18 +168,13 @@
 					<td></td>
 					<td></td>
 				</tr>					
-				<tr>
-					<td><p:outputLabel value="Logo:" /></td>
-					<td> 
-					<h:panelGroup>
-						<p:fileUpload mode="single" cancelLabel="Cancelar" uploadLabel="Subir" label="Elegir"
-										sizeLimit="512000" allowTypes="/(\.|\/)(gif|jpe7g|png)$/"></p:fileUpload>
-						<p:graphicImage ></p:graphicImage>
-					</h:panelGroup>
-					</td>
-					<td></td>
-					<td></td>
-				</tr>
+				<tr>																			
+									<td><p:outputLabel value="Logo:" /></td>
+									<td colspan="2">									
+										<p:fileUpload fileUploadListener="#{registroColegioMB.handleFileUpload}"  
+	  mode="advanced"  multiple="true"  sizeLimit="1000000000000000000"   allowTypes="/(\.|\/)(gif|jpe?g|png)$/" /> 
+	    								</td>		
+								</tr>	
 				</table>
 				<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
 				<table align="center">
@@ -81,9 +182,8 @@
 					<td colspan="2" align="left">						
 							
 							<p:commandButton id="btnGuardar" value="Guardar"								
-								action="#{registroColegioMB.registrarColegio}"  styleClass="buttonForm"/>
-							<p:commandButton id="btnEditar"								
-								value="Editar" action="#{registroColegioMB.actualizarRegistroColegio}" styleClass="buttonForm"/>
+								action="#{registroColegioMB.registrarColegio}"   ajax="false" styleClass="buttonForm">
+								 <f:param name="includeGuardar" value="true" /> </p:commandButton> 
 							<p:link id="btnCancelar"				outcome="pagina"				
 										value="Cancelar"  styleClass="buttonForm"/>
 																				
@@ -93,7 +193,6 @@
 			
 			</p:panel>
 			
-
 		</h:form>
 	</h:body>
 </f:view>

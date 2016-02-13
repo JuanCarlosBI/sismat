@@ -60,6 +60,7 @@ public class MatriculaMB implements Serializable {
 		} else {
 			Matriculas matricula = matriculas.get(0);
 			idSeccion = matricula.getIdSeccion();
+			
 			alumnos = matriculaService.listaAlumnos(codigoColegio, dni);
 
 			if (alumnos == null) {
@@ -95,6 +96,7 @@ public class MatriculaMB implements Serializable {
 				} else { Seccion nseccion = seccion.get(0);
 				nombreSeccion = nseccion.getSeccion();
 				nivel=nseccion.getNivelAcademico();
+				
 				}
 			}
 

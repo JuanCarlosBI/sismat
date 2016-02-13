@@ -18,4 +18,6 @@ public interface PagoService {
 		public boolean registroPago(Integer idMatricula, Date fecha,
 				String factura, String boleta, Double recargo,Double descuento,Double deuda,
 				Double saldopagado,String codigoColegio,String pension);
+		
+		
 }

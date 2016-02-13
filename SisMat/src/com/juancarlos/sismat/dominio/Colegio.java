@@ -49,7 +49,7 @@ public class Colegio  implements java.io.Serializable {
      @Id 
 
     
-    @Column(name="CodigoColegio", unique=true, nullable=false, length=11)
+    @Column(name="codigoColegio", unique=true, nullable=false, length=11)
     public String getCodigoColegio() {
         return this.codigoColegio;
     }
@@ -59,7 +59,7 @@ public class Colegio  implements java.io.Serializable {
     }
 
     
-    @Column(name="RazonSocial", length=50)
+    @Column(name="razonSocial", length=50)
     public String getRazonSocial() {
         return this.razonSocial;
     }
@@ -69,7 +69,7 @@ public class Colegio  implements java.io.Serializable {
     }
 
     
-    @Column(name="Correo", length=50)
+    @Column(name="correo", length=50)
     public String getCorreo() {
         return this.correo;
     }
@@ -79,7 +79,7 @@ public class Colegio  implements java.io.Serializable {
     }
 
     
-    @Column(name="Direccion", length=50)
+    @Column(name="direccion", length=50)
     public String getDireccion() {
         return this.direccion;
     }
@@ -89,7 +89,7 @@ public class Colegio  implements java.io.Serializable {
     }
 
     
-    @Column(name="Telefono", length=20)
+    @Column(name="telefono", length=20)
     public String getTelefono() {
         return this.telefono;
     }
@@ -99,7 +99,7 @@ public class Colegio  implements java.io.Serializable {
     }
 
     
-    @Column(name="Fax", length=20)
+    @Column(name="fax", length=20)
     public String getFax() {
         return this.fax;
     }
@@ -109,7 +109,7 @@ public class Colegio  implements java.io.Serializable {
     }
 
     
-    @Column(name="Logo")
+    @Column(name="logo")
     public byte[] getLogo() {
         return this.logo;
     }

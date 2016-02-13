@@ -22,32 +22,58 @@
 	</h:head>
 	<h:body>
 	<br />
-		<h:form>
+		<h:form id="form">
 		
+		
+		<p:panel id="matricula" header="Busqueda de Alumnos"
+				styleClass="panelBusquedaForm" toggleable="false" closable="false"
+				toggleSpeed="500" closeSpeed="2000" widgetVar="panel">
+				
+				<table>
+				<tr>
+					<td><p:outputLabel value="Ingrese DNI del Alumno" /></td>
+					<td><p:inputText value="#{consultaDeudoresMB.dni}"/></td>  
+					
+        		</tr> 
+        			<tr><td colspan="4"><br/></td></tr>
+        			<tr>   			
+					<td colspan="4">
+						<p:commandButton id="btnBuscar"								
+										value="Buscar" action="#{consultaDeudoresMB.listaDeuda}" update=":form:consultaDeudores"  styleClass="buttonForm"/>			
+										
+										
+					</td>
+				</tr>
+				</table>
+				
+		</p:panel>
 		<p:panel id="consultaDeudores" header="Consulta Deudores"
 				styleClass="panelBusquedaForm" toggleable="false" closable="false"
 				toggleSpeed="500" closeSpeed="2000" widgetVar="panel">
 				
-						<p:dataTable var="ca" value="" style="width:700px;">
+						<p:dataTable var="lista" value="#{consultaDeudoresMB.pagos}" style="width:700px;">
 											
 											<p:column headerText="Codigo"  styleClass="panelTabla">
-										        <h:outputText value="" />
+										        <h:outputText value="#{lista.idPago}" />
 										    </p:column>
 										    
 										    <p:column headerText="Nombre"  styleClass="panelTabla">
-										        <h:outputText value="" />
+										        <h:outputText value="#{consultaDeudoresMB.nombreAlumno}" />
 										    </p:column>
 										    
 			 								<p:column headerText="Nivel" styleClass="panelTabla">
-										        <h:outputText value="" />
+										        <h:outputText value="#{consultaDeudoresMB.nivel}" />
 										    </p:column>
 										    
 										    <p:column headerText="Seccion"  styleClass="panelTabla">
-										        <h:outputText value="" />
+										        <h:outputText value="#{consultaDeudoresMB.nombreSeccion}" />
 										    </p:column>								    
 										    
-										    <p:column headerText="Monto total"  styleClass="panelTabla">
-										        <h:outputText value="" />
+										    <p:column headerText="Deuda"  styleClass="panelTabla">
+										        <h:outputText value="#{lista.deuda}" />
+										    </p:column>
+										    <p:column headerText="Fecha"  styleClass="panelTabla">
+										        <h:outputText value="#{lista.fecha}" />
 										    </p:column>
 										    
 										</p:dataTable>
