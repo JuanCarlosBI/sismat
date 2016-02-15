@@ -33,25 +33,25 @@
 							<table style="text-align: right;">
 								<tr>
 									<td><p:outputLabel value="DNI:" /></td>
-									<td><p:inputMask value="#{registroProfesorMB.dni}" mask="99999999"/></td>					
+									<td><p:inputMask value="#{registroProfesorMB.dni}" required="true" requiredMessage="Ingrese DNI"  mask="99999999"/></td>					
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Nombres:" /></td>
-									<td><p:inputText value="#{registroProfesorMB.nombres}" required="true" maxlength="70" validatorMessage="Por favor ingrese el Nombre Correctamente">
+									<td><p:inputText value="#{registroProfesorMB.nombres}" required="true" requiredMessage="Ingrese Nombre" maxlength="70" validatorMessage="Por favor ingrese el Nombre Correctamente">
 									<f:validateRegex pattern="[a-zA-Z]+"/> 		
 									</p:inputText></td>
 								
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Apellidos Paterno:" /></td>
-									<td><p:inputText value="#{registroProfesorMB.apellidoPaterno}" required="true" maxlength="70" validatorMessage="Por favor ingrese el Apellido Paterno Correctamente">
+									<td><p:inputText value="#{registroProfesorMB.apellidoPaterno}" required="true" requiredMessage="Ingrese Apellido Paterno" maxlength="70" validatorMessage="Por favor ingrese el Apellido Paterno Correctamente">
 									<f:validateRegex pattern="[a-zA-Z]+"/> 		
 									</p:inputText></td>
 								
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Apellidos Materno:" /></td>
-									<td><p:inputText value="#{registroProfesorMB.apellidoMaterno}" required="true" maxlength="70" validatorMessage="Por favor ingrese el Apellido Materno Correctamente">
+									<td><p:inputText value="#{registroProfesorMB.apellidoMaterno}" required="true" requiredMessage="Ingrese Apellido Materno" maxlength="70" validatorMessage="Por favor ingrese el Apellido Materno Correctamente">
 									<f:validateRegex pattern="[a-zA-Z]+"/> 		
 									</p:inputText></td>				
 								</tr>
@@ -65,12 +65,12 @@
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Direccion:" /></td>
-									<td><p:inputText value="#{registroProfesorMB.direccion}"/></td>					
+									<td><p:inputText value="#{registroProfesorMB.direccion}"  required="true" requiredMessage="Ingrese Direccion"/></td>					
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Sexo:" /></td>
 									<td>
-										<p:selectOneRadio id="idSexo" value="#{registroProfesorMB.sexo}"  layout="grid" columns="1">
+										<p:selectOneRadio id="idSexo" value="#{registroProfesorMB.sexo}" required="true"  requiredMessage="Elija Sexo" layout="grid" columns="1">
             								<f:selectItem itemValue="Masculino" itemLabel="Masculino"/>
             								<f:selectItem itemValue="Femenino" itemLabel="Femenino"/>
         								</p:selectOneRadio>
@@ -78,23 +78,23 @@
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Celular:" /></td>
-									<td><p:inputMask value="#{registroProfesorMB.celular}" mask="999999999"/></td>					
+									<td><p:inputMask value="#{registroProfesorMB.celular}"  required="true" requiredMessage="Ingrese Celular" mask="999999999"/></td>					
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Distrito:" /></td>
-									<td><p:inputText value="#{registroProfesorMB.distrito}" required="true" maxlength="70" validatorMessage="Por favor ingrese el Distrito">
+									<td><p:inputText value="#{registroProfesorMB.distrito}" required="true" requiredMessage="Ingrese Distrito" maxlength="70" validatorMessage="Por favor ingrese el Distrito">
 									<f:validateRegex pattern="[a-zA-Z]+"/> 		
 									</p:inputText></td>	
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Cargo:" /></td>		
-									<td><p:inputText value="#{registroProfesorMB.cargo}" required="true" maxlength="70" validatorMessage="Por favor ingrese el Cargo">
+									<td><p:inputText value="#{registroProfesorMB.cargo}" required="true" requiredMessage="Ingrese Cargo" maxlength="70" validatorMessage="Por favor ingrese el Cargo">
 									<f:validateRegex pattern="[a-zA-Z]+"/> 		
 									</p:inputText></td>
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Especialidad" /></td>		
-									<td><p:inputText value="#{registroProfesorMB.especialidad}" required="true" maxlength="70" validatorMessage="Por favor ingrese la Especialidad">
+									<td><p:inputText value="#{registroProfesorMB.especialidad}" required="true" requiredMessage="Ingrese Especialidad" maxlength="70" validatorMessage="Por favor ingrese la Especialidad">
 									<f:validateRegex pattern="[a-zA-Z]+"/> 		
 									</p:inputText></td>
 								</tr>

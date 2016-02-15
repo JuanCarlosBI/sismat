@@ -11,6 +11,9 @@ import javax.faces.context.FacesContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.ibm.icu.text.DateFormat;
+import com.ibm.icu.text.SimpleDateFormat;
 import com.juancarlos.sismat.dominio.Alumnos;
 import com.juancarlos.sismat.dominio.Matriculas;
 import com.juancarlos.sismat.dominio.Nivel;
@@ -37,7 +40,7 @@ public class RegistroPagoMB implements Serializable  {
 	private Double recargo;
 	private Double descuento;
 	private Double saldopagado;
-	private Date fecha;
+	private String fecha;
 	private String pension;
 
 	@Autowired
@@ -144,6 +147,11 @@ public class RegistroPagoMB implements Serializable  {
 		System.out.println("a cuenta"+saldopagado);
 		System.out.println("deuda"+deuda);
 		
+		
+		Date date = new Date();
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		fecha = dateFormat.format(date);
+
 		
 		boolean resultado = pagoService.registroPago(idMatricula, fecha,
 				factura,  boleta, recargo, descuento, deuda,
@@ -308,13 +316,13 @@ public class RegistroPagoMB implements Serializable  {
 
 
 
-		public Date getFecha() {
+		public String getFecha() {
 			return fecha;
 		}
 
 
 
-		public void setFecha(Date fecha) {
+		public void setFecha(String fecha) {
 			this.fecha = fecha;
 		}
 

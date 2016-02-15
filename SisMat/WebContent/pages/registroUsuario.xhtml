@@ -34,7 +34,7 @@
 								<tr>
 									<td><p:outputLabel value="Tipo Usuario:" /></td>
 									<td>
-										<p:selectOneMenu id="idTipo" value="#{registroUsuarioMB.tipo}">							            
+										<p:selectOneMenu id="idTipo" value="#{registroUsuarioMB.tipo}"  required="true"      requiredMessage="Elija Tipo de Usuario" >							            
 								            <f:selectItem itemLabel="Administrativo" itemValue="Administrativo" />
 								            <f:selectItem itemLabel="Alumno" itemValue="Alumno" />
 								            <f:selectItem itemLabel="Auxiliar" itemValue="Auxiliar" />
@@ -43,19 +43,10 @@
 									</td>					
 								</tr>						
 								
-								<tr>
-									<td><p:outputLabel value="Fecha Actual:" /></td>
-									<td><p:calendar id="fecha" value="#{registroUsuarioMB.fecha}"
-									showOn="button" readOnlyInputText="true" required="true"
-									locale="es" navigator="true"
-									requiredMessge="La fecha de Actual es requerida"
-									pattern="yyyy-MM-dd" /> <p:message id="fechaerror" for="fecha" />
-									</td>
-								</tr>		
 								
 								<tr>
 									<td><p:outputLabel value="Nombre Completo:" /></td>
-									<td><p:inputText  value="#{registroUsuarioMB.nombreCompleto}" required="true" maxlength="70" validatorMessage="Por favor ingrese el Nombre Completo Correctamente">
+									<td><p:inputText  value="#{registroUsuarioMB.nombreCompleto}" required="true"    requiredMessage="Ingrese Nombre Completo"  maxlength="70" validatorMessage="Por favor ingrese el Nombre Completo Correctamente">
 									<f:validateRegex pattern="[a-zA-Z ]+"/> 		
 									</p:inputText></td>
 								
@@ -63,20 +54,20 @@
 																
 								<tr>
 									<td><p:outputLabel value="Usuario:" /></td>
-									<td><p:inputText  value="#{registroUsuarioMB.nombreUsuario}" /></td>					
+									<td><p:inputText  value="#{registroUsuarioMB.nombreUsuario}"  required="true"      requiredMessage="Ingrese Nombre Usuario" /></td>					
 								</tr>
 								<tr>
 									<td> <h:outputLabel for="pwd1" value="Ingrese Contraseña" /></td>
-      								<td>  <p:password id="pwd1" value="#{registroUsuarioMB.clave}" match="pwd2" label="Ingrese Contraseña" required="true" /></td>
+      								<td>  <p:password id="pwd1" value="#{registroUsuarioMB.clave}" match="pwd2" label="Ingrese Contraseña" required="true"    requiredMessage="Ingrese Contraseña" /></td>
  
       								<td><h:outputLabel for="pwd2" value="Repita Contraseña" /></td>
-     								<td><p:password id="pwd2" value="#{registroUsuarioMB.clave}" label="Repita Contraseña" required="true" /></td>
+     								<td><p:password id="pwd2" value="#{registroUsuarioMB.clave}" label="Repita Contraseña" required="true"    requiredMessage="Ingrese Repita Contraseña" /></td>
     													
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Estado:" /></td>
 									<td>
-										<p:selectOneMenu id="idEstado" value="#{registroUsuarioMB.estado}">							            
+										<p:selectOneMenu id="idEstado" value="#{registroUsuarioMB.estado}"  required="true"   requiredMessage="Elija Estado">							            
 								            <f:selectItem itemLabel="Activo" itemValue="Activo" />
 								            <f:selectItem itemLabel="Inactivo" itemValue="Inactivo" />								            
         								</p:selectOneMenu>

@@ -34,7 +34,7 @@
 								<table>
 									<tr>										
 										<td><p:outputLabel value="Alumno:"/></td>
-										<td colspan="3"><p:autoComplete value="#{matriculaNormalMB.nombres}"
+										<td colspan="3"><p:autoComplete value="#{matriculaNormalMB.nombres}" requiredMessage="Ingrese Nombre del Alumno"
 										completeMethod="#{matriculaNormalMB.autoCompletadoAlumno}"
 										style="width:250px;text-align:left; " />
 										</td>
@@ -71,7 +71,7 @@
 									<tr>
 												<td><p:outputLabel value="Situacion:"/></td>
 												<td style="text-align: left;">
-												<p:selectOneMenu id="idSituacion" value="#{matriculaNormalMB.situacion}"  layout="grid" columns="1">	            				
+												<p:selectOneMenu id="idSituacion" value="#{matriculaNormalMB.situacion}" required="true" requiredMessage="Elija Situacion" layout="grid" columns="1">	            				
 						            				<f:selectItem itemValue="Nuevo" itemLabel="Nuevo"/>
 						            				<f:selectItem itemValue="Ratificacion" itemLabel="Ratificacion"/>
 						        				</p:selectOneMenu>
@@ -83,7 +83,7 @@
 											<tr>
 												<td><p:outputLabel value="Grado:"/></td>
 												<td style="text-align: left;">
-												<p:selectOneMenu id="idGrado" value="#{matriculaNormalMB.grado}"  layout="grid" columns="1">	            				
+												<p:selectOneMenu id="idGrado" value="#{matriculaNormalMB.grado}"  required="true" requiredMessage="Elija Grado" layout="grid" columns="1">	            				
 						            			   	<p:ajax update="idNivel" listener="#{matriculaNormalMB.listaNivel}"/> 
 						            			 <f:selectItem itemLabel="Elegir:" itemValue="" />
             							     <f:selectItem itemLabel="1°" itemValue="1°" />
@@ -96,7 +96,7 @@
 												</td>												
 												<td><p:outputLabel value="Nivel:"/></td>
 												<td colspan="3" style="text-align: left;">
-												<p:selectOneMenu id="idNivel" value="#{matriculaNormalMB.nivelAcademico}"    layout="grid" columns="1">	            				
+												<p:selectOneMenu id="idNivel" value="#{matriculaNormalMB.nivelAcademico}"   required="true" requiredMessage="Elija Nivel"  layout="grid" columns="1">	            				
 						            				<p:ajax update="idSeccion" listener="#{matriculaNormalMB.listaSeccion}"/> 
 						            			    <f:selectItem itemLabel="Elegir:" itemValue="" />
             					    		<f:selectItems value="#{matriculaNormalMB.listanivel}" />
@@ -108,10 +108,10 @@
 											</tr>
 											<tr>
 											<td><p:outputLabel value="Periodo:"/></td>
-												<td style="text-align: left;"><p:spinner id="basic" min="2015" max="2050"  value="#{matriculaNormalMB.periodo}" size="1"/></td>
+												<td style="text-align: left;"><p:spinner id="basic" min="2015" max="2050"  value="#{matriculaNormalMB.periodo}"  required="true" requiredMessage="Ingrese Periodo" size="1"/></td>
 											<td><p:outputLabel value="Seccion:"/></td>
 												<td style="text-align: left;">
-												<p:selectOneMenu id="idSeccion" value="#{matriculaNormalMB.nombreSeccion}"  layout="grid" columns="1">	            				
+												<p:selectOneMenu id="idSeccion" value="#{matriculaNormalMB.nombreSeccion}"  required="true" requiredMessage="Elija Seccion" layout="grid" columns="1">	            				
 						            				 	<p:ajax update="regalumno,asignatura" listener="#{matriculaNormalMB.nombSeccion}"/> 
 						            						 
            											 	<f:selectItem itemLabel="Elegir:" itemValue="" />

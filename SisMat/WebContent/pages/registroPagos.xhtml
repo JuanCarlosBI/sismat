@@ -35,8 +35,8 @@
 					<td>
 						<table>
 							<tr>
-								<td><p:outputLabel value="Ingresar Codigo" /></td>
-								<td><p:autoComplete value="#{registroPagoMB.idAlumno}"
+								<td><p:outputLabel value="Ingresar DNI del Alumno" /></td>
+								<td><p:autoComplete value="#{registroPagoMB.idAlumno}" required="true" requiredMessage="Ingrese DNI" 
 										completeMethod="#{registroPagoMB.autoCompletadoAlumno}"
 										style="width:250px;text-align:left; " /></td>
 							</tr>
@@ -45,13 +45,7 @@
 						</table>
 					</td>
 
-					<td><p:outputLabel value="Fecha Actual:" /></td>
-					<td><p:calendar id="fecha" value="#{registroPagoMB.fecha}"
-							showOn="button" readOnlyInputText="true" required="true"
-							locale="es" navigator="true"
-							requiredMessge="La fecha de Actual es requerida"
-							pattern="yyyy-MM-dd" /> <p:message id="fechaerror" for="fecha" />
-					</td>
+					
 
 					<td>
 						<table>
@@ -183,10 +177,10 @@
 									</tr>
 									<tr>
 										<td><p:outputLabel value="N° factura:" /></td>
-										<td><p:inputText value="#{registroPagoMB.factura}"
+										<td><p:inputText value="#{registroPagoMB.factura}" required="true" requiredMessage="Ingrese Factura" 
 												size="9" /></td>
 										<td><p:outputLabel value="N° boleta:" /></td>
-										<td><p:inputText value="#{registroPagoMB.boleta}"
+										<td><p:inputText value="#{registroPagoMB.boleta}" required="true" requiredMessage="Ingrese Boleta" 
 												size="9" /></td>
 									</tr>
 								</table>
@@ -214,7 +208,7 @@
 									<tr>
 										<td style="text-align: right;"><p:outputLabel
 												value="A cuenta:" /></td>
-										<td><p:spinner id="basic" min="0.0" stepFactor="0.25"
+										<td><p:spinner id="basic" min="0.0" stepFactor="100"
 												size="4" value="#{registroPagoMB.saldopagado}" /></td>
 										<td style="text-align: right;"><p:outputLabel
 												value="Recargo:" /></td>

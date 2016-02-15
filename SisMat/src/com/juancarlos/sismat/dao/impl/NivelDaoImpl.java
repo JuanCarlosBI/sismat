@@ -54,9 +54,16 @@ public class NivelDaoImpl extends HibernateDaoSupport implements NivelDao {
 		List<Nivel> listnivel = new ArrayList<Nivel>();
 
 		try {
-			sql = "from Nivel where codigoColegio = '" + codigoColegio.trim()
-					 + "' AND nivel='"+nivel + "' AND estado='"+estado  + "'";
+			if(nivel.length()==0){
+				sql = "from Nivel where codigoColegio = '" + codigoColegio.trim()
+						 + "' AND estado='"+estado  + "'";
 
+			}else{
+				sql = "from Nivel where codigoColegio = '" + codigoColegio.trim()
+						 + "' AND nivel='"+nivel + "' AND estado='"+estado  + "'";
+
+			}
+			
 			listnivel = getHibernateTemplate().find(sql);
 			System.out.println("listcurso tamanio " + listnivel.size());
 

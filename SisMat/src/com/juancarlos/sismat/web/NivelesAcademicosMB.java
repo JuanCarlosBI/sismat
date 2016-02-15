@@ -33,10 +33,10 @@ public class NivelesAcademicosMB implements Serializable {
 	private MainMB mainMB;
 
 	public void listaNiveles() {
-		//codigoColegio = "1041701524";
+		// codigoColegio = "1041701524";
 
 		mainMB.datosUsuario();
-		codigoColegio=mainMB.getCodigoColegio();
+		codigoColegio = mainMB.getCodigoColegio();
 
 		listnivel = nivelService.listaNivel(codigoColegio, nivel, estado);
 		return;
@@ -47,24 +47,30 @@ public class NivelesAcademicosMB implements Serializable {
 		FacesMessage msg = new FacesMessage("Nivel Editado",
 				((Nivel) event.getObject()).getNivelAcademico());
 		FacesContext.getCurrentInstance().addMessage(null, msg);
+
+		((Nivel) event.getObject()).setNivelAcademico(((Nivel) event
+				.getObject()).getTipo()
+				+ "-"
+				+ ((Nivel) event.getObject()).getOrden()
+				+ "°-"
+				+ ((Nivel) event.getObject()).getNivel());
 		boolean resultado = nivelService.editar((Nivel) event.getObject());
 
 	}
 
-
 	public void darBaja(Nivel lista) {
-		estado="Inactivo";
+		estado = "Inactivo";
 		lista.setEstado(getEstado());
-		
+
 		nivelService.editar(lista);
-		}
-	
+	}
+
 	public void darAlta(Nivel lista) {
-		estado="Activo";
+		estado = "Activo";
 		lista.setEstado(getEstado());
-		
+
 		nivelService.editar(lista);
-		}
+	}
 
 	public List<Nivel> getListnivel() {
 		return listnivel;

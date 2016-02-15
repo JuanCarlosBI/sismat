@@ -16,7 +16,7 @@ public class CursoServiceImpl implements CursoService {
 	@Autowired
 	CursoDao cursoDao;
 	public boolean registroCurso(String nombre, String grado,
-			String nivelAcademico, String area, char estado,String codigoColegio){
+			String nivelAcademico, String area, String estado,String codigoColegio){
 		Cursos curso = new Cursos();
 		curso.setArea(area);
 		curso.setEstado(estado);
@@ -39,7 +39,7 @@ public class CursoServiceImpl implements CursoService {
 		 
 		 return cursoDao.nombreCurso(nombcurso);
 	 }
-		public List<Cursos> listaCurso(String codigoColegio, String nombcurso,String nivelAcademico,char estado){
+		public List<Cursos> listaCurso(String codigoColegio, String nombcurso,String nivelAcademico,String estado){
 			
 			List<Cursos> curso = cursoDao.listaCurso(codigoColegio,
 					nombcurso,nivelAcademico,estado);

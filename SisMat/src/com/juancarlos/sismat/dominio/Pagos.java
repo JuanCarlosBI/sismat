@@ -34,7 +34,7 @@ public class Pagos  implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer idPago;
 	private Integer idMatricula;
-    private Date fecha;
+    private String fecha;
      private String factura;
      private String boleta;
      private Double recargo;
@@ -49,7 +49,7 @@ public class Pagos  implements java.io.Serializable {
 
 	
    
-     public Pagos(Integer idMatricula, Date fecha, String factura,
+     public Pagos(Integer idMatricula, String fecha, String factura,
 			String boleta, Double recargo, Double descuento, Double deuda,
 			Double saldopagado,String pension) {
 		this.idMatricula = idMatricula;
@@ -65,7 +65,7 @@ public class Pagos  implements java.io.Serializable {
 
 
 
-	public Pagos(Integer idPago, Integer idMatricula, Date fecha,
+	public Pagos(Integer idPago, Integer idMatricula, String fecha,
 			String factura, String boleta, Double recargo, Double descuento,
 			Double deuda, Double saldopagado, String codigoColegio,String pension) {
 		
@@ -106,13 +106,13 @@ public class Pagos  implements java.io.Serializable {
 	}
 
 
-    @Temporal(TemporalType.DATE)
+    
     @Column(name="Fecha", nullable=false, length=10)
-    public Date getFecha() {
+    public String getFecha() {
         return this.fecha;
     }
     
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 

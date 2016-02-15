@@ -63,7 +63,7 @@ public class PagoServiceImpl implements PagoService {
 		return pagos;
 	}
 
-	public boolean registroPago(Integer idMatricula, Date fecha,
+	public boolean registroPago(Integer idMatricula, String fecha,
 			String factura, String boleta, Double recargo, Double descuento,
 			Double deuda, Double saldopagado, String codigoColegio,String pension) {
 

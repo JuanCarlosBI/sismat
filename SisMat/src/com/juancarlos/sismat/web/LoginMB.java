@@ -16,8 +16,8 @@ import com.juancarlos.sismat.service.UsuarioService;
 @Component
 public class LoginMB implements Serializable{
 	
-	private String usuario = "risa123";
-	private String password = "admin";
+	private String usuario;
+	private String password;
 	String retorno = "";
 	@Autowired
 	private UsuarioService usuarioServicio;

@@ -32,26 +32,35 @@
 					<table>
 								<tr>
 									<td><p:outputLabel value="DNI:" /></td>
-									<td><p:inputText value="#{alumnosMB.dni}"/></td>					
+									
+									<td><p:inputMask value="#{alumnosMB.dni}" required="true" requiredMessage="Ingrese DNI" mask="99999999"/></td>	
+													
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Nombres:" /></td>
-									<td><p:inputText value="#{alumnosMB.nombres}"/></td>					
+									<td><p:inputText value="#{alumnosMB.nombres}" required="true" requiredMessage="Ingrese Nombres" maxlength="70" validatorMessage="Por favor ingrese el Nombre Correctamente">
+									<f:validateRegex pattern="[a-zA-Z]+"/> 		
+							
+					</p:inputText></td>				
 								</tr>
 								<tr>
-									<td><p:outputLabel value="Apellido Paterno:" /></td>
-									<td><p:inputText value="#{alumnosMB.apellidoPaterno}"/></td>					
+									<td><p:outputLabel value="Apellido Paterno:" /></td>	
+									<td><p:inputText  value="#{alumnosMB.apellidoPaterno}" required="true" requiredMessage="Ingrese Apellido Paterno" maxlength="70" validatorMessage="Por favor ingrese el Apellido Paterno Correctamente">
+										<f:validateRegex pattern="[a-zA-Z]+"/> 	
+									</p:inputText></td>				
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Apellido Materno:" /></td>
-									<td><p:inputText value="#{alumnosMB.apellidoMaterno}"/></td>					
+									<td><p:inputText  value="#{alumnosMB.apellidoMaterno}" required="true" requiredMessage="Ingrese Apellido Materno" maxlength="70" validatorMessage="Por favor ingrese el Apellido Materno Correctamente">
+										<f:validateRegex pattern="[a-zA-Z]+"/> 	
+									</p:inputText></td>					
 								</tr>
 								<tr>
 									<td>
 										<p:outputLabel value="Estado:" />
 									</td>
 									<td>
-										<p:selectOneRadio id="idEstado" value="#{alumnosMB.estado}"  layout="grid" columns="2">
+										<p:selectOneRadio id="idEstado" value="#{alumnosMB.estado}" required="true" layout="grid"  requiredMessage="Elija" columns="2">
             								<f:selectItem itemValue="Activo" itemLabel="Activo" />
             								<f:selectItem itemValue="Inactivo" itemLabel="Inactivo"/>
         								</p:selectOneRadio>

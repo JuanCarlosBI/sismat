@@ -16,4 +16,7 @@ public interface SeccionDao {
 	public List<Seccion> listaSeccion(String codigoColegio, String grado,String nivelAcademico);
 	public boolean eliminar(Seccion seccion);
 	public boolean editar(Seccion editarseccion);
+	public String nombreTutor(String idtutor);
+	List<Empleado> listaProfesores(String codigoColegio);
+	
 }

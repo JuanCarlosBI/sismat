@@ -35,7 +35,7 @@
 								<tr>
 									<td><p:outputLabel value="Tipo:" /></td>
 									<td>
-										<p:selectOneMenu id="idTipo" value="#{registroNivelesMB.tipo}">							            
+										<p:selectOneMenu id="idTipo" value="#{registroNivelesMB.tipo}" required="true" requiredMessage="Elija Tipo" >							            
 								            <f:selectItem itemLabel="Normal" itemValue="Normal" />
 								            <f:selectItem itemLabel="Verano" itemValue="Verano" />							            
         								</p:selectOneMenu>
@@ -44,7 +44,7 @@
 								<tr>
 									<td><p:outputLabel value="Nivel:" /></td>
 									<td>
-										<p:selectOneMenu id="idGrado" value="#{registroNivelesMB.nivel}">							            
+										<p:selectOneMenu id="idGrado" value="#{registroNivelesMB.nivel}" required="true" requiredMessage="Elija Nivel" >							            
 								            <f:selectItem itemLabel="Inicial" itemValue="Inicial" />
 								            <f:selectItem itemLabel="Primaria" itemValue="Primaria" />	
 								            <f:selectItem itemLabel="Secundaria" itemValue="Secundaria" />							            
@@ -54,7 +54,7 @@
 								<tr>
 									<td><p:outputLabel value="Orden:" /></td>
 									<td>
-										<p:selectOneMenu id="idorden" value="#{registroNivelesMB.orden}">							            
+										<p:selectOneMenu id="idorden" value="#{registroNivelesMB.orden}" required="true" requiredMessage="Elija Orden" >							            
 								            <f:selectItem itemLabel="1°" itemValue="1" />
 								            <f:selectItem itemLabel="2°" itemValue="2" />	
 								            <f:selectItem itemLabel="3°" itemValue="3" />	
@@ -66,12 +66,12 @@
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Numero de Vacantes" /></td>
-									<td><p:inputMask value="#{registroNivelesMB.nroVacantes}" mask="99"/></td>					
+									<td><p:inputMask value="#{registroNivelesMB.nroVacantes}" mask="99" required="true" requiredMessage="Ingrese Numero de Vacantes" /></td>					
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Estado:" /></td>
 									<td>
-										<p:selectOneMenu id="idEstado" value="#{registroNivelesMB.estado}">							            
+										<p:selectOneMenu id="idEstado" value="#{registroNivelesMB.estado}" required="true" requiredMessage="Elija Estado" >							            
 								            <f:selectItem itemLabel="Activo" itemValue="Activo" />
 								            <f:selectItem itemLabel="Inactivo" itemValue="Inactivo" />								            
         								</p:selectOneMenu>

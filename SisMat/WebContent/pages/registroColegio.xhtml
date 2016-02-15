@@ -32,9 +32,9 @@
 				
 				<table>
 				<tr>
-					<td><p:outputLabel value="Alumno:"/></td>
+					<td><p:outputLabel value="Nombre de Colegio:"/></td>
 										<td colspan="3"><p:autoComplete value="#{registroColegioMB.nombreColegio}"
-										completeMethod="#{registroColegioMB.autoCompletadoColegio}"
+										completeMethod="#{registroColegioMB.autoCompletadoColegio}" 
 										style="width:250px;text-align:left; " />
 										</td>
 										<td><p:commandButton id="btnBuscar" value="Buscar"
@@ -78,7 +78,8 @@
                                 <h:outputText value="#{lista.codigoColegio}" />
                             </f:facet>  
                             <f:facet name="input">  
-                                <p:inputText value="#{lista.codigoColegio}" />  
+								<p:inputMask  value="#{lista.codigoColegio}" mask="99999999999"   required="#{not empty param.includeGuardar}"/>
+					                             
                             </f:facet>  
                     </p:cellEditor>
 			    </p:column>
@@ -89,7 +90,9 @@
                                 <h:outputText value="#{lista.correo}" />
                             </f:facet>  
                             <f:facet name="input">  
-                                <p:inputText value="#{lista.correo}" />  
+                               <p:inputText value="#{lista.correo}" validatorMessage="Por favor ingrese el correo correctamente. Ejm: abc@abc.com">
+					   <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" /> 		
+					</p:inputText>  
                             </f:facet>  
                     </p:cellEditor>
 			    </p:column>
@@ -110,7 +113,8 @@
                                 <h:outputText value="#{lista.telefono}" />
                             </f:facet>  
                             <f:facet name="input">  
-                                <p:inputText value="#{lista.telefono}" />  
+                                	<p:inputMask  value="#{lista.telefono}" mask="999-9999"/>
+					
                             </f:facet>  
                     </p:cellEditor>
  			    </p:column>	 
@@ -119,8 +123,8 @@
                              <f:facet name="output">   
                                  <h:outputText value="#{lista.fax}" /> 
                              </f:facet>   
-                             <f:facet name="input">  
-                                <p:inputText value="#{lista.fax}" />   
+                             <f:facet name="input">     
+                                <p:inputMask value="#{lista.fax}" mask="999-9999"/>
                              </f:facet>   
                      </p:cellEditor>
  			    </p:column>	 
@@ -138,24 +142,24 @@
 				<table>
 				<tr>
 					<td><p:outputLabel value="Razon Social:" /></td>
-					<td><p:inputText value="#{registroColegioMB.razonSocial}"  required="#{not empty param.includeGuardar}" maxlength="50"/></td>
+					<td><p:inputText value="#{registroColegioMB.razonSocial}"  required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Razon Social" maxlength="50"/></td>
 					<td></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td><p:outputLabel value="Ruc:" /></td>
 					<td>
-						<p:inputMask id="ruc" value="#{registroColegioMB.ruc}" mask="99999999999"   required="#{not empty param.includeGuardar}"/>
+						<p:inputMask id="ruc" value="#{registroColegioMB.ruc}" mask="99999999999"   required="#{not empty param.includeGuardar}" requiredMessage="Ingrese RUC"/>
 					</td>
 					<td><p:outputLabel  value="Telefono:" /></td>
 					<td>
-						<p:inputMask id="phone" value="#{registroColegioMB.telefono}" mask="999-9999"/>
+						<p:inputMask id="phone" value="#{registroColegioMB.telefono}" mask="999-9999" required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Telefono"/>
 					</td>
 				</tr>
 				<tr>
 					<td><p:outputLabel value="Correo:" /></td>
 					<td>
-						<p:inputText id="correo" value="#{registroColegioMB.correo}" validatorMessage="Por favor ingrese un correo">
+						<p:inputText id="correo" required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Correo" value="#{registroColegioMB.correo}" validatorMessage="Por favor ingrese el correo correctamente. Ejm: abc@abc.com">
 					   <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" /> 		
 					</p:inputText>
 					</td>
@@ -164,7 +168,7 @@
 				</tr>
 				<tr>
 					<td><p:outputLabel value="Direccion:" /></td>
-					<td><p:inputText value="#{registroColegioMB.direccion}"/></td>
+					<td><p:inputText value="#{registroColegioMB.direccion}" required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Direccion"/></td>
 					<td></td>
 					<td></td>
 				</tr>					

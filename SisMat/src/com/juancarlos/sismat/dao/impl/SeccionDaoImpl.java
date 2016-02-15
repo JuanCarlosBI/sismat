@@ -38,7 +38,27 @@ public class SeccionDaoImpl extends HibernateDaoSupport implements SeccionDao {
 		// TODO Auto-generated method stub
 		
 	}
-    
+    @SuppressWarnings("unchecked")
+    public String nombreTutor(String idtutor){
+        List<Empleado> empleados=null;
+        Empleado empleado;
+        String nombreTutor;
+ 
+        String sql = " from Empleado where idEmpleado='"+idtutor+"'";
+        try {
+ 
+            empleados = getHibernateTemplate().find(sql);
+            empleado=empleados.get(0);
+            nombreTutor=empleado.getNombreCompleto();
+            System.out.println(nombreTutor);
+           
+        } catch (Exception e) {
+            System.out.println(e);
+            nombreTutor = null;
+        }
+       
+        return nombreTutor;
+    }
     
 
 	@Override
@@ -186,6 +206,34 @@ public class SeccionDaoImpl extends HibernateDaoSupport implements SeccionDao {
 
 		return seccion;
 	}
-    
+	public List<Empleado> listaProfesores(String codigoColegio) {
+
+		logger.info("en listaEmpleado");
+		System.out.println("en listaEmpleado dao");
+
+		String sql = "";
+		List<Empleado> empleado = new ArrayList<Empleado>();
+
+		try {
+			sql = "from Empleado where codigoColegio = '"
+					+ codigoColegio.trim()  + "'";
+
+			empleado = getHibernateTemplate().find(sql);
+			System.out.println("empleado tamanio " + empleado.size());
+
+			if (empleado.isEmpty()) {
+				empleado = new ArrayList<Empleado>();
+			}
+
+		} catch (Exception e) {
+			System.out.println(e);
+			empleado = null;
+		}
+
+		return empleado;
+
+	}
+	
+	
 }
 

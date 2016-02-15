@@ -35,7 +35,7 @@
 															
 							<tr>
 										<p:outputLabel value="Nombre:" /><p:autoComplete 
-                                                    value="#{usuariosMB.nombreCompleto}" completeMethod="#{usuariosMB.autoCompletadoProducto}"
+                                                    value="#{usuariosMB.nombreCompleto}" completeMethod="#{usuariosMB.autoCompletadoProducto}" required="true" requiredMessage="Ingrese Nombre Completo"
                                                         style="width:400px;text-align:left;"/>
                                                 
 					
@@ -57,7 +57,7 @@
 										<p:outputLabel value="Estado:" />
 									</td>
 									<td>
-										<p:selectOneRadio id="idEstado" value="Estado"  layout="grid" columns="3">
+										<p:selectOneRadio id="idEstado" value="Estado" required="true" requiredMessage="Elija Estado"  layout="grid" columns="3">
             								<f:selectItem itemValue="Activo" itemLabel="Activo"/>
             								<f:selectItem itemValue="Inactivo" itemLabel="Inactivo"/>
         								</p:selectOneRadio>
@@ -124,14 +124,9 @@
 					</p:column>
 			 
 			   			<p:column headerText="Estado" styleClass="panelTabla">
-						<p:cellEditor>
-							<f:facet name="output">
+						
 								<h:outputText value="#{lista.estado}" />
-							</f:facet>
-							<f:facet name="input">
-								<p:inputText value="#{lista.estado}" />
-							</f:facet>
-						</p:cellEditor>
+							
 					</p:column>
 		
 			    
@@ -141,7 +136,13 @@
 								<h:outputText value="#{lista.tipo}" />
 							</f:facet>
 							<f:facet name="input">
-								<p:inputText value="#{lista.tipo}" />
+								
+								<p:selectOneMenu id="idTipo" value="#{lista.tipo}"  style="width:150px;">							            
+								            <f:selectItem itemLabel="Administrativo" itemValue="Administrativo" />
+								            <f:selectItem itemLabel="Alumno" itemValue="Alumno" />
+								            <f:selectItem itemLabel="Auxiliar" itemValue="Auxiliar" />
+								            <f:selectItem itemLabel="Profesor" itemValue="Profesor" />
+        								</p:selectOneMenu>
 							</f:facet>
 						</p:cellEditor>
 					</p:column>

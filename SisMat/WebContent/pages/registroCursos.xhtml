@@ -35,8 +35,9 @@
 								<tr>
 									<td><p:outputLabel value="Grado:" /></td>
 									<td style="text-align: left;">
-										<p:selectOneMenu id="idGrado"  value="#{registroCursosMB.grado}"  layout="grid" columns="1">            								
+										<p:selectOneMenu id="idGrado"  value="#{registroCursosMB.grado}" required="true" requiredMessage="Elija Grado"  layout="grid" columns="1">            								
             							<p:ajax update="idNivel" listener="#{registroCursosMB.listaNivel}"/> 
+            							<f:selectItem itemLabel="Elegir:" itemValue="" />
 						            		 <f:selectItem itemLabel="1°" itemValue="1" />
 								            <f:selectItem itemLabel="2°" itemValue="2" />	
 								            <f:selectItem itemLabel="3°" itemValue="3" />	
@@ -49,7 +50,7 @@
 								<tr>
 									<td><p:outputLabel value="Nivel Academico:" /></td>
 									<td style="text-align: left;" colspan="3">
-										<p:selectOneMenu id="idNivel" value="#{registroCursosMB.nivelAcademico}"  layout="grid" columns="1">											
+										<p:selectOneMenu id="idNivel" value="#{registroCursosMB.nivelAcademico}" required="true" requiredMessage="Elija Nivel"  layout="grid" columns="1">											
             					    		
             							     <f:selectItem itemLabel="Elegir:" itemValue="" />
             					    		<f:selectItems value="#{registroCursosMB.listanivel}" />
@@ -59,7 +60,7 @@
 								<tr>
 									<td><p:outputLabel value="Area:" /></td>
 									<td style="text-align: left;">
-										<p:selectOneMenu id="idArea" value="#{registroCursosMB.area}"  layout="grid" columns="2">																					
+										<p:selectOneMenu id="idArea" value="#{registroCursosMB.area}" required="true" requiredMessage="Elija Area"  layout="grid" columns="2">																					
             								<f:selectItem itemValue="Arte" itemLabel="Arte"/>
             								<f:selectItem itemValue="Ciencias Naturales" itemLabel="Ciencias"/>
             								<f:selectItem itemValue="Matematica" itemLabel="Matemática"/>
@@ -69,14 +70,14 @@
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Curso:" /></td>
-									<td><p:inputText value="#{registroCursosMB.nombre}"/></td>					
+									<td><p:inputText value="#{registroCursosMB.nombre}" required="true" requiredMessage="Ingrese Curso" /></td>					
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Estado:" /></td>
 									<td style="text-align: left;">
-										<p:selectOneMenu id="idEstado" value="#{registroCursosMB.estado}">							            
-								            <f:selectItem itemLabel="Activo" itemValue="A" />
-								            <f:selectItem itemLabel="Inactivo" itemValue="I" />								            
+										<p:selectOneMenu id="idEstado" required="true" requiredMessage="Elija Estado"  value="#{registroCursosMB.estado}">							            
+								            <f:selectItem itemLabel="Activo" itemValue="Activo" />
+								            <f:selectItem itemLabel="Inactivo" itemValue="Inactivo" />								            
         								</p:selectOneMenu>
         							</td>					
 								</tr>

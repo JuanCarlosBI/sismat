@@ -15,7 +15,7 @@ public interface PagoService {
 	 public List<Alumnos> listaAlumnos(String codigoColegio, String idAlumno);
 	 public List<Seccion> listaSeccion(Integer idSeccion);
 		public List<Pagos> listaPago(Integer idMatricula);
-		public boolean registroPago(Integer idMatricula, Date fecha,
+		public boolean registroPago(Integer idMatricula, String fecha,
 				String factura, String boleta, Double recargo,Double descuento,Double deuda,
 				Double saldopagado,String codigoColegio,String pension);
 		

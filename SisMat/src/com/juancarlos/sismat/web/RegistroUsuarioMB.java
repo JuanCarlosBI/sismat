@@ -11,6 +11,8 @@ import javax.faces.context.FacesContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.ibm.icu.text.DateFormat;
+import com.ibm.icu.text.SimpleDateFormat;
 import com.juancarlos.sismat.service.UsuarioService;
 
 
@@ -19,14 +21,14 @@ import com.juancarlos.sismat.service.UsuarioService;
 @SessionScoped
 @Component
 public class RegistroUsuarioMB implements Serializable{
-	private String nombreUsuario;
+	private String nombreUsuario="";
     private String clave;
     private String tipo;
     private String contrasenia2;
     private String nombreCompleto;
     private String estado;
     private String codigoColegio;
-	private Date fecha;
+	private String fecha;
 
 	@Autowired
 	private MainMB mainMB;
@@ -39,6 +41,10 @@ public class RegistroUsuarioMB implements Serializable{
 
 			mainMB.datosUsuario();
 			codigoColegio=mainMB.getCodigoColegio();
+			Date date = new Date();
+			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			fecha = dateFormat.format(date);
+
 			
 			//codigoColegio = "1041701524";
 			boolean resultado = usuarioService.registroUsuario(nombreUsuario,
@@ -140,11 +146,11 @@ public class RegistroUsuarioMB implements Serializable{
 		this.codigoColegio = codigoColegio;
 	}
 
-	public Date getFecha() {
+	public String getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(Date fecha) {
+	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
 

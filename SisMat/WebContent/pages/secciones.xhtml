@@ -35,7 +35,7 @@
 								<tr>	
 									<td><p:outputLabel value="Grado:" /></td>
 									<td>
-										<p:selectOneMenu id="idGrado" value="#{seccionesMB.grado}" layout="grid" columns="2">											
+										<p:selectOneMenu id="idGrado" value="#{seccionesMB.grado}" layout="grid" required="true" requiredMessage="Elija Grado"  columns="2">	 										
             								  	<p:ajax update="idNivel" listener="#{seccionesMB.listaNivel}"/> 
 						            			 <f:selectItem itemLabel="Elegir:" itemValue="" />
             							     <f:selectItem itemLabel="1°" itemValue="1°" />
@@ -50,7 +50,7 @@
         																								
 									<td><p:outputLabel value="Nivel Academico:" /></td>
 									<td style="text-align: left;">
-										<p:selectOneMenu id="idNivel" value="#{seccionesMB.nivelAcademico}"    layout="grid" columns="1">	            				
+										<p:selectOneMenu id="idNivel" value="#{seccionesMB.nivelAcademico}"  required="true" requiredMessage="Elija Nivel"  layout="grid" columns="1">	            				
 						            			    <f:selectItem itemLabel="Elegir:" itemValue="" />
             					    		<f:selectItems value="#{seccionesMB.listanivel}" />
 						            	</p:selectOneMenu>
@@ -88,7 +88,7 @@
 				toggleSpeed="500" closeSpeed="2000" widgetVar="panel" rowKey="#{lista.id}" >
 				
 			
-	 	<p:dataTable  rowIndexVar="row" var="lista" value="#{seccionesMB.seccion}" editable="true">
+	 	<p:dataTable  id="myDataTable" rowIndexVar="row" var="lista" value="#{seccionesMB.seccion}" editable="true">
 			   
 			  <p:ajax event="rowEdit" listener="#{seccionesMB.onEdit}" update=":form:messages" label="Editar"/>  
                       
@@ -99,21 +99,27 @@
 			    <p:column headerText="Tutor" styleClass="panelTabla">
 			        <p:cellEditor>  
                             <f:facet name="output">  
-                                <h:outputText value="#{lista.tutor}" />
+                                <h:outputText value="#{seccionesMB.tutor[row]}"  style="width:100px;"/>
                             </f:facet>  
-                            <f:facet name="input">  
-                                <p:inputText value="#{lista.tutor}" />  
-                            </f:facet>  
+                             <f:facet name="input">  
+                             <p:selectOneMenu id="idTutor" value="#{seccionesMB.tutor[row]}" filter="true" filterMatchMode="startsWith" style="width:200px;"  >	            				
+						            			    
+            					    		<f:selectItems value="#{seccionesMB.listaEmpleado}" />
+						            	</p:selectOneMenu> 
+						      </f:facet>  
                     </p:cellEditor>
 			    </p:column>
 			 
 			    <p:column headerText="Nombre Nivel" styleClass="panelTabla">
-			        <p:cellEditor>  
+			        <p:cellEditor  style="width:80px;" >  
                             <f:facet name="output">  
-                                <h:outputText value="#{lista.nivelAcademico}" />
+                                <h:outputText value="#{lista.nivelAcademico}" style="width:100px;" />
                             </f:facet>  
                             <f:facet name="input">  
-                                <p:inputText value="#{lista.nivelAcademico}" />  
+                                <p:selectOneMenu id="idNivel" value="#{lista.nivelAcademico}"  style="width:200px;"  >	            				
+						            			    
+            					    		<f:selectItems value="#{seccionesMB.listanivel}" />
+						            	</p:selectOneMenu>
                             </f:facet>  
                     </p:cellEditor>
 			    </p:column>

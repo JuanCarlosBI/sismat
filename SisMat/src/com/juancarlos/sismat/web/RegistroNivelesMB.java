@@ -13,33 +13,28 @@ import org.springframework.stereotype.Component;
 import com.juancarlos.sismat.service.NivelService;
 
 @SuppressWarnings("serial")
-@ManagedBean(name="registroNivelesMB")
+@ManagedBean(name = "registroNivelesMB")
 @SessionScoped
 @Component
-
-public class RegistroNivelesMB implements Serializable{
+public class RegistroNivelesMB implements Serializable {
 
 	private String tipo;
-    private String nivel;
-
-	private String codigoColegio; 
-    private String orden;
-    private String nroVacantes;
-    private String estado;
-    
+	private String nivel;
+	private String codigoColegio;
+	private String orden;
+	private String nroVacantes;
+	private String estado;
 	@Autowired
 	NivelService nivelService;
-
 	@Autowired
 	private MainMB mainMB;
-	
+
 	public void registrarNivel() {
-		//codigoColegio = "1041701524";
 		mainMB.datosUsuario();
-		codigoColegio=mainMB.getCodigoColegio();
+		codigoColegio = mainMB.getCodigoColegio();
 		System.out.println(codigoColegio);
-		boolean resultado = nivelService.registroNivel(tipo,
-				nivel, orden, nroVacantes, estado ,codigoColegio);
+		boolean resultado = nivelService.registroNivel(tipo, nivel, orden,
+				nroVacantes, estado, codigoColegio);
 
 		if (resultado) {
 			FacesContext.getCurrentInstance().addMessage(
@@ -52,22 +47,18 @@ public class RegistroNivelesMB implements Serializable{
 					new FacesMessage(FacesMessage.SEVERITY_ERROR,
 							"Hubo un error en guardar la información", ""));
 		}
-	
 
 	}
 
-	 public void resetFail() {
-	        this.tipo = null;
-	        this.nivel = null;
-	        this.orden = null;
-	        this.nroVacantes = null;
-	        
-	        
-	        
-	         
-	        FacesMessage msg = new FacesMessage("Datos limpios");
-	        FacesContext.getCurrentInstance().addMessage(null, msg);
-	    }
+	public void resetFail() {
+		this.tipo = null;
+		this.nivel = null;
+		this.orden = null;
+		this.nroVacantes = null;
+
+		FacesMessage msg = new FacesMessage("Datos limpios");
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
 
 	public String getTipo() {
 		return tipo;
@@ -76,8 +67,6 @@ public class RegistroNivelesMB implements Serializable{
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-
-
 
 	public String getOrden() {
 		return orden;
@@ -118,6 +107,5 @@ public class RegistroNivelesMB implements Serializable{
 	public void setNivel(String nivel) {
 		this.nivel = nivel;
 	}
-	 
-	 
+
 }

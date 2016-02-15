@@ -53,7 +53,7 @@ public class ConsultaDeudoresMB {
 			FacesContext.getCurrentInstance().addMessage(
 					null,
 					new FacesMessage(FacesMessage.SEVERITY_INFO,
-							"No se ecnontro alumnos", ""));
+							"No se encontro alumnos", ""));
 
 		} else {
 			Matriculas matricula = matriculas.get(0);

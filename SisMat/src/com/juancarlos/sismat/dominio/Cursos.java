@@ -32,7 +32,7 @@ public class Cursos  implements java.io.Serializable {
      private String grado;
      private String nivelAcademico;
      private String area;
-     private char estado;
+     private String estado;
      private String codigoColegio;
      private Set<Horarios> horarioses = new HashSet<Horarios>(0);
 
@@ -48,7 +48,7 @@ public class Cursos  implements java.io.Serializable {
 
 	
     public Cursos(String nombre, String grado,
-			String nivelAcademico, String area, char estado,String codigoColegio) {
+			String nivelAcademico, String area, String estado,String codigoColegio) {
 		super();
 		this.nombre = nombre;
 		this.grado = grado;
@@ -59,7 +59,7 @@ public class Cursos  implements java.io.Serializable {
 	}
 
 
-	public Cursos(String nombre, char estado, Set<Horarios> horarioses,String codigoColegio) {
+	public Cursos(String nombre, String estado, Set<Horarios> horarioses,String codigoColegio) {
        this.nombre = nombre;
        this.estado = estado;
        this.codigoColegio = codigoColegio;
@@ -131,12 +131,12 @@ public class Cursos  implements java.io.Serializable {
 		this.area = area;
 	}
 
-    @Column(name="Estado", nullable=false, length=1)
-    public char getEstado() {
+    @Column(name="Estado", nullable=false, length=10)
+    public String getEstado() {
         return this.estado;
     }
     
-    public void setEstado(char estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 

@@ -28,7 +28,6 @@ public class MainMB  implements Serializable{
 	@Autowired
 	private UsuarioService usuarioService;
 	private String nombre;
-	private String apellido;
 	private List<Usuario> usuarios;
 	private String nombreUsuario;
 	private String codigoColegio;
@@ -48,11 +47,10 @@ public class MainMB  implements Serializable{
 		Usuario empleado = usuarios.get(0);
 		
 		nombre = empleado.getNombreCompleto();
+		nombreUsuario=empleado.getNombreUsuario();
 		codigoColegio = empleado.getCodigoColegio();
 		System.out.println("codigoColegio "+codigoColegio);
 		System.out.println("nombre "+nombre);
-		System.out.println("apellido "+apellido);
-		nombreUsuario = nombre +" "+ apellido;	
 		System.out.println("nombreUsuario "+nombreUsuario);
 	
 	}
@@ -103,13 +101,6 @@ public class MainMB  implements Serializable{
 		this.nombre = nombre;
 	}
 
-	public String getApellido() {
-		return apellido;
-	}
-
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
-	}
 
 	public String getNombreUsuario() {
 		return nombreUsuario;

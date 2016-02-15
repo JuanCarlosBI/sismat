@@ -31,8 +31,8 @@
 				
 				<table>
 				<tr>
-					<td><p:outputLabel value="Ingrese DNI del Alumno" /></td>
-					<td><p:inputText value="#{consultaDeudoresMB.dni}"/></td>  
+					<td><p:outputLabel value="Ingrese DNI del Alumno" required="true" requiredMessage="Ingrese DNI" mask="99999999"/></td>
+					<td><p:inputMask value="#{consultaDeudoresMB.dni}"/></td>  
 					
         		</tr> 
         			<tr><td colspan="4"><br/></td></tr>

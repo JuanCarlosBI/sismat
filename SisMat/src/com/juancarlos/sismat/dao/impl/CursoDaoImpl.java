@@ -120,7 +120,7 @@ public class CursoDaoImpl extends HibernateDaoSupport implements CursoDao {
 
 		return cursos;
 	}
-	public List<Cursos> listaCurso(String codigoColegio, String nombcurso,String nivelAcademico,char estado){
+	public List<Cursos> listaCurso(String codigoColegio, String nombcurso,String nivelAcademico,String estado){
 		logger.info("en listaCursos");
 		System.out.println("en listaCurso dao");
 	

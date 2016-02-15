@@ -20,7 +20,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 	@Autowired
 	UsuarioDao usuarioDao;
 	
-	public boolean registroUsuario(String nombreUsuario,String clave,String tipo,String nombreCompleto,String estado, String codigoColegio,Date fecha){
+	public boolean registroUsuario(String nombreUsuario,String clave,String tipo,String nombreCompleto,String estado, String codigoColegio,String fecha){
 		Usuario usuario = new Usuario();
 		
 		usuario.setNombreUsuario(nombreUsuario);

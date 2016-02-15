@@ -1,9 +1,9 @@
 
 <%@page contentType="text/html"%>
 <%@page pageEncoding="UTF-8"%>
-<%-- <% response.sendRedirect("pages/login.jsf"); %> --%>
+<% response.sendRedirect("pages/login.jsf"); %>
 <%-- <% response.sendRedirect("pages/menu1.jsf"); %> --%>
-<% response.sendRedirect("pages/main.jsf"); %>
+<%-- <% response.sendRedirect("pages/main.jsf"); %> --%>
 <%-- <% response.sendRedirect("pages/registroColegio.jsf"); %> --%>
 <%-- <% response.sendRedirect("pages/periodo.jsf"); %> --%>
 <%-- <% response.sendRedirect("pages/profesores.jsf"); %> --%>

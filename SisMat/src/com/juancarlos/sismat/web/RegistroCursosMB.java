@@ -30,7 +30,7 @@ public class RegistroCursosMB implements Serializable{
 	private List<Nivel> nivel;
 	 private String[] listanivel;
     private String area;
-    private char estado;
+    private String estado;
 
 	@Autowired
 	private MainMB mainMB;
@@ -114,11 +114,11 @@ public class RegistroCursosMB implements Serializable{
 		this.area = area;
 	}
 
-	public char getEstado() {
+	public String getEstado() {
 		return estado;
 	}
 
-	public void setEstado(char estado) {
+	public void setEstado(String estado) {
 		this.estado = estado;
 	}
 	public String getCodigoColegio() {

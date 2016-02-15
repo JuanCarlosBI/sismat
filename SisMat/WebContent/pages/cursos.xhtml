@@ -37,7 +37,7 @@
 
 									<td><p:outputLabel value="Curso:" /></td>
 
-									<td><p:autoComplete value="#{cursosMB.nombcurso}"
+									<td><p:autoComplete value="#{cursosMB.nombcurso}" required="true" requiredMessage="Ingrese Curso"
 											completeMethod="#{cursosMB.autoCompletadoCurso}" />
 
 									</td>
@@ -46,17 +46,17 @@
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Estado:" /></td>
-									<td><p:selectOneRadio id="idEstado"
+									<td><p:selectOneRadio id="idEstado" required="true" requiredMessage="Elija Estado"
 											value="#{cursosMB.estado}" columns="2">
 
 											<p:ajax update="idNivel" />
-											<f:selectItem itemValue="A" itemLabel="Activo" />
-											<f:selectItem itemValue="I" itemLabel="Inactivo" />
+											<f:selectItem itemValue="Activo" itemLabel="Activo" />
+											<f:selectItem itemValue="Inactivo" itemLabel="Inactivo" />
 										</p:selectOneRadio></td>
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Nivel Academico:" /></td>
-									<td><p:selectOneMenu id="idNivel"
+									<td><p:selectOneMenu id="idNivel"   required="true" requiredMessage="Ingrese Nivel Academico"
 											value="#{cursosMB.nivelAcademico}" columns="1">
 											<f:selectItem itemLabel="Elegir:" itemValue="" />
 											<f:selectItems value="#{cursosMB.listanivel}" />
@@ -95,8 +95,6 @@
 
 					<p:ajax event="rowEdit" listener="#{cursosMB.onEdit}"
 						update=":form:messages" label="Editar" />
-					<p:ajax event="rowEditCancel" listener="#{cursosMB.onCancel}"
-						update=":form:messages" label="Eliminar" />
 
 					<p:column headerText="Id" styleClass="panelTabla">
 						<h:outputText value="#{row + 1}" />
@@ -108,7 +106,12 @@
 								<h:outputText value="#{lista.area}" />
 							</f:facet>
 							<f:facet name="input">
-								<p:inputText value="#{lista.area}" />
+								<p:selectOneMenu id="idArea" value="#{lista.area}" style="width:100px;" layout="grid" columns="2">																					
+            								<f:selectItem itemValue="Arte" itemLabel="Arte"/>
+            								<f:selectItem itemValue="Ciencias Naturales" itemLabel="Ciencias"/>
+            								<f:selectItem itemValue="Matematica" itemLabel="Matemática"/>
+            								<f:selectItem itemValue="Letras" itemLabel="Letras"/>            								
+        								</p:selectOneMenu>
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
@@ -116,10 +119,10 @@
 					<p:column headerText="Curso" styleClass="panelTabla">
 						<p:cellEditor>
 							<f:facet name="output">
-								<h:outputText value="#{lista.nombre}" />
+								<h:outputText value="#{lista.nombre}" style="width:200px;" />
 							</f:facet>
 							<f:facet name="input">
-								<p:inputText value="#{lista.nombre}" />
+								<p:inputText value="#{lista.nombre}" style="width:200px;"/>
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
@@ -130,7 +133,10 @@
 								<h:outputText value="#{lista.nivelAcademico}" />
 							</f:facet>
 							<f:facet name="input">
-								<p:inputText value="#{lista.nivelAcademico}" />
+									<p:selectOneMenu id="idNivel" value="#{lista.nivelAcademico}" style="width:200px;" layout="grid" columns="1">											
+            					    	   <f:selectItem itemLabel="Elegir:" itemValue="" />
+            					    		<f:selectItems value="#{cursosMB.listanivel}" />
+						            		</p:selectOneMenu>
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
@@ -141,7 +147,10 @@
 								<h:outputText value="#{lista.estado}" />
 							</f:facet>
 							<f:facet name="input">
-								<p:inputText value="#{lista.estado}" />
+								<p:selectOneMenu id="idestadoo" value="#{lista.estado}" style="width:100px;" layout="grid" columns="2">																					
+            								<f:selectItem itemValue="Activo" itemLabel="Activo"/>
+            								<f:selectItem itemValue="Inactivo" itemLabel="Inactivo"/>            								
+        								</p:selectOneMenu>
 							</f:facet>
 						</p:cellEditor>
 					</p:column>

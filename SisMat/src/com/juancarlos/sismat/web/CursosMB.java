@@ -32,7 +32,7 @@ public class CursosMB implements Serializable {
 	private String nombcurso;
 
 	private List<Cursos> curso;
-    private char estado;
+    private String estado;
 
 	@Autowired
 	private MainMB mainMB;
@@ -106,14 +106,7 @@ public class CursosMB implements Serializable {
 
 	}
 
-	public void onCancel(RowEditEvent event) {
-		FacesMessage msg = new FacesMessage("Curso eliminado");
-		FacesContext.getCurrentInstance().addMessage(null, msg);
-		curso.remove((Cursos) event.getObject());
-		boolean resultado = cursoService
-				.eliminar((Cursos) event.getObject());
 
-	}
 
 
 	public String getCodigoColegio() {
@@ -172,11 +165,11 @@ public class CursosMB implements Serializable {
 		this.curso = curso;
 	}
 
-	public char getEstado() {
+	public String getEstado() {
 		return estado;
 	}
 
-	public void setEstado(char estado) {
+	public void setEstado(String estado) {
 		this.estado = estado;
 	}
 	

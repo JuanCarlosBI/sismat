@@ -12,7 +12,7 @@ public interface CursoDao {
 
 	public List<Nivel> listaNivel(String codigoColegio);
 	 public List<Cursos> nombreCurso(String nombcurso);
-	 public List<Cursos> listaCurso(String codigoColegio, String nombcurso,String nivelAcademico,char estado);
+	 public List<Cursos> listaCurso(String codigoColegio, String nombcurso,String nivelAcademico,String estado);
 		public boolean eliminar(Cursos curso);
 		public boolean editar(Cursos editarcurso);
 

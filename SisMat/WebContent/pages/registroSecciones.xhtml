@@ -41,7 +41,7 @@
 										<p:outputLabel value="Co-Tutor:" />
 										<p:autoComplete 
                                                     value="#{registroSeccionMB.nombresco}" completeMethod="#{registroSeccionMB.autoCompletadoProducto}"
-                                                        style="width:400px;text-align:left;"/>
+                                                     required="true" requiredMessage="Ingrese Nombre Co-Tutor"   style="width:400px;text-align:left;"/>
                                                 
 					
 										</p:column>
@@ -62,7 +62,7 @@
 										<p:outputLabel value="Tutor:" />
 										<p:autoComplete 
                                                     value="#{registroSeccionMB.nombres}" completeMethod="#{registroSeccionMB.autoCompletadoProducto}"
-                                                        style="width:400px;text-align:left;"/>
+                                             required="true"      requiredMessage="Ingrese Nombre Tutor"     style="width:400px;text-align:left;"/>
                                                 
 					
 										</p:column>
@@ -70,7 +70,7 @@
 								<tr>
 									<td><p:outputLabel value="Grado:" /></td>
 									<td style="text-align: left;" colspan="3">
-										<p:selectOneMenu id="idGrado" value="#{registroSeccionMB.grado}"  layout="grid" columns="1" >            								
+										<p:selectOneMenu id="idGrado" value="#{registroSeccionMB.grado}"  layout="grid" columns="1"  required="true"      requiredMessage="Elija Grado" >            								
             							   	<p:ajax update="idNivel" listener="#{registroSeccionMB.listaNivel}"/> 
 						            			  <f:selectItem itemLabel="Elegir:" itemValue="" />
             					    		
@@ -85,7 +85,7 @@
 								
 									<td><p:outputLabel value="Nivel Academico:" /></td>
 									<td style="text-align: left;" colspan="3">
-										<p:selectOneMenu id="idNivel" value="#{registroSeccionMB.nivelAcademico}"  layout="grid" columns="1">											
+										<p:selectOneMenu id="idNivel" value="#{registroSeccionMB.nivelAcademico}"  layout="grid" columns="1"  required="true"      requiredMessage="Elija Nivel Academico" >											
             					    		
             							     <f:selectItem itemLabel="Elegir:" itemValue="" />
             					    		<f:selectItems value="#{registroSeccionMB.listanivel}" />
@@ -94,16 +94,16 @@
 								</tr>								
 								<tr>
 									<td><p:outputLabel value="Seccion:" /></td>
-									<td style="text-align: left;"><p:inputText value="#{registroSeccionMB.seccion}" size="3"/></td>					
+									<td style="text-align: left;"><p:inputText value="#{registroSeccionMB.seccion}" size="3"  required="true"      requiredMessage="Ingrese Seccion" /></td>					
 								
 									<td><p:outputLabel value="N° Vacantes:" /></td>
-									<td style="text-align: left;"><p:spinner id="vacantes"  value="#{registroSeccionMB.nroVacantes}" min="0" max="100" size="1"/></td>					
+									<td style="text-align: left;"><p:spinner id="vacantes"  value="#{registroSeccionMB.nroVacantes}" min="0" max="100" size="1"  required="true"      requiredMessage="Ingrese Nro Vacantes" /></td>					
 								
 									<td><p:outputLabel value="N° Aula:" /></td>
-									<td style="text-align: left;"><p:inputText value="#{registroSeccionMB.nroAula}" size="3"/></td>					
+									<td style="text-align: left;"><p:inputText value="#{registroSeccionMB.nroAula}" size="3"  required="true"      requiredMessage="Ingrese Nro de Aula" /></td>					
 								
 									<td><p:outputLabel value="Periodo:" /></td>
-									<td style="text-align: left;"><p:spinner id="basic" value="#{registroSeccionMB.periodo}" min="2015" max="2050" size="1"/></td>
+									<td style="text-align: left;"><p:spinner id="basic" value="#{registroSeccionMB.periodo}" min="2015" max="2050" size="1"  required="true"      requiredMessage="Ingrese Periodo" /></td>
 														
 								</tr>
 							</table>

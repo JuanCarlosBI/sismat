@@ -9,11 +9,13 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
+import org.primefaces.component.api.UIData;
 import org.primefaces.event.RowEditEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.juancarlos.sismat.dominio.Cursos;
+import com.juancarlos.sismat.dominio.Empleado;
 import com.juancarlos.sismat.dominio.Nivel;
 import com.juancarlos.sismat.dominio.Seccion;
 import com.juancarlos.sismat.service.SeccionService;
@@ -26,11 +28,15 @@ public class SeccionesMB implements Serializable {
 
 	private String codigoColegio;
 	private List<Nivel> nivel;
+	private List<Empleado> empleado;
 	private String grado;
 	private List<Seccion> seccion;
 	private String nivelAcademico;
 	private String[] listanivel;
-
+	private String[] listaEmpleado;
+	private String[] tutor;
+	private String[] listaidTutor;
+	private String idTutor;
 	@Autowired
 	private MainMB mainMB;
 	@Autowired
@@ -48,6 +54,13 @@ public class SeccionesMB implements Serializable {
 			Nivel niveles = nivel.get(i);
 			listanivel[i] = niveles.getNivelAcademico();
 		}
+		empleado=seccionService.listaProfesores(codigoColegio);
+		listaEmpleado=new String[empleado.size()];
+		for(int j=0;j<empleado.size();j++){
+			Empleado empleados=empleado.get(j);
+			listaEmpleado[j]=empleados.getNombreCompleto()+"-"+empleados.getIdEmpleado();
+			
+		}
 		return;
 	}
 	
@@ -55,13 +68,33 @@ public class SeccionesMB implements Serializable {
 	public void listaSeccion() {
 		seccion = seccionService.listaSeccion(codigoColegio, grado,
 				nivelAcademico);
-		int resultado=seccion.size();
-		 if (resultado==0) {
-			 FacesContext.getCurrentInstance().addMessage(
+		
+		 
+		 if (seccion == null) {
+				FacesContext.getCurrentInstance().addMessage(
 						null,
 						new FacesMessage(FacesMessage.SEVERITY_ERROR,
-								"Seccion no encontrada", ""));
-			} 
+								"Hubo un problema en la búsqueda", ""));
+			} else if (seccion.isEmpty()) {
+				FacesContext.getCurrentInstance().addMessage(
+						null,
+						new FacesMessage(FacesMessage.SEVERITY_INFO,
+								"No se encontro Seccion", ""));
+
+			} else {
+				listaidTutor = new String[seccion.size()];
+				tutor=new String [seccion.size()];
+				for (int i = 0; i < seccion.size(); i++) {
+					Seccion secciones = seccion.get(i);
+					listaidTutor[i] = secciones.getIdTutor();
+					tutor[i] = seccionService.nombreTutor(listaidTutor[i])+"-"+listaidTutor[i];
+					System.out.println(seccionService.nombreTutor(listaidTutor[i]));
+					
+					
+				}
+				
+				
+			}
 		 return;
 	}
 
@@ -69,7 +102,15 @@ public class SeccionesMB implements Serializable {
 		FacesMessage msg = new FacesMessage("Seccion Editado",
 				((Seccion) event.getObject()).getSeccion());
 		FacesContext.getCurrentInstance().addMessage(null, msg);
+		System.out.println(event.hashCode());
+		  UIData data = (UIData) event.getComponent().findComponent("myDataTable");
+		  int rowIndex = data.getRowIndex();
+		
+		 idTutor = tutor[rowIndex].replaceAll("[^0-9.]", "");
+		((Seccion) event.getObject()).setIdTutor(idTutor);
+		
 		boolean resultado = seccionService.editar((Seccion) event.getObject());
+		
 	}
 
 
@@ -147,5 +188,69 @@ public class SeccionesMB implements Serializable {
 	public void setSeccion(List<Seccion> seccion) {
 		this.seccion = seccion;
 	}
+
+
+	public String[] getTutor() {
+		return tutor;
+	}
+
+
+	public void setTutor(String[] tutor) {
+		this.tutor = tutor;
+	}
+
+
+	public String[] getListaidTutor() {
+		return listaidTutor;
+	}
+
+
+	public void setListaidTutor(String[] listaidTutor) {
+		this.listaidTutor = listaidTutor;
+	}
+
+
+	public MainMB getMainMB() {
+		return mainMB;
+	}
+
+
+	public void setMainMB(MainMB mainMB) {
+		this.mainMB = mainMB;
+	}
+
+
+	public List<Empleado> getEmpleado() {
+		return empleado;
+	}
+
+
+	public void setEmpleado(List<Empleado> empleado) {
+		this.empleado = empleado;
+	}
+
+
+	public String[] getListaEmpleado() {
+		return listaEmpleado;
+	}
+
+
+	public void setListaEmpleado(String[] listaEmpleado) {
+		this.listaEmpleado = listaEmpleado;
+	}
+
+
+	public String getIdTutor() {
+		return idTutor;
+	}
+
+
+	public void setIdTutor(String idTutor) {
+		this.idTutor = idTutor;
+	}
+
+
+	
+	
 
 }

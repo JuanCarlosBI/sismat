@@ -10,9 +10,11 @@ public interface SeccionService {
 
 		public boolean registroSeccion(String idTutor,String idCoTutor, String grado,
 				String nivelAcademico, String seccion, String nroVacantes,
-				String nroAula, String periodo,String codigoColegio,String tutor);
+				String nroAula, String periodo,String codigoColegio);
 		public List<Nivel> listaNivel(String codigoColegio);
 		public List<Seccion> listaSeccion(String codigoColegio, String grado,String nivelAcademico);
 		public boolean eliminar(Seccion seccion);
 		public boolean editar(Seccion editarseccion);
+		public String nombreTutor(String idtutor);
+		List<Empleado> listaProfesores(String codigoColegio);
 }

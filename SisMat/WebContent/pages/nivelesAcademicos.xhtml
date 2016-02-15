@@ -37,8 +37,8 @@
 										<p:outputLabel value="Nivel:" />
 									</td>
 									<td>
-										<p:selectOneMenu id="idNivel" value="#{nivelesAcademicosMB.nivel}"  layout="grid" columns="1">
-            								<f:selectItem itemValue="Todos" itemLabel="Todos"/>
+										<p:selectOneMenu id="idNivel" value="#{nivelesAcademicosMB.nivel}" required="true"  requiredMessage="Ingrese Nivel" layout="grid" columns="1">
+            								<f:selectItem itemValue="" itemLabel="Todos"/>
             								<f:selectItem itemValue="Inicial" itemLabel="Inicial"/>
             								<f:selectItem itemValue="Primaria" itemLabel="Primaria"/>
             								<f:selectItem itemValue="Secundaria" itemLabel="Secundaria"/>
@@ -54,7 +54,7 @@
 										<p:outputLabel value="Estado:" />
 									</td>
 									<td>
-										<p:selectOneRadio id="idEstado" value="#{nivelesAcademicosMB.estado}"  layout="grid" columns="2">
+										<p:selectOneRadio id="idEstado" value="#{nivelesAcademicosMB.estado}" required="true" requiredMessage="Elija Estado" layout="grid" columns="2">
             								<f:selectItem itemValue="Activo" itemLabel="Activo"/>
             								<f:selectItem itemValue="Inactivo" itemLabel="Inactivo"/>
         								</p:selectOneRadio>
@@ -104,7 +104,10 @@
 								<h:outputText value="#{lista.tipo}" />
 							</f:facet>
 							<f:facet name="input">
-								<p:inputText value="#{lista.tipo}" />
+								<p:selectOneMenu id="idTipo" value="#{lista.tipo}" style="width:100px;" >							            
+								            <f:selectItem itemLabel="Normal" itemValue="Normal" />
+								            <f:selectItem itemLabel="Verano" itemValue="Verano" />							            
+        								</p:selectOneMenu>
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
@@ -115,7 +118,11 @@
 								<h:outputText value="#{lista.nivel}" />
 							</f:facet>
 							<f:facet name="input">
-								<p:inputText value="#{lista.nivel}" />
+								<p:selectOneMenu id="idNieee" value="#{lista.nivel}" style="width:100px;" >							            
+								            <f:selectItem itemLabel="Inicial" itemValue="Inicial" />
+								            <f:selectItem itemLabel="Primaria" itemValue="Primaria" />	
+								            <f:selectItem itemLabel="Secundaria" itemValue="Secundaria" />							            
+        								</p:selectOneMenu>
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
@@ -127,7 +134,14 @@
 								<h:outputText value="#{lista.orden}" />
 							</f:facet>
 							<f:facet name="input">
-								<p:inputText value="#{lista.orden}" />
+								<p:selectOneMenu id="idorden" value="#{lista.orden}" style="width:100px;" >							            
+								            <f:selectItem itemLabel="1°" itemValue="1" />
+								            <f:selectItem itemLabel="2°" itemValue="2" />	
+								            <f:selectItem itemLabel="3°" itemValue="3" />	
+								            <f:selectItem itemLabel="4°" itemValue="4" />
+								            <f:selectItem itemLabel="5°" itemValue="5" />	
+								            <f:selectItem itemLabel="6°" itemValue="6" />						            
+        								</p:selectOneMenu>
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
@@ -144,25 +158,15 @@
 					</p:column>
 
 					<p:column headerText="Descripcion" styleClass="panelTabla">
-						<p:cellEditor>
-							<f:facet name="output">
+						
 								<h:outputText value="#{lista.nivelAcademico}" />
-							</f:facet>
-							<f:facet name="input">
-								<p:inputText value="#{lista.nivelAcademico}" />
-							</f:facet>
-						</p:cellEditor>
+							
 					</p:column>
 
 					<p:column headerText="Estado" styleClass="panelTabla">
-						<p:cellEditor>
-							<f:facet name="output">
+						
 								<h:outputText value="#{lista.estado}" />
-							</f:facet>
-							<f:facet name="input">
-								<p:inputText value="#{lista.estado}" />
-							</f:facet>
-						</p:cellEditor>
+							
 					</p:column>
 					<p:column headerText="Opciones" styleClass="panelTabla" >
 					

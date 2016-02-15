@@ -16,16 +16,17 @@ import com.juancarlos.sismat.service.SeccionService;
 public class SeccionServiceImpl implements SeccionService {
 	@Autowired
 	SeccionDao seccionDao;
-   
+
 	public List<Empleado> nombreEmpleado(String nombres) {
 		// TODO Auto-generated method stub
-		 return seccionDao.nombreEmpleado(nombres);
+		return seccionDao.nombreEmpleado(nombres);
 	}
-	
-	public boolean registroSeccion(String idTutor,String idCoTutor, String grado,
-			String nivelAcademico, String seccion, String nroVacantes,
-			String nroAula, String periodo,String codigoColegio,String tutor){
-		
+
+	public boolean registroSeccion(String idTutor, String idCoTutor,
+			String grado, String nivelAcademico, String seccion,
+			String nroVacantes, String nroAula, String periodo,
+			String codigoColegio) {
+
 		Seccion secciones = new Seccion();
 		secciones.setIdTutor(idTutor);
 		secciones.setIdCoTutor(idCoTutor);
@@ -36,26 +37,39 @@ public class SeccionServiceImpl implements SeccionService {
 		secciones.setNroAula(nroAula);
 		secciones.setPeriodo(periodo);
 		secciones.setCodigoColegio(codigoColegio);
-		secciones.setTutor(tutor);
-		
 
-		 return seccionDao.registroSeccion(secciones);
-		
+		return seccionDao.registroSeccion(secciones);
+
 	}
+
 	public List<Nivel> listaNivel(String codigoColegio) {
 		List<Nivel> nivel = seccionDao.listaNivel(codigoColegio);
 		return nivel;
 	}
-	public List<Seccion> listaSeccion(String codigoColegio, 
-			String grado,String nivelAcademico) {
-		List<Seccion> seccion = seccionDao.listaSeccion(codigoColegio,
-				grado,nivelAcademico);
+
+	public List<Seccion> listaSeccion(String codigoColegio, String grado,
+			String nivelAcademico) {
+		List<Seccion> seccion = seccionDao.listaSeccion(codigoColegio, grado,nivelAcademico);
 		return seccion;
 	}
-	public boolean eliminar(Seccion seccion){
+
+	public boolean eliminar(Seccion seccion) {
 		return seccionDao.eliminar(seccion);
 	}
-	public boolean editar(Seccion editarseccion){
+
+	public boolean editar(Seccion editarseccion) {
 		return seccionDao.editar(editarseccion);
+	}
+
+	public String nombreTutor(String idtutor) {
+		String tutor = seccionDao.nombreTutor(idtutor);
+		return tutor;
+	}
+
+	public List<Empleado> listaProfesores(String codigoColegio) {
+
+		List<Empleado> empleados = seccionDao.listaProfesores(codigoColegio);
+
+		return empleados;
 	}
 }

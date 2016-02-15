@@ -36,7 +36,7 @@ public class Usuario  implements java.io.Serializable {
 	private String nombreCompleto;
 	private String estado;
 
-    private Date fecha;
+    private String fecha;
      private String nombreUsuario;
      private String clave;
      private String tipo;
@@ -56,7 +56,7 @@ public class Usuario  implements java.io.Serializable {
     
    
      public Usuario(String nombreCompleto, String estado, String nombreUsuario,
-			String clave, String tipo, String codigoColegio,Date fecha) {
+			String clave, String tipo, String codigoColegio,String fecha) {
 		super();
 		this.nombreCompleto = nombreCompleto;
 		this.estado = estado;
@@ -134,13 +134,13 @@ public class Usuario  implements java.io.Serializable {
 	public void setCodigoColegio(String codigoColegio) {
 		this.codigoColegio = codigoColegio;
 	}
-	  @Temporal(TemporalType.DATE)
+	  
 	    @Column(name="FechaRegistro", nullable=false, length=10)
-	 public Date getFecha() {
+	 public String getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(Date fecha) {
+	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
 
