@@ -35,23 +35,21 @@
 								<tr>
 									<td><p:outputLabel value="DNI:" /></td>
 									<td>
-									<p:inputMask value="#{profesoresMB.dni}"  required="true" requiredMessage="Ingrese DNI" mask="99999999"/></td>					
+									<p:inputMask value="#{profesoresMB.dni}"   requiredMessage="Ingrese DNI" mask="99999999"/></td>					
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Nombres:" /></td>
 									<td>
 									
-									<p:inputText value="#{profesoresMB.nombres}" required="true" requiredMessage="Ingrese Nombres" maxlength="70" validatorMessage="Por favor ingrese el Nombre Correctamente">
-									<f:validateRegex pattern="[a-zA-Z]+"/> 		
-									</p:inputText>
+									<p:inputText value="#{profesoresMB.nombres}" requiredMessage="Ingrese Nombres" maxlength="70" validatorMessage="Por favor ingrese el Nombre Correctamente" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))||(!(event.which &lt; 166 || event.which &gt; 255))) return false;"/>
+									
 									</td>					
 								</tr>	
 								<tr>
 									<td><p:outputLabel value="Apellidos:" /></td>
 									<td>
-									<p:inputText value="#{profesoresMB.apellidos}" required="true" requiredMessage="Ingrese Apellidos" maxlength="70" validatorMessage="Por favor ingrese los Apellidos Correctamente">
-									<f:validateRegex pattern="[a-zA-Z ]+"/> 		
-									</p:inputText></td>					
+									<p:inputText value="#{profesoresMB.apellidos}"  requiredMessage="Ingrese Apellidos" maxlength="70" validatorMessage="Por favor ingrese los Apellidos Correctamente" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))||(!(event.which &lt; 166 || event.which &gt; 255))) return false;"/>
+									</td>				
 								</tr>							
 							</table>
 						</td>
@@ -64,7 +62,7 @@
 										<p:outputLabel value="Estado:" />
 									</td>
 									<td>
-										<p:selectOneRadio id="idEstado" value="#{profesoresMB.estado}" required="true" requiredMessage="Elija Estado" layout="grid" columns="2">
+										<p:selectOneRadio id="idEstado" value="#{profesoresMB.estado}"  requiredMessage="Elija Estado" layout="grid" columns="2">
             								<f:selectItem itemValue="Activo" itemLabel="Activo"/>
             								<f:selectItem itemValue="Inactivo" itemLabel="Inactivo"/>
         								</p:selectOneRadio>
@@ -91,7 +89,7 @@
 					</tr>
 				</table>
 				
-				<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+				<p:messages id="messages" showDetail="false" autoUpdate="true" closable="true" />
 				
 		</p:panel>
 		
@@ -115,9 +113,8 @@
 								<h:outputText value="#{lista.nombres}" />
 							</f:facet>
 							<f:facet name="input">
-								<p:inputText value="#{lista.nombres}" required="true" maxlength="70" validatorMessage="Por favor ingrese el Nombre Correctamente">
-									<f:validateRegex pattern="[a-zA-Z]+"/> 		
-									</p:inputText>
+								<p:inputText value="#{lista.nombres}" required="true" maxlength="70" validatorMessage="Por favor ingrese el Nombre Correctamente" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))||(!(event.which &lt; 166 || event.which &gt; 255))) return false;"/>
+									
 							</f:facet>
 						</p:cellEditor>
 			        
@@ -130,9 +127,8 @@
 							</f:facet>
 							<f:facet name="input">
 								
-								<p:inputText value="#{lista.apellidos}" required="true" maxlength="70" validatorMessage="Por favor ingrese los Apellidos Correctamente">
-									<f:validateRegex pattern="[a-zA-Z]+"/> 		
-									</p:inputText>
+								<p:inputText value="#{lista.apellidos}" required="true" maxlength="70" validatorMessage="Por favor ingrese los Apellidos Correctamente" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))||(!(event.which &lt; 166 || event.which &gt; 255))) return false;"/>
+									
 							</f:facet>
 						</p:cellEditor>
 			        

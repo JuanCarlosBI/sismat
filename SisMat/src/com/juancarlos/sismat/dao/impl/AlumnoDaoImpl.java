@@ -16,169 +16,239 @@ import com.juancarlos.sismat.dominio.Nivel;
 public class AlumnoDaoImpl extends HibernateDaoSupport implements AlumnoDao {
 
 	@Autowired
-	public AlumnoDaoImpl(SessionFactory sessionFactory){
+	public AlumnoDaoImpl(SessionFactory sessionFactory) {
 		setSessionFactory(sessionFactory);
 	}
-	
+
 	public Alumnos datosAlumno(String idAlumno) {
 		logger.info("en datosAlumno()");
-		
+
 		return getHibernateTemplate().get(Alumnos.class, idAlumno);
 	}
 
-	
-
-	public boolean registroAlumno(Alumnos alumno){
+	public boolean registroAlumno(Alumnos alumno) {
 		boolean resultado;
-		
+
 		try {
-			getHibernateTemplate().save(alumno);	
+			getHibernateTemplate().save(alumno);
 			getHibernateTemplate().flush();
 			resultado = true;
-			
+
 		} catch (Exception e) {
 			resultado = false;
-			System.out.println(e);
-		}	
-		
+		}
+
 		return resultado;
 	}
 
-
-
 	@SuppressWarnings("unchecked")
-	public Alumnos encontrarAlumno(String string){
+	public Alumnos encontrarAlumno(String string) {
 		List<Alumnos> alumnos;
 		Alumnos alumno = new Alumnos();
-		String sql="";
+		String sql = "";
 		try {
-			sql = "from Alumnos where IdAlumno='"+string+"'";
+			sql = "from Alumnos where IdAlumno='" + string + "'";
 			alumnos = getHibernateTemplate().find(sql);
-			
-			if(!alumnos.isEmpty()){
-				if(alumnos.size() == 1){
+
+			if (!alumnos.isEmpty()) {
+				if (alumnos.size() == 1) {
 					alumno = alumnos.get(0);
 				}
-			}
-			else{
+			} else {
 				alumno = null;
 			}
-			
+
 		} catch (Exception e) {
 			alumno = null;
 		}
-		
+
 		return alumno;
 	}
 
-
 	@SuppressWarnings("unchecked")
-	public List<Alumnos> listaAlumnos(String codigoColegio, String dni, String nombre, String apellidoPaterno,String apellidoMaterno, String estado) {	
+	public List<Alumnos> listaAlumnos(String codigoColegio, String dni,
+			String nombre, String apellidoPaterno, String apellidoMaterno,
+			String estado) {
 		logger.info("en listaAlumnos");
-		System.out.println("en listaAlumnos dao");
 		String sql = "";
-		List<Alumnos> alumnos = new ArrayList<Alumnos>();		
-			 
-		 try {
+		List<Alumnos> alumnos = new ArrayList<Alumnos>();
 
-//			 sql = "from Alumnos where codigoColegio = '"+codigoColegio.trim()+"'";
-			 
-			 if(dni.length()==0 && nombre.length()==0 && apellidoPaterno.length()==0 && apellidoMaterno.length()==0 && estado.length()==0){
-				 System.out.println("1");
-				 sql = "from Alumnos where codigoColegio = '"+codigoColegio.trim()+"'";				  
-			 }
-			 if(dni.length()!=0 && nombre.length()==0 && apellidoPaterno.length()==0 && apellidoMaterno.length()==0 && estado.length()==0){
-				 System.out.println("2");
-				 sql = "from Alumnos where codigoColegio = '"+codigoColegio.trim()+"' AND dni='"+dni.trim()+"'";
-			 }
-			 if(dni.length()==0 && nombre.length()!=0 && apellidoPaterno.length()==0 && apellidoMaterno.length()==0 && estado.length()==0){
-				 System.out.println("3");
-				 sql = "from Alumnos where codigoColegio = '"+codigoColegio.trim()+"'AND nombres='"+nombre.trim()+"'";			 
-			 }
-			 if(dni.length()==0 && nombre.length()==0 && apellidoPaterno.length()!=0 && apellidoMaterno.length()==0 && estado.length()==0){
-				 System.out.println("4");
-				 sql = "from Alumnos where codigoColegio = '"+codigoColegio.trim()+"'OR nombres='"+nombre.trim()+"' AND apellidoPaterno='"+apellidoPaterno.trim()+"'";
-			 }
-			 if(dni.length()==0 && nombre.length()==0 && apellidoPaterno.length()==0 && apellidoMaterno.length()!=0 && estado.length()==0){
-				 System.out.println("5");
-				 sql = "from Alumnos where codigoColegio = '"+codigoColegio.trim()+"'AND apellidoMaterno='"+apellidoMaterno.trim()+"'";
-			 }
-			if(dni.length()==0 && nombre.length()==0 && apellidoPaterno.length()==0 && apellidoMaterno.length()==0 && estado.length()==0){
+		try {
+
+			// sql =
+			// "from Alumnos where codigoColegio = '"+codigoColegio.trim()+"'";
+
+			if (dni.length() == 0 && nombre.length() == 0
+					&& apellidoPaterno.length() == 0
+					&& apellidoMaterno.length() == 0 && estado.length() == 0) {
+				System.out.println("1");
+				sql = "from Alumnos where codigoColegio = '"
+						+ codigoColegio.trim() + "'";
+			}
+			if (dni.length() != 0 && nombre.length() == 0
+					&& apellidoPaterno.length() == 0
+					&& apellidoMaterno.length() == 0 && estado.length() == 0) {
+				System.out.println("2");
+				sql = "from Alumnos where codigoColegio = '"
+						+ codigoColegio.trim() + "' AND dni='" + dni.trim()
+						+ "'";
+			}
+			if (dni.length() == 0 && nombre.length() == 0
+					&& apellidoPaterno.length() == 0
+					&& apellidoMaterno.length() == 0 && estado.length() != 0) {
+				System.out.println("3");
+				sql = "from Alumnos where codigoColegio = '"
+						+ codigoColegio.trim() + "' AND estado='"
+						+ estado.trim() + "'";
+			}
+			if (dni.length() == 0 && nombre.length() != 0
+					&& apellidoPaterno.length() == 0
+					&& apellidoMaterno.length() == 0 && estado.length() == 0) {
+				System.out.println("4");
+				sql = "from Alumnos where codigoColegio = '"
+						+ codigoColegio.trim() + "'AND nombres='"
+						+ nombre.trim() + "'";
+			}
+			if (dni.length() == 0 && nombre.length() == 0
+					&& apellidoPaterno.length() != 0
+					&& apellidoMaterno.length() == 0 && estado.length() == 0) {
+				System.out.println("5");
+				sql = "from Alumnos where codigoColegio = '"
+						+ codigoColegio.trim() + "' AND apellidoPaterno='"
+						+ apellidoPaterno.trim() + "'";
+			}
+			if (dni.length() == 0 && nombre.length() == 0
+					&& apellidoPaterno.length() == 0
+					&& apellidoMaterno.length() != 0 && estado.length() == 0) {
 				System.out.println("6");
-				sql = "from Alumnos where codigoColegio = '"+codigoColegio.trim()+"'AND estado='"+estado+"'";			 
+				sql = "from Alumnos where codigoColegio = '"
+						+ codigoColegio.trim() + "'AND apellidoMaterno='"
+						+ apellidoMaterno.trim() + "'";
 			}
-			if(dni.length()!=0 && nombre.length()!=0 && apellidoPaterno.length()==0 && apellidoMaterno.length()==0 && estado.length()==0){
+
+			if (dni.length() != 0 && nombre.length() != 0
+					&& apellidoPaterno.length() == 0
+					&& apellidoMaterno.length() == 0 && estado.length() == 0) {
 				System.out.println("7");
-				sql = "from Alumnos where codigoColegio = '"+codigoColegio.trim()+"'AND nombres='"+nombre.trim()+"'AND dni='"+dni.trim()+"'"; 
+				sql = "from Alumnos where codigoColegio = '"
+						+ codigoColegio.trim() + "'AND nombres='"
+						+ nombre.trim() + "'AND dni='" + dni.trim() + "'";
 			}
-			if(dni.length()!=0 && nombre.length()==0 && apellidoPaterno.length()!=0 && apellidoMaterno.length()==0 && estado.length()==0){
+			if (dni.length() != 0 && nombre.length() == 0
+					&& apellidoPaterno.length() != 0
+					&& apellidoMaterno.length() == 0 && estado.length() == 0) {
 				System.out.println("8");
-				sql = "from Alumnos where codigoColegio = '"+codigoColegio.trim()+"'AND apellidoPaterno='"+apellidoPaterno.trim()+"' AND dni='"+dni.trim()+"'"; 
+				sql = "from Alumnos where codigoColegio = '"
+						+ codigoColegio.trim() + "'AND apellidoPaterno='"
+						+ apellidoPaterno.trim() + "' AND dni='" + dni.trim()
+						+ "'";
 			}
-			if(dni.length()!=0 && nombre.length()==0 && apellidoPaterno.length()==0 && apellidoMaterno.length()!=0 && estado.length()==0){
+			if (dni.length() != 0 && nombre.length() == 0
+					&& apellidoPaterno.length() == 0
+					&& apellidoMaterno.length() != 0 && estado.length() == 0) {
 				System.out.println("9");
-				sql = "from Alumnos where codigoColegio = '"+codigoColegio.trim()+"' AND apellidoMaterno='"+apellidoMaterno.trim()+"' AND dni='"+dni.trim()+"'"; 
+				sql = "from Alumnos where codigoColegio = '"
+						+ codigoColegio.trim() + "' AND apellidoMaterno='"
+						+ apellidoMaterno.trim() + "' AND dni='" + dni.trim()
+						+ "'";
 			}
-			if(dni.length()!=0 && nombre.length()==0 && apellidoPaterno.length()==0 && apellidoMaterno.length()==0 && estado.length()==0){
-				System.out.println("10");
-				sql = "from Alumnos where codigoColegio = '"+codigoColegio.trim()+"' AND dni='"+dni.trim()+"' AND estado='"+estado+"'"; 
-			}
-			if(dni.length()!=0 && nombre.length()!=0 && apellidoPaterno.length()!=0 && apellidoMaterno.length()==0 && estado.length()==0){
+
+			if (dni.length() != 0 && nombre.length() != 0
+					&& apellidoPaterno.length() != 0
+					&& apellidoMaterno.length() == 0 && estado.length() == 0) {
 				System.out.println("11");
-				sql = "from Alumnos where codigoColegio = '"+codigoColegio.trim()+"'AND nombres='"+nombre.trim()+"' AND apellidoPaterno='"+apellidoPaterno.trim()+"' AND dni='"+dni.trim()+"'"; 
+				sql = "from Alumnos where codigoColegio = '"
+						+ codigoColegio.trim() + "'AND nombres='"
+						+ nombre.trim() + "' AND apellidoPaterno='"
+						+ apellidoPaterno.trim() + "' AND dni='" + dni.trim()
+						+ "'";
 			}
-			if(dni.length()!=0 && nombre.length()!=0 && apellidoPaterno.length()==0 && apellidoMaterno.length()!=0 && estado.length()==0){
+			if (dni.length() != 0 && nombre.length() != 0
+					&& apellidoPaterno.length() == 0
+					&& apellidoMaterno.length() != 0 && estado.length() == 0) {
 				System.out.println("12");
-				sql = "from Alumnos where codigoColegio = '"+codigoColegio.trim()+"'AND nombres='"+nombre.trim()+"' AND apellidoMaterno='"+apellidoMaterno.trim()+"' AND dni='"+dni.trim()+"'"; 
-			 }
-			if(dni.length()!=0 && nombre.length()!=0 && apellidoPaterno.length()==0 && apellidoMaterno.length()==0 && estado.length()==0){
+				sql = "from Alumnos where codigoColegio = '"
+						+ codigoColegio.trim() + "'AND nombres='"
+						+ nombre.trim() + "' AND apellidoMaterno='"
+						+ apellidoMaterno.trim() + "' AND dni='" + dni.trim()
+						+ "'";
+			}
+			if (dni.length() != 0 && nombre.length() != 0
+					&& apellidoPaterno.length() == 0
+					&& apellidoMaterno.length() == 0 && estado.length() == 0) {
 				System.out.println("13");
-				sql = "from Alumnos where codigoColegio = '"+codigoColegio.trim()+"'AND nombres='"+nombre.trim()+"' AND dni='"+dni.trim()+"' AND estado='"+estado+"'"; 
-			 }
-			if(dni.length()!=0 && nombre.length()!=0 && apellidoPaterno.length()!=0 && apellidoMaterno.length()!=0 && estado.length()!=0){
+				sql = "from Alumnos where codigoColegio = '"
+						+ codigoColegio.trim() + "'AND nombres='"
+						+ nombre.trim() + "' AND dni='" + dni.trim()
+						+ "' AND estado='" + estado + "'";
+			}
+			if (dni.length() != 0 && nombre.length() != 0
+					&& apellidoPaterno.length() != 0
+					&& apellidoMaterno.length() != 0 && estado.length() != 0) {
 				System.out.println("14");
-				sql = "from Alumnos where codigoColegio = '"+codigoColegio.trim()+"'AND nombres='"+nombre.trim()+"' AND apellidoPaterno='"+apellidoPaterno.trim()+"' AND apellidoMaterno='"+apellidoMaterno.trim()+"' AND dni='"+dni.trim()+"'"; 
-			 }
-			if(dni.length()!=0 && nombre.length()!=0 && apellidoPaterno.length()!=0 && apellidoMaterno.length()==0 && estado.length()!=0){
+				sql = "from Alumnos where codigoColegio = '"
+						+ codigoColegio.trim() + "'AND nombres='"
+						+ nombre.trim() + "' AND apellidoPaterno='"
+						+ apellidoPaterno.trim() + "' AND apellidoMaterno='"
+						+ apellidoMaterno.trim() + "' AND dni='" + dni.trim()
+						+ "'";
+			}
+			if (dni.length() != 0 && nombre.length() != 0
+					&& apellidoPaterno.length() != 0
+					&& apellidoMaterno.length() == 0 && estado.length() != 0) {
 				System.out.println("15");
-				sql = "from Alumnos where codigoColegio = '"+codigoColegio.trim()+"'AND nombres='"+nombre.trim()+"' AND apellidoPaterno='"+apellidoPaterno.trim()+"' AND dni='"+dni.trim()+"' AND estado='"+estado+"'"; 
-			 }
-			if(dni.length()!=0 && nombre.length()!=0 && apellidoPaterno.length()!=0 && apellidoMaterno.length()!=0 && estado.length()!=0){
+				sql = "from Alumnos where codigoColegio = '"
+						+ codigoColegio.trim() + "'AND nombres='"
+						+ nombre.trim() + "' AND apellidoPaterno='"
+						+ apellidoPaterno.trim() + "' AND dni='" + dni.trim()
+						+ "' AND estado='" + estado + "'";
+			}
+			if (dni.length() != 0 && nombre.length() != 0
+					&& apellidoPaterno.length() != 0
+					&& apellidoMaterno.length() != 0 && estado.length() != 0) {
 				System.out.println("16");
-				sql = "from Alumnos where codigoColegio = '"+codigoColegio.trim()+"'AND nombres='"+nombre.trim()+"' AND apellidoPaterno='"+apellidoPaterno.trim()+"' AND apellidoMaterno='"+apellidoMaterno.trim()+"' AND dni='"+dni.trim()+"' AND estado='"+estado+"'";
-		     }
-			  
-			 
-			 alumnos =  getHibernateTemplate().find(sql);
-			 System.out.println("alumnos tamanio "+alumnos.size());
-			 
-			 if(alumnos.isEmpty()){
-				 alumnos = new ArrayList<Alumnos>(); 
-			 }
-			 
+				sql = "from Alumnos where codigoColegio = '"
+						+ codigoColegio.trim() + "'AND nombres='"
+						+ nombre.trim() + "' AND apellidoPaterno='"
+						+ apellidoPaterno.trim() + "' AND apellidoMaterno='"
+						+ apellidoMaterno.trim() + "' AND dni='" + dni.trim()
+						+ "' AND estado='" + estado + "'";
+			}
+			if (dni.length() != 0 && nombre.length() == 0
+					&& apellidoPaterno.length() == 0
+					&& apellidoMaterno.length() == 0 && estado.length() != 0) {
+				System.out.println("17");
+				sql = "from Alumnos where codigoColegio = '"
+						+ codigoColegio.trim() + "' AND dni='" + dni.trim()
+						+ "' AND estado='" + estado + "'";
+			}
+
+			alumnos = getHibernateTemplate().find(sql);
+
+			if (alumnos.isEmpty()) {
+				alumnos = new ArrayList<Alumnos>();
+			}
+
 		} catch (Exception e) {
-			System.out.println(e);
 			alumnos = null;
 		}
-		
+
 		return alumnos;
 	}
+
 	@Override
 	public boolean editar(Alumnos editarAlumno) {
 		boolean resultado;
-		
+
 		try {
 			getHibernateTemplate().update(editarAlumno);
 			resultado = true;
-			
+
 		} catch (Exception e) {
 			resultado = false;
-		}	
-		
+		}
+
 		return resultado;
-	} 
-
-
+	}
 
 }
-

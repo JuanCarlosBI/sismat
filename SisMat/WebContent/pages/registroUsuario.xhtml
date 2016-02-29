@@ -34,7 +34,7 @@
 								<tr>
 									<td><p:outputLabel value="Tipo Usuario:" /></td>
 									<td>
-										<p:selectOneMenu id="idTipo" value="#{registroUsuarioMB.tipo}"  required="true"      requiredMessage="Elija Tipo de Usuario" >							            
+										<p:selectOneMenu id="idTipo" value="#{registroUsuarioMB.tipo}"  required="#{not empty param.includeGuardar}"     requiredMessage="Elija Tipo de Usuario" >							            
 								            <f:selectItem itemLabel="Administrativo" itemValue="Administrativo" />
 								            <f:selectItem itemLabel="Alumno" itemValue="Alumno" />
 								            <f:selectItem itemLabel="Auxiliar" itemValue="Auxiliar" />
@@ -46,23 +46,24 @@
 								
 								<tr>
 									<td><p:outputLabel value="Nombre Completo:" /></td>
-									<td><p:inputText  value="#{registroUsuarioMB.nombreCompleto}" required="true"    requiredMessage="Ingrese Nombre Completo"  maxlength="70" validatorMessage="Por favor ingrese el Nombre Completo Correctamente">
-									<f:validateRegex pattern="[a-zA-Z ]+"/> 		
-									</p:inputText></td>
+									<td><p:inputText  value="#{registroUsuarioMB.nombreCompleto}" style="width:250px;" required="#{not empty param.includeGuardar}"    requiredMessage="Ingrese Nombre Completo"  maxlength="70" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))||(!(event.which &lt; 166 || event.which &gt; 255))) return false;"/>
+									</td>
 								
 								</tr>
 																
 								<tr>
 									<td><p:outputLabel value="Usuario:" /></td>
-									<td><p:inputText  value="#{registroUsuarioMB.nombreUsuario}"  required="true"      requiredMessage="Ingrese Nombre Usuario" /></td>					
+									<td><p:inputText  value="#{registroUsuarioMB.nombreUsuario}"  required="#{not empty param.includeGuardar}"      requiredMessage="Ingrese Nombre Usuario" /></td>					
 								</tr>
 								<tr>
 									<td> <h:outputLabel for="pwd1" value="Ingrese Contraseña" /></td>
-      								<td>  <p:password id="pwd1" value="#{registroUsuarioMB.clave}" match="pwd2" label="Ingrese Contraseña" required="true"    requiredMessage="Ingrese Contraseña" /></td>
+									<td>  <p:password id="feedback" value="#{registroUsuarioMB.clave}" feedback="true" />
+ </td>
  
       								<td><h:outputLabel for="pwd2" value="Repita Contraseña" /></td>
-     								<td><p:password id="pwd2" value="#{registroUsuarioMB.clave}" label="Repita Contraseña" required="true"    requiredMessage="Ingrese Repita Contraseña" /></td>
-    													
+      								<td><p:password id="nonFeedback" value="#{registroUsuarioMB.clave1}" />
+ </td>
+    				
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Estado:" /></td>
@@ -80,12 +81,13 @@
 							<table>
 								<tr>
 									<td>
-										
-										<p:commandButton id="btnGuardar"					
-										value="Guardar" action="#{registroUsuarioMB.registrarUsuario}" styleClass="buttonForm"/>
-							<p:commandButton value="Limpiar" update="usuarios" process="@this" actionListener="#{registroUsuarioMB.resetFail}" styleClass="buttonForm" />
- 							 <p:link id="btnCancelar"				outcome="pagina"				
-										value="Cancelar"  styleClass="buttonForm"/>																				
+											<p:commandButton id="btnGuardar" value="Guardar"								
+								action="#{registroUsuarioMB.registrarUsuario}"  ajax="false" styleClass="buttonForm">
+									<f:param name="includeGuardar" value="true" /> </p:commandButton> 
+								 	
+										<p:commandButton value="Limpiar" update="usuarios" process="@this" actionListener="#{registroUsuarioMB.resetFail}" styleClass="buttonForm" />
+ 								<p:commandButton value= "Cancelar" ajax= "false" action= "pagina.xhmtl?faces-redirect=true" styleClass="buttonForm" /> 
+																								
 									</td>
 								</tr>
 							</table>					

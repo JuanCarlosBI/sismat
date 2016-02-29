@@ -11,7 +11,7 @@ public interface UsuarioDao {
 	public List<Usuario>  datosUsuario(String nombreUsuario,String clave);
 	public boolean registroUsuario(Usuario usuario);
 	  public List<Usuario> nombreUsuario(String nombreUsuario);
-	  public List<Usuario> listaUsuario(String codigoColegio, String idUsuario);
+	  public List<Usuario> listaUsuario(String codigoColegio, String idUsuario,String estado);
 	  public boolean editar(Usuario editarUsuario);
 	  
 }

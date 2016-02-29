@@ -41,8 +41,8 @@ public class CursosMB implements Serializable {
 
 	public List<String> autoCompletadoCurso(String query) {
 
-		System.out.println("autoCompletadoProducto");
-		System.out.println("query " + query);
+		
+		
 
 		List<String> results = new ArrayList<String>();
 		List<Cursos> listaNombresCursos = new ArrayList<Cursos>();
@@ -52,12 +52,7 @@ public class CursosMB implements Serializable {
 
 		mainMB.datosUsuario();
 		codigoColegio=mainMB.getCodigoColegio();
-		nivel = cursoService.listaNivel(codigoColegio);
-		listanivel = new String[nivel.size()];
-		for (int i = 0; i < nivel.size(); i++) {
-			Nivel niveles = nivel.get(i);
-			listanivel[i] = niveles.getNivelAcademico();
-		}
+		
 		
 		
 		if (query.length() >= 3) {
@@ -71,7 +66,9 @@ public class CursosMB implements Serializable {
 	}
 
 	public void listaNivel() {
-		codigoColegio = "1041701524";
+		mainMB.datosUsuario();
+		codigoColegio=mainMB.getCodigoColegio();
+		
 		nivel = cursoService.listaNivel(codigoColegio);
 		listanivel = new String[nivel.size()];
 		for (int i = 0; i < nivel.size(); i++) {
@@ -82,6 +79,9 @@ public class CursosMB implements Serializable {
 	}
 	
 	public void listaCurso() {
+		mainMB.datosUsuario();
+		codigoColegio=mainMB.getCodigoColegio();
+		
 		 curso = cursoService.listaCurso(codigoColegio, nombcurso,
 				nivelAcademico,estado);
 		 int resultado=curso.size();
@@ -126,7 +126,7 @@ public class CursosMB implements Serializable {
 	}
 
 	public String[] getListanivel() {
-		return listanivel;
+		return mainMB.getListanivel();
 	}
 
 	public void setListanivel(String[] listanivel) {

@@ -4,12 +4,9 @@ package com.juancarlos.sismat.dominio;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -26,113 +23,138 @@ public class Horarios  implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Integer idHorario;
-     private Empleado empleado;
-     private Cursos cursos;
-     private Nivel nivel;
-     private String dia;
-     private String horaIni;
-     private String horaFin;
-     private String codigoColegio;
+	private Short idHorario;
+	private String curso;
+	private String empleado;
+	private String horaIni;
+	private String horaFin;
+	private String seccion;
+	private String nroAula;
+	private String dia;
+	private String grado;
+	private String nivelAcademico;
+	private String codigoColegio;
+	public Horarios() {
+		
+	}
+	public Horarios(Short idHorario) {
+		super();
+		this.idHorario = idHorario;
+	}
+	public Horarios( String curso, String empleado,
+			String horaIni, String horaFin, String seccion, String nroAula,
+			String dia, String grado, String nivelAcademico,
+			String codigoColegio) {
+		
+		this.curso = curso;
+		this.empleado = empleado;
+		this.horaIni = horaIni;
+		this.horaFin = horaFin;
+		this.seccion = seccion;
+		this.nroAula = nroAula;
+		this.dia = dia;
+		this.grado = grado;
+		this.nivelAcademico = nivelAcademico;
+		this.codigoColegio = codigoColegio;
+	}
 
-    public Horarios() {
-    }
+	@Id @GeneratedValue(strategy=IDENTITY)
+	
+	
+	@Column(name="IdHorario", unique=true, nullable=false)
+	public Short getIdHorario() {
+		return idHorario;
+	}
+	public void setIdHorario(Short idHorario) {
+		this.idHorario = idHorario;
+	}
+	
+	@Column(name="Curso", nullable=false, length=30)
+	public String getCurso() {
+		return curso;
+	}
+	
+	
+	public void setCurso(String curso) {
+		this.curso = curso;
+	}
+	
+	
+	@Column(name="Empleado", nullable=false, length=100)
+	public String getEmpleado() {
+		return empleado;
+	}
+	public void setEmpleado(String empleado) {
+		this.empleado = empleado;
+	}
+	
+	@Column(name="HoraIni", nullable=false, length=10)
+	public String getHoraIni() {
+		return horaIni;
+	}
+	public void setHoraIni(String horaIni) {
+		this.horaIni = horaIni;
+	}
+	
+	@Column(name="HoraFin", nullable=false, length=10)
+	public String getHoraFin() {
+		return horaFin;
+	}
+	public void setHoraFin(String horaFin) {
+		this.horaFin = horaFin;
+	}
+	
+	@Column(name="Seccion", nullable=false, length=10)
+	public String getSeccion() {
+		return seccion;
+	}
+	public void setSeccion(String seccion) {
+		this.seccion = seccion;
+	}
+	
+	@Column(name="nroAula", nullable=false, length=10)
+	public String getNroAula() {
+		return nroAula;
+	}
+	public void setNroAula(String nroAula) {
+		this.nroAula = nroAula;
+	}
+	
+	@Column(name="Dia", nullable=false, length=20)
+	public String getDia() {
+		return dia;
+	}
+	public void setDia(String dia) {
+		this.dia = dia;
+	}
+	
+	@Column(name="grado", nullable=false, length=10)
+	public String getGrado() {
+		return grado;
+	}
+	public void setGrado(String grado) {
+		this.grado = grado;
+	}
+	
+	@Column(name="nivelAcademico", nullable=false, length=20)
+	public String getNivelAcademico() {
+		return nivelAcademico;
+	}
+	public void setNivelAcademico(String nivelAcademico) {
+		this.nivelAcademico = nivelAcademico;
+	}
 
-    public Horarios(Empleado empleado, Cursos cursos, Nivel nivel, String dia, String horaIni, String horaFin, String codigoColegio) {
-       this.empleado = empleado;
-       this.cursos = cursos;
-       this.nivel = nivel;
-       this.dia = dia;
-       this.horaIni = horaIni;
-       this.horaFin = horaFin;
-       this.codigoColegio = codigoColegio;
-    }
-   
-     @Id @GeneratedValue(strategy=IDENTITY)
-
-    
-    @Column(name="IdHorario", unique=true, nullable=false)
-    public Integer getIdHorario() {
-        return this.idHorario;
-    }
-    
-    public void setIdHorario(Integer idHorario) {
-        this.idHorario = idHorario;
-    }
-
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="Profesor", nullable=false)
-    public Empleado getEmpleados() {
-        return this.empleado;
-    }
-    
-    public void setEmpleados(Empleado empleado) {
-        this.empleado = empleado;
-    }
-
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="IdCurso", nullable=false)
-    public Cursos getCursos() {
-        return this.cursos;
-    }
-    
-    public void setCursos(Cursos cursos) {
-        this.cursos = cursos;
-    }
-
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="IdNivel", nullable=false)
-    public Nivel getNivel() {
-        return this.nivel;
-    }
-    
-    public void setNivel(Nivel nivel) {
-        this.nivel = nivel;
-    }
-
-    
-    @Column(name="Dia", nullable=false, length=20)
-    public String getDia() {
-        return this.dia;
-    }
-    
-    public void setDia(String dia) {
-        this.dia = dia;
-    }
-
-    
-    @Column(name="HoraIni", nullable=false, length=10)
-    public String getHoraIni() {
-        return this.horaIni;
-    }
-    
-    public void setHoraIni(String horaIni) {
-        this.horaIni = horaIni;
-    }
-
-    
-    @Column(name="HoraFin", nullable=false, length=10)
-    public String getHoraFin() {
-        return this.horaFin;
-    }
-    
-    public void setHoraFin(String horaFin) {
-        this.horaFin = horaFin;
-    }
-
-    
-    @Column(name="CodigoColegio", nullable=false, length=11)
-    public String getCodigoColegio() {
-        return this.codigoColegio;
-    }
-    
-    public void setCodigoColegio(String codigoColegio) {
-        this.codigoColegio = codigoColegio;
-    }
-
-
-
-
+    @Column(name="codigoColegio", nullable=false, length=11)
+	public String getCodigoColegio() {
+		return codigoColegio;
+	}
+	public void setCodigoColegio(String codigoColegio) {
+		this.codigoColegio = codigoColegio;
+	}
+	
 }
-
-
+	
+	
+	
+	
+	

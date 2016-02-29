@@ -18,7 +18,7 @@ public class AlumnoServiceImpl implements AlumnoService {
 	AlumnoDao alumnoDao;
 
 	public List<Alumnos> listaAlumnos(String codigoColegio, String dni, String nombre, String apellidoPaterno,String apellidoMaterno, String estado) {
-		System.out.println("en listaAlumnos service");
+		
 		
 		List<Alumnos> alumnos = alumnoDao.listaAlumnos(codigoColegio, dni, nombre,  apellidoPaterno,apellidoMaterno, estado);
 

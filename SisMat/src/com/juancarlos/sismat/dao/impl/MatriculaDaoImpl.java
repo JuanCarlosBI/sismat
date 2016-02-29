@@ -19,7 +19,8 @@ import com.juancarlos.sismat.dominio.Nivel;
 import com.juancarlos.sismat.dominio.Seccion;
 
 @Repository
-public class MatriculaDaoImpl extends HibernateDaoSupport implements MatriculaDao {
+public class MatriculaDaoImpl extends HibernateDaoSupport implements
+		MatriculaDao {
 
 	@Autowired
 	public MatriculaDaoImpl(SessionFactory sessionFactory) {
@@ -30,22 +31,24 @@ public class MatriculaDaoImpl extends HibernateDaoSupport implements MatriculaDa
 	public List<Alumnos> nombreAlumno(String nombres) {
 		List<Alumnos> alumnos = null;
 
-		String sql = "from Alumnos where nombreCompleto like '%" + nombres + "%'";
+		String sql = "from Alumnos where nombreCompleto like '%" + nombres
+				+ "%'";
 		try {
 
 			alumnos = getHibernateTemplate().find(sql);
 
 		} catch (Exception e) {
-			System.out.println(e);
+			
 			alumnos = null;
 		}
 
 		return alumnos;
 	}
+
 	@SuppressWarnings("unchecked")
 	public List<Alumnos> listaAlumnos(String codigoColegio, String idAlumno) {
 		logger.info("en listaAlumnos");
-		System.out.println("en listaAlumnos dao");
+		
 		String sql = "";
 		List<Alumnos> alumnos = new ArrayList<Alumnos>();
 
@@ -54,155 +57,162 @@ public class MatriculaDaoImpl extends HibernateDaoSupport implements MatriculaDa
 					+ "' AND idAlumno='" + idAlumno.trim() + "'";
 
 			alumnos = getHibernateTemplate().find(sql);
-			System.out.println("alumnos tamanio " + alumnos.size());
+			
 
 			if (alumnos.isEmpty()) {
 				alumnos = new ArrayList<Alumnos>();
 			}
 
 		} catch (Exception e) {
-			System.out.println(e);
+			
 			alumnos = null;
 		}
 
 		return alumnos;
 	}
+
 	@SuppressWarnings("unchecked")
-	public List<Seccion> listaSeccion(String codigoColegio, String grado,String nivelAcademico) {
+	public List<Seccion> listaSeccion(String codigoColegio, String grado,
+			String nivelAcademico) {
 		logger.info("en listaSeccion");
-		System.out.println("en listaSeccion dao");
-	
-		System.out.println(grado);
+		
+
+		
 		String sql = "";
 		List<Seccion> seccion = new ArrayList<Seccion>();
 
 		try {
 			sql = "from Seccion where codigoColegio = '" + codigoColegio.trim()
-					 + "' AND grado='"+grado + "' AND nivelAcademico='" + nivelAcademico + "'";
+					+ "' AND grado='" + grado + "' AND nivelAcademico='"
+					+ nivelAcademico + "'";
 
 			seccion = getHibernateTemplate().find(sql);
-			System.out.println("seccion tamanio " + seccion.size());
+			
 
 			if (seccion.isEmpty()) {
 				seccion = new ArrayList<Seccion>();
 			}
 
 		} catch (Exception e) {
-			System.out.println(e);
+			
 			seccion = null;
 		}
 
 		return seccion;
 	}
+
 	@SuppressWarnings("unchecked")
-	public List<Seccion> nombreSec(String codigoColegio, String nombreSeccion, String grado,String nivelAcademico) {
+	public List<Seccion> nombreSec(String codigoColegio, String nombreSeccion,
+			String grado, String nivelAcademico) {
 		logger.info("en listaSeccion");
-		System.out.println("en listaSeccion dao");
-	
+		
+
 		String sql = "";
 		List<Seccion> seccion = new ArrayList<Seccion>();
 
 		try {
 			sql = "from Seccion where codigoColegio = '" + codigoColegio.trim()
-					 + "' AND seccion='"+nombreSeccion + "' AND grado='"+grado + "' AND nivelAcademico='" + nivelAcademico + "'";
+					+ "' AND seccion='" + nombreSeccion + "' AND grado='"
+					+ grado + "' AND nivelAcademico='" + nivelAcademico + "'";
 
 			seccion = getHibernateTemplate().find(sql);
-			System.out.println("lista seccion tamanio " + seccion.size());
 
 			if (seccion.isEmpty()) {
 				seccion = new ArrayList<Seccion>();
 			}
 
 		} catch (Exception e) {
-			System.out.println(e);
+			
 			seccion = null;
 		}
 
 		return seccion;
 	}
-	
-	@SuppressWarnings("unchecked")
-    public List<Empleado> nombreTutor(String idtutor){
-        List<Empleado> empleados=null;
- 
-        String sql = " from Empleado where idEmpleado like '%"+idtutor+"%'";
-        try {
- 
-            empleados = getHibernateTemplate().find(sql);          
-           
-        } catch (Exception e) {
-            System.out.println(e);
-            empleados = null;
-        }
-       
-        return empleados;
-    }
 
 	@SuppressWarnings("unchecked")
-    public List<Empleado> nombreCoTutor(String idcotutor){
-        List<Empleado> empleados=null;
- 
-        String sql = "from Empleado where idEmpleado like '%"+idcotutor+"%'";
-        try {
- 
-            empleados = getHibernateTemplate().find(sql);          
-           
-        } catch (Exception e) {
-            System.out.println(e);
-            empleados = null;
-        }
-       
-        return empleados;
-    }
+	public List<Empleado> nombreTutor(String idtutor) {
+		List<Empleado> empleados = null;
+
+		String sql = " from Empleado where idEmpleado like '%" + idtutor + "%'";
+		try {
+
+			empleados = getHibernateTemplate().find(sql);
+
+		} catch (Exception e) {
+			
+			empleados = null;
+		}
+
+		return empleados;
+	}
 
 	@SuppressWarnings("unchecked")
-	public List<Cursos> listaCurso(String codigoColegio,String grado,String nivelAcademico) {
+	public List<Empleado> nombreCoTutor(String idcotutor) {
+		List<Empleado> empleados = null;
+
+		String sql = "from Empleado where idEmpleado like '%" + idcotutor
+				+ "%'";
+		try {
+
+			empleados = getHibernateTemplate().find(sql);
+
+		} catch (Exception e) {
+			
+			empleados = null;
+		}
+
+		return empleados;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Cursos> listaCurso(String codigoColegio, String grado,
+			String nivelAcademico) {
 		logger.info("en listaCurso");
-		System.out.println("en listaCurso dao");
+		
 		String sql = "";
 		List<Cursos> curso = new ArrayList<Cursos>();
 
 		try {
 			sql = "from Cursos where codigoColegio = '" + codigoColegio.trim()
-				 + "' AND grado='"+grado + "' AND nivelAcademico='" + nivelAcademico + "'";
+					+ "' AND grado='" + grado + "' AND nivelAcademico='"
+					+ nivelAcademico + "'";
 
 			curso = getHibernateTemplate().find(sql);
-			System.out.println("curso tamanio " + curso.size());
+			
 
 			if (curso.isEmpty()) {
 				curso = new ArrayList<Cursos>();
 			}
 
 		} catch (Exception e) {
-			System.out.println(e);
+			
 			curso = null;
 		}
 
 		return curso;
 	}
 
-
 	@SuppressWarnings("unchecked")
 	public List<Nivel> listaNivel(String codigoColegio) {
 		logger.info("en listaNivel");
-		System.out.println("en listaSeccion dao");
-	
+		
+
 		String sql = "";
 		List<Nivel> nivel = new ArrayList<Nivel>();
 
 		try {
 			sql = "from Nivel where codigoColegio = '" + codigoColegio.trim()
-					 +  "'";
+					+ "'";
 
 			nivel = getHibernateTemplate().find(sql);
-			System.out.println("seccion tamanio " + nivel.size());
+			
 
 			if (nivel.isEmpty()) {
 				nivel = new ArrayList<Nivel>();
 			}
 
 		} catch (Exception e) {
-			System.out.println(e);
+			
 			nivel = null;
 		}
 
@@ -212,118 +222,127 @@ public class MatriculaDaoImpl extends HibernateDaoSupport implements MatriculaDa
 	@Override
 	public boolean registroMatricula(Matriculas matricula) {
 		boolean resultado;
-		
+
 		try {
-			getHibernateTemplate().save(matricula);	
+			getHibernateTemplate().save(matricula);
 			getHibernateTemplate().flush();
 			resultado = true;
-			
-			
+
 		} catch (Exception e) {
 			resultado = false;
-		}	
-		
+		}
+
 		return resultado;
 	}
-	
-	
+
 	@Override
 	public boolean registroMatriculaCurso(MatriculaCurso matriculacurso) {
 		boolean resultado;
-		
+
 		try {
-			getHibernateTemplate().save(matriculacurso);	
+			getHibernateTemplate().save(matriculacurso);
 			getHibernateTemplate().flush();
 			resultado = true;
-			
-			
+
 		} catch (Exception e) {
 			resultado = false;
-		}	
-		
+		}
+
 		return resultado;
 	}
+
 	@SuppressWarnings("unchecked")
 	public List<Matriculas> idMatricula(String idAlumno) {
 		logger.info("en idMatricula");
-		System.out.println("en listaSeccion dao");
-	
+		
+
 		String sql = "";
 		List<Matriculas> matriculas = new ArrayList<Matriculas>();
 
 		try {
-			sql = "from Matriculas where idAlumno = '" + idAlumno.trim()
-					 + "'";
+			sql = "from Matriculas where idAlumno = '" + idAlumno.trim() + "'";
 
 			matriculas = getHibernateTemplate().find(sql);
-			System.out.println("lista seccion tamanio " + matriculas.size());
 
 			if (matriculas.isEmpty()) {
 				matriculas = new ArrayList<Matriculas>();
 			}
 
 		} catch (Exception e) {
-			System.out.println(e);
+			
 			matriculas = null;
 		}
 
 		return matriculas;
 	}
 
-
-	public List<Matriculas> listaMatricula(String codigoColegio, String dni,String estado){
+	public List<Matriculas> listaMatricula(String codigoColegio, String dni,
+			String estado) {
 		logger.info("en listaMatricula");
-		System.out.println("en listaMatricula dao");
-	
 		String sql = "";
 		List<Matriculas> listaMatricula = new ArrayList<Matriculas>();
 
 		try {
-			sql = "from Matriculas where codigoColegio = '" + codigoColegio.trim()
-					 + "' AND idAlumno='"+dni + "' AND estado='" + estado  + "'";
-			
+			if (dni.length() == 0 && estado.length() == 0) {
+				sql = "from Matriculas where codigoColegio = '"
+						+ codigoColegio.trim() + "'";
+
+			}
+			if (dni.length() != 0 && estado.length() == 0) {
+				sql = "from Matriculas where codigoColegio = '"
+						+ codigoColegio.trim() + "' AND idAlumno='" + dni + "'";
+
+			}
+			if (dni.length() == 0 && estado.length() != 0) {
+				sql = "from Matriculas where codigoColegio = '"
+						+ codigoColegio.trim() + "' AND estado='" + estado
+						+ "'";
+
+			}
+			if (dni.length() != 0 && estado.length() != 0) {
+				sql = "from Matriculas where codigoColegio = '"
+						+ codigoColegio.trim() +"' AND idAlumno='" + dni + "' AND estado='" + estado
+						+ "'";
+
+			}
+
 			listaMatricula = getHibernateTemplate().find(sql);
-			System.out.println("listaMatricula tamanio " + listaMatricula.size());
+			
 
 			if (listaMatricula.isEmpty()) {
 				listaMatricula = new ArrayList<Matriculas>();
 			}
 
 		} catch (Exception e) {
-			System.out.println(e);
 			listaMatricula = null;
 		}
 
 		return listaMatricula;
-	
-	
+
 	}
+
 	@SuppressWarnings("unchecked")
 	public List<Seccion> nombreSeccion(String codigoColegio, int idSeccion) {
 		logger.info("en listaSeccion");
-		System.out.println("en listaSeccion dao");
-	
+
 		String sql = "";
 		List<Seccion> nombseccion = new ArrayList<Seccion>();
 
 		try {
 			sql = "from Seccion where codigoColegio = '" + codigoColegio.trim()
-					 + "' AND idSeccion='"+idSeccion + "'";
+					+ "' AND idSeccion='" + idSeccion + "'";
 
 			nombseccion = getHibernateTemplate().find(sql);
-			System.out.println("lista seccion tamanio " + nombseccion.size());
 
 			if (nombseccion.isEmpty()) {
 				nombseccion = new ArrayList<Seccion>();
 			}
 
 		} catch (Exception e) {
-			System.out.println(e);
 			nombseccion = null;
 		}
 
 		return nombseccion;
 	}
-	
-	
+
 }

@@ -33,34 +33,30 @@
 								<tr>
 									<td><p:outputLabel value="DNI:" /></td>
 									
-									<td><p:inputMask value="#{alumnosMB.dni}" required="true" requiredMessage="Ingrese DNI" mask="99999999"/></td>	
+									<td><p:inputMask value="#{alumnosMB.dni}"  requiredMessage="Ingrese DNI" mask="99999999"/></td>	
 													
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Nombres:" /></td>
-									<td><p:inputText value="#{alumnosMB.nombres}" required="true" requiredMessage="Ingrese Nombres" maxlength="70" validatorMessage="Por favor ingrese el Nombre Correctamente">
-									<f:validateRegex pattern="[a-zA-Z]+"/> 		
-							
-					</p:inputText></td>				
+									<td><p:inputText value="#{alumnosMB.nombres}"  requiredMessage="Ingrese Nombres" maxlength="70" validatorMessage="Por favor ingrese el Nombre Correctamente" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))||(!(event.which &lt; 166 || event.which &gt; 255))) return false;"/>
+									</td>				
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Apellido Paterno:" /></td>	
-									<td><p:inputText  value="#{alumnosMB.apellidoPaterno}" required="true" requiredMessage="Ingrese Apellido Paterno" maxlength="70" validatorMessage="Por favor ingrese el Apellido Paterno Correctamente">
-										<f:validateRegex pattern="[a-zA-Z]+"/> 	
-									</p:inputText></td>				
+									<td><p:inputText  value="#{alumnosMB.apellidoPaterno}"  requiredMessage="Ingrese Apellido Paterno" maxlength="70" validatorMessage="Por favor ingrese el Apellido Paterno Correctamente" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))||(!(event.which &lt; 166 || event.which &gt; 255))) return false;"/>
+										</td>				
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Apellido Materno:" /></td>
-									<td><p:inputText  value="#{alumnosMB.apellidoMaterno}" required="true" requiredMessage="Ingrese Apellido Materno" maxlength="70" validatorMessage="Por favor ingrese el Apellido Materno Correctamente">
-										<f:validateRegex pattern="[a-zA-Z]+"/> 	
-									</p:inputText></td>					
+									<td><p:inputText  value="#{alumnosMB.apellidoMaterno}"  requiredMessage="Ingrese Apellido Materno" maxlength="70" validatorMessage="Por favor ingrese el Apellido Materno Correctamente" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))||(!(event.which &lt; 166 || event.which &gt; 255))) return false;"/>
+										</td>					
 								</tr>
 								<tr>
 									<td>
 										<p:outputLabel value="Estado:" />
 									</td>
 									<td>
-										<p:selectOneRadio id="idEstado" value="#{alumnosMB.estado}" required="true" layout="grid"  requiredMessage="Elija" columns="2">
+										<p:selectOneRadio id="idEstado" value="#{alumnosMB.estado}"  layout="grid"  requiredMessage="Elija" columns="2">
             								<f:selectItem itemValue="Activo" itemLabel="Activo" />
             								<f:selectItem itemValue="Inactivo" itemLabel="Inactivo"/>
         								</p:selectOneRadio>

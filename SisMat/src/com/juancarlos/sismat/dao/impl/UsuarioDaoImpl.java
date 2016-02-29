@@ -16,7 +16,7 @@ import com.juancarlos.sismat.dominio.Nivel;
 import com.juancarlos.sismat.dominio.Usuario;
 
 @Repository
-public class UsuarioDaoImpl extends HibernateDaoSupport implements  UsuarioDao {
+public class UsuarioDaoImpl extends HibernateDaoSupport implements UsuarioDao {
 
 	@Autowired
 	EmpleadoDao empleadoDao;
@@ -47,26 +47,46 @@ public class UsuarioDaoImpl extends HibernateDaoSupport implements  UsuarioDao {
 		return sesion;
 	}
 
-	public List<Usuario> listaUsuario(String codigoColegio, String idUsuario) {
+	public List<Usuario> listaUsuario(String codigoColegio, String idUsuario,
+			String estado) {
 		logger.info("en listaUsuario");
-		System.out.println("en listaUsuario dao");
 
 		String sql = "";
 		List<Usuario> listaUsuario = new ArrayList<Usuario>();
 
 		try {
-			sql = "from Usuario where codigoColegio = '" + codigoColegio.trim()
-					+ "' AND idUsuario='" + idUsuario + "'";
+			if (idUsuario.length() == 0 && estado.length() == 0) {
+				sql = "from Usuario where codigoColegio = '"
+						+ codigoColegio.trim() + "'";
+
+			}
+			if (idUsuario.length() != 0 && estado.length() == 0) {
+				sql = "from Usuario where codigoColegio = '"
+						+ codigoColegio.trim() + "' AND idUsuario='"
+						+ idUsuario + "'";
+
+			}
+			if (idUsuario.length() == 0 && estado.length() != 0) {
+				sql = "from Usuario where codigoColegio = '"
+						+ codigoColegio.trim() + "' AND estado='" + estado
+						+ "'";
+
+			}
+			if (idUsuario.length() != 0 && estado.length() != 0) {
+				sql = "from Usuario where codigoColegio = '"
+						+ codigoColegio.trim() + "' AND idUsuario='"
+						+ idUsuario + "' AND estado='" + estado + "'";
+
+			}
 
 			listaUsuario = getHibernateTemplate().find(sql);
-			System.out.println("listcurso tamanio " + listaUsuario.size());
 
 			if (listaUsuario.isEmpty()) {
 				listaUsuario = new ArrayList<Usuario>();
 			}
 
 		} catch (Exception e) {
-			System.out.println(e);
+			
 			listaUsuario = null;
 		}
 
@@ -75,19 +95,18 @@ public class UsuarioDaoImpl extends HibernateDaoSupport implements  UsuarioDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Usuario> datosUsuario(String nombreUsuario,String clave) {
+	public List<Usuario> datosUsuario(String nombreUsuario, String clave) {
 		List<Usuario> usuarios = null;
 		String sql = "";
 		try {
-			
-			sql = "from Usuario where nombreUsuario = '" + nombreUsuario.trim()
-				 + "' AND clave='"+clave + "'";
 
+			sql = "from Usuario where nombreUsuario = '" + nombreUsuario.trim()
+					+ "' AND clave='" + clave + "'";
 
 			usuarios = getHibernateTemplate().find(sql);
 
 		} catch (Exception e) {
-			System.out.println(e);
+			
 			usuarios = null;
 		}
 
@@ -121,7 +140,7 @@ public class UsuarioDaoImpl extends HibernateDaoSupport implements  UsuarioDao {
 			usuarios = getHibernateTemplate().find(sql);
 
 		} catch (Exception e) {
-			System.out.println(e);
+			
 			usuarios = null;
 		}
 

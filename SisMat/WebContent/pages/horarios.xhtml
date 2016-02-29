@@ -32,7 +32,9 @@
 				<tr>
 					<td><p:outputLabel value="Dia de la Semana:" /></td>
 					<td>
-						<p:selectOneMenu id="idDiaSemana" value="DiaSemana"  layout="grid" columns="1">            				
+						<p:selectOneMenu id="idDiaSemana" value="#{horariosMB.dia}"  layout="grid" columns="1">            				
+            			<p:ajax update="idNivel" listener="#{horariosMB.listaNivel}"/> 
+						     <f:selectItem itemLabel="Todos" itemValue="" />  		
             				<f:selectItem itemValue="Lunes" itemLabel="Lunes"/>
             				<f:selectItem itemValue="Martes" itemLabel="Martes"/>
             				<f:selectItem itemValue="Miercoles" itemLabel="Miercoles"/>
@@ -40,25 +42,41 @@
             				<f:selectItem itemValue="Viernes" itemLabel="Viernes"/>
         				</p:selectOneMenu>
         			</td>
-        			<td><p:outputLabel value="Nivel:" /></td>
-					<td>
-						<p:selectOneMenu id="idNivel" value="Nivel"  layout="grid" columns="1">	            				
-            				<f:selectItem itemValue="Normal-1°-Primaria" itemLabel="Normal-1°-Primaria"/>
-            				<f:selectItem itemValue="Normal-1°-Secundaria" itemLabel="Normal-1°-Secundaria"/>
-            				<f:selectItem itemValue="Verano-1°-Primaria" itemLabel="Verano-1°-Primaria"/>
-        				</p:selectOneMenu>
+        			<td><p:outputLabel value="Grado:"/></td>
+					<td style="text-align: left;">
+						<p:selectOneMenu id="idGrado" value="#{horariosMB.grado}"   requiredMessage="Elija Grado" layout="grid" columns="1">	            				
+					      			   	<p:ajax update="idNivel" listener="#{horariosMB.listaNivel}"/> 
+						            			 <f:selectItem itemLabel="Elegir:" itemValue="" />
+            							     <f:selectItem itemLabel="1°" itemValue="1°" />
+								            <f:selectItem itemLabel="2°" itemValue="2°" />	
+								            <f:selectItem itemLabel="3°" itemValue="3°" />	
+								            <f:selectItem itemLabel="4°" itemValue="4°" />
+								            <f:selectItem itemLabel="5°" itemValue="5°" />	
+								            <f:selectItem itemLabel="6°" itemValue="6°" />						            
+        								</p:selectOneMenu>
+												</td>												
+												
+        			<td><p:outputLabel value="Nivel Academico:" /></td>
+					<td >
+					<p:selectOneMenu id="idNivel"   value="#{horariosMB.nivelAcademico}"  layout="grid" columns="1"      requiredMessage="Elija Nivel Academico" >											
+            			    			<p:ajax update="idSeccion" listener="#{horariosMB.listaSeccion}"/> 
+						            			
+            		     <f:selectItem itemLabel="Elegir:" itemValue="" />
+            		  		<f:selectItems value="#{horariosMB.listanivel}" />
+					      		</p:selectOneMenu>
         			</td>
 					<td><p:outputLabel value="Seccion:" /></td>
 					<td>
-						<p:selectOneMenu id="idSeccion" value="Seccion"  layout="grid" columns="1">	            				
-            				<f:selectItem itemValue="A" itemLabel="A"/>
-            				<f:selectItem itemValue="B" itemLabel="B"/>
-            				<f:selectItem itemValue="C" itemLabel=""/>
-        				</p:selectOneMenu>
+						<p:selectOneMenu id="idSeccion" value="#{horariosMB.nombreSeccion}"   requiredMessage="Elija Seccion" layout="grid" columns="1">	            				
+						           						 
+           						<f:selectItem itemLabel="Elegir:" itemValue="" />
+						         		<f:selectItems value="#{horariosMB.listaseccion}" />
+						            				
+						    	</p:selectOneMenu>
         			</td>
 					<td>
 						<p:commandButton id="btnBuscar"								
-										value="Buscar" styleClass="buttonForm"/>
+										value="Buscar" action="#{horariosMB.horarios}" update="idTablaHorariosClase" styleClass="buttonForm"/>
 					</td>
 				</tr>
 				</table>
@@ -71,85 +89,137 @@
 				
 				<table style="text-align: right;">
 				<tr>
-					<td><p:outputLabel value="Curso:" /></td>
-					<td style="text-align: left;">
-						<p:selectOneMenu id="idCurso" value="Curso"  layout="grid" columns="1">	            				
-            				<f:selectItem itemValue="Comunicacion" itemLabel="Comunicacion"/>
-            				<f:selectItem itemValue="Lenguaje" itemLabel="Lenguaje"/>
-            				<f:selectItem itemValue="Ingles" itemLabel="Ingles"/>
+				
+					<td style="text-align: left;"><p:outputLabel value="Dia:" /></td>
+						<td><p:selectOneMenu  value="${horariosMB.registroDia}"  layout="grid" columns="1">            				
+            			
+						     <f:selectItem itemLabel="Elegir:" itemValue="" />
+            				<f:selectItem itemValue="Lunes" itemLabel="Lunes"/>
+            				<f:selectItem itemValue="Martes" itemLabel="Martes"/>
+            				<f:selectItem itemValue="Miercoles" itemLabel="Miercoles"/>
+            				<f:selectItem itemValue="Jueves" itemLabel="Jueves"/>
+            				<f:selectItem itemValue="Viernes" itemLabel="Viernes"/>
         				</p:selectOneMenu>
         			</td>
-        			<td><p:outputLabel value="Docente:" /></td>
-					<td style="text-align: left;">
-						<p:selectOneMenu id="idDocente" value="Docente"  layout="grid" columns="1">           				
-            				<f:selectItem itemValue="Juan Blas Blas" itemLabel="Juan Blas Blas"/>
-            				<f:selectItem itemValue="Jose Vega Blas" itemLabel="Jose Vega Blas"/>
-            				<f:selectItem itemValue="Juan Vega Blas" itemLabel="Juan Vega Blas"/>
-        				</p:selectOneMenu>
+        					<td style="text-align: left;"><p:outputLabel value="Grado:"/></td>
+												<td style="text-align: left;">
+												<p:selectOneMenu id="idGradog" value="#{horariosMB.registroGrado}"   requiredMessage="Elija Grado" layout="grid" columns="1">	            				
+						            			   	<p:ajax update="idNivelg" listener="#{horariosMB.listaNivelRegistro}"/> 
+						            			 <f:selectItem itemLabel="Elegir:" itemValue="" />
+            							     <f:selectItem itemLabel="1°" itemValue="1°" />
+								            <f:selectItem itemLabel="2°" itemValue="2°" />	
+								            <f:selectItem itemLabel="3°" itemValue="3°" />	
+								            <f:selectItem itemLabel="4°" itemValue="4°" />
+								            <f:selectItem itemLabel="5°" itemValue="5°" />	
+								            <f:selectItem itemLabel="6°" itemValue="6°" />						            
+        								</p:selectOneMenu>
+												</td>												
+												
+        			<td style="text-align: left;"><p:outputLabel value="Nivel Academico:" /></td>
+					<td style="text-align: left;" >
+					<p:selectOneMenu id="idNivelg"   value="#{horariosMB.registroNivel}"  layout="grid" columns="1"  required="#{not empty param.includeGuardar}"      requiredMessage="Elija Nivel Academico" >											
+            			    			<p:ajax update="idSecciong" listener="#{horariosMB.listaSeccionRegistro}"/> 
+						            			
+            		     <f:selectItem itemLabel="Elegir:" itemValue="" />
+            		  		<f:selectItems value="#{horariosMB.listanivel}" />
+					      		</p:selectOneMenu>
         			</td>
-        			<td><p:outputLabel value="N° Aula:" /></td>
-					<td style="text-align: left;"><p:inputText value="" size="2"/></td>
+					
+        			</tr>
+					<tr>
+					<td><p:outputLabel value="Seccion:" /></td>
+					<td style="text-align: left;">
+						<p:selectOneMenu id="idSecciong" value="#{horariosMB.registroSeccion}"  required="#{not empty param.includeGuardar}"  requiredMessage="Elija Seccion" layout="grid" columns="1">	            				
+						       	<p:ajax update="idCurso" listener="#{horariosMB.listaCurso}"/> 
+						         						 
+           						<f:selectItem itemLabel="Elegir:" itemValue="" />
+						         		<f:selectItems value="#{horariosMB.listaseccion}" />
+						            				
+						    	</p:selectOneMenu>
+        			</td>		
+					<td style="text-align: left;"><p:outputLabel value="Curso:" /></td>
+					<td style="text-align: left;">
+						<p:selectOneMenu id="idCurso" value="#{horariosMB.registroCurso}"  layout="grid" columns="1">	            				
+            				<p:ajax update="idDocente" listener="#{horariosMB.listaDocente}"/> 
+						
+            				<f:selectItem itemLabel="Elegir:" itemValue="" />
+						       
+            				<f:selectItems value="#{horariosMB.listacurso}" />
+						            	
+            			</p:selectOneMenu>
+        			</td>
+        			<td style="text-align: left;"><p:outputLabel value="Docente:" /></td>
+					<td style="text-align: left;">
+						<p:selectOneMenu id="idDocente" value="#{horariosMB.registroProfesor}"  layout="grid" columns="1">           				
+            				<f:selectItem itemLabel="Elegir:" itemValue="" />
+						       
+            				<f:selectItems value="#{horariosMB.listadocente}" />
+						</p:selectOneMenu>
+        			</td>
         			</tr>
         			
         			<tr>
-					<td><p:outputLabel value="Horario:" /></td>
-					<td style="text-align: left;"><p:inputText value="" size="3" disabled="true"/></td>
+					<td style="text-align: left;"><p:outputLabel value="N° Aula:" /></td>
+					<td style="text-align: left;"><p:inputText value="#{horariosMB.registroAula}" size="2"/></td>
+        			
+					<td style="text-align: left;"><p:outputLabel value="Hora Inicio:" /></td>
+					<td style="text-align: left;"><p:inputMask value="#{horariosMB.registroHoraIni}" size="3" mask="99:99" /></td>
 					
-					<td><p:outputLabel value="Hora Inicio:" /></td>
-					<td style="text-align: left;"><p:inputText value="" size="3" placeholder="8:00" disabled="true"/></td>
-					
-					<td><p:outputLabel value="Hora Fin:" /></td>
-					<td style="text-align: left;"><p:inputText value="" size="3"  placeholder="8:40" disabled="true" /></td>					
+					<td style="text-align: left;"><p:outputLabel value="Hora Fin:" /></td>
+					<td style="text-align: left;"><p:inputMask value="#{horariosMB.registroHoraFin}" size="3" mask="99:99"  /></td>					
 				</tr>
 				<tr><td><br/></td></tr>
 				<tr>
 					<td colspan="6" style="text-align: left;">
-						<p:commandButton id="btnAceptars"								
-										value="Aceptar" styleClass="buttonForm"/>
-						<p:commandButton id="btnLimpiar"								
+								<p:commandButton id="btnGuardar" value="Guardar"								
+								action="#{horariosMB.registrarHorario}"   styleClass="buttonForm">
+								 <f:param name="includeGuardar" value="true" /> </p:commandButton> 
+				<p:commandButton id="btnLimpiarrr"	 update="idhorarios"			
+						process="@this" actionListener="#{horariosMB.reset}"				
 										value="Limpiar" styleClass="buttonForm"/>
-					</td>	
+							</td>	
 				</tr>
 				</table>
-				
+					<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+			
 		</p:panel>
 		
 		<p:panel id="idTablaHorariosClase" header="Horarios de clase"
 				styleClass="panelTabla" toggleable="false" closable="false"
 				toggleSpeed="500" closeSpeed="2000" widgetVar="panel">
 				
-			<p:dataTable var="car" value="">
+			<p:dataTable var="lista" value="#{horariosMB.horario}">
 			   
 			    <p:column headerText="Id" styleClass="panelTabla">
-			        <h:outputText value="" />
-			    </p:column>
+						<h:outputText value="#{row + 1}" />
+					</p:column>
 			 
 			    <p:column headerText="Dia" styleClass="panelTabla">
-			        <h:outputText value="" />
+			        <h:outputText value="#{lista.dia}" />
 			    </p:column>
 			 
 			    <p:column headerText="Docente" styleClass="panelTabla">
-			        <h:outputText value="" />
+			        <h:outputText value="#{lista.empleado}" />
 			    </p:column>
 			 
 			    <p:column headerText="Curso" styleClass="panelTabla">
-			        <h:outputText value="" />
+			        <h:outputText value="#{lista.curso}" />
 			    </p:column>
 			    
-			    <p:column headerText="Orden" styleClass="panelTabla">
-			        <h:outputText value="" />
-			    </p:column>
+			    <p:column headerText="Seccion" styleClass="panelTabla">
+			        <h:outputText value="#{lista.seccion}" />
+			    </p:column>	
 			    
 			    <p:column headerText="Inicio" styleClass="panelTabla">
-			        <h:outputText value="" />
+			        <h:outputText value="#{lista.horaIni}" />
 			    </p:column>
 			    
 			    <p:column headerText="Fin" styleClass="panelTabla">
-			        <h:outputText value="" />
+			        <h:outputText value="#{lista.horaFin}" />
 			    </p:column>
 			    
 			    <p:column headerText="N° Aula" styleClass="panelTabla">
-			        <h:outputText value="" />
+			        <h:outputText value="#{lista.nroAula}" />
 			    </p:column>			    			   
 			    
 			</p:dataTable>

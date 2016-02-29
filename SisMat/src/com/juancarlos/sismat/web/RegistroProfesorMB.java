@@ -43,51 +43,54 @@ public class RegistroProfesorMB implements Serializable {
 	EmpleadoService empleadoService;
 
 	public void registrarEmpleado() {
-		System.out.println("registroEmpleado");
-		System.out.println(dni);
-		System.out.println(nombres);
-		System.out.println(apellidoPaterno);
-		System.out.println(apellidoMaterno);
-		System.out.println(fechaNacimiento);
-		System.out.println(sexo);
 
 		mainMB.datosUsuario();
 		codigoColegio = mainMB.getCodigoColegio();
-
-		// codigoColegio="1041701524";
-		boolean resultado = empleadoService.registroEmpleado(dni, nombres,
-				apellidoPaterno, apellidoMaterno, fechaNacimiento, sexo,
-				direccion, distrito, celular, cargo, especialidad,
-				codigoColegio);
-
-		if (resultado) {
+		if(fechaNacimiento.getYear()<1998){
+			System.out.println("holi");
 			FacesContext.getCurrentInstance().addMessage(
-					null,
-					new FacesMessage(FacesMessage.SEVERITY_INFO,
-							"Se registro correctamente", ""));
-		} else {
-			FacesContext.getCurrentInstance().addMessage(
-					null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR,
-							"Hubo un error en guardar la información", ""));
+			null,
+			new FacesMessage(FacesMessage.SEVERITY_INFO,
+					"La fecha de Nacimieno es incorrecta, el profesor debe ser mayor de edad(+18)", ""));
+			return;
+		}else{
+			// codigoColegio="1041701524";
+			boolean resultado = empleadoService.registroEmpleado(dni, nombres,
+					apellidoPaterno, apellidoMaterno, fechaNacimiento, sexo,
+					direccion, distrito, celular, cargo, especialidad,
+					codigoColegio);
+
+			if (resultado) {
+				FacesContext.getCurrentInstance().addMessage(
+						null,
+						new FacesMessage(FacesMessage.SEVERITY_INFO,
+								"Se registro correctamente", ""));
+			} else {
+				FacesContext.getCurrentInstance().addMessage(
+						null,
+						new FacesMessage(FacesMessage.SEVERITY_ERROR,
+								"Hubo un error en guardar la información", ""));
+			}
+	
 		}
-	}
+
+			}
 
 	public void resetFail() {
-		this.dni = null;
-		this.nombres = null;
-		this.apellidoPaterno = null;
-		this.apellidoMaterno = null;
-		this.fechaNacimiento = null;
-		this.cargo = null;
-		this.direccion = null;
-		this.distrito = null;
-		this.celular = null;
-		this.especialidad = null;
-
-		FacesMessage msg = new FacesMessage("Datos limpios");
-		FacesContext.getCurrentInstance().addMessage(null, msg);
-	}
+		
+			this.dni = null;
+			this.nombres = null;
+			this.apellidoPaterno = null;
+			this.apellidoMaterno = null;
+			this.fechaNacimiento = null;
+			this.cargo = null;
+			this.direccion = null;
+			this.distrito = null;
+			this.celular = null;
+			this.especialidad = null;
+		
+		
+			}
 
 	public String getDni() {
 		return dni;

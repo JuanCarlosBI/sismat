@@ -35,7 +35,6 @@ public class PagoDaoImpl extends HibernateDaoSupport implements PagoDao {
 			alumnos = getHibernateTemplate().find(sql);
 
 		} catch (Exception e) {
-			System.out.println(e);
 			alumnos = null;
 		}
 
@@ -69,7 +68,6 @@ public class PagoDaoImpl extends HibernateDaoSupport implements PagoDao {
 	@SuppressWarnings("unchecked")
 	public List<Alumnos> listaAlumnos(String codigoColegio, String idAlumno) {
 		logger.info("en listaAlumnos");
-		System.out.println("en listaAlumnos dao");
 		String sql = "";
 		List<Alumnos> alumnos = new ArrayList<Alumnos>();
 
@@ -78,14 +76,12 @@ public class PagoDaoImpl extends HibernateDaoSupport implements PagoDao {
 					+ "' AND idAlumno='" + idAlumno.trim() + "'";
 
 			alumnos = getHibernateTemplate().find(sql);
-			System.out.println("alumnos tamanio " + alumnos.size());
 
 			if (alumnos.isEmpty()) {
 				alumnos = new ArrayList<Alumnos>();
 			}
 
 		} catch (Exception e) {
-			System.out.println(e);
 			alumnos = null;
 		}
 
@@ -95,7 +91,6 @@ public class PagoDaoImpl extends HibernateDaoSupport implements PagoDao {
 	@SuppressWarnings("unchecked")
 	public List<Matriculas> listaMatricula(String codigoColegio, String idAlumno) {
 		logger.info("en listaMatricula");
-		System.out.println("en listaMatricula dao");
 		String sql = "";
 		List<Matriculas> matriculas = new ArrayList<Matriculas>();
 
@@ -103,14 +98,12 @@ public class PagoDaoImpl extends HibernateDaoSupport implements PagoDao {
 			sql = "from Matriculas where idAlumno='" + idAlumno.trim() + "'";
 
 			matriculas = getHibernateTemplate().find(sql);
-			System.out.println("matricula tamanio " + matriculas.size());
 
 			if (matriculas.isEmpty()) {
 				matriculas = new ArrayList<Matriculas>();
 			}
 
 		} catch (Exception e) {
-			System.out.println(e);
 			matriculas = null;
 		}
 
@@ -120,7 +113,6 @@ public class PagoDaoImpl extends HibernateDaoSupport implements PagoDao {
 	@SuppressWarnings("unchecked")
 		public List<Seccion> listaSeccion(Integer idSeccion) {
 		logger.info("en listaSeccion");
-		System.out.println("en listaSeccion dao");
 		String sql = "";
 		List<Seccion> seccion = new ArrayList<Seccion>();
 
@@ -128,14 +120,12 @@ public class PagoDaoImpl extends HibernateDaoSupport implements PagoDao {
 			sql = "from Seccion where idSeccion='" + idSeccion + "'";
 
 			seccion = getHibernateTemplate().find(sql);
-			System.out.println("nivel tamanio " + seccion.size());
 
 			if (seccion.isEmpty()) {
 				seccion = new ArrayList<Seccion>();
 			}
 
 		} catch (Exception e) {
-			System.out.println(e);
 			seccion = null;
 		}
 
@@ -145,7 +135,6 @@ public class PagoDaoImpl extends HibernateDaoSupport implements PagoDao {
 	@SuppressWarnings("unchecked")
 	public List<Pagos> listaPago(Integer idMatricula) {
 		logger.info("en listaPago");
-		System.out.println("en listaPagos dao");
 		String sql = "";
 		List<Pagos> pagos = new ArrayList<Pagos>();
 
@@ -153,14 +142,12 @@ public class PagoDaoImpl extends HibernateDaoSupport implements PagoDao {
 			sql = "from Pagos where idMatricula='" + idMatricula + "'";
 
 			pagos = getHibernateTemplate().find(sql);
-			System.out.println("pagos tamanio " + pagos.size());
 
 			if (pagos.isEmpty()) {
 				pagos = new ArrayList<Pagos>();
 			}
 
 		} catch (Exception e) {
-			System.out.println(e);
 			pagos = null;
 		}
 

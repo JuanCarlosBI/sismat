@@ -30,47 +30,44 @@
 				toggleSpeed="500" closeSpeed="2000" widgetVar="panel">
 				
 				
-							<table style="text-align: right;">
+							<table style="text-align: left;">
 								<tr>
 									<td><p:outputLabel value="DNI:" /></td>
-									<td><p:inputMask value="#{registroProfesorMB.dni}" required="true" requiredMessage="Ingrese DNI"  mask="99999999"/></td>					
+									<td><p:inputMask value="#{registroProfesorMB.dni}" required="#{not empty param.includeGuardar}" requiredMessage="Ingrese DNI"  mask="99999999"/></td>					
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Nombres:" /></td>
-									<td><p:inputText value="#{registroProfesorMB.nombres}" required="true" requiredMessage="Ingrese Nombre" maxlength="70" validatorMessage="Por favor ingrese el Nombre Correctamente">
-									<f:validateRegex pattern="[a-zA-Z]+"/> 		
-									</p:inputText></td>
+									<td><p:inputText value="#{registroProfesorMB.nombres}" required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Nombre" maxlength="70" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))||(!(event.which &lt; 166 || event.which &gt; 255))) return false;"/>
+									</td>
 								
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Apellidos Paterno:" /></td>
-									<td><p:inputText value="#{registroProfesorMB.apellidoPaterno}" required="true" requiredMessage="Ingrese Apellido Paterno" maxlength="70" validatorMessage="Por favor ingrese el Apellido Paterno Correctamente">
-									<f:validateRegex pattern="[a-zA-Z]+"/> 		
-									</p:inputText></td>
+									<td><p:inputText value="#{registroProfesorMB.apellidoPaterno}" required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Apellido Paterno" maxlength="70" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))||(!(event.which &lt; 166 || event.which &gt; 255))) return false;"/>
+									</td>
 								
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Apellidos Materno:" /></td>
-									<td><p:inputText value="#{registroProfesorMB.apellidoMaterno}" required="true" requiredMessage="Ingrese Apellido Materno" maxlength="70" validatorMessage="Por favor ingrese el Apellido Materno Correctamente">
-									<f:validateRegex pattern="[a-zA-Z]+"/> 		
-									</p:inputText></td>				
+									<td><p:inputText value="#{registroProfesorMB.apellidoMaterno}" required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Apellido Materno" maxlength="70" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))||(!(event.which &lt; 166 || event.which &gt; 255))) return false;"/>
+									</td>				
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Fecha Nacimiento:" /></td>
 									<td>
 										
-										<p:calendar id="fechaNacimiento"  yearRange = "c-60: c + 10" value="#{registroProfesorMB.fechaNacimiento}" showOn="button" readOnlyInputText="true" required="true" locale="es" navigator="true" requiredMessge="La fecha de Nacimiento es requerida" pattern="yyyy-MM-dd"/>
+										<p:calendar id="fechaNacimiento"  yearRange = "c-60: c + 10" value="#{registroProfesorMB.fechaNacimiento}" showOn="button" readOnlyInputText="true" required="#{not empty param.includeGuardar}" locale="es" navigator="true" requiredMessge="La fecha de Nacimiento es requerida" pattern="yyyy-MM-dd"/>
 										<p:message id="fechaNacimientoerror1" for="fechaNacimiento"/>
 									</td>
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Direccion:" /></td>
-									<td><p:inputText value="#{registroProfesorMB.direccion}"  required="true" requiredMessage="Ingrese Direccion"/></td>					
+									<td><p:inputText value="#{registroProfesorMB.direccion}"  style="width:250px;" required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Direccion"/></td>					
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Sexo:" /></td>
 									<td>
-										<p:selectOneRadio id="idSexo" value="#{registroProfesorMB.sexo}" required="true"  requiredMessage="Elija Sexo" layout="grid" columns="1">
+										<p:selectOneRadio id="idSexo" value="#{registroProfesorMB.sexo}" required="#{not empty param.includeGuardar}"  requiredMessage="Elija Sexo" layout="grid" columns="1">
             								<f:selectItem itemValue="Masculino" itemLabel="Masculino"/>
             								<f:selectItem itemValue="Femenino" itemLabel="Femenino"/>
         								</p:selectOneRadio>
@@ -78,40 +75,37 @@
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Celular:" /></td>
-									<td><p:inputMask value="#{registroProfesorMB.celular}"  required="true" requiredMessage="Ingrese Celular" mask="999999999"/></td>					
+									<td><p:inputMask value="#{registroProfesorMB.celular}"  required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Celular" mask="999999999"/></td>					
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Distrito:" /></td>
-									<td><p:inputText value="#{registroProfesorMB.distrito}" required="true" requiredMessage="Ingrese Distrito" maxlength="70" validatorMessage="Por favor ingrese el Distrito">
-									<f:validateRegex pattern="[a-zA-Z]+"/> 		
-									</p:inputText></td>	
+									<td><p:inputText value="#{registroProfesorMB.distrito}" required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Distrito" maxlength="70" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))||(!(event.which &lt; 166 || event.which &gt; 255))) return false;"/>
+									</td>	
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Cargo:" /></td>		
-									<td><p:inputText value="#{registroProfesorMB.cargo}" required="true" requiredMessage="Ingrese Cargo" maxlength="70" validatorMessage="Por favor ingrese el Cargo">
-									<f:validateRegex pattern="[a-zA-Z]+"/> 		
-									</p:inputText></td>
+									<td><p:inputText value="#{registroProfesorMB.cargo}" required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Cargo" maxlength="70" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))||(!(event.which &lt; 166 || event.which &gt; 255))) return false;"/>
+									</td>
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Especialidad" /></td>		
-									<td><p:inputText value="#{registroProfesorMB.especialidad}" required="true" requiredMessage="Ingrese Especialidad" maxlength="70" validatorMessage="Por favor ingrese la Especialidad">
-									<f:validateRegex pattern="[a-zA-Z]+"/> 		
-									</p:inputText></td>
+									<td><p:inputText value="#{registroProfesorMB.especialidad}" required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Especialidad" maxlength="70" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))||(!(event.which &lt; 166 || event.which &gt; 255))) return false;"/>
+									</td>
 								</tr>
 								
 							</table>	
-							 <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+							 <p:messages id="messages" showDetail="false" autoUpdate="true" closable="true" />
 	
 							<table>
 								<tr>
 									<td>
-										
-												<p:commandButton id="btnGuardar"								
-										value="Guardar" action="#{registroProfesorMB.registrarEmpleado}" styleClass="buttonForm"/>
-							<p:commandButton value="Limpiar" update="profesores" process="@this" actionListener="#{registroProfesorMB.resetFail}" styleClass="buttonForm" />
- 							 <p:link id="btnCancelar"				outcome="pagina"				
-										value="Cancelar"  styleClass="buttonForm"/>
-										
+											<p:commandButton id="btnGuardar" value="Guardar"								
+								action="#{registroProfesorMB.registrarEmpleado}"  ajax="false" styleClass="buttonForm">
+								 <f:param name="includeGuardar" value="true" /> </p:commandButton> 
+							
+											<p:commandButton value="Limpiar" update="profesores" process="@this" actionListener="#{registroProfesorMB.resetFail}" styleClass="buttonForm" />
+ 								<p:commandButton value= "Cancelar" ajax= "false" action= "pagina.xhmtl?faces-redirect=true" styleClass="buttonForm" actionListener="#{registroProfesorMB.resetFail}"/> 
+					
     </td>
 								</tr>
 							</table>					

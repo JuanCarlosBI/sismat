@@ -11,6 +11,23 @@ body{
     height: 100%;
 }
 
+
+.ui-clock {
+	padding:0px 0px;
+	border-radius: 0px !important;
+	background-color: #0A2856;
+	color: white;
+}
+.ui-widget {
+    font-size: 13px !important;
+}
+.ui-widget-header{
+	background: #0A2856 ;
+	
+    border: none;
+}
+
+
 .ui-row-editor{ display: inline; }
 
 .headerTitle {

@@ -32,13 +32,13 @@ public class MatriculaMB implements Serializable {
 	private String nombreSeccion;
 	private String nivel;
 	private int idSeccion;
+	private String idAlumno;
 	@Autowired
 	private MainMB mainMB;
 	@Autowired
 	MatriculaService matriculaService;
 
 	public void listaMatricula() {
-		System.out.println("listaMatricula()");
 
 		mainMB.datosUsuario();
 		codigoColegio = mainMB.getCodigoColegio();
@@ -55,13 +55,13 @@ public class MatriculaMB implements Serializable {
 			FacesContext.getCurrentInstance().addMessage(
 					null,
 					new FacesMessage(FacesMessage.SEVERITY_INFO,
-							"No se ecnontro alumnos", ""));
+							"No se ecnontro matricula", ""));
 
 		} else {
 			Matriculas matricula = matriculas.get(0);
 			idSeccion = matricula.getIdSeccion();
-			
-			alumnos = matriculaService.listaAlumnos(codigoColegio, dni);
+			idAlumno=matricula.getIdAlumno();
+			alumnos = matriculaService.listaAlumnos(codigoColegio, idAlumno);
 
 			if (alumnos == null) {
 				FacesContext.getCurrentInstance().addMessage(
@@ -107,8 +107,6 @@ public class MatriculaMB implements Serializable {
 		this.dni = null;
 		matriculas = null;
 
-		FacesMessage msg = new FacesMessage("Datos limpios");
-		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
 
 	public String getDni() {

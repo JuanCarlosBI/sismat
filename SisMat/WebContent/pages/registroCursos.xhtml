@@ -35,7 +35,7 @@
 								<tr>
 									<td><p:outputLabel value="Grado:" /></td>
 									<td style="text-align: left;">
-										<p:selectOneMenu id="idGrado"  value="#{registroCursosMB.grado}" required="true" requiredMessage="Elija Grado"  layout="grid" columns="1">            								
+										<p:selectOneMenu id="idGrado"  value="#{registroCursosMB.grado}" required="#{not empty param.includeGuardar}" requiredMessage="Elija Grado"  layout="grid" columns="1">            								
             							<p:ajax update="idNivel" listener="#{registroCursosMB.listaNivel}"/> 
             							<f:selectItem itemLabel="Elegir:" itemValue="" />
 						            		 <f:selectItem itemLabel="1°" itemValue="1" />
@@ -50,7 +50,7 @@
 								<tr>
 									<td><p:outputLabel value="Nivel Academico:" /></td>
 									<td style="text-align: left;" colspan="3">
-										<p:selectOneMenu id="idNivel" value="#{registroCursosMB.nivelAcademico}" required="true" requiredMessage="Elija Nivel"  layout="grid" columns="1">											
+										<p:selectOneMenu id="idNivel" value="#{registroCursosMB.nivelAcademico}" required="#{not empty param.includeGuardar}" requiredMessage="Elija Nivel"  layout="grid" columns="1">											
             					    		
             							     <f:selectItem itemLabel="Elegir:" itemValue="" />
             					    		<f:selectItems value="#{registroCursosMB.listanivel}" />
@@ -70,7 +70,7 @@
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Curso:" /></td>
-									<td><p:inputText value="#{registroCursosMB.nombre}" required="true" requiredMessage="Ingrese Curso" /></td>					
+									<td><p:inputText value="#{registroCursosMB.nombre}" required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Curso" /></td>					
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Estado:" /></td>
@@ -88,13 +88,12 @@
 	
 					<tr>
 						<td>
-							<p:commandButton id="btnGuardar"								
-										value="Guardar" action="#{registroCursosMB.registrarCurso}" styleClass="buttonForm"/>
+							
+							<p:commandButton id="btnGuardar" value="Guardar"								
+								action="#{registroCursosMB.registrarCurso}"   styleClass="buttonForm">
+								 <f:param name="includeGuardar" value="true" /> </p:commandButton> 
 							<p:commandButton value="Limpiar" update="panel" process="@this" actionListener="#{registroCursosMB.resetFail}" styleClass="buttonForm" />
- 							 <p:link id="btnCancelar"				outcome="pagina"				
-										value="Cancelar"  styleClass="buttonForm"/>
-										
-    
+ 							<p:commandButton value= "Cancelar"  action= "pagina.xhmtl?faces-redirect=true" styleClass="buttonForm" /> 
 						</td>
 					</tr>
 				</table>

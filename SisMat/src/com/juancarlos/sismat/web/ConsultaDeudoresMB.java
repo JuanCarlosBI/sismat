@@ -15,8 +15,9 @@ import com.juancarlos.sismat.dominio.Matriculas;
 import com.juancarlos.sismat.dominio.Pagos;
 import com.juancarlos.sismat.dominio.Seccion;
 import com.juancarlos.sismat.service.PagoService;
+
 @SuppressWarnings("serial")
-@ManagedBean(name="consultaDeudoresMB")
+@ManagedBean(name = "consultaDeudoresMB")
 @RequestScoped
 @Component
 public class ConsultaDeudoresMB {
@@ -29,15 +30,13 @@ public class ConsultaDeudoresMB {
 	private List<Matriculas> matriculas;
 	private List<Alumnos> alumnos;
 	private List<Seccion> seccion;
-	
+
 	@Autowired
 	private MainMB mainMB;
 	@Autowired
 	PagoService pagoService;
-	
-	
+
 	public void listaDeuda() {
-		System.out.println("listaMatricula()");
 
 		mainMB.datosUsuario();
 		codigoColegio = mainMB.getCodigoColegio();
@@ -58,7 +57,7 @@ public class ConsultaDeudoresMB {
 		} else {
 			Matriculas matricula = matriculas.get(0);
 			Integer idMatricula = matricula.getIdMatricula();
-			pagos =pagoService.listaPago(idMatricula);
+			pagos = pagoService.listaPago(idMatricula);
 
 			if (pagos == null) {
 				FacesContext.getCurrentInstance().addMessage(
@@ -73,11 +72,10 @@ public class ConsultaDeudoresMB {
 						new FacesMessage(FacesMessage.SEVERITY_INFO,
 								"No se encontro alumnos", ""));
 
-			
-			}else{
-				
-				Integer idSeccion=matricula.getIdSeccion();
-				seccion=pagoService.listaSeccion(idSeccion);
+			} else {
+
+				Integer idSeccion = matricula.getIdSeccion();
+				seccion = pagoService.listaSeccion(idSeccion);
 				if (seccion == null) {
 					FacesContext.getCurrentInstance().addMessage(
 							null,
@@ -91,11 +89,12 @@ public class ConsultaDeudoresMB {
 							new FacesMessage(FacesMessage.SEVERITY_INFO,
 									"No se encontro seccion", ""));
 
-				} else { Seccion nseccion = seccion.get(0);
-				nombreSeccion = nseccion.getSeccion();
-				nivel=nseccion.getNivelAcademico();
-				 alumnos=pagoService.listaAlumnos(codigoColegio,  dni);
-				 Alumnos alumno = alumnos.get(0);
+				} else {
+					Seccion nseccion = seccion.get(0);
+					nombreSeccion = nseccion.getSeccion();
+					nivel = nseccion.getNivelAcademico();
+					alumnos = pagoService.listaAlumnos(codigoColegio, dni);
+					Alumnos alumno = alumnos.get(0);
 					nombreAlumno = alumno.getNombreCompleto();
 				}
 			}
@@ -103,116 +102,92 @@ public class ConsultaDeudoresMB {
 		}
 	}
 
-
 	public String getDni() {
 		return dni;
 	}
-
 
 	public void setDni(String dni) {
 		this.dni = dni;
 	}
 
-
 	public String getNombreAlumno() {
 		return nombreAlumno;
 	}
-
 
 	public void setNombreAlumno(String nombreAlumno) {
 		this.nombreAlumno = nombreAlumno;
 	}
 
-
 	public String getCodigoColegio() {
 		return codigoColegio;
 	}
-
 
 	public void setCodigoColegio(String codigoColegio) {
 		this.codigoColegio = codigoColegio;
 	}
 
-
 	public List<Pagos> getPagos() {
 		return pagos;
 	}
-
 
 	public void setPagos(List<Pagos> pagos) {
 		this.pagos = pagos;
 	}
 
-
 	public List<Matriculas> getMatriculas() {
 		return matriculas;
 	}
-
 
 	public void setMatriculas(List<Matriculas> matriculas) {
 		this.matriculas = matriculas;
 	}
 
-
 	public List<Alumnos> getAlumnos() {
 		return alumnos;
 	}
-
 
 	public void setAlumnos(List<Alumnos> alumnos) {
 		this.alumnos = alumnos;
 	}
 
-
 	public List<Seccion> getSeccion() {
 		return seccion;
 	}
-
 
 	public void setSeccion(List<Seccion> seccion) {
 		this.seccion = seccion;
 	}
 
-
 	public MainMB getMainMB() {
 		return mainMB;
 	}
-
 
 	public void setMainMB(MainMB mainMB) {
 		this.mainMB = mainMB;
 	}
 
-
 	public PagoService getPagoService() {
 		return pagoService;
 	}
-
 
 	public void setPagoService(PagoService pagoService) {
 		this.pagoService = pagoService;
 	}
 
-
 	public String getNombreSeccion() {
 		return nombreSeccion;
 	}
-
 
 	public void setNombreSeccion(String nombreSeccion) {
 		this.nombreSeccion = nombreSeccion;
 	}
 
-
 	public String getNivel() {
 		return nivel;
 	}
 
-
 	public void setNivel(String nivel) {
 		this.nivel = nivel;
 	}
-	
-	
-	
+
 }

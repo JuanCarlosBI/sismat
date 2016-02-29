@@ -50,10 +50,9 @@ public class SeccionDaoImpl extends HibernateDaoSupport implements SeccionDao {
             empleados = getHibernateTemplate().find(sql);
             empleado=empleados.get(0);
             nombreTutor=empleado.getNombreCompleto();
-            System.out.println(nombreTutor);
+            
            
         } catch (Exception e) {
-            System.out.println(e);
             nombreTutor = null;
         }
        
@@ -120,7 +119,6 @@ public class SeccionDaoImpl extends HibernateDaoSupport implements SeccionDao {
               empleados = getHibernateTemplate().find(sql);          
              
           } catch (Exception e) {
-              System.out.println(e);
               empleados = null;
           }
          
@@ -130,7 +128,6 @@ public class SeccionDaoImpl extends HibernateDaoSupport implements SeccionDao {
 	@SuppressWarnings("unchecked")
 	public List<Nivel> listaNivel(String codigoColegio) {
 		logger.info("en listaSeccion");
-		System.out.println("en listaSeccion dao");
 	
 		String sql = "";
 		List<Nivel> nivel = new ArrayList<Nivel>();
@@ -140,14 +137,12 @@ public class SeccionDaoImpl extends HibernateDaoSupport implements SeccionDao {
 					 +  "'";
 
 			nivel = getHibernateTemplate().find(sql);
-			System.out.println("seccion tamanio " + nivel.size());
 
 			if (nivel.isEmpty()) {
 				nivel = new ArrayList<Nivel>();
 			}
 
 		} catch (Exception e) {
-			System.out.println(e);
 			nivel = null;
 		}
 
@@ -182,25 +177,39 @@ public class SeccionDaoImpl extends HibernateDaoSupport implements SeccionDao {
 	@SuppressWarnings("unchecked")
 	public List<Seccion> listaSeccion(String codigoColegio, String grado,String nivelAcademico) {
 		logger.info("en listaSeccion");
-		System.out.println("en listaSeccion dao");
 	
-		System.out.println(grado);
 		String sql = "";
 		List<Seccion> seccion = new ArrayList<Seccion>();
 
 		try {
-			sql = "from Seccion where codigoColegio = '" + codigoColegio.trim()
-					 + "' AND grado='"+grado + "' AND nivelAcademico='" + nivelAcademico + "'";
+			if(grado.length()==0 && nivelAcademico.length()==0 ){
+				sql = "from Seccion where codigoColegio = '" + codigoColegio.trim() + "'";
 
+			}
+			if(grado.length()!=0 && nivelAcademico.length()!=0 ){
+				sql = "from Seccion where codigoColegio = '" + codigoColegio.trim()
+						 + "' AND grado='"+grado + "' AND nivelAcademico='" + nivelAcademico + "'";
+
+			}
+			if(grado.length()==0 && nivelAcademico.length()!=0 ){
+				sql = "from Seccion where codigoColegio = '" + codigoColegio.trim()
+						+ "' AND nivelAcademico='" + nivelAcademico + "'";
+
+			}
+			if(grado.length()!=0 && nivelAcademico.length()==0 ){
+				sql = "from Seccion where codigoColegio = '" + codigoColegio.trim()
+						+ "' AND grado='"+grado + "'";
+
+			}
+				
+			
 			seccion = getHibernateTemplate().find(sql);
-			System.out.println("seccion tamanio " + seccion.size());
 
 			if (seccion.isEmpty()) {
 				seccion = new ArrayList<Seccion>();
 			}
 
 		} catch (Exception e) {
-			System.out.println(e);
 			seccion = null;
 		}
 
@@ -209,7 +218,6 @@ public class SeccionDaoImpl extends HibernateDaoSupport implements SeccionDao {
 	public List<Empleado> listaProfesores(String codigoColegio) {
 
 		logger.info("en listaEmpleado");
-		System.out.println("en listaEmpleado dao");
 
 		String sql = "";
 		List<Empleado> empleado = new ArrayList<Empleado>();
@@ -219,14 +227,12 @@ public class SeccionDaoImpl extends HibernateDaoSupport implements SeccionDao {
 					+ codigoColegio.trim()  + "'";
 
 			empleado = getHibernateTemplate().find(sql);
-			System.out.println("empleado tamanio " + empleado.size());
 
 			if (empleado.isEmpty()) {
 				empleado = new ArrayList<Empleado>();
 			}
 
 		} catch (Exception e) {
-			System.out.println(e);
 			empleado = null;
 		}
 

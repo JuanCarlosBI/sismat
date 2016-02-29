@@ -35,7 +35,7 @@
 															
 							<tr>
 										<p:outputLabel value="Nombre:" /><p:autoComplete 
-                                                    value="#{usuariosMB.nombreCompleto}" completeMethod="#{usuariosMB.autoCompletadoProducto}" required="true" requiredMessage="Ingrese Nombre Completo"
+                                                    value="#{usuariosMB.nombreCompleto}" completeMethod="#{usuariosMB.autoCompletadoProducto}" 
                                                         style="width:400px;text-align:left;"/>
                                                 
 					
@@ -57,7 +57,7 @@
 										<p:outputLabel value="Estado:" />
 									</td>
 									<td>
-										<p:selectOneRadio id="idEstado" value="Estado" required="true" requiredMessage="Elija Estado"  layout="grid" columns="3">
+										<p:selectOneRadio id="idEstado" value="#{usuariosMB.estado}"   layout="grid" columns="3">
             								<f:selectItem itemValue="Activo" itemLabel="Activo"/>
             								<f:selectItem itemValue="Inactivo" itemLabel="Inactivo"/>
         								</p:selectOneRadio>

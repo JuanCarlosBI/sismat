@@ -1,0 +1,181 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:p="http://primefaces.org/ui"
+   xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head title="Primefaces Test">
+		<f:facet name="first">
+			<meta http-equiv="X-UA-Compatible" content="EmulateIE8" />
+			<meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
+			<title>Informacion colegio</title>
+		</f:facet>
+		<link type="text/css" rel="stylesheet"
+			href="#{request.contextPath}/css/default.css" />
+		<link type="text/css" rel="stylesheet"
+			href="#{request.contextPath}/css/icons.css" />
+		<link type="text/css" rel="stylesheet"
+			href="#{request.contextPath}/css/sintaxhighlighter/sintaxhightlighter.css" />
+		<link type="text/css" rel="stylesheet"
+			href="#{request.contextPath}/css/panel.css" />
+		<script type="text/javacsript"
+			src="#{request.contextPath}/js/jquery-2.1.3.js"></script>
+		<script type="text/javacsript" src="#{request.contextPath}/js/util.js"></script>
+   <style type="text/css">
+.ui-layout-north {
+   z-index: 20 !important;
+   overflow: visible !important;
+}
+
+.ui-layout-north .ui-layout-unit-content {
+   overflow: visible !important;
+}
+
+</style>
+</h:head>
+
+<h:body>
+   <h:form>
+      <p:layout fullPage="true">
+         <p:layoutUnit id="top" position="north" size="80" style="height: height: 150px;">
+         
+         		<div id="header" STYLE="background-color:#0A2856">
+
+					<div id="headerTitle" class="headerTitle" >
+						<div id="headerTitleText" class="headerTitleText">
+							<h:outputText id="nombreApp" value="Sistema de Gestión de Colegios" />
+							<br /> 
+							<span style="font-size: 9px; color: #EEEEEE"> <h:outputText
+									id="servidorBD" value="SisMat " /> <h:outputText
+									id="appVersion" value="1.0" />
+							</span>
+						</div>
+					</div>
+
+					<div id="headerDataDefault" class="headerDataDefault">
+						<br />
+						<div id="headerUser" class="headerUser">
+							Bienvenido: 
+							<h:outputText id="txtUsuario" value="" />
+						</div>
+						<div id="headerDateTime" class="headerDateTime" style="background-color:#0A2856">
+							Fecha: 
+							<p:clock pattern="dd/MM/yyyy HH:mm:ss" style="background-color:#0A2856"/>
+						</div>
+						<div id="headerLogout" class="headerLogout">
+							<a href="javascript:fn_cerrar_session();" class="textLogout">Cerrar
+								Sesión</a>
+						</div>
+					</div>		
+					
+		
+				</div>
+				
+				<div class="headerDataDefaultMenu">
+					
+						<p:menubar>						
+
+								<p:submenu label="Alumnos">
+									<p:menuitem value="Nuevo"  onclick="carga_pagina('registroAlumno','','')"
+										icon="ui-icon-arrowreturnthick-1-w" />
+									<p:menuitem value="informacion" onclick="carga_pagina('alumnos','','')" 
+										icon="ui-icon-arrowreturnthick-1-e" />
+								</p:submenu>
+								
+								<p:submenu label="Empleados">
+									<p:menuitem value="Profesores"  onclick="carga_pagina('profesores','','')" 
+										icon="ui-icon-arrowreturnthick-1-w" />
+									<p:menuitem value="Registro Profesor" onclick="carga_pagina('registroProfesor','','')" 
+										icon="ui-icon-arrowreturnthick-1-e" />
+									<p:menuitem value="Regisro Usuarios" onclick="carga_pagina('registroUsuario','','')" 
+										icon="ui-icon-arrowreturnthick-1-e" />
+								</p:submenu>
+								
+
+								<p:submenu label="Horarios">
+									<p:menuitem value="Registro Horarios" onclick="carga_pagina('horarios','','')" 
+										icon="ui-icon-arrowreturnthick-1-e" />
+									<p:menuitem value="Secciones" onclick="carga_pagina('secciones','','')" 
+										icon="ui-icon-arrowreturnthick-1-e" />
+									<p:menuitem value="Registro Secciones" onclick="carga_pagina('registroSecciones','','')" 
+										icon="ui-icon-arrowreturnthick-1-e" />
+									<p:menuitem value="Niveles" onclick="carga_pagina('nivelesAcademicos','','')" 
+										icon="ui-icon-arrowreturnthick-1-e" />
+									<p:menuitem value="Registro Niveles" onclick="carga_pagina('registroNiveles','','')" 
+										icon="ui-icon-arrowreturnthick-1-e" />
+									<p:menuitem value="Cursos" onclick="carga_pagina('cursos','','')" 
+										icon="ui-icon-arrowreturnthick-1-e" />
+									<p:menuitem value="Registro Cursos" onclick="carga_pagina('registroCursos','','')" 
+										icon="ui-icon-arrowreturnthick-1-e" />
+									<p:menuitem value="Matricula" onclick="carga_pagina('matricula','','')" 
+										icon="ui-icon-arrowreturnthick-1-e" />
+								</p:submenu>
+
+								<p:submenu label="Notas">
+								</p:submenu>
+
+								<p:submenu label="Asistencia">
+								</p:submenu>
+
+								<p:submenu label="Pagos">
+								<p:menuitem value="Registro Pagos" onclick="carga_pagina('registroPagos','','')" 
+										icon="ui-icon-arrowreturnthick-1-e" />
+								<p:menuitem value="Consulta Deudores" onclick="carga_pagina('consultaDeudores','','')" 
+										icon="ui-icon-arrowreturnthick-1-e" />
+								<p:menuitem value="Estado Cuenta" onclick="carga_pagina('consultaEstadoCuenta','','')" 
+										icon="ui-icon-arrowreturnthick-1-e" />
+								<p:menuitem value="Matricula" onclick="carga_pagina('matricula','','')" 
+										icon="ui-icon-arrowreturnthick-1-e" />
+								<p:menuitem value="matricula normal" onclick="carga_pagina('matriculaNormal','','')" 
+										icon="ui-icon-arrowreturnthick-1-e" />
+								</p:submenu>
+
+								<p:submenu label="Reportes">
+								</p:submenu>
+
+								<p:submenu label="Configuraci&#243;n">
+									<p:submenu label="Usuarios">
+										<p:menuitem value="Registro Usuarios" onclick="carga_pagina('registroUsuario','','')" />
+										<p:menuitem value="Usuarios" onclick="carga_pagina('registroUsuario','','')" />										
+									</p:submenu>
+									<p:submenu label="Colegio">
+										<p:menuitem value="Registro" onclick="carga_pagina('registroColegio','','')" />
+									</p:submenu>
+									<p:menuitem value="Periodo" onclick="carga_pagina('periodo','','')" />
+								</p:submenu>
+
+								<p:menuitem value="Cerrar Sesi&#243;n"
+									url="http://www.primefaces.org" />
+							</p:menubar>
+					
+				</div>
+
+				
+         	<div>				
+				
+							
+					</div>
+         </p:layoutUnit>
+         <p:layoutUnit position="center">
+            <div id="contenedor" style="height: 100%;width:100%;"/>
+         </p:layoutUnit>
+      </p:layout>
+   </h:form>
+</h:body>
+<script type="text/javascript">
+	function carga_pagina(url, title, idOpcion) {
+		var divContenedor = document.getElementById('contenedor');
+		
+		url = url+".jsf";
+		
+		divContenedor.innerHTML = '<iframe style="margin:0px;padding:0px;" src="'
+				+ url
+				+ '" id="ifr" name="ifr" scrolling="yes" width="100%" height="100%" frameborder="0"></iframe>';
+		divContenedor.style.display = 'block';
+// 		divContenedor.style.display = 'inherit';
+	}
+	function fn_cerrar_session(cerrar) {
+		location.href = 'login.jsf';
+	}
+</script>
+</html>

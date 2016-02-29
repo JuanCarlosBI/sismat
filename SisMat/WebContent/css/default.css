@@ -8,7 +8,9 @@ body {
 h1, h2, h3 {
         margin-top: 0;
 }
-
+.ui-clock{
+    border-radius: 0px !important;
+}
 h1 {
         font-size: 1.6em;
         font-weight: normal;

@@ -23,6 +23,7 @@ import com.juancarlos.sismat.service.UsuarioService;
 public class RegistroUsuarioMB implements Serializable{
 	private String nombreUsuario="";
     private String clave;
+    private String clave1;
     private String tipo;
     private String contrasenia2;
     private String nombreCompleto;
@@ -37,7 +38,6 @@ public class RegistroUsuarioMB implements Serializable{
 
     public void registrarUsuario() {
 		
-			System.out.println("registroUsuario");
 
 			mainMB.datosUsuario();
 			codigoColegio=mainMB.getCodigoColegio();
@@ -45,23 +45,31 @@ public class RegistroUsuarioMB implements Serializable{
 			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 			fecha = dateFormat.format(date);
 
+			if(clave.equals(clave1)){
+				
+				boolean resultado = usuarioService.registroUsuario(nombreUsuario,
+						clave, tipo, nombreCompleto,estado,codigoColegio,fecha );
+				if (resultado) {
+					FacesContext.getCurrentInstance().addMessage(
+							null,
+							new FacesMessage(FacesMessage.SEVERITY_INFO,
+									"Se registro correctamente", ""));
+				} else {
+					FacesContext.getCurrentInstance().addMessage(
+							null,
+							new FacesMessage(FacesMessage.SEVERITY_ERROR,
+									"Hubo un error en guardar la información", ""));
+				}
 			
-			//codigoColegio = "1041701524";
-			boolean resultado = usuarioService.registroUsuario(nombreUsuario,
-					clave, tipo, nombreCompleto,estado,codigoColegio,fecha );
-			if (resultado) {
-				FacesContext.getCurrentInstance().addMessage(
-						null,
-						new FacesMessage(FacesMessage.SEVERITY_INFO,
-								"Se registro correctamente", ""));
-			} else {
+				
+			}else{
 				FacesContext.getCurrentInstance().addMessage(
 						null,
 						new FacesMessage(FacesMessage.SEVERITY_ERROR,
-								"Hubo un error en guardar la información", ""));
+								"Las contraseñas no coinciden", ""));
+		
 			}
-		
-		
+			
 		
 
 		
@@ -77,9 +85,6 @@ public class RegistroUsuarioMB implements Serializable{
 	        
 	        
 	        
-	         
-	        FacesMessage msg = new FacesMessage("Datos limpios");
-	        FacesContext.getCurrentInstance().addMessage(null, msg);
 	    }
 
 	public String getNombreUsuario() {
@@ -154,5 +159,14 @@ public class RegistroUsuarioMB implements Serializable{
 		this.fecha = fecha;
 	}
 
+	public String getClave1() {
+		return clave1;
+	}
+
+	public void setClave1(String clave1) {
+		this.clave1 = clave1;
+	}
+
 
 }
+

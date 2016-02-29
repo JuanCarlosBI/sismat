@@ -18,11 +18,6 @@ public class NivelServiceImpl implements NivelService {
 		
 		Nivel niveles = new Nivel();
 		String nivelAcademico=tipo+"-"+orden+"°-"+nivel;
-		System.out.println(tipo);
-		System.out.println(nivelAcademico);
-		System.out.println(orden);
-		System.out.println(nroVacantes);
-		System.out.println(estado);
 		niveles.setTipo(tipo);
 		niveles.setNivel(nivel);
 		niveles.setNivelAcademico(nivelAcademico);

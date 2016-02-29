@@ -28,49 +28,31 @@
 				styleClass="panelBusquedaForm" toggleable="false" closable="false"
 				toggleSpeed="500" closeSpeed="2000" widgetVar="panel">
 				
-				<table style="text-align: right;">
+				<table style="text-align: left;">
+					
 					<tr>
-						<td>
-							<table style="text-align: right;">
-								<tr>
-								<td colspan="8">
-								<table>
-									<tr>
-									<p:column  headerText="CoTutor"
-											style="width:420px;text-right;" styleClass="columnForm">										
-										<p:outputLabel value="Co-Tutor:" />
-										<p:autoComplete 
-                                                    value="#{registroSeccionMB.nombresco}" completeMethod="#{registroSeccionMB.autoCompletadoProducto}"
-                                                     required="true" requiredMessage="Ingrese Nombre Co-Tutor"   style="width:400px;text-align:left;"/>
-                                                
-					
-										</p:column>
-										
-										
-										
-									</tr>
-									<tr>
-										
-										
-									</tr>
-								</table>
-								</td>
+						<td>	<p:outputLabel value="Tutor:" /> </td>
+						<td><p:autoComplete  value="#{registroSeccionMB.nombres}"  completeMethod="#{registroSeccionMB.autoCompletadoProducto}"
+                                        size="40"    required="#{not empty param.includeGuardar}"   requiredMessage="Ingrese Nombre Tutor"     />
+                       </td>
 								</tr>
 								<tr>
-								<p:column  headerText="Tutor"
-											style="width:420px;text-right;" styleClass="columnForm">										
-										<p:outputLabel value="Tutor:" />
-										<p:autoComplete 
-                                                    value="#{registroSeccionMB.nombres}" completeMethod="#{registroSeccionMB.autoCompletadoProducto}"
-                                             required="true"      requiredMessage="Ingrese Nombre Tutor"     style="width:400px;text-align:left;"/>
+								<td>										
+										<p:outputLabel value="Co-Tutor:" /></td>
+								<td>		<p:autoComplete 
+                                                    value="#{registroSeccionMB.nombresco}"  completeMethod="#{registroSeccionMB.autoCompletadoProducto}"
+                                                   size="40"  required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Nombre Co-Tutor"   />
                                                 
 					
-										</p:column>
+										</td>
 								</tr>
+								
 								<tr>
+								
+								
 									<td><p:outputLabel value="Grado:" /></td>
-									<td style="text-align: left;" colspan="3">
-										<p:selectOneMenu id="idGrado" value="#{registroSeccionMB.grado}"  layout="grid" columns="1"  required="true"      requiredMessage="Elija Grado" >            								
+									<td>
+										<p:selectOneMenu id="idGrado" value="#{registroSeccionMB.grado}"  layout="grid" columns="1" required="#{not empty param.includeGuardar}"    requiredMessage="Elija Grado" >            								
             							   	<p:ajax update="idNivel" listener="#{registroSeccionMB.listaNivel}"/> 
 						            			  <f:selectItem itemLabel="Elegir:" itemValue="" />
             					    		
@@ -83,9 +65,9 @@
         								</p:selectOneMenu>
 									</td>					
 								
-									<td><p:outputLabel value="Nivel Academico:" /></td>
-									<td style="text-align: left;" colspan="3">
-										<p:selectOneMenu id="idNivel" value="#{registroSeccionMB.nivelAcademico}"  layout="grid" columns="1"  required="true"      requiredMessage="Elija Nivel Academico" >											
+									<td><p:outputLabel value="Nivel Academico:" style="margin-left:-150px;"/></td>
+									<td >
+										<p:selectOneMenu id="idNivel"  style="margin-left:-50px;" value="#{registroSeccionMB.nivelAcademico}"  layout="grid" columns="1"  required="#{not empty param.includeGuardar}"      requiredMessage="Elija Nivel Academico" >											
             					    		
             							     <f:selectItem itemLabel="Elegir:" itemValue="" />
             					    		<f:selectItems value="#{registroSeccionMB.listanivel}" />
@@ -93,39 +75,36 @@
         							</td>					
 								</tr>								
 								<tr>
-									<td><p:outputLabel value="Seccion:" /></td>
-									<td style="text-align: left;"><p:inputText value="#{registroSeccionMB.seccion}" size="3"  required="true"      requiredMessage="Ingrese Seccion" /></td>					
+									<td><p:outputLabel value="Seccion:"  /></td>
+									<td style="text-align: left;"><p:inputText  value="#{registroSeccionMB.seccion}" size="3"  required="#{not empty param.includeGuardar}"      requiredMessage="Ingrese Seccion" /></td>					
 								
-									<td><p:outputLabel value="N° Vacantes:" /></td>
-									<td style="text-align: left;"><p:spinner id="vacantes"  value="#{registroSeccionMB.nroVacantes}" min="0" max="100" size="1"  required="true"      requiredMessage="Ingrese Nro Vacantes" /></td>					
+									<td><p:outputLabel value="N° Vacantes:" style="margin-left:-150px;" /></td>
+									<td ><p:spinner id="vacantes"  style="margin-left:-50px;" value="#{registroSeccionMB.nroVacantes}" min="0" max="100" size="1"  required="#{not empty param.includeGuardar}"     requiredMessage="Ingrese Nro Vacantes" /></td>					
 								
 									<td><p:outputLabel value="N° Aula:" /></td>
-									<td style="text-align: left;"><p:inputText value="#{registroSeccionMB.nroAula}" size="3"  required="true"      requiredMessage="Ingrese Nro de Aula" /></td>					
+									<td ><p:inputMask value="#{registroSeccionMB.nroAula}" size="3" mask="99"  required="#{not empty param.includeGuardar}"      requiredMessage="Ingrese Nro de Aula" /></td>					
 								
 									<td><p:outputLabel value="Periodo:" /></td>
-									<td style="text-align: left;"><p:spinner id="basic" value="#{registroSeccionMB.periodo}" min="2015" max="2050" size="1"  required="true"      requiredMessage="Ingrese Periodo" /></td>
+									<td ><p:spinner id="basic" value="#{registroSeccionMB.periodo}" min="2015" max="2050" size="1"  required="#{not empty param.includeGuardar}"      requiredMessage="Ingrese Periodo" /></td>
 														
 								</tr>
-							</table>
-						</td>						
-					</tr>
-					<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
-	
+							
+					
+				
 					<tr><td><br/></td></tr>
 					<tr style="text-align: left;">
 						<td colspan="8">
-							<p:commandButton id="btnGuardar"								
-										value="Guardar" action="#{registroSeccionMB.registrarSeccion}" styleClass="buttonForm"/>
-							<p:commandButton value="Limpiar" update="idSeccion" process="@this" actionListener="#{registroSeccionMB.resetFail}" styleClass="buttonForm" />
- 						 <p:link id="btnCancelar"				outcome="pagina"				
-										value="Cancelar"  styleClass="buttonForm"/>
-											
-    </td>
+						<p:commandButton id="btnGuardar" value="Guardar"								
+								action="#{registroSeccionMB.registrarSeccion}"   styleClass="buttonForm">
+							 <f:param name="includeGuardar" value="true" /> </p:commandButton> 
+							
+						<p:commandButton value="Limpiar" update="idSeccion" process="@this" actionListener="#{registroSeccionMB.resetFail}" styleClass="buttonForm" />
+ 						<p:commandButton value= "Cancelar"  action= "pagina.xhmtl?faces-redirect=true" styleClass="buttonForm" /> 
+						</td>
 					</tr>
 				</table>
-				
-				
-				
+				<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+		
 		</p:panel>
 				
 		</h:form>

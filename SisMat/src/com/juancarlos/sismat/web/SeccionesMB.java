@@ -88,7 +88,7 @@ public class SeccionesMB implements Serializable {
 					Seccion secciones = seccion.get(i);
 					listaidTutor[i] = secciones.getIdTutor();
 					tutor[i] = seccionService.nombreTutor(listaidTutor[i])+"-"+listaidTutor[i];
-					System.out.println(seccionService.nombreTutor(listaidTutor[i]));
+					
 					
 					
 				}
@@ -102,7 +102,7 @@ public class SeccionesMB implements Serializable {
 		FacesMessage msg = new FacesMessage("Seccion Editado",
 				((Seccion) event.getObject()).getSeccion());
 		FacesContext.getCurrentInstance().addMessage(null, msg);
-		System.out.println(event.hashCode());
+		
 		  UIData data = (UIData) event.getComponent().findComponent("myDataTable");
 		  int rowIndex = data.getRowIndex();
 		
@@ -158,7 +158,7 @@ public class SeccionesMB implements Serializable {
 	}
 
 	public String[] getListanivel() {
-		return listanivel;
+		return mainMB.getListanivel();
 	}
 
 	public void setListanivel(String[] listanivel) {

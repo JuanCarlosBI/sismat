@@ -66,7 +66,7 @@
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Numero de Vacantes" /></td>
-									<td><p:inputMask value="#{registroNivelesMB.nroVacantes}" mask="99" required="true" requiredMessage="Ingrese Numero de Vacantes" /></td>					
+									<td><p:inputMask value="#{registroNivelesMB.nroVacantes}" required="#{not empty param.includeGuardar}" mask="99"  requiredMessage="Ingrese Numero de Vacantes" /></td>					
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Estado:" /></td>
@@ -84,11 +84,12 @@
 	
 					<tr>
 						<td>
-							<p:commandButton id="btnGuardar" value="Guardar" action="#{registroNivelesMB.registrarNivel}" styleClass="buttonForm"/>
-										<p:commandButton value="Limpiar" update="panel" process="@this" actionListener="#{registroNivelesMB.resetFail}" styleClass="buttonForm" />
- 							 <p:link id="btnCancelar"				outcome="pagina"				
-										value="Cancelar"  styleClass="buttonForm"/>
-							
+								<p:commandButton id="btnGuardar" value="Guardar"								
+								action="#{registroNivelesMB.registrarNivel}"  ajax="false" styleClass="buttonForm">
+								 <f:param name="includeGuardar" value="true" /> </p:commandButton> 
+							<p:commandButton value="Limpiar" update="panel" process="@this" actionListener="#{registroNivelesMB.resetFail}" styleClass="buttonForm" />
+ 								<p:commandButton value= "Cancelar" ajax= "false" action= "pagina.xhmtl?faces-redirect=true" styleClass="buttonForm" /> 
+					
 						</td>
 					</tr>
 				</table>

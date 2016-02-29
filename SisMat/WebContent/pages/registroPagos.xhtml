@@ -36,9 +36,9 @@
 						<table>
 							<tr>
 								<td><p:outputLabel value="Ingresar DNI del Alumno" /></td>
-								<td><p:autoComplete value="#{registroPagoMB.idAlumno}" required="true" requiredMessage="Ingrese DNI" 
-										completeMethod="#{registroPagoMB.autoCompletadoAlumno}"
-										style="width:250px;text-align:left; " /></td>
+							
+											<td><p:inputMask value="#{registroPagoMB.idAlumno}"    required="true" requiredMessage="Ingrese DNI" mask="99999999"/></td>					
+								
 							</tr>
 
 
@@ -180,7 +180,7 @@
 										<td><p:inputText value="#{registroPagoMB.factura}" required="true" requiredMessage="Ingrese Factura" 
 												size="9" /></td>
 										<td><p:outputLabel value="N° boleta:" /></td>
-										<td><p:inputText value="#{registroPagoMB.boleta}" required="true" requiredMessage="Ingrese Boleta" 
+										<td><p:inputText value="#{registroPagoMB.boleta}" required="true" requiredMessage="Ingrese Boleta" onkeypress="if((event.which &lt; 48 || event.which &gt; 57)||(!(event.which &lt; 0 || event.which &gt; 31))) return false;"
 												size="9" /></td>
 									</tr>
 								</table>

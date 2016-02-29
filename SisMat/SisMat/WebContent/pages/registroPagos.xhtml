@@ -1,0 +1,299 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<f:view contentType="text/html">
+	<h:head>
+		<title>Alumnos</title>
+		<link type="text/css" rel="stylesheet"
+			href="#{request.contextPath}/css/default.css" />
+		<link type="text/css" rel="stylesheet"
+			href="#{request.contextPath}/css/icons.css" />
+		<script type="text/javacsript"
+			src="#{request.contextPath}/js/jquery-2.1.3.js"></script>
+		<script type="text/javacsript" src="#{request.contextPath}/js/util.js"></script>
+		<style type="text/css">
+.fieldInputForm {
+	width: 200px;
+}
+</style>
+	</h:head>
+	<h:body id="todo">
+	<br />
+		<h:form id="form">
+
+			<p:panel id="Profesores" header="Lista de Alumnos"
+				styleClass="panelBusquedaForm" toggleable="false" closable="false"
+				toggleSpeed="500" closeSpeed="2000" widgetVar="panel"
+				style="width:707px;">
+
+				<table>
+
+
+					<td>
+						<table>
+							<tr>
+								<td><p:outputLabel value="Ingresar Codigo" /></td>
+								<td><p:autoComplete value="#{registroPagoMB.idAlumno}"
+										completeMethod="#{registroPagoMB.autoCompletadoAlumno}"
+										style="width:250px;text-align:left; " /></td>
+							</tr>
+
+
+						</table>
+					</td>
+
+
+
+					<td>
+						<table>
+							<tr>
+								<td><p:commandButton id="btnBuscar" value="Buscar"
+										action="#{registroPagoMB.listaAlumnos}"
+										update=":form:idpanelTablaAlumnos" styleClass="buttonForm" />
+
+								</td>
+							</tr>
+						</table>
+					</td>
+
+					<td><p:outputLabel value="Fecha Actual:" /></td>
+					<td><p:calendar id="fecha" value="#{registroPagoMB.fecha}"
+							showOn="button" readOnlyInputText="true" required="true"
+							locale="es" navigator="true"
+							requiredMessge="La fecha de Nacimiento es requerida"
+							pattern="yyyy-MM-dd" /> <p:message id="fechaerror" for="fecha" />
+					</td>
+
+
+				</table>
+
+
+
+			</p:panel>
+
+			<p:panel id="idpanelTablaAlumnos" header="Datos" toggleable="false"
+				closable="false" toggleSpeed="500" closeSpeed="2000"
+				widgetVar="panel" rowKey="#{lista.id}" style="width:705px;">
+
+				<p:dataTable var="lista" value="#{registroPagoMB.alumnos}"
+					style="width:448px;">
+
+					<!-- 			    <p:column headerText="Id" styleClass="panelTabla"> -->
+					<!-- 			        <h:outputText value="#{lista.id}" /> -->
+					<!-- 			    </p:column> -->
+
+					<p:column headerText="Nombres" styleClass="panelTabla"
+						style="text-align:center;">
+						<h:outputText value="#{lista.nombreCompleto}" />
+					</p:column>
+
+					<p:column headerText="Responsable" styleClass="panelTabla"
+						style="text-align:center;">
+						<h:outputText value="#{lista.responsable}" />
+					</p:column>
+
+
+
+				</p:dataTable>
+				<div>
+					<p:dataTable var="listo" value="#{registroPagoMB.matriculas}"
+						style="width:150px;">
+
+						<p:column headerText="Seccion" styleClass="panelTabla">
+							<h:outputText value="#{listo.seccion}" />
+						</p:column>
+
+					</p:dataTable>
+				</div>
+
+				<div>
+					<p:dataTable var="listar" value="#{registroPagoMB.nivel}"
+						style="width:298px; margin-top:-48px; margin-left:150px;">
+						<p:column headerText="Grado" styleClass="panelTabla">
+							<h:outputText value="#{listar.grado}" />
+						</p:column>
+						<p:column headerText="Nivel" styleClass="panelTabla">
+							<h:outputText value="#{listar.orden}" />
+						</p:column>
+
+					</p:dataTable>
+				</div>
+
+
+
+
+			</p:panel>
+
+		</h:form>
+		<h:form id="forma">
+		
+			
+ <p:panel id="idPagos" header="Pagos" toggleable="false"
+				closable="false" toggleSpeed="500" closeSpeed="2000"
+				widgetVar="panel" rowKey="#{listara.id}" style="width:705px; margin-top:-10px;" >
+		
+					
+			<table>
+							<tr>
+								<td><p:outputLabel value="Pago pendiente:" /></td>
+							
+								<td><p:commandButton id="btnPagos" value="Ver Pagos Realizados"
+										action="#{registroPagoMB.verPagos}"
+										update=":forma:idPagos" styleClass="buttonForm" />
+
+								</td>
+							</tr>
+						</table>
+			
+					
+					<table>
+						
+						
+						<tr>
+						<p:dataTable var="listara" value="#{registroPagoMB.pagos}"
+					style="width:448px;">
+
+					<!-- 			    <p:column headerText="Id" styleClass="panelTabla"> -->
+					<!-- 			        <h:outputText value="#{lista.id}" /> -->
+					<!-- 			    </p:column> -->
+
+					<p:column headerText="Monto" styleClass="panelTabla"
+						style="text-align:center;">
+						<h:outputText value="#{listara.saldopagado}" />
+					</p:column>
+
+					<p:column headerText="Fecha" styleClass="panelTabla"
+						style="text-align:center;">
+						<h:outputText value="#{listara.fecha}" />
+					</p:column>
+
+
+
+				</p:dataTable>
+						</tr>
+					</table>
+					</p:panel>
+   	</h:form>
+		<h:form id="formo">
+			<p:panel id="idInformePagos" header="Informe Pago" toggleable="false"
+				closable="false" toggleSpeed="500" closeSpeed="2000"
+				widgetVar="panel" style="width:705px;">
+				<table>
+					<tr>
+
+
+						<td valign="top"><p:panel>
+								<table>
+									<tr>
+										<td colspan="4"><p:outputLabel
+												value="Informacion de pago" /></td>
+									</tr>
+									<tr>
+										<td><p:outputLabel value="N° factura:" /></td>
+										<td><p:inputText value="#{registroPagoMB.factura}"
+												size="9" /></td>
+										<td><p:outputLabel value="N° boleta:" /></td>
+										<td><p:inputText value="#{registroPagoMB.boleta}"
+												size="9" /></td>
+									</tr>
+								</table>
+							</p:panel> <p:panel>
+								<table>
+									<tr>
+										<td colspan="6"><p:outputLabel value="Detalle" /></td>
+									</tr>
+									<tr>
+										<td><p:outputLabel value="Pensión:" /></td>
+										<td style="text-align: left;"><p:selectOneMenu
+												id="idPension" value="#{registroPagoMB.pension}"
+												layout="grid" columns="2">
+												<f:selectItem itemValue="Pension" itemLabel="Pension" />
+												<f:selectItem itemValue="Matricula" itemLabel="Matricula" />
+											</p:selectOneMenu></td>
+										<td style="text-align: right;"><p:outputLabel
+												value="Saldo:" /></td>
+										<td colspan="3"><p:inputText
+												value="#{registroPagoMB.saldo}" size="10" required="true"
+												requiredMessge="El saldo es requerido" /></td>
+
+
+									</tr>
+									<tr>
+										<td style="text-align: right;"><p:outputLabel
+												value="A cuenta:" /></td>
+										<td><p:spinner id="basic" min="0.0" stepFactor="0.25"
+												size="4" value="#{registroPagoMB.saldopagado}" /></td>
+										<td style="text-align: right;"><p:outputLabel
+												value="Recargo:" /></td>
+										<td><p:spinner id="basic1" min="0.0" stepFactor="0.25"
+												size="4" value="#{registroPagoMB.recargo}" /></td>
+										<td style="text-align: right;"><p:outputLabel
+												value="Descuento:" /></td>
+										<td><p:spinner id="basic2" min="0.0" stepFactor="0.25"
+												size="4" value="#{registroPagoMB.descuento}" /></td>
+
+									</tr>
+									<tr>
+										<td colspan="6"><p:commandButton id="btnAceptar"
+												value="Agregar" styleClass="buttonForm"
+												action="#{registroPagoMB.calcularDeuda}"
+												update=":formo:idInformePagos" /> <p:commandButton
+												value="Limpiar" update="idInformePagos" process="@this"
+												actionListener="#{registroPagoMB.resetFail}"
+												styleClass="buttonForm" /></td>
+									</tr>
+									<tr>
+										<td colspan="6"><p:dataTable var="ca" value=""
+												style="width:400px;">
+
+												<p:column headerText="Pension" styleClass="panelTabla">
+													<h:outputText value="#{registroPagoMB.saldo}" />
+												</p:column>
+
+												<p:column headerText="Descuento" styleClass="panelTabla">
+													<h:outputText value="#{registroPagoMB.descuento}" />
+												</p:column>
+
+												<p:column headerText="Recargo" styleClass="panelTabla">
+													<h:outputText value="#{registroPagoMB.recargo}" />
+												</p:column>
+
+												<p:column headerText="Importe" styleClass="panelTabla">
+													<h:outputText value="#{registroPagoMB.saldopagado}" />
+												</p:column>
+												<p:column headerText="Total Deuda" styleClass="panelTabla">
+													<h:outputText value="#{registroPagoMB.deuda}" />
+												</p:column>
+
+											</p:dataTable></td>
+
+
+									</tr>
+
+								</table>
+							</p:panel></td>
+					</tr>
+
+
+					<tr>
+						<td><p:commandButton id="btnGuardar" value="Guardar"
+								action="#{registroPagoMB.registrarPago}" styleClass="buttonForm" />
+
+						</td>
+					</tr>
+					<tr>
+						<p:messages id="messages" showDetail="true" autoUpdate="true"
+							closable="true" />
+
+					</tr>
+				</table>
+				
+			</p:panel>
+
+		</h:form>
+	</h:body>
+</f:view>
+</html>

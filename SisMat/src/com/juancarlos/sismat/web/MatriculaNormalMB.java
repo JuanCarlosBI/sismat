@@ -92,8 +92,7 @@ public class MatriculaNormalMB implements Serializable {
 
 	public List<String> autoCompletadoAlumno(String query) {
 
-		System.out.println("autoCompletadoProducto");
-		System.out.println("query " + query);
+
 
 		List<String> results = new ArrayList<String>();
 		List<Alumnos> listaNombresAlumnos = new ArrayList<Alumnos>();
@@ -114,7 +113,6 @@ public class MatriculaNormalMB implements Serializable {
 
 	public void listaAlumnos() {
 
-		System.out.println("listaAlumnos()");
 		idAlumno = nombres.replaceAll("[^0-9.]", "");
 		// loginMB.datosUsuario();
 		// loginMB.getCodigoColegio();
@@ -124,7 +122,6 @@ public class MatriculaNormalMB implements Serializable {
 
 		mainMB.datosUsuario();
 		codigoColegio = mainMB.getCodigoColegio();
-		System.out.println("Fecha y Hora Actual");
 		Date date = new Date();
 		DateFormat hourFormat = new SimpleDateFormat("HH:mm:ss");
 		hora = hourFormat.format(date);
@@ -160,7 +157,6 @@ public class MatriculaNormalMB implements Serializable {
 	}
 
 	public void agregar() {
-		System.out.println(nombrecurso);
 		return;
 	}
 
@@ -211,7 +207,6 @@ public class MatriculaNormalMB implements Serializable {
 		idSeccion = secciones.getIdSeccion();
 		tutor = matriculaService.nombreTutor(idtutor);
 		cotutor = matriculaService.nombreCoTutor(idcotutor);
-		System.out.println("La id es: " + idSeccion);
 		Empleado tutores = tutor.get(0);
 		Empleado cotutores = cotutor.get(0);
 		nombretutor = tutores.getNombreCompleto();
@@ -285,7 +280,7 @@ public class MatriculaNormalMB implements Serializable {
 			matricula = matriculaService.idMatricula(idAlumno);
 			Matriculas listaMatricula = matricula.get(0);
 			idMatricula = listaMatricula.getIdMatricula();
-			System.out.println(idMatricula);
+			
 
 			for (int i = 0; i < orderList.size(); i++) {
 				idCurso = orderList.get(i).getNombrecursoexo()
@@ -298,7 +293,7 @@ public class MatriculaNormalMB implements Serializable {
 			}
 			for (int i = 0; i < nombrecurso.length; i++) {
 				idCurso = nombrecurso[i].replaceAll("[^0-9.]", "");
-				System.out.println(idCurso);
+				
 				String tipo = "Matriculado";
 				motivo = "";
 				boolean registrar = matriculaService.registroMatriculaCurso(
@@ -341,8 +336,6 @@ public class MatriculaNormalMB implements Serializable {
 		this.motivo = null;
 		MatriculaNormalMB.orderList.clear();
 
-		FacesMessage msg = new FacesMessage("Datos limpios");
-		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
 
 	public String getIdAlumno() {

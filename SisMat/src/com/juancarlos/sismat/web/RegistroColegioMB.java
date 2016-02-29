@@ -53,7 +53,7 @@ public class RegistroColegioMB implements Serializable {
 	}
 
 	public void registrarColegio() {
-		System.out.println("registroColegio");
+	
 
 		boolean resultado = colegioService.registroColegio(razonSocial, ruc,
 				correo, direccion, telefono, fax, logo);
@@ -73,8 +73,8 @@ public class RegistroColegioMB implements Serializable {
 
 	public List<String> autoCompletadoColegio(String query) {
 
-		System.out.println("autoCompletadoColegio");
-		System.out.println("query " + query);
+		
+		
 
 		List<String> results = new ArrayList<String>();
 		List<Colegio> listaNombresColegio = new ArrayList<Colegio>();
@@ -91,8 +91,7 @@ public class RegistroColegioMB implements Serializable {
 		return results;
 
 	}
-	
-	
+
 	public void onEdit(RowEditEvent event) {
 		FacesMessage msg = new FacesMessage("Colegio Editado",
 				((Colegio) event.getObject()).getRazonSocial());
@@ -101,8 +100,8 @@ public class RegistroColegioMB implements Serializable {
 	}
 
 	public void listaColegio() {
-
-		System.out.println("listaColegio()");
+		
+		
 		codigoColegio = nombreColegio.replaceAll("[^0-9.]", "");
 		colegios = colegioService.listaColegio(codigoColegio);
 

@@ -48,8 +48,6 @@ public class RegistroSeccionMB implements Serializable {
 
 	public List<String> autoCompletadoProducto(String query) {
 
-		System.out.println("autoCompletadoProducto");
-		System.out.println("query " + query);
 
 		List<String> results = new ArrayList<String>();
 		List<Empleado> listaNombresProductos = new ArrayList<Empleado>();
@@ -84,7 +82,6 @@ public class RegistroSeccionMB implements Serializable {
 
 	public void registrarSeccion() {
 
-		System.out.println("Registro Seccion");
 		idTutor = nombres.replaceAll("[^0-9.]", "");
 
 		idCoTutor = nombresco.replaceAll("[^0-9.]", "");

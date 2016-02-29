@@ -35,7 +35,6 @@ public class ProfesoresMB implements Serializable {
 	private List<Empleado> listaProfesores = new ArrayList<Empleado>();
 	
 	public void listaProfesores(){
-		System.out.println("listaProfesores()");
 
 		mainMB.datosUsuario();
 		codigoColegio=mainMB.getCodigoColegio();
@@ -48,7 +47,7 @@ public class ProfesoresMB implements Serializable {
 		}
 		else{
 			if(listaProfesores.isEmpty()){
-				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"No se ecnontro alumnos",""));
+				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"No se encontro profesor",""));
 			}	
 		}
 	}

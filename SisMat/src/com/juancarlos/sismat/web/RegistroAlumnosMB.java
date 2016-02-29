@@ -92,12 +92,10 @@ public class RegistroAlumnosMB implements Serializable {
 	}
 
 	public void registrarAlumno() {
-		System.out.println("registroAlumno");
-		System.out.println(nombrefoto);
 
 		mainMB.datosUsuario();
 		codigoColegio = mainMB.getCodigoColegio();
-		System.out.println(codigoColegio);
+	
 
 		boolean resultado = alumnoService.registroAlumno(nombres,
 				apellidoPaterno, apellidoMaterno, dni, fechaNacimiento, edad,

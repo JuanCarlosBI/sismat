@@ -37,7 +37,7 @@
 
 									<td><p:outputLabel value="Curso:" /></td>
 
-									<td><p:autoComplete value="#{cursosMB.nombcurso}" required="true" requiredMessage="Ingrese Curso"
+									<td><p:autoComplete value="#{cursosMB.nombcurso}"  requiredMessage="Ingrese Curso"
 											completeMethod="#{cursosMB.autoCompletadoCurso}" />
 
 									</td>
@@ -46,17 +46,17 @@
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Estado:" /></td>
-									<td><p:selectOneRadio id="idEstado" required="true" requiredMessage="Elija Estado"
+									<td><p:selectOneRadio id="idEstado"  requiredMessage="Elija Estado"
 											value="#{cursosMB.estado}" columns="2">
 
-											<p:ajax update="idNivel" />
+											<p:ajax update="idNivel" listener="#{cursosMB.listaNivel}" />
 											<f:selectItem itemValue="Activo" itemLabel="Activo" />
 											<f:selectItem itemValue="Inactivo" itemLabel="Inactivo" />
 										</p:selectOneRadio></td>
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Nivel Academico:" /></td>
-									<td><p:selectOneMenu id="idNivel"   required="true" requiredMessage="Ingrese Nivel Academico"
+									<td><p:selectOneMenu id="idNivel" requiredMessage="Ingrese Nivel Academico"
 											value="#{cursosMB.nivelAcademico}" columns="1">
 											<f:selectItem itemLabel="Elegir:" itemValue="" />
 											<f:selectItems value="#{cursosMB.listanivel}" />

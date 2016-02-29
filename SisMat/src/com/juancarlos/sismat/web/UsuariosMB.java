@@ -18,43 +18,42 @@ import com.juancarlos.sismat.dominio.Usuario;
 import com.juancarlos.sismat.service.UsuarioService;
 
 @SuppressWarnings("serial")
-@ManagedBean(name="usuariosMB")
+@ManagedBean(name = "usuariosMB")
 @SessionScoped
 @Component
-public class UsuariosMB  implements Serializable{
+public class UsuariosMB implements Serializable {
 
+	private String codigoColegio;
+	private String nombreCompleto;
+	private String idUsuario;
+	private String estado;
 
-private String codigoColegio;
-private String nombreCompleto;
-private String idUsuario;
-private String estado;
+	@Autowired
+	private MainMB mainMB;
 
-@Autowired
-private MainMB mainMB;
-
-private List<Usuario> listaUsuario;
-@Autowired
-UsuarioService usuarioService;
-	
+	private List<Usuario> listaUsuario;
+	@Autowired
+	UsuarioService usuarioService;
 
 	public List<String> autoCompletadoProducto(String query) {
+
 		
-		System.out.println("autoCompletadoProducto");
-		System.out.println("query "+query);
 		
+
 		List<String> results = new ArrayList<String>();
-		List<Usuario> listaNombresProductos = new ArrayList<Usuario>();	
+		List<Usuario> listaNombresProductos = new ArrayList<Usuario>();
 
 		mainMB.datosUsuario();
-		codigoColegio=mainMB.getCodigoColegio();
-		
-		//codigoColegio="1041701524";
-		listaNombresProductos = usuarioService.nombreUsuario(query.toUpperCase());
-		
-		
+		codigoColegio = mainMB.getCodigoColegio();
+
+		// codigoColegio="1041701524";
+		listaNombresProductos = usuarioService.nombreUsuario(query
+				.toUpperCase());
+
 		if (query.length() >= 3) {
 			for (Usuario elemento : listaNombresProductos) {
-				results.add(elemento.getNombreCompleto()+"-"+elemento.getIdUsuario());	
+				results.add(elemento.getNombreCompleto() + "-"
+						+ elemento.getIdUsuario());
 			}
 		}
 
@@ -62,26 +61,23 @@ UsuarioService usuarioService;
 
 	}
 
-	
-
-	
-
 	public void listaUsuario() {
-		idUsuario= nombreCompleto.replaceAll("[^0-9.]", ""); 
-		
-		listaUsuario = usuarioService.listaUsuario(codigoColegio, idUsuario);
-		int resultado=listaUsuario.size();
-		 if (resultado==0) {
-			 FacesContext.getCurrentInstance().addMessage(
-						null,
-						new FacesMessage(FacesMessage.SEVERITY_ERROR,
-								"Usuario no encontrado", ""));
-			} 
-		 return;
+		mainMB.datosUsuario();
+		codigoColegio = mainMB.getCodigoColegio();
+		idUsuario = nombreCompleto.replaceAll("[^0-9.]", "");
+
+		listaUsuario = usuarioService.listaUsuario(codigoColegio, idUsuario,
+				estado);
+		int resultado = listaUsuario.size();
+		if (resultado == 0) {
+			FacesContext.getCurrentInstance().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR,
+							"Usuario no encontrado", ""));
+		}
+		return;
 
 	}
-
-	
 
 	public void onEdit(RowEditEvent event) {
 		FacesMessage msg = new FacesMessage("Usuario Editado",
@@ -91,94 +87,66 @@ UsuarioService usuarioService;
 
 	}
 
-
 	public void darBaja(Usuario lista) {
-		estado="Inactivo";
+		estado = "Inactivo";
 		lista.setEstado(getEstado());
-		
-		usuarioService.editar(lista);
-		}
-	
-	public void darAlta(Usuario lista) {
-		estado="Activo";
-		lista.setEstado(getEstado());
-		
-		usuarioService.editar(lista);
-		}
 
+		usuarioService.editar(lista);
+	}
+
+	public void darAlta(Usuario lista) {
+		estado = "Activo";
+		lista.setEstado(getEstado());
+
+		usuarioService.editar(lista);
+	}
 
 	public String getCodigoColegio() {
 		return codigoColegio;
 	}
 
-
 	public void setCodigoColegio(String codigoColegio) {
 		this.codigoColegio = codigoColegio;
 	}
-
 
 	public UsuarioService getUsuarioService() {
 		return usuarioService;
 	}
 
-
 	public void setUsuarioService(UsuarioService usuarioService) {
 		this.usuarioService = usuarioService;
 	}
-
 
 	public String getNombreCompleto() {
 		return nombreCompleto;
 	}
 
-
 	public void setNombreCompleto(String nombreCompleto) {
 		this.nombreCompleto = nombreCompleto;
 	}
-
-
-
 
 	public String getIdUsuario() {
 		return idUsuario;
 	}
 
-
-
-
 	public void setIdUsuario(String idUsuario) {
 		this.idUsuario = idUsuario;
 	}
-
-
-
 
 	public List<Usuario> getListaUsuario() {
 		return listaUsuario;
 	}
 
-
-
-
 	public void setListaUsuario(List<Usuario> listaUsuario) {
 		this.listaUsuario = listaUsuario;
 	}
-
-
-
-
 
 	public String getEstado() {
 		return estado;
 	}
 
-
-
-
-
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-	
-	
+
 }

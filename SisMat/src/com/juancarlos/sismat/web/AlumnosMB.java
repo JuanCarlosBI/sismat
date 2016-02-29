@@ -36,24 +36,14 @@ public class AlumnosMB implements Serializable {
 	@Autowired
 	private MainMB mainMB;
 
-	public AlumnosMB() {
 
-		// listaAlumnos(codigoColegio);
-	}
 
 	public void listaAlumnos() {
-		System.out.println("listaAlumnos()");
 
 		mainMB.datosUsuario();
 		codigoColegio = mainMB.getCodigoColegio();
 		// codigoColegio = "1041701524";//de manera temporal, luego se eliminara
 		// ese dato vendra de sesion
-		System.out.println("codigoColegio " + codigoColegio);
-		System.out.println("dni " + dni);
-		System.out.println("nombres " + nombres);
-		System.out.println("apellidoPaterno " + apellidoPaterno);
-		System.out.println("apellidoMaterno " + apellidoMaterno);
-		System.out.println("estado " + estado);
 
 		alumnos = alumnoService.listaAlumnos(codigoColegio, dni, nombres,
 				apellidoPaterno, apellidoMaterno, estado);
@@ -105,8 +95,6 @@ public class AlumnosMB implements Serializable {
 		this.apellidoMaterno = null;
 		alumnos=null;
 
-		FacesMessage msg = new FacesMessage("Datos limpios");
-		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
 
 

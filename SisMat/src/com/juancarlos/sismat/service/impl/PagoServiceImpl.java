@@ -25,9 +25,7 @@ public class PagoServiceImpl implements PagoService {
 	}
 
 	public List<Matriculas> listaMatricula(String codigoColegio, String idAlumno) {
-		System.out.println("en listaAlumnos service");
-		System.out.println("codigoColegio " + codigoColegio);
-		System.out.println("idAlumno " + idAlumno);
+		
 
 		List<Matriculas> matriculas = pagoDao.listaMatricula(codigoColegio,
 				idAlumno);
@@ -36,9 +34,7 @@ public class PagoServiceImpl implements PagoService {
 	}
 
 	public List<Alumnos> listaAlumnos(String codigoColegio, String idAlumno) {
-		System.out.println("en listaAlumnos service");
-		System.out.println("codigoColegio " + codigoColegio);
-		System.out.println("idAlumno " + idAlumno);
+		
 
 		List<Alumnos> alumnos = pagoDao.listaAlumnos(codigoColegio, idAlumno);
 
@@ -46,8 +42,6 @@ public class PagoServiceImpl implements PagoService {
 	}
 
 	 public List<Seccion> listaSeccion(Integer idSeccion) {
-		System.out.println("en listaSeccion service");
-		System.out.println("idSeccion " + idSeccion);
 
 		List<Seccion> seccion = pagoDao.listaSeccion(idSeccion);
 
@@ -55,8 +49,6 @@ public class PagoServiceImpl implements PagoService {
 	}
 
 	public List<Pagos> listaPago(Integer idMatricula) {
-		System.out.println("en listaMatricula service");
-		System.out.println("idMatricula " + idMatricula);
 
 		List<Pagos> pagos = pagoDao.listaPago(idMatricula);
 

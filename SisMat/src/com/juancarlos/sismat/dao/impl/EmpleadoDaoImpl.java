@@ -34,26 +34,94 @@ public class EmpleadoDaoImpl extends HibernateDaoSupport implements EmpleadoDao 
 			String nombre, String apellidos, String estado) {
 
 		logger.info("en listaEmpleado");
-		System.out.println("en listaEmpleado dao");
 
 		String sql = "";
 		List<Empleado> empleado = new ArrayList<Empleado>();
 
 		try {
-			sql = "from Empleado where codigoColegio = '"
-					+ codigoColegio.trim() + "' AND idEmpleado='" + dni
-					+ "' AND nombres='" + nombre + "' AND apellidos='"
-					+ apellidos + "' AND estado='" + estado + "'";
+			if (dni.length() == 0 && nombre.length() == 0
+					&& apellidos.length() == 0 && estado.length() == 0) {
+				
+				sql = "from Empleado where codigoColegio = '"
+						+ codigoColegio.trim() + "'";
+			}
+			if (dni.length() != 0 && nombre.length() != 0
+					&& apellidos.length() != 0 && estado.length() != 0) {
+				sql = "from Empleado where codigoColegio = '"
+						+ codigoColegio.trim() + "' AND idEmpleado='" + dni
+						+ "' AND nombres='" + nombre + "' AND apellidos='"
+						+ apellidos + "' AND estado='" + estado + "'";
+			}
+			if (dni.length() != 0 && nombre.length() == 0
+					&& apellidos.length() == 0 && estado.length() == 0) {
+				sql = "from Empleado where codigoColegio = '"
+						+ codigoColegio.trim() + "' AND idEmpleado='" + dni
+						+ "'";
+			}
+			if (dni.length() == 0 && nombre.length() != 0
+					&& apellidos.length() == 0 && estado.length() == 0) {
+				sql = "from Empleado where codigoColegio = '"
+						+ codigoColegio.trim() + "' AND nombres='" + nombre
+						+ "'";
+			}
+			if (dni.length() == 0 && nombre.length() == 0
+					&& apellidos.length() != 0 && estado.length() == 0) {
+				sql = "from Empleado where codigoColegio = '"
+						+ codigoColegio.trim() + "' AND apellidos='"
+						+ apellidos + "'";
+			}
+			if (dni.length() == 0 && nombre.length() == 0
+					&& apellidos.length() == 0 && estado.length() != 0) {
+				sql = "from Empleado where codigoColegio = '"
+						+ codigoColegio.trim() + "' AND estado='" + estado
+						+ "'";
+			}
+			if (dni.length() == 0 && nombre.length() != 0
+					&& apellidos.length() != 0 && estado.length() != 0) {
+				sql = "from Empleado where codigoColegio = '"
+						+ codigoColegio.trim() + "' AND nombres='" + nombre
+						+ "' AND apellidos='" + apellidos + "' AND estado='"
+						+ estado + "'";
+			}
+			if (dni.length() == 0 && nombre.length() != 0
+					&& apellidos.length() != 0 && estado.length() == 0) {
+				sql = "from Empleado where codigoColegio = '"
+						+ codigoColegio.trim() + "' AND nombres='" + nombre
+						+ "' AND apellidos='" + apellidos + "'";
+			}
+			if (dni.length() != 0 && nombre.length() != 0
+					&& apellidos.length() != 0 && estado.length() == 0) {
+				sql = "from Empleado where codigoColegio = '"
+						+ codigoColegio.trim() + "' AND idEmpleado='" + dni
+						+ "' AND nombres='" + nombre + "' AND apellidos='"
+						+ apellidos + "'";
+			}
+			if (dni.length() == 0 && nombre.length() != 0
+					&& apellidos.length() == 0 && estado.length() != 0) {
+				sql = "from Empleado where codigoColegio = '"
+						+ codigoColegio.trim() + "' AND nombres='" + nombre
+						+ "' AND estado='" + estado + "'";
+			}
+			if (dni.length() == 0 && nombre.length() == 0
+					&& apellidos.length() != 0 && estado.length() != 0) {
+				sql = "from Empleado where codigoColegio = '"
+						+ codigoColegio.trim() + "' AND apellidos='"
+						+ apellidos + "' AND estado='" + estado + "'";
+			}
+			if (dni.length() != 0 && nombre.length() == 0
+					&& apellidos.length() == 0 && estado.length() != 0) {
+				sql = "from Empleado where codigoColegio = '"
+						+ codigoColegio.trim() + "' AND idEmpleado='" + dni
+						+ "' AND estado='" + estado + "'";
+			}
 
 			empleado = getHibernateTemplate().find(sql);
-			System.out.println("empleado tamanio " + empleado.size());
 
 			if (empleado.isEmpty()) {
 				empleado = new ArrayList<Empleado>();
 			}
 
 		} catch (Exception e) {
-			System.out.println(e);
 			empleado = null;
 		}
 
@@ -75,19 +143,20 @@ public class EmpleadoDaoImpl extends HibernateDaoSupport implements EmpleadoDao 
 
 		return resultado;
 	}
+
 	@Override
 	public boolean editar(Empleado editarEmpleado) {
 		boolean resultado;
-		
+
 		try {
 			getHibernateTemplate().update(editarEmpleado);
 			resultado = true;
-			
+
 		} catch (Exception e) {
 			resultado = false;
-		}	
-		
+		}
+
 		return resultado;
-	} 
+	}
 
 }

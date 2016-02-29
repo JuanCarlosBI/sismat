@@ -34,8 +34,7 @@ public class Cursos  implements java.io.Serializable {
      private String area;
      private String estado;
      private String codigoColegio;
-     private Set<Horarios> horarioses = new HashSet<Horarios>(0);
-
+     
     public Cursos() {
     }
 
@@ -59,11 +58,10 @@ public class Cursos  implements java.io.Serializable {
 	}
 
 
-	public Cursos(String nombre, String estado, Set<Horarios> horarioses,String codigoColegio) {
+	public Cursos(String nombre, String estado,String codigoColegio) {
        this.nombre = nombre;
        this.estado = estado;
        this.codigoColegio = codigoColegio;
-       this.horarioses = horarioses;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -139,16 +137,6 @@ public class Cursos  implements java.io.Serializable {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="cursos")
-    public Set<Horarios> getHorarioses() {
-        return this.horarioses;
-    }
-    
-    public void setHorarioses(Set<Horarios> horarioses) {
-        this.horarioses = horarioses;
-    }
-
 
 
 

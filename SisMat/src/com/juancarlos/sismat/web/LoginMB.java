@@ -23,26 +23,23 @@ public class LoginMB implements Serializable{
 	private UsuarioService usuarioServicio;
 	@Autowired
 	private MainMB mainMB;
-	
+
 	
 	public String login(){
-		System.out.println("probando :P");
 		boolean acceso = true;				
 		
 		acceso = usuarioServicio.iniciaSession(usuario, password);
 					
-		System.out.println("acceso "+acceso);
 		
 		if(acceso){
-			System.out.println("en acceso "+acceso);
 //			retorno = NavigationDestiny.MAIN;
 			retorno = "main";
-			System.out.println("retorno "+retorno);
 			mainMB.datosUsuario();
+			
+			
 			
 		}
 		else{
-			System.out.println("sin acceso");
 			retorno = "";
 		}	
 		

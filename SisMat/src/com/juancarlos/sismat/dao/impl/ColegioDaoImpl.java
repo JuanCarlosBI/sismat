@@ -110,7 +110,7 @@ public class ColegioDaoImpl extends HibernateDaoSupport implements ColegioDao {
 			colegios = getHibernateTemplate().find(sql);
 
 		} catch (Exception e) {
-			System.out.println(e);
+			
 			colegios = null;
 		}
 
@@ -120,23 +120,29 @@ public class ColegioDaoImpl extends HibernateDaoSupport implements ColegioDao {
 	@SuppressWarnings("unchecked")
 	public List<Colegio> listaColegio(String codigoColegio) {
 		logger.info("en listaAlumnos");
-		System.out.println("en listaAlumnos dao");
+		
 		String sql = "";
 		List<Colegio> listacolegio = new ArrayList<Colegio>();
 
 		try {
-			sql = "from Colegio where codigoColegio = '" + codigoColegio.trim()
-					+ "'";
+			if (codigoColegio.length() != 0 ) {
+				sql = "from Colegio where codigoColegio = '" + codigoColegio.trim()
+						+ "'";
+
+			}if(codigoColegio.length() == 0){
+				sql = "from Colegio";
+			}
+			
 
 			listacolegio = getHibernateTemplate().find(sql);
-			System.out.println("listacolegio tamanio " + listacolegio.size());
+			
 
 			if (listacolegio.isEmpty()) {
 				listacolegio = new ArrayList<Colegio>();
 			}
 
 		} catch (Exception e) {
-			System.out.println(e);
+			
 			listacolegio = null;
 		}
 

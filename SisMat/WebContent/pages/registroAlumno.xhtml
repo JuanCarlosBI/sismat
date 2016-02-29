@@ -16,9 +16,9 @@
 			src="#{request.contextPath}/js/jquery-2.1.3.js"></script>
 		<script type="text/javacsript" src="#{request.contextPath}/js/util.js"></script>
 		<style type="text/css">
-			.fieldInputForm {
-				width: 200px;
-			}
+/* 			.fieldInputForm { */
+/* 				width: 200px; */
+/* 			} */
 		</style>
 	</h:head>
 	<h:body>
@@ -37,44 +37,42 @@
 								<tr>
 									<td><p:outputLabel value="Nombres:" /></td>
 														
-									<td><p:inputText value="#{registroAlumnosMB.nombres}" required="true" requiredMessage="Ingrese Nombres" maxlength="70" validatorMessage="Por favor ingrese el Nombre Correctamente">
-									<f:validateRegex pattern="[a-zA-Z]+"/> 		
-							
-					</p:inputText></td>
+									<td>
+					<p:inputText  value="#{registroAlumnosMB.nombres}" required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Nombres" maxlength="70" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))||(!(event.which &lt; 166 || event.which &gt; 255))) return false;"/>
+			
+					</td>
 									<td><p:outputLabel value="Apellido Paterno:" /></td>
-									<td><p:inputText  value="#{registroAlumnosMB.apellidoPaterno}" required="true" requiredMessage="Ingrese Apellido Paterno" maxlength="70" validatorMessage="Por favor ingrese el Apellido Paterno Correctamente">
-										<f:validateRegex pattern="[a-zA-Z]+"/> 	
-									</p:inputText></td>
+									<td><p:inputText  value="#{registroAlumnosMB.apellidoPaterno}" required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Apellido Paterno" maxlength="70" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))||(!(event.which &lt; 166 || event.which &gt; 255))) return false;"/>
+										</td>
 																
 									<td><p:outputLabel value="Apellido Materno:" /></td>
-									<td><p:inputText  value="#{registroAlumnosMB.apellidoMaterno}" required="true" requiredMessage="Ingrese Apellido Materno" maxlength="70" validatorMessage="Por favor ingrese el Apellido Materno Correctamente">
-										<f:validateRegex pattern="[a-zA-Z]+"/> 	
-									</p:inputText></td>
+									<td><p:inputText  value="#{registroAlumnosMB.apellidoMaterno}" required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Apellido Materno" maxlength="70"  onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))||(!(event.which &lt; 166 || event.which &gt; 255))) return false;"/>
+										</td>
 								</tr>
 								<tr>
 									<td><p:outputLabel value="DNI:" /></td>
-									<td><p:inputMask value="#{registroAlumnosMB.dni}"   required="true" requiredMessage="Ingrese DNI" mask="99999999"/></td>					
+									<td><p:inputMask value="#{registroAlumnosMB.dni}"   required="#{not empty param.includeGuardar}" requiredMessage="Ingrese DNI" mask="99999999"/></td>					
 								
 									<td><p:outputLabel value="Fecha Nacimiento:" /></td>
 									<td>
-										<p:calendar id="fechaNacimiento"  yearRange = "c-60: c + 10" value="#{registroAlumnosMB.fechaNacimiento}" showOn="button" readOnlyInputText="true" required="true" locale="es" navigator="true" requiredMessge="La fecha de Nacimiento es requerida" pattern="yyyy-MM-dd"/>
+										<p:calendar id="fechaNacimiento"  yearRange = "c-60: c + 10" value="#{registroAlumnosMB.fechaNacimiento}" showOn="button" readOnlyInputText="true" required="#{not empty param.includeGuardar}" locale="es" navigator="true" requiredMessge="La fecha de Nacimiento es requerida" pattern="yyyy-MM-dd"/>
 										<p:message id="fechaNacimientoerror1" for="fechaNacimiento"/>
 									</td>
 									<td><p:outputLabel value="Edad:" /></td>
-									<td><p:inputMask value="#{registroAlumnosMB.edad}"    required="true" requiredMessage="Ingrese Edad" mask="99"/></td>					
+									<td><p:inputMask value="#{registroAlumnosMB.edad}"    required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Edad" mask="99"/></td>					
 													
 								</tr>
 								<tr>
 									<td><p:outputLabel value="Sexo:" /></td>
 									<td>
-										<p:selectOneRadio id="idSexo" value="#{registroAlumnosMB.sexo}" required="true" requiredMessage="Elija Sexo" layout="grid" columns="1">
+										<p:selectOneRadio id="idSexo" value="#{registroAlumnosMB.sexo}" required="#{not empty param.includeGuardar}" requiredMessage="Elija Sexo" layout="grid" columns="1">
             								<f:selectItem itemValue="Masculino" itemLabel="Masculino"/>
             								<f:selectItem itemValue="Femenino" itemLabel="Femenino" />
         								</p:selectOneRadio>
         							</td>					
 								
 									<td><p:outputLabel value="Direccion:" /></td>
-									<td colspan="3" style="text-align: left;"><p:inputText id="direccion" value="#{registroAlumnosMB.direccion}" required="true" requiredMessage="Ingrese Direccion" maxlength="50"/>
+									<td colspan="3" style="text-align: left;"><p:inputText  id="direccion" value="#{registroAlumnosMB.direccion}" style="width:250px;" required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Direccion" maxlength="50"/>
 									</td>	
 								</tr>
 								<tr>									
@@ -88,15 +86,15 @@
 									<td><p:outputLabel value="Responsable:" /></td>
 									<td style="text-align: left;">
 										<p:selectOneMenu id="idResponsable" value="#{registroAlumnosMB.responsable}" layout="grid" columns="1">							            
-								            <f:selectItem itemLabel="Mamá" itemValue="Mamá" />
-								            <f:selectItem itemLabel="Papá" itemValue="Papá" />								            
+								            <f:selectItem itemLabel="Mamá" itemValue="Mama" />
+								            <f:selectItem itemLabel="Papá" itemValue="Papa" />	
+								            <f:selectItem itemLabel="Apoderado" itemValue="Apoderado" />								            
         								</p:selectOneMenu>
 									</td>
 									<td><p:outputLabel value="Religion:" /></td>
 									
-									<td><p:inputText id="religion" value="#{registroAlumnosMB.religion}" required="true" requiredMessage="Ingrese Religion" maxlength="20" validatorMessage="Por favor ingrese la Religión Correctamente">
-										<f:validateRegex pattern="[a-zA-Z]+"/> 	
-									</p:inputText></td>
+									<td><p:inputText id="religion" value="#{registroAlumnosMB.religion}" required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Religion" maxlength="20"  onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))||(!(event.which &lt; 166 || event.which &gt; 255))) return false;"/>
+										</td>
 								</tr>	
 								
 								<tr><td colspan="6"><br/></td></tr>
@@ -124,33 +122,30 @@
 								<tr>
 									<td><p:outputLabel value="Nombres:" /></td>
 									
-									<td><p:inputText value="#{registroAlumnosMB.nombrePadre}"  required="true" requiredMessage="Ingrese Nombre del Padre" maxlength="70" validatorMessage="Por favor ingrese el Nombre del Padre Correctamente">
-										<f:validateRegex pattern="[a-zA-Z]+"/> 	
-									</p:inputText></td>
+									<td><p:inputText value="#{registroAlumnosMB.nombrePadre}"  required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Nombre del Padre" maxlength="70" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))||(!(event.which &lt; 166 || event.which &gt; 255))) return false;"/>
+										</td>
 									<td><p:outputLabel value="Apellido Paterno:" /></td>					
-									<td><p:inputText value="#{registroAlumnosMB.apellidoPaternoPadre}"  required="true" requiredMessage="Ingrese Apellido Paterno del Padre" maxlength="70" validatorMessage="Por favor ingrese el Apellido Paterno del Padre Correctamente">
-										<f:validateRegex pattern="[a-zA-Z]+"/> 	
-									</p:inputText></td>
+									<td><p:inputText value="#{registroAlumnosMB.apellidoPaternoPadre}"  required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Apellido Paterno del Padre" maxlength="70" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))||(!(event.which &lt; 166 || event.which &gt; 255))) return false;"/>
+										</td>
 									<td><p:outputLabel value="Apellido Materno:" /></td>
-									<td><p:inputText value="#{registroAlumnosMB.apellidoMaternoPadre}"  required="true" requiredMessage="Ingrese Apellido Materno del Padre" maxlength="70" validatorMessage="Por favor ingrese el Apellido Materno del Padre Correctamente">
-										<f:validateRegex pattern="[a-zA-Z]+"/> 	
-									</p:inputText></td>
+									<td><p:inputText value="#{registroAlumnosMB.apellidoMaternoPadre}" required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Apellido Materno del Padre" maxlength="70" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))||(!(event.which &lt; 166 || event.which &gt; 255))) return false;"/>
+										</td>
 								</tr>
 								
 								<tr>
 									<td><p:outputLabel value="DNI:" /></td>
-									<td><p:inputMask value="#{registroAlumnosMB.dniPadre}" required="true" requiredMessage="Ingrese DNI" mask="99999999"/></td>						
+									<td><p:inputMask value="#{registroAlumnosMB.dniPadre}" required="#{not empty param.includeGuardar}" requiredMessage="Ingrese DNI" mask="99999999"/></td>						
 								
 									<td><p:outputLabel value="Fecha Nacimiento:" /></td>
 									<td>
-										<p:calendar id="fechaNacimiento1" yearRange = "c-60: c + 10" value="#{registroAlumnosMB.fechaNacPadre}" showOn="button" readOnlyInputText="true" required="true" locale="es" navigator="true" requiredMessge="La fecha de Nacimiento es requerida" pattern="yyyy-MM-dd"/>
+										<p:calendar id="fechaNacimiento1" yearRange = "c-60: c + 10" value="#{registroAlumnosMB.fechaNacPadre}" showOn="button" readOnlyInputText="true" required="#{not empty param.includeGuardar}" locale="es" navigator="true" requiredMessge="La fecha de Nacimiento es requerida" pattern="yyyy-MM-dd"/>
 										<p:message id="fechaNacimientoerror2" for="fechaNacimiento"/>
 									</td>
 														
 								
 									<td><p:outputLabel value="Estado Civil:" /></td>
 									<td>
-										<p:selectOneRadio id="idEstado1" value="#{registroAlumnosMB.estadoCivilPadre}" required="true" requiredMessage="Elija Estado Civil del Padre"  layout="grid" columns="2">
+										<p:selectOneRadio id="idEstado1" value="#{registroAlumnosMB.estadoCivilPadre}" required="#{not empty param.includeGuardar}" requiredMessage="Elija Estado Civil del Padre"  layout="grid" columns="2">
             								<f:selectItem itemValue="Soltero" itemLabel="Soltero"/>
             								<f:selectItem itemValue="Casado" itemLabel="Casado"/>
             								<f:selectItem itemValue="Viudo" itemLabel="Viudo"/>
@@ -161,18 +156,18 @@
 								<tr>
 									<td><p:outputLabel value="Telefono:" /></td>
 									<td>
-										<p:inputMask id="telefono1" value="#{registroAlumnosMB.telefonoPadre}" required="true" requiredMessage="Ingrese Telefono de Padre" mask="999-9999"/>
+										<p:inputMask id="telefono1" value="#{registroAlumnosMB.telefonoPadre}" required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Telefono de Padre" mask="999-9999"/>
 									</td>				
-								
-									<td><p:outputLabel value="Celular:" /></td>
-									<td>
-										<p:inputMask id="celular1" value="#{registroAlumnosMB.celularPadre}" required="true" requiredMessage="Ingrese Celular del Padre" mask="999999999"/>
-									</td>													
+								<td><p:outputLabel value="Direccion:" /></td>
+									<td><p:inputText value="#{registroAlumnosMB.direccionPadre}" style="width:250px;" required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Direccion del Padre" maxlength="180"/></td>					
+									
+																						
 								</tr>
 								<tr>
-									<td><p:outputLabel value="Direccion:" /></td>
-									<td><p:inputText value="#{registroAlumnosMB.direccionPadre}" required="true" requiredMessage="Ingrese Direccion del Padre" maxlength="180"/></td>					
-																
+									<td><p:outputLabel value="Celular:" /></td>
+									<td>
+										<p:inputMask id="celular1" value="#{registroAlumnosMB.celularPadre}" required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Celular del Padre" mask="999999999"/>
+									</td>							
 									<td><p:outputLabel value="Distrito:" /></td>
 									<td style="text-align: left;">
 										<p:selectOneMenu id="idDistrito2" value="#{registroAlumnosMB.distritoPadre}">							            
@@ -181,18 +176,16 @@
         								</p:selectOneMenu>
 									</td>
 									<td><p:outputLabel value="Ocupacion:" /></td>				
-									<td><p:inputText  value="#{registroAlumnosMB.ocupacionPadre}"   required="true" requiredMessage="Ingrese Ocupacion del Padre" maxlength="70" validatorMessage="Por favor ingrese la ocupacíón del Padre Correctamente">
-										<f:validateRegex pattern="[a-zA-Z]+"/> 	
-									</p:inputText></td>
+									<td><p:inputText  value="#{registroAlumnosMB.ocupacionPadre}"   required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Ocupacion del Padre" maxlength="70" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))||(!(event.which &lt; 166 || event.which &gt; 255))) return false;"/>
+										</td>
 								</tr>	
 								
 								<tr><td colspan="6"><br/></td></tr>
 															
 								<tr>																			
 									<td><p:outputLabel value="Religion:" /></td>				
-									<td><p:inputText  value="#{registroAlumnosMB.religionPadre}"  required="true" requiredMessage="Ingrese Religion del Padre" maxlength="20" validatorMessage="Por favor ingrese la Religion del Padre Correctamente">
-										<f:validateRegex pattern="[a-zA-Z]+"/> 	
-									</p:inputText></td>
+									<td><p:inputText  value="#{registroAlumnosMB.religionPadre}"  required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Religion del Padre" maxlength="20" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))||(!(event.which &lt; 166 || event.which &gt; 255))) return false;"/>
+										</td>
 									<td><p:outputLabel value="Esta Vivo:" /></td>
 									<td style="text-align: left;">
 										<p:selectOneMenu id="idEstaVivo1" value="#{registroAlumnosMB.estaVivoPadre}">							            
@@ -218,32 +211,29 @@
 							<table style="text-align: right;">								
 								<tr>
 									<td><p:outputLabel value="Nombres:" /></td>			
-									<td><p:inputText  value="#{registroAlumnosMB.nombreMadre}"   required="true"  requiredMessage="Ingrese Nombre de la Madre" maxlength="70" validatorMessage="Por favor ingrese el Nombre de la Madre Correctamente">
-					   <f:validateRegex pattern="[a-zA-Z]+"/> 			
-						</p:inputText></td>
+									<td><p:inputText  value="#{registroAlumnosMB.nombreMadre}"   required="#{not empty param.includeGuardar}"  requiredMessage="Ingrese Nombre de la Madre" maxlength="70" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))||(!(event.which &lt; 166 || event.which &gt; 255))) return false;"/>
+					   </td>
 									<td><p:outputLabel value="Apellido Paterno:" /></td>				
-									<td><p:inputText  value="#{registroAlumnosMB.apellidoPaternoMadre}"  required="true" requiredMessage="Ingrese Apellido Paterno de la Madre" maxlength="70" validatorMessage="Por favor ingrese el Apellido Paterno de la Madre Correctamente">
-										<f:validateRegex pattern="[a-zA-Z]+"/> 	
-									</p:inputText></td>
+									<td><p:inputText  value="#{registroAlumnosMB.apellidoPaternoMadre}"  required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Apellido Paterno de la Madre" maxlength="70" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))||(!(event.which &lt; 166 || event.which &gt; 255))) return false;"/>
+										</td>
 									<td><p:outputLabel value="Apellido Materno:" /></td>			
-									<td><p:inputText  value="#{registroAlumnosMB.apellidoMaternoMadre}"   required="true" requiredMessage="Ingrese Apellido Materno de la Madre" maxlength="70" validatorMessage="Por favor ingrese el Apellido Materno de la Madre Correctamente">
-										<f:validateRegex pattern="[a-zA-Z]+"/> 	
-									</p:inputText></td>
+									<td><p:inputText  value="#{registroAlumnosMB.apellidoMaternoMadre}"   required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Apellido Materno de la Madre" maxlength="70" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))||(!(event.which &lt; 166 || event.which &gt; 255))) return false;"/>
+										</td>
 								</tr>
 								<tr>
 									<td><p:outputLabel value="DNI:" /></td>
-									<td><p:inputMask value="#{registroAlumnosMB.dniMadre}" required="true" requiredMessage="Ingrese DNI de la Madre" mask="99999999"/></td>						
+									<td><p:inputMask value="#{registroAlumnosMB.dniMadre}" required="#{not empty param.includeGuardar}" requiredMessage="Ingrese DNI de la Madre" mask="99999999"/></td>						
 								
 									<td><p:outputLabel value="Fecha Nacimiento:" /></td>
 									<td>
-										<p:calendar id="fechaNacimiento2" yearRange = "c-60: c + 10" value="#{registroAlumnosMB.fechaNacMadre}" showOn="button" readOnlyInputText="true" required="true" locale="es" navigator="true" requiredMessge="La fecha de Nacimiento es requerida" pattern="yyyy-MM-dd"/>
+										<p:calendar id="fechaNacimiento2" yearRange = "c-60: c + 10" value="#{registroAlumnosMB.fechaNacMadre}" showOn="button" readOnlyInputText="true" required="#{not empty param.includeGuardar}" locale="es" navigator="true" requiredMessge="La fecha de Nacimiento es requerida" pattern="yyyy-MM-dd"/>
 										<p:message id="fechaNacimeintoerror3" for="fechaNacimiento"/>
 									</td>
 														
 								
 									<td><p:outputLabel value="Estado Civil:" /></td>
 									<td>
-										<p:selectOneRadio id="idEstado2" value="#{registroAlumnosMB.estadoCivilMadre}" required="true" requiredMessage="Elija Estado Civil de la Madre" layout="grid" columns="2">
+										<p:selectOneRadio id="idEstado2" value="#{registroAlumnosMB.estadoCivilMadre}" required="#{not empty param.includeGuardar}" requiredMessage="Elija Estado Civil de la Madre" layout="grid" columns="2">
             								<f:selectItem itemValue="Soltera" itemLabel="Soltera"/>
             								<f:selectItem itemValue="Casada" itemLabel="Casada"/>
             								<f:selectItem itemValue="Viuda" itemLabel="Viuda"/>
@@ -254,18 +244,18 @@
 								<tr>
 									<td><p:outputLabel value="Telefono:" /></td>
 									<td>
-										<p:inputMask id="telefono2" value="#{registroAlumnosMB.telefonoMadre}" required="true" requiredMessage="Ingrese Telefono de la Madre"  mask="999-9999"/>
+										<p:inputMask id="telefono2" value="#{registroAlumnosMB.telefonoMadre}" required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Telefono de la Madre"  mask="999-9999"/>
 									</td>				
-								
-									<td><p:outputLabel value="Celular:" /></td>
-									<td>
-										<p:inputMask id="celular2" value="#{registroAlumnosMB.celularMadre}" required="true" requiredMessage="Ingrese Celular de la Madre"  mask="999999999"/>
-									</td>													
+								<td><p:outputLabel value="Direccion:" /></td>
+									<td><p:inputText value="#{registroAlumnosMB.direccionMadre}" style="width:250px;" required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Direccion de la Madre"  maxlength="180"/></td>					
+									
+																						
 								</tr>
 								<tr>
-									<td><p:outputLabel value="Direccion:" /></td>
-									<td><p:inputText value="#{registroAlumnosMB.direccionMadre}"  required="true" requiredMessage="Ingrese Direccion de la Madre"  maxlength="180"/></td>					
-																
+									<td><p:outputLabel value="Celular:" /></td>
+									<td>
+										<p:inputMask id="celular2" value="#{registroAlumnosMB.celularMadre}" required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Celular de la Madre"  mask="999999999"/>
+									</td>							
 									<td><p:outputLabel value="Distrito:" /></td>
 									<td style="text-align: left;">
 										<p:selectOneMenu id="idDistrito3" value="#{registroAlumnosMB.distritoMadre}">							            
@@ -274,18 +264,16 @@
         								</p:selectOneMenu>
 									</td>
 									<td><p:outputLabel value="Ocupacion:" /></td>
-									<td><p:inputText  value="#{registroAlumnosMB.ocupacionMadre}"   required="true" requiredMessage="Ingrese Ocupacion de la Madre"  maxlength="70" validatorMessage="Por favor ingrese la Ocupacíón de la Madre Correctamente">
-										<f:validateRegex pattern="[a-zA-Z]+"/> 	
-									</p:inputText></td>
+									<td><p:inputText  value="#{registroAlumnosMB.ocupacionMadre}"   required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Ocupacion de la Madre"  maxlength="70" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))||(!(event.which &lt; 166 || event.which &gt; 255))) return false;"/>
+										</td>
 								</tr>	
 								
 								<tr><td colspan="6"><br/></td></tr>
 															
 								<tr>																			
 									<td><p:outputLabel value="Religion:" /></td>				
-									<td><p:inputText value="#{registroAlumnosMB.religionMadre}"   required="true"  requiredMessage="Ingrese Religion de la Madre"  maxlength="20" validatorMessage="Por favor ingrese la Religion de la Madre Correctamente">
-										<f:validateRegex pattern="[a-zA-Z]+"/> 	
-									</p:inputText></td>
+									<td><p:inputText value="#{registroAlumnosMB.religionMadre}"   required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Religion de la Madre"  maxlength="20" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))||(!(event.which &lt; 166 || event.which &gt; 255))) return false;"/>
+										</td>
 									<td><p:outputLabel value="Esta Viva:" /></td>
 									<td style="text-align: left;">
 										<p:selectOneMenu id="idEstaVivo2" value="#{registroAlumnosMB.estaVivoMadre}">							            
@@ -313,32 +301,29 @@
 							<table style="text-align: right;">								
 								<tr>
 									<td><p:outputLabel value="Nombres:" /></td>				
-									<td><p:inputText value="#{registroAlumnosMB.nombreApoderado}" required="true"  requiredMessage="Ingrese Nombre del Apoderado"  maxlength="70" validatorMessage="Por favor ingrese el Nombre del Apoderado Correctamente">
-										<f:validateRegex pattern="[a-zA-Z]+"/> 	
-									</p:inputText></td>
+									<td><p:inputText value="#{registroAlumnosMB.nombreApoderado}" required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Nombre del Apoderado"  maxlength="70" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))||(!(event.which &lt; 166 || event.which &gt; 255))) return false;"/>
+										</td>
 									<td><p:outputLabel value="Apellido Paterno:" /></td>
-									<td><p:inputText value="#{registroAlumnosMB.apellidoPaternoApoderado}" required="true" requiredMessage="Ingrese Apellido Paterno del Apoderado" maxlength="70" validatorMessage="Por favor ingrese el Apellido Paterno del Apoderado Correctamente">
-										<f:validateRegex pattern="[a-zA-Z]+"/> 	
-									</p:inputText></td>
+									<td><p:inputText value="#{registroAlumnosMB.apellidoPaternoApoderado}" required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Apellido Paterno del Apoderado" maxlength="70" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))||(!(event.which &lt; 166 || event.which &gt; 255))) return false;"/>
+										</td>
 									<td><p:outputLabel value="Apellido Materno:" /></td>
-									<td><p:inputText value="#{registroAlumnosMB.apellidoMaternoApoderado}" required="true" requiredMessage="Ingrese Apellido Materno del Apoderado" maxlength="70" validatorMessage="Por favor ingrese el Apellido Materno del Apoderado Correctamente">
-										<f:validateRegex pattern="[a-zA-Z]+"/> 	
-									</p:inputText></td>				
+									<td><p:inputText value="#{registroAlumnosMB.apellidoMaternoApoderado}" required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Apellido Materno del Apoderado" maxlength="70" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))||(!(event.which &lt; 166 || event.which &gt; 255))) return false;"/>
+										</td>				
 								</tr>
 								<tr>
 									<td><p:outputLabel value="DNI:" /></td>
-									<td><p:inputMask value="#{registroAlumnosMB.dniApoderado}" required="true" requiredMessage="Ingrese DNI del Apoderado" mask="99999999"/></td>						
+									<td><p:inputMask value="#{registroAlumnosMB.dniApoderado}" required="#{not empty param.includeGuardar}" requiredMessage="Ingrese DNI del Apoderado" mask="99999999"/></td>						
 								
 									<td><p:outputLabel value="Fecha Nacimiento:" /></td>
 									<td>
-										<p:calendar id="fechaNacimiento3" yearRange = "c-60: c + 10" value="#{registroAlumnosMB.fechaNacApoderado}"  required="true" showOn="button" readOnlyInputText="true"  locale="es" navigator="true" pattern="yyyy-MM-dd"/>
+										<p:calendar id="fechaNacimiento3" yearRange = "c-60: c + 10" value="#{registroAlumnosMB.fechaNacApoderado}"  required="#{not empty param.includeGuardar}" showOn="button" readOnlyInputText="true"  locale="es" navigator="true" pattern="yyyy-MM-dd"/>
 										<p:message id="fechaNacimeintoerror4" for="fechaNacimiento"/>
 									</td>
 														
 								
 									<td><p:outputLabel value="Estado Civil:" /></td>
 									<td>
-										<p:selectOneRadio id="idEstado3" value="#{registroAlumnosMB.estadoCivilApoderado}" required="true" requiredMessage="Elija Estado Civil del Apoderado" layout="grid" columns="2">
+										<p:selectOneRadio id="idEstado3" value="#{registroAlumnosMB.estadoCivilApoderado}" required="#{not empty param.includeGuardar}" requiredMessage="Elija Estado Civil del Apoderado" layout="grid" columns="2">
             								<f:selectItem itemValue="Soltero" itemLabel="Soltero"/>
             								<f:selectItem itemValue="Casado" itemLabel="Casado"/>
             								<f:selectItem itemValue="Viudo" itemLabel="Viudo"/>
@@ -349,18 +334,18 @@
 								<tr>
 									<td><p:outputLabel value="Telefono:" /></td>
 									<td>
-										<p:inputMask id="telefono3"  required="true" requiredMessage="Ingrese Telefono del Apoderado" value="#{registroAlumnosMB.telefonoApoderado}" mask="999-9999"/>
+										<p:inputMask id="telefono3"  required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Telefono del Apoderado" value="#{registroAlumnosMB.telefonoApoderado}" mask="999-9999"/>
 									</td>				
-								
-									<td><p:outputLabel value="Celular:" /></td>
-									<td>
-										<p:inputMask id="celular3"  required="true" requiredMessage="Ingrese Celular del Apoderado" value="#{registroAlumnosMB.celularApoderado}" mask="999999999"/>
-									</td>													
+								<td><p:outputLabel value="Direccion:" /></td>
+									<td><p:inputText value="#{registroAlumnosMB.direccionApoderado}" style="width:250px;" required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Direccion del Apoderado" maxlength="180"/></td>					
+									
+																						
 								</tr>
 								<tr>
-									<td><p:outputLabel value="Direccion:" /></td>
-									<td><p:inputText value="#{registroAlumnosMB.direccionApoderado}" required="true" requiredMessage="Ingrese Direccion del Apoderado" maxlength="180"/></td>					
-																
+									<td><p:outputLabel value="Celular:" /></td>
+									<td>
+										<p:inputMask id="celular3"  required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Celular del Apoderado" value="#{registroAlumnosMB.celularApoderado}" mask="999999999"/>
+									</td>							
 									<td><p:outputLabel value="Distrito:" /></td>
 									<td style="text-align: left;">
 										<p:selectOneMenu id="idDistrito4" value="#{registroAlumnosMB.distritoApoderado}">							            
@@ -369,18 +354,16 @@
         								</p:selectOneMenu>
 									</td>
 									<td><p:outputLabel value="Ocupacion:" /></td>		
-									<td><p:inputText  value="#{registroAlumnosMB.ocupacionApoderado}"  required="true" requiredMessage="Ingrese Ocupacion del Apoderado" maxlength="20" validatorMessage="Por favor ingrese la Ocupacion del Apoderado Correctamente">
-										<f:validateRegex pattern="[a-zA-Z]+"/> 	
-									</p:inputText></td>						
+									<td><p:inputText  value="#{registroAlumnosMB.ocupacionApoderado}"  required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Ocupacion del Apoderado" maxlength="20" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))||(!(event.which &lt; 166 || event.which &gt; 255))) return false;"/>
+										</td>						
 								</tr>	
 								
 								<tr><td colspan="6"><br/></td></tr>
 															
 								<tr>																			
 									<td><p:outputLabel value="Religion:" /></td>				
-									<td><p:inputText value="#{registroAlumnosMB.religionApoderado}" required="true" requiredMessage="Ingrese Religion del Apoderado"  maxlength="20" validatorMessage="Por favor ingrese la Religion del Apoderado Correctamente">
-										<f:validateRegex pattern="[a-zA-Z]+"/> 	
-									</p:inputText></td>
+									<td><p:inputText value="#{registroAlumnosMB.religionApoderado}" required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Religion del Apoderado"  maxlength="20" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))||(!(event.which &lt; 166 || event.which &gt; 255))) return false;"/>
+										</td>
 									<td><p:outputLabel value="Esta Vivo:" /></td>
 									<td style="text-align: left;">
 										<p:selectOneMenu id="idEstaVivo3" value="#{registroAlumnosMB.estaVivoApoderado}">							            
@@ -403,10 +386,12 @@
     <table>
 			<tr>
 				<td>								
-					<p:commandButton id="btnGuardar"	value="Guardar" 
-										action="#{registroAlumnosMB.registrarAlumno}" styleClass="buttonForm"/>
-										<p:link id="btnCancelar"				outcome="pagina"				
-										value="Cancelar"  styleClass="buttonForm"/>																				
+						<p:commandButton id="btnGuardar" value="Guardar"								
+								action="#{registroAlumnosMB.registrarAlumno}"  ajax="false" styleClass="buttonForm">
+								 <f:param name="includeGuardar" value="true" /> </p:commandButton> 
+							
+										<p:commandButton value= "Cancelar" ajax= "false" action= "pagina.xhmtl?faces-redirect=true" styleClass="buttonForm" /> 
+																							
 				</td>
 			</tr>
 	</table>

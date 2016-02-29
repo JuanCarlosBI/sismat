@@ -13,15 +13,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.juancarlos.sismat.dominio.Empleado;
+import com.juancarlos.sismat.dominio.Nivel;
 import com.juancarlos.sismat.dominio.Seccion;
 import com.juancarlos.sismat.dominio.Usuario;
+import com.juancarlos.sismat.service.CursoService;
 import com.juancarlos.sismat.service.UsuarioService;
 
 @SuppressWarnings("serial")
-@ManagedBean(name="mainMB")
+@ManagedBean(name = "mainMB")
 @SessionScoped
 @Component
-public class MainMB  implements Serializable{
+public class MainMB implements Serializable {
 
 	@Autowired
 	private LoginMB loginMB;
@@ -31,43 +33,41 @@ public class MainMB  implements Serializable{
 	private List<Usuario> usuarios;
 	private String nombreUsuario;
 	private String codigoColegio;
-	
-	
-	
-	
-	public void datosUsuario(){
-		System.out.println("datosUsuario()");
-		
+	private List<Nivel> nivel;
+	private String[] listanivel;
+	@Autowired
+	CursoService cursoService;
+
+	public void datosUsuario() {
+
 		String usuario = loginMB.getUsuario();
-		String  clave = loginMB.getPassword();
-		System.out.println("usuario "+usuario);
-		System.out.println("clave "+clave);
-		
-		usuarios = usuarioService.datosUsuario(usuario,clave);
+		String clave = loginMB.getPassword();
+
+		usuarios = usuarioService.datosUsuario(usuario, clave);
 		Usuario empleado = usuarios.get(0);
-		
+
 		nombre = empleado.getNombreCompleto();
-		nombreUsuario=empleado.getNombreUsuario();
+		nombreUsuario = empleado.getNombreUsuario();
 		codigoColegio = empleado.getCodigoColegio();
-		System.out.println("codigoColegio "+codigoColegio);
-		System.out.println("nombre "+nombre);
-		System.out.println("nombreUsuario "+nombreUsuario);
-	
+		
+
+		nivel = cursoService.listaNivel(codigoColegio);
+		listanivel = new String[nivel.size()];
+		for (int i = 0; i < nivel.size(); i++) {
+			Nivel niveles = nivel.get(i);
+			listanivel[i] = niveles.getNivelAcademico();
+		}
+		return;
+
 	}
-
-
 
 	public List<Usuario> getUsuarios() {
 		return usuarios;
 	}
 
-
-
 	public void setUsuarios(List<Usuario> usuarios) {
 		this.usuarios = usuarios;
 	}
-
-
 
 	public String getCodigoColegio() {
 		return codigoColegio;
@@ -101,7 +101,6 @@ public class MainMB  implements Serializable{
 		this.nombre = nombre;
 	}
 
-
 	public String getNombreUsuario() {
 		return nombreUsuario;
 	}
@@ -110,5 +109,28 @@ public class MainMB  implements Serializable{
 		this.nombreUsuario = nombreUsuario;
 	}
 
+	public List<Nivel> getNivel() {
+		return nivel;
+	}
+
+	public void setNivel(List<Nivel> nivel) {
+		this.nivel = nivel;
+	}
+
+	public String[] getListanivel() {
+		return listanivel;
+	}
+
+	public void setListanivel(String[] listanivel) {
+		this.listanivel = listanivel;
+	}
+
+	public CursoService getCursoService() {
+		return cursoService;
+	}
+
+	public void setCursoService(CursoService cursoService) {
+		this.cursoService = cursoService;
+	}
 
 }

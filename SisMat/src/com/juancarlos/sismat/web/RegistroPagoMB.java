@@ -51,8 +51,6 @@ public class RegistroPagoMB implements Serializable  {
 	
 	public List<String> autoCompletadoAlumno(String query) {
 		
-		System.out.println("autoCompletadoProducto");
-		System.out.println("query "+query);
 		
 		List<String> results = new ArrayList<String>();
 		List<Alumnos> listaNombresAlumnos = new ArrayList<Alumnos>();		
@@ -74,14 +72,11 @@ public class RegistroPagoMB implements Serializable  {
 	
 	public void listaAlumnos(){
 
-		System.out.println("listaAlumnos()");
 
 		mainMB.datosUsuario();
 		codigoColegio=mainMB.getCodigoColegio();
 		
-		//codigoColegio = "1041701524";//de manera temporal, luego se eliminara ese dato vendra de sesion
-		System.out.println("codigoColegio "+codigoColegio);
-		System.out.println("idAlumno "+idAlumno);
+		
 		alumnos = pagoService.listaAlumnos(codigoColegio, idAlumno);
 		
 		if(alumnos == null){
@@ -137,15 +132,6 @@ public class RegistroPagoMB implements Serializable  {
 	}
 	
 	public void registrarPago() {
-		
-		System.out.println("boleta"+boleta);
-		System.out.println("factura"+factura);
-		System.out.println("monto"+saldo);
-
-		System.out.println("recargo"+recargo);
-		System.out.println("descuento"+descuento);
-		System.out.println("a cuenta"+saldopagado);
-		System.out.println("deuda"+deuda);
 		
 		
 		Date date = new Date();

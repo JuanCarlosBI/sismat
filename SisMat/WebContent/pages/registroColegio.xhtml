@@ -188,9 +188,8 @@
 							<p:commandButton id="btnGuardar" value="Guardar"								
 								action="#{registroColegioMB.registrarColegio}"   ajax="false" styleClass="buttonForm">
 								 <f:param name="includeGuardar" value="true" /> </p:commandButton> 
-							<p:link id="btnCancelar"				outcome="pagina"				
-										value="Cancelar"  styleClass="buttonForm"/>
-																				
+									<p:commandButton value= "Cancelar" ajax= "false" action= "pagina.xhmtl?faces-redirect=true" styleClass="buttonForm" /> 
+																			
 					</td>
 				</tr>
 			</table>

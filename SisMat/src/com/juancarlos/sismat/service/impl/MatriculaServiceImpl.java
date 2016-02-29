@@ -27,9 +27,7 @@ public class MatriculaServiceImpl implements MatriculaService {
 	}
 
 	public List<Alumnos> listaAlumnos(String codigoColegio, String idAlumno) {
-		System.out.println("en listaAlumnos service");
-		System.out.println("codigoColegio " + codigoColegio);
-		System.out.println("idAlumno " + idAlumno);
+		
 
 		List<Alumnos> alumnos = matriculaDao.listaAlumnos(codigoColegio,
 				idAlumno);
@@ -70,12 +68,7 @@ public class MatriculaServiceImpl implements MatriculaService {
 	public boolean registroMatricula(String idAlumno, Integer idSeccion,
 			String periodo, String situacion, String antColegio,String codigoColegio,String fecha,String hora){
 		Matriculas matricula = new Matriculas();
-		System.out.println(idAlumno);
-		System.out.println(idSeccion);
-		System.out.println(periodo);
-		System.out.println(situacion);
-		System.out.println(antColegio);
-		System.out.println(codigoColegio);
+		
 		String estado="Activo";
 		matricula.setIdAlumno(idAlumno);
 		matricula.setIdSeccion(idSeccion);
