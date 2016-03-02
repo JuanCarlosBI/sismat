@@ -103,7 +103,7 @@ public class MatriculaNormalMB implements Serializable {
 		if (query.length() >= 3) {
 			for (Alumnos elemento : listaNombresAlumnos) {
 				results.add(elemento.getNombreCompleto() + "-"
-						+ elemento.getIdAlumno());
+						+ elemento.getDni());
 			}
 		}
 

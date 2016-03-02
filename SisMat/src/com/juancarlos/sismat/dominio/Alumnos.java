@@ -34,7 +34,7 @@ public class Alumnos  implements java.io.Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private String idAlumno;
+	private Short idAlumno;
      private String nombres;
      private String apellidoPaterno;
      private String apellidoMaterno;
@@ -92,14 +92,14 @@ public class Alumnos  implements java.io.Serializable {
     }
     
      
-    public Alumnos(String idAlumno) {
+    public Alumnos(Short idAlumno) {
 		super();
 		this.idAlumno = idAlumno;
 	}
 
 
 
-	public Alumnos(String idAlumno, String nombres, String apellidoPaterno,
+	public Alumnos( String nombres, String apellidoPaterno,
 			String apellidoMaterno, String dni, Date fechaNacimiento,
 			String edad, char sexo, String direccion, String distrito,
 			String responsable, String religion, byte[] foto,String nombrePadre,
@@ -116,7 +116,6 @@ public class Alumnos  implements java.io.Serializable {
 			String direccionApoderado, String distritoApoderado,
 			String ocupacionApoderado,String estado, String religionApoderado,String estaVivoApoderado,String nombreCompleto,String codigoColegio) {
 		super();
-		this.idAlumno = idAlumno;
 		this.nombres = nombres;
 		this.apellidoPaterno = apellidoPaterno;
 		this.apellidoMaterno = apellidoMaterno;
@@ -173,12 +172,11 @@ public class Alumnos  implements java.io.Serializable {
 
 
 	
-	public Alumnos(String idAlumno, String nombres, String apellidoPaterno,
+	public Alumnos( String nombres, String apellidoPaterno,
 			String apellidoMaterno, String dni, Date fechaNacimiento,
 			String edad, char sexo, String direccion, String distrito,
 			String responsable, String religion, byte[] foto) {
 		super();
-		this.idAlumno = idAlumno;
 		this.nombres = nombres;
 		this.apellidoPaterno = apellidoPaterno;
 		this.apellidoMaterno = apellidoMaterno;
@@ -195,14 +193,14 @@ public class Alumnos  implements java.io.Serializable {
 	}
 
 
-	@Id 
+	@Id @GeneratedValue(strategy=IDENTITY)
     @Column(name="IdAlumno", unique=true, nullable=false, length = 8)
-    public String getIdAlumno() {
+    public Short getIdAlumno() {
 		return idAlumno;
 	}
 
 
-	public void setIdAlumno(String idAlumno) {
+	public void setIdAlumno(Short idAlumno) {
 		this.idAlumno = idAlumno;
 	}
 

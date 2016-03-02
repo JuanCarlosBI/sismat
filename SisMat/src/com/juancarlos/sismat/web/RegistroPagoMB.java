@@ -49,24 +49,7 @@ public class RegistroPagoMB implements Serializable  {
 	PagoService pagoService;
 	Integer idMatricula;
 	
-	public List<String> autoCompletadoAlumno(String query) {
-		
-		
-		List<String> results = new ArrayList<String>();
-		List<Alumnos> listaNombresAlumnos = new ArrayList<Alumnos>();		
-		
-		listaNombresAlumnos = pagoService.idAlumno(query.toUpperCase());
-		
-		
-		if (query.length() >= 3) {
-			for (Alumnos elemento : listaNombresAlumnos) {
-				results.add(elemento.getIdAlumno());	
-			}
-		}
-
-		return results;
-
-	}
+	
 	
 
 	

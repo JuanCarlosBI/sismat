@@ -222,7 +222,7 @@ public class RegistroSeccionMB implements Serializable {
 	}
 
 	public String[] getListanivel() {
-		return listanivel;
+		return mainMB.getListanivel();
 	}
 
 	public void setListanivel(String[] listanivel) {

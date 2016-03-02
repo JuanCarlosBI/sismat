@@ -35,18 +35,16 @@ public class RegistroColegioMB implements Serializable {
 	private String direccion;
 	private String codigoColegio;
 	private String telefono;
-	private List<Colegio> colegios;
 	private String fax;
 	private byte[] logo;
-	private String nombreColegio;
 	@Autowired
 	ColegioService colegioService;
 	@Autowired
 	MainMB loginMB;
 
 	public void handleFileUpload(FileUploadEvent event) {
-		FacesMessage msg = new FacesMessage("Ok", "Fichero "
-				+ event.getFile().getFileName() + " subido correctamente.");
+		FacesMessage msg = new FacesMessage("Fichero "
+				+ event.getFile().getFileName() + " subido correctamente."+logo);
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 		logo = event.getFile().getContents();
 		String nombrefoto = event.getFile().getFileName();
@@ -57,7 +55,13 @@ public class RegistroColegioMB implements Serializable {
 
 		boolean resultado = colegioService.registroColegio(razonSocial, ruc,
 				correo, direccion, telefono, fax, logo);
-
+		this.razonSocial=null;
+		this.ruc=null;
+		this.correo=null;
+		this.direccion=null;
+		this.telefono=null;
+		this.fax=null;
+		this.logo=null;
 		if (resultado) {
 			FacesContext.getCurrentInstance().addMessage(
 					null,
@@ -70,57 +74,19 @@ public class RegistroColegioMB implements Serializable {
 							"Hubo un error en guardar la información", ""));
 		}
 	}
+	public void reset(){
+		this.razonSocial=null;
+		this.ruc=null;
+		this.correo=null;
+		this.direccion=null;
+		this.telefono=null;
+		this.fax=null;
+		this.logo=null;
 
-	public List<String> autoCompletadoColegio(String query) {
 
-		
-		
-
-		List<String> results = new ArrayList<String>();
-		List<Colegio> listaNombresColegio = new ArrayList<Colegio>();
-
-		listaNombresColegio = colegioService.nombreColegio(query.toUpperCase());
-
-		if (query.length() >= 3) {
-			for (Colegio elemento : listaNombresColegio) {
-				results.add(elemento.getRazonSocial() + "-"
-						+ elemento.getCodigoColegio());
-			}
-		}
-
-		return results;
-
-	}
-
-	public void onEdit(RowEditEvent event) {
-		FacesMessage msg = new FacesMessage("Colegio Editado",
-				((Colegio) event.getObject()).getRazonSocial());
+		FacesMessage msg = new FacesMessage("Datos limpios");
 		FacesContext.getCurrentInstance().addMessage(null, msg);
-		boolean resultado = colegioService.editar((Colegio) event.getObject());
 	}
-
-	public void listaColegio() {
-		
-		
-		codigoColegio = nombreColegio.replaceAll("[^0-9.]", "");
-		colegios = colegioService.listaColegio(codigoColegio);
-
-		if (colegios == null) {
-			FacesContext.getCurrentInstance().addMessage(
-					null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR,
-							"Hubo un problema en la búsqueda", ""));
-
-		} else if (colegios.isEmpty()) {
-			FacesContext.getCurrentInstance().addMessage(
-					null,
-					new FacesMessage(FacesMessage.SEVERITY_INFO,
-							"No se encontro Colegio", ""));
-
-		}
-		return;
-	}
-
 	public String getRazonSocial() {
 		return razonSocial;
 	}
@@ -185,13 +151,6 @@ public class RegistroColegioMB implements Serializable {
 		this.logo = logo;
 	}
 
-	public String getNombreColegio() {
-		return nombreColegio;
-	}
-
-	public void setNombreColegio(String nombreColegio) {
-		this.nombreColegio = nombreColegio;
-	}
 
 	public MainMB getLoginMB() {
 		return loginMB;
@@ -209,12 +168,5 @@ public class RegistroColegioMB implements Serializable {
 		this.codigoColegio = codigoColegio;
 	}
 
-	public List<Colegio> getColegios() {
-		return colegios;
-	}
-
-	public void setColegios(List<Colegio> colegios) {
-		this.colegios = colegios;
-	}
 
 }

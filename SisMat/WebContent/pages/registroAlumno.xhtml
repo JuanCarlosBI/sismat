@@ -38,15 +38,15 @@
 									<td><p:outputLabel value="Nombres:" /></td>
 														
 									<td>
-					<p:inputText  value="#{registroAlumnosMB.nombres}" required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Nombres" maxlength="70" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))||(!(event.which &lt; 166 || event.which &gt; 255))) return false;"/>
+					<p:inputText  value="#{registroAlumnosMB.nombres}" required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Nombres" maxlength="70" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))) return false;"/>
 			
 					</td>
 									<td><p:outputLabel value="Apellido Paterno:" /></td>
-									<td><p:inputText  value="#{registroAlumnosMB.apellidoPaterno}" required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Apellido Paterno" maxlength="70" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))||(!(event.which &lt; 166 || event.which &gt; 255))) return false;"/>
+									<td><p:inputText  value="#{registroAlumnosMB.apellidoPaterno}" required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Apellido Paterno" maxlength="70" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))) return false;"/>
 										</td>
 																
 									<td><p:outputLabel value="Apellido Materno:" /></td>
-									<td><p:inputText  value="#{registroAlumnosMB.apellidoMaterno}" required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Apellido Materno" maxlength="70"  onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))||(!(event.which &lt; 166 || event.which &gt; 255))) return false;"/>
+									<td><p:inputText  value="#{registroAlumnosMB.apellidoMaterno}" required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Apellido Materno" maxlength="70"  onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))) return false;"/>
 										</td>
 								</tr>
 								<tr>
@@ -93,7 +93,7 @@
 									</td>
 									<td><p:outputLabel value="Religion:" /></td>
 									
-									<td><p:inputText id="religion" value="#{registroAlumnosMB.religion}" required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Religion" maxlength="20"  onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))||(!(event.which &lt; 166 || event.which &gt; 255))) return false;"/>
+									<td><p:inputText id="religion" value="#{registroAlumnosMB.religion}" required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Religion" maxlength="20"  onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))) return false;"/>
 										</td>
 								</tr>	
 								
@@ -122,13 +122,13 @@
 								<tr>
 									<td><p:outputLabel value="Nombres:" /></td>
 									
-									<td><p:inputText value="#{registroAlumnosMB.nombrePadre}"  required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Nombre del Padre" maxlength="70" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))||(!(event.which &lt; 166 || event.which &gt; 255))) return false;"/>
+									<td><p:inputText value="#{registroAlumnosMB.nombrePadre}"  required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Nombre del Padre" maxlength="70" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))) return false;"/>
 										</td>
 									<td><p:outputLabel value="Apellido Paterno:" /></td>					
-									<td><p:inputText value="#{registroAlumnosMB.apellidoPaternoPadre}"  required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Apellido Paterno del Padre" maxlength="70" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))||(!(event.which &lt; 166 || event.which &gt; 255))) return false;"/>
+									<td><p:inputText value="#{registroAlumnosMB.apellidoPaternoPadre}"  required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Apellido Paterno del Padre" maxlength="70" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))) return false;"/>
 										</td>
 									<td><p:outputLabel value="Apellido Materno:" /></td>
-									<td><p:inputText value="#{registroAlumnosMB.apellidoMaternoPadre}" required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Apellido Materno del Padre" maxlength="70" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))||(!(event.which &lt; 166 || event.which &gt; 255))) return false;"/>
+									<td><p:inputText value="#{registroAlumnosMB.apellidoMaternoPadre}" required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Apellido Materno del Padre" maxlength="70" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))) return false;"/>
 										</td>
 								</tr>
 								
@@ -176,7 +176,7 @@
         								</p:selectOneMenu>
 									</td>
 									<td><p:outputLabel value="Ocupacion:" /></td>				
-									<td><p:inputText  value="#{registroAlumnosMB.ocupacionPadre}"   required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Ocupacion del Padre" maxlength="70" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))||(!(event.which &lt; 166 || event.which &gt; 255))) return false;"/>
+									<td><p:inputText  value="#{registroAlumnosMB.ocupacionPadre}"   required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Ocupacion del Padre" maxlength="70" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))) return false;"/>
 										</td>
 								</tr>	
 								
@@ -184,7 +184,7 @@
 															
 								<tr>																			
 									<td><p:outputLabel value="Religion:" /></td>				
-									<td><p:inputText  value="#{registroAlumnosMB.religionPadre}"  required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Religion del Padre" maxlength="20" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))||(!(event.which &lt; 166 || event.which &gt; 255))) return false;"/>
+									<td><p:inputText  value="#{registroAlumnosMB.religionPadre}"  required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Religion del Padre" maxlength="20" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))) return false;"/>
 										</td>
 									<td><p:outputLabel value="Esta Vivo:" /></td>
 									<td style="text-align: left;">
@@ -211,13 +211,13 @@
 							<table style="text-align: right;">								
 								<tr>
 									<td><p:outputLabel value="Nombres:" /></td>			
-									<td><p:inputText  value="#{registroAlumnosMB.nombreMadre}"   required="#{not empty param.includeGuardar}"  requiredMessage="Ingrese Nombre de la Madre" maxlength="70" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))||(!(event.which &lt; 166 || event.which &gt; 255))) return false;"/>
+									<td><p:inputText  value="#{registroAlumnosMB.nombreMadre}"   required="#{not empty param.includeGuardar}"  requiredMessage="Ingrese Nombre de la Madre" maxlength="70" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))) return false;"/>
 					   </td>
 									<td><p:outputLabel value="Apellido Paterno:" /></td>				
-									<td><p:inputText  value="#{registroAlumnosMB.apellidoPaternoMadre}"  required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Apellido Paterno de la Madre" maxlength="70" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))||(!(event.which &lt; 166 || event.which &gt; 255))) return false;"/>
+									<td><p:inputText  value="#{registroAlumnosMB.apellidoPaternoMadre}"  required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Apellido Paterno de la Madre" maxlength="70" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))) return false;"/>
 										</td>
 									<td><p:outputLabel value="Apellido Materno:" /></td>			
-									<td><p:inputText  value="#{registroAlumnosMB.apellidoMaternoMadre}"   required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Apellido Materno de la Madre" maxlength="70" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))||(!(event.which &lt; 166 || event.which &gt; 255))) return false;"/>
+									<td><p:inputText  value="#{registroAlumnosMB.apellidoMaternoMadre}"   required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Apellido Materno de la Madre" maxlength="70" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))) return false;"/>
 										</td>
 								</tr>
 								<tr>
@@ -264,7 +264,7 @@
         								</p:selectOneMenu>
 									</td>
 									<td><p:outputLabel value="Ocupacion:" /></td>
-									<td><p:inputText  value="#{registroAlumnosMB.ocupacionMadre}"   required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Ocupacion de la Madre"  maxlength="70" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))||(!(event.which &lt; 166 || event.which &gt; 255))) return false;"/>
+									<td><p:inputText  value="#{registroAlumnosMB.ocupacionMadre}"   required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Ocupacion de la Madre"  maxlength="70" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))) return false;"/>
 										</td>
 								</tr>	
 								
@@ -272,7 +272,7 @@
 															
 								<tr>																			
 									<td><p:outputLabel value="Religion:" /></td>				
-									<td><p:inputText value="#{registroAlumnosMB.religionMadre}"   required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Religion de la Madre"  maxlength="20" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))||(!(event.which &lt; 166 || event.which &gt; 255))) return false;"/>
+									<td><p:inputText value="#{registroAlumnosMB.religionMadre}"   required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Religion de la Madre"  maxlength="20" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))) return false;"/>
 										</td>
 									<td><p:outputLabel value="Esta Viva:" /></td>
 									<td style="text-align: left;">
@@ -301,13 +301,13 @@
 							<table style="text-align: right;">								
 								<tr>
 									<td><p:outputLabel value="Nombres:" /></td>				
-									<td><p:inputText value="#{registroAlumnosMB.nombreApoderado}" required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Nombre del Apoderado"  maxlength="70" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))||(!(event.which &lt; 166 || event.which &gt; 255))) return false;"/>
+									<td><p:inputText value="#{registroAlumnosMB.nombreApoderado}" required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Nombre del Apoderado"  maxlength="70" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))) return false;"/>
 										</td>
 									<td><p:outputLabel value="Apellido Paterno:" /></td>
-									<td><p:inputText value="#{registroAlumnosMB.apellidoPaternoApoderado}" required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Apellido Paterno del Apoderado" maxlength="70" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))||(!(event.which &lt; 166 || event.which &gt; 255))) return false;"/>
+									<td><p:inputText value="#{registroAlumnosMB.apellidoPaternoApoderado}" required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Apellido Paterno del Apoderado" maxlength="70" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))) return false;"/>
 										</td>
 									<td><p:outputLabel value="Apellido Materno:" /></td>
-									<td><p:inputText value="#{registroAlumnosMB.apellidoMaternoApoderado}" required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Apellido Materno del Apoderado" maxlength="70" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))||(!(event.which &lt; 166 || event.which &gt; 255))) return false;"/>
+									<td><p:inputText value="#{registroAlumnosMB.apellidoMaternoApoderado}" required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Apellido Materno del Apoderado" maxlength="70" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))) return false;"/>
 										</td>				
 								</tr>
 								<tr>
@@ -354,7 +354,7 @@
         								</p:selectOneMenu>
 									</td>
 									<td><p:outputLabel value="Ocupacion:" /></td>		
-									<td><p:inputText  value="#{registroAlumnosMB.ocupacionApoderado}"  required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Ocupacion del Apoderado" maxlength="20" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))||(!(event.which &lt; 166 || event.which &gt; 255))) return false;"/>
+									<td><p:inputText  value="#{registroAlumnosMB.ocupacionApoderado}"  required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Ocupacion del Apoderado" maxlength="20" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))) return false;"/>
 										</td>						
 								</tr>	
 								
@@ -362,7 +362,7 @@
 															
 								<tr>																			
 									<td><p:outputLabel value="Religion:" /></td>				
-									<td><p:inputText value="#{registroAlumnosMB.religionApoderado}" required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Religion del Apoderado"  maxlength="20" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))||(!(event.which &lt; 166 || event.which &gt; 255))) return false;"/>
+									<td><p:inputText value="#{registroAlumnosMB.religionApoderado}" required="#{not empty param.includeGuardar}" requiredMessage="Ingrese Religion del Apoderado"  maxlength="20" onkeypress="if(!(event.which &lt; 33 || event.which &gt; 64)||(!(event.which &lt; 91 || event.which &gt; 96))||(!(event.which &lt; 123 || event.which &gt; 159))) return false;"/>
 										</td>
 									<td><p:outputLabel value="Esta Vivo:" /></td>
 									<td style="text-align: left;">
@@ -381,7 +381,7 @@
       
         
   </p:tabView>	
-  		  <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+  		  <p:messages id="messages" showDetail="false" autoUpdate="true" closable="true" />
 		
     <table>
 			<tr>

@@ -177,10 +177,10 @@
 									</tr>
 									<tr>
 										<td><p:outputLabel value="N° factura:" /></td>
-										<td><p:inputText value="#{registroPagoMB.factura}" required="true" requiredMessage="Ingrese Factura" 
+										<td><p:inputText value="#{registroPagoMB.factura}" required="true" requiredMessage="Ingrese Factura" onkeypress="if((!(event.which &lt; 32 || event.which &gt; 47))||(!(event.which &lt; 58 || event.which &gt; 255))) return false;"
 												size="9" /></td>
 										<td><p:outputLabel value="N° boleta:" /></td>
-										<td><p:inputText value="#{registroPagoMB.boleta}" required="true" requiredMessage="Ingrese Boleta" onkeypress="if((event.which &lt; 48 || event.which &gt; 57)||(!(event.which &lt; 0 || event.which &gt; 31))) return false;"
+										<td><p:inputText value="#{registroPagoMB.boleta}" required="true" requiredMessage="Ingrese Boleta" onkeypress="if((!(event.which &lt; 32 || event.which &gt; 47))||(!(event.which &lt; 58 || event.which &gt; 255))) return false;"
 												size="9" /></td>
 									</tr>
 								</table>
@@ -269,7 +269,7 @@
 						</td>
 					</tr>
 					<tr>
-						<p:messages id="messages" showDetail="true" autoUpdate="true"
+						<p:messages id="messages" showDetail="false" autoUpdate="true"
 							closable="true" />
 
 					</tr>

@@ -54,7 +54,7 @@ public class MatriculaDaoImpl extends HibernateDaoSupport implements
 
 		try {
 			sql = "from Alumnos where codigoColegio = '" + codigoColegio.trim()
-					+ "' AND idAlumno='" + idAlumno.trim() + "'";
+					+ "' AND dni='" + idAlumno.trim() + "'";
 
 			alumnos = getHibernateTemplate().find(sql);
 			

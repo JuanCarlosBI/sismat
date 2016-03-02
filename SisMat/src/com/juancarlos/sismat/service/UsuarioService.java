@@ -13,7 +13,7 @@ public interface UsuarioService {
 	public List<Usuario> datosUsuario(String nombreUsuario,String clave);
 	public boolean registroUsuario(String nombreUsuario,String clave,String tipo,String nombreCompleto,String estado, String codigoColegio,String fecha);
 	 public List<Usuario> nombreUsuario(String nombreCompleto);
-		public List<Usuario> listaUsuario(String codigoColegio, String idUsuario,String estado);
+		public List<Usuario> listaUsuario(String codigoColegio, String nombreCompleto,String estado);
 
 		public boolean editar(Usuario editarUsuario);
 }

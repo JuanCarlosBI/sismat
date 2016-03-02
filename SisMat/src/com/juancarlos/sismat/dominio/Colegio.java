@@ -2,8 +2,11 @@ package com.juancarlos.sismat.dominio;
 // Generated 20-abr-2015 23:35:22 by Hibernate Tools 3.6.0
 
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -21,6 +24,7 @@ public class Colegio  implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private Short idColegio;
 	private String codigoColegio;
      private String razonSocial;
      private String correo;
@@ -33,10 +37,15 @@ public class Colegio  implements java.io.Serializable {
     }
 
 	
-    public Colegio(String codigoColegio) {
-        this.codigoColegio = codigoColegio;
-    }
-    public Colegio(String codigoColegio, String razonSocial, String correo, String direccion, String telefono, String fax, byte[] logo) {
+    
+    public Colegio(Short idColegio) {
+		super();
+		this.idColegio = idColegio;
+	}
+
+
+
+	public Colegio(String codigoColegio, String razonSocial, String correo, String direccion, String telefono, String fax, byte[] logo) {
        this.codigoColegio = codigoColegio;
        this.razonSocial = razonSocial;
        this.correo = correo;
@@ -46,10 +55,20 @@ public class Colegio  implements java.io.Serializable {
        this.logo = logo;
     }
    
-     @Id 
+	
+	 @Id @GeneratedValue(strategy=IDENTITY)
+    @Column(name="idColegio", unique=true, nullable=false)
+     public Short getIdColegio() {
+		return idColegio;
+	}
 
-    
-    @Column(name="codigoColegio", unique=true, nullable=false, length=11)
+	public void setIdColegio(Short idColegio) {
+		this.idColegio = idColegio;
+	}
+
+
+	  
+    @Column(name="codigoColegio", length=11)
     public String getCodigoColegio() {
         return this.codigoColegio;
     }

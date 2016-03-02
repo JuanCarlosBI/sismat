@@ -160,7 +160,7 @@
         			
         			<tr>
 					<td style="text-align: left;"><p:outputLabel value="N° Aula:" /></td>
-					<td style="text-align: left;"><p:inputText value="#{horariosMB.registroAula}" size="2"/></td>
+					<td style="text-align: left;"><p:inputMask value="#{horariosMB.registroAula}" size="2" mask="99"/></td>
         			
 					<td style="text-align: left;"><p:outputLabel value="Hora Inicio:" /></td>
 					<td style="text-align: left;"><p:inputMask value="#{horariosMB.registroHoraIni}" size="3" mask="99:99" /></td>
@@ -180,7 +180,7 @@
 							</td>	
 				</tr>
 				</table>
-					<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+					<p:messages id="messages" showDetail="false" autoUpdate="true" closable="true" />
 			
 		</p:panel>
 		

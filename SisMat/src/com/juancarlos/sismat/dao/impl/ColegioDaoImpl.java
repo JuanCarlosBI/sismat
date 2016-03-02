@@ -77,12 +77,12 @@ public class ColegioDaoImpl extends HibernateDaoSupport implements ColegioDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	public Colegio encontrarColegio(String codigo) {
+	public Colegio encontrarColegio(String nombreColegio) {
 		List<Colegio> colegios;
 		Colegio colegio = new Colegio();
 		String sql = "";
 		try {
-			sql = "from Colegio where codigoColegio='" + codigo + "'";
+			sql = "from Colegio where razonSocial='" + nombreColegio + "'";
 			colegios = getHibernateTemplate().find(sql);
 
 			if (!colegios.isEmpty()) {
@@ -118,18 +118,18 @@ public class ColegioDaoImpl extends HibernateDaoSupport implements ColegioDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Colegio> listaColegio(String codigoColegio) {
+	public List<Colegio> listaColegio(String nombreColegio) {
 		logger.info("en listaAlumnos");
 		
 		String sql = "";
 		List<Colegio> listacolegio = new ArrayList<Colegio>();
 
 		try {
-			if (codigoColegio.length() != 0 ) {
-				sql = "from Colegio where codigoColegio = '" + codigoColegio.trim()
+			if (nombreColegio.length() != 0 ) {
+				sql = "from Colegio where razonSocial = '" + nombreColegio.trim()
 						+ "'";
 
-			}if(codigoColegio.length() == 0){
+			}if(nombreColegio.length() == 0){
 				sql = "from Colegio";
 			}
 			
@@ -163,5 +163,29 @@ public class ColegioDaoImpl extends HibernateDaoSupport implements ColegioDao {
 		}	
 		
 		return resultado;
-	}  
+	}
+	public byte[] getProductImage(String codigoColegio){
+		String sql = "from Colegio where codigoColegio = '" + codigoColegio.trim()
+				+ "'";
+		List<Colegio> listacolegio = new ArrayList<Colegio>();
+
+		byte[] productImage = null;
+		String razonSocial;
+		try {
+			
+			
+
+			listacolegio = getHibernateTemplate().find(sql);
+			productImage=listacolegio.get(0).getLogo();
+			razonSocial=listacolegio.get(0).getRazonSocial();
+
+			
+
+		} catch (Exception e) {
+			
+			productImage = null;
+		}
+
+		return productImage;
+	}
 }

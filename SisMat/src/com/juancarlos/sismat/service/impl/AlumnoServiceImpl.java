@@ -47,7 +47,6 @@ public class AlumnoServiceImpl implements AlumnoService {
 		String apellidosApoderado = apellidoPaternoApoderado + " " + apellidoMaternoApoderado;
 		String apellidos=apellidoPaterno+" "+apellidoMaterno;
 		String nombreCompleto=nombres+" "+apellidos;
-		alumno.setIdAlumno(dni);
 		alumno.setNombres(nombres);
 		alumno.setApellidoPaterno(apellidoPaterno);
 		alumno.setApellidoMaterno(apellidoMaterno);

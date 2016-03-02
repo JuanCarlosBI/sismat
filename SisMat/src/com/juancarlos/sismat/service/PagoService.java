@@ -9,7 +9,6 @@ import com.juancarlos.sismat.dominio.Seccion;
 import com.juancarlos.sismat.dominio.Pagos;
 
 public interface PagoService {
-	 public List<Alumnos> idAlumno(String idAlumno);
 	 public List<Matriculas> listaMatricula(String codigoColegio, String idAlumno);
 
 	 public List<Alumnos> listaAlumnos(String codigoColegio, String idAlumno);

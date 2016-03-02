@@ -10,8 +10,9 @@ public interface ColegioService {
 	
 	public boolean registroColegio(String razonSocial,String ruc,String correoString ,String direccion,String telefono,String fax,byte[] logo);
 	 public List<Colegio> nombreColegio(String nombres);
-	 public List<Colegio> listaColegio(String codigoColegio);
+	 public List<Colegio> listaColegio(String nombreColegio);
 
 		public boolean editar(Colegio editarColegio);
+		public byte[] getProductImage(String codigoColegio);
 		
 }

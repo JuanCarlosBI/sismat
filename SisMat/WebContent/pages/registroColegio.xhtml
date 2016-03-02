@@ -26,116 +26,8 @@
 	<br />
 		<h:form id="form"  enctype="multipart/form-data">
 
-			<p:panel id="busquedaColegio" header="Busqueda de Colegio"
-				styleClass="panelBusquedaForm" toggleable="false" closable="false"
-				toggleSpeed="500" closeSpeed="2000" widgetVar="panel">
-				
-				<table>
-				<tr>
-					<td><p:outputLabel value="Nombre de Colegio:"/></td>
-										<td colspan="3"><p:autoComplete value="#{registroColegioMB.nombreColegio}"
-										completeMethod="#{registroColegioMB.autoCompletadoColegio}" 
-										style="width:250px;text-align:left; " />
-										</td>
-										<td><p:commandButton id="btnBuscar" value="Buscar"
-										action="#{registroColegioMB.listaColegio}"
-										update=":form:idColegio:" styleClass="buttonForm" />
-										
-										</td>	
-				</tr>
-				</table>
-				
-					
-		</p:panel>
 
-		<p:panel id="idColegio" menuTitle="Colegio" header="Colegio" 
-				styleClass="panelTabla" toggleable="false" closable="false" 
-				toggleSpeed="500" closeSpeed="2000" widgetVar="panel" rowKey="#{lista.id}" >
-				
-			
-	 	<p:dataTable  rowIndexVar="row" var="lista" value="#{registroColegioMB.colegios}" editable="true">
-			   
-			  <p:ajax event="rowEdit" listener="#{registroColegioMB.onEdit}" update=":form:messages" label="Editar"/>  
-                      
-			   <p:column headerText="Id" styleClass="panelTabla">
-				<h:outputText value="#{row + 1}"/>
-				</p:column>
-			 
-			    <p:column headerText="Razon Social" styleClass="panelTabla">
-			        <p:cellEditor>  
-                            <f:facet name="output">  
-                                <h:outputText value="#{lista.razonSocial}" />
-                            </f:facet>  
-                            <f:facet name="input">  
-                                <p:inputText value="#{lista.razonSocial}" />  
-                            </f:facet>  
-                    </p:cellEditor>
-			    </p:column>
-			 
-			    <p:column headerText="RUC" styleClass="panelTabla">
-			        <p:cellEditor>  
-                            <f:facet name="output">  
-                                <h:outputText value="#{lista.codigoColegio}" />
-                            </f:facet>  
-                            <f:facet name="input">  
-								<p:inputMask  value="#{lista.codigoColegio}" mask="99999999999"   required="#{not empty param.includeGuardar}"/>
-					                             
-                            </f:facet>  
-                    </p:cellEditor>
-			    </p:column>
-			 
-			    <p:column headerText="Correo" styleClass="panelTabla">
-			        <p:cellEditor>  
-                            <f:facet name="output">  
-                                <h:outputText value="#{lista.correo}" />
-                            </f:facet>  
-                            <f:facet name="input">  
-                               <p:inputText value="#{lista.correo}" validatorMessage="Por favor ingrese el correo correctamente. Ejm: abc@abc.com">
-					   <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" /> 		
-					</p:inputText>  
-                            </f:facet>  
-                    </p:cellEditor>
-			    </p:column>
-			    
-			    <p:column headerText="Direccion" styleClass="panelTabla">
-			        <p:cellEditor>  
-                            <f:facet name="output">  
-                                <h:outputText value="#{lista.direccion}" />
-                            </f:facet>  
-                            <f:facet name="input">  
-                                <p:inputText value="#{lista.direccion}" />  
-                            </f:facet>  
-                    </p:cellEditor>
-			    </p:column>	
-			    <p:column headerText="Telefono" styleClass="panelTabla">
-			        <p:cellEditor>  
-                            <f:facet name="output">  
-                                <h:outputText value="#{lista.telefono}" />
-                            </f:facet>  
-                            <f:facet name="input">  
-                                	<p:inputMask  value="#{lista.telefono}" mask="999-9999"/>
-					
-                            </f:facet>  
-                    </p:cellEditor>
- 			    </p:column>	 
- 			    <p:column headerText="Fax" styleClass="panelTabla"> 
-			        <p:cellEditor>   
-                             <f:facet name="output">   
-                                 <h:outputText value="#{lista.fax}" /> 
-                             </f:facet>   
-                             <f:facet name="input">     
-                                <p:inputMask value="#{lista.fax}" mask="999-9999"/>
-                             </f:facet>   
-                     </p:cellEditor>
- 			    </p:column>	 
- 			     <p:column headerText="Opciones" styleClass="panelTabla" >  
-                         <p:rowEditor />  
-                    </p:column>  
-			    
- 			</p:dataTable>		
-					
- 		</p:panel> 
- 		<p:panel id="busqueda" header="Informacion del centro educativo"
+	<p:panel id="busqueda" header="Informacion del centro educativo"
 				styleClass="panelBusquedaForm" toggleable="false" closable="false"
 				toggleSpeed="500" closeSpeed="2000" widgetVar="panel">
 				
@@ -176,18 +68,22 @@
 									<td><p:outputLabel value="Logo:" /></td>
 									<td colspan="2">									
 										<p:fileUpload fileUploadListener="#{registroColegioMB.handleFileUpload}"  
-	  mode="advanced"  multiple="true"  sizeLimit="1000000000000000000"   allowTypes="/(\.|\/)(gif|jpe?g|png)$/" /> 
+	  mode="advanced"  multiple="true"  sizeLimit="1000000000000000000" value="{registroColegioMB.logo}"  allowTypes="/(\.|\/)(gif|jpe?g|png)$/" /> 
 	    								</td>		
 								</tr>	
 				</table>
-				<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+				<p:messages id="messages" showDetail="false" autoUpdate="true" closable="true" />
 				<table align="center">
 				<tr bgcolor="EEEEEE">
 					<td colspan="2" align="left">						
 							
 							<p:commandButton id="btnGuardar" value="Guardar"								
-								action="#{registroColegioMB.registrarColegio}"   ajax="false" styleClass="buttonForm">
+								action="#{registroColegioMB.registrarColegio}"  update="busqueda"   ajax="false" styleClass="buttonForm">
 								 <f:param name="includeGuardar" value="true" /> </p:commandButton> 
+									<p:commandButton id="btnLimpiarrr"	 update="busqueda"			
+										process="@this" actionListener="#{registroColegioMB.reset}"				
+										value="Limpiar" styleClass="buttonForm"/>
+										
 									<p:commandButton value= "Cancelar" ajax= "false" action= "pagina.xhmtl?faces-redirect=true" styleClass="buttonForm" /> 
 																			
 					</td>

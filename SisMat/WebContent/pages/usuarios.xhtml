@@ -73,7 +73,10 @@
 									<td>			
 									<p:commandButton id="btnBuscar" value="Buscar"
 											action="#{usuariosMB.listaUsuario}" update=":form:idUsuario"
-											styleClass="buttonForm" />								
+											styleClass="buttonForm" />		
+											<p:commandButton id="btnLimpiarrr"	 update="Usuarios,idUsuario"			
+						process="@this" actionListener="#{usuariosMB.reset}"				
+										value="Limpiar" styleClass="buttonForm"/>						
 									</td>
 								</tr>
 							</table>
@@ -107,7 +110,7 @@
 								<h:outputText value="#{lista.nombreCompleto}" />
 							</f:facet>
 							<f:facet name="input">
-								<p:inputText value="#{lista.nombreCompleto}" />
+								<p:inputText value="#{lista.nombreCompleto}" required="true" requiredMessage="Ingrese Nombre Completo"/>
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
@@ -118,7 +121,7 @@
 								<h:outputText value="#{lista.nombreUsuario}" />
 							</f:facet>
 							<f:facet name="input">
-								<p:inputText value="#{lista.nombreUsuario}" />
+								<p:inputText value="#{lista.nombreUsuario}" required="true" requiredMessage="Ingrese Nombre Usuario"/>
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
@@ -133,7 +136,7 @@
 			    <p:column headerText="Tipo de Usuario" styleClass="panelTabla">
 						<p:cellEditor>
 							<f:facet name="output">
-								<h:outputText value="#{lista.tipo}" />
+								<h:outputText value="#{lista.tipo}" required="true" requiredMessage="Ingrese Tipo de Usuario" />
 							</f:facet>
 							<f:facet name="input">
 								
@@ -166,7 +169,7 @@
 					</p:column>
 			</p:dataTable>
 				
-				<p:messages id="messages" showDetail="true" autoUpdate="true"
+				<p:messages id="messages" showDetail="false" autoUpdate="true"
 					closable="true" />	
 		</p:panel>
 		

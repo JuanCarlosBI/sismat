@@ -54,7 +54,7 @@ public class ProfesoresMB implements Serializable {
 	
 
 	public void onEdit(RowEditEvent event) {
-		FacesMessage msg = new FacesMessage("Alumno Editado",
+		FacesMessage msg = new FacesMessage("Profesor Editado",
 				((Empleado) event.getObject()).getNombreCompleto());
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 		boolean resultado = empleadoService.editar((Empleado) event.getObject());

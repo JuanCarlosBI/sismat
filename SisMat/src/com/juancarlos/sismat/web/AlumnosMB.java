@@ -89,12 +89,9 @@ public class AlumnosMB implements Serializable {
 	public void reset() {
 		this.dni = null;
 		this.nombres = null;
-
 		this.apellidoPaterno = null;
-
 		this.apellidoMaterno = null;
 		alumnos=null;
-
 	}
 
 

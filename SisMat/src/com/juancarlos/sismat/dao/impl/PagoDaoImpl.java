@@ -25,21 +25,7 @@ public class PagoDaoImpl extends HibernateDaoSupport implements PagoDao {
 		setSessionFactory(sessionFactory);
 	}
 
-	@SuppressWarnings("unchecked")
-	public List<Alumnos> idAlumno(String idAlumno) {
-		List<Alumnos> alumnos = null;
-
-		String sql = "from Alumnos where idAlumno like '%" + idAlumno + "%'";
-		try {
-
-			alumnos = getHibernateTemplate().find(sql);
-
-		} catch (Exception e) {
-			alumnos = null;
-		}
-
-		return alumnos;
-	}
+	
 
 	@SuppressWarnings("unchecked")
 	public Pagos encontrarPago(Short idPago) {
@@ -73,7 +59,7 @@ public class PagoDaoImpl extends HibernateDaoSupport implements PagoDao {
 
 		try {
 			sql = "from Alumnos where codigoColegio = '" + codigoColegio.trim()
-					+ "' AND idAlumno='" + idAlumno.trim() + "'";
+					+ "' AND dni='" + idAlumno.trim() + "'";
 
 			alumnos = getHibernateTemplate().find(sql);
 

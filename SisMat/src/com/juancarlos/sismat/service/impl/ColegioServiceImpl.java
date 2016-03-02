@@ -37,13 +37,17 @@ public class ColegioServiceImpl implements ColegioService {
 		// TODO Auto-generated method stub
 		return colegioDao.nombreColegio(nombres);
 	}
-	public List<Colegio> listaColegio(String codigoColegio) {
+	public List<Colegio> listaColegio(String nombreColegio) {
 		
-		List<Colegio> colegios = colegioDao.listaColegio(codigoColegio);
+		List<Colegio> colegios = colegioDao.listaColegio(nombreColegio);
 
 		return colegios;
 	}
 
+	public byte[] getProductImage(String codigoColegio){
+		byte[] productImage =colegioDao.getProductImage(codigoColegio);
+		return productImage ;
+	}
 	
 	public boolean editar(Colegio editarColegio){
 		return colegioDao.editar(editarColegio);

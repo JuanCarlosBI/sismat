@@ -52,8 +52,7 @@ public class UsuariosMB implements Serializable {
 
 		if (query.length() >= 3) {
 			for (Usuario elemento : listaNombresProductos) {
-				results.add(elemento.getNombreCompleto() + "-"
-						+ elemento.getIdUsuario());
+				results.add(elemento.getNombreCompleto());
 			}
 		}
 
@@ -64,20 +63,27 @@ public class UsuariosMB implements Serializable {
 	public void listaUsuario() {
 		mainMB.datosUsuario();
 		codigoColegio = mainMB.getCodigoColegio();
-		idUsuario = nombreCompleto.replaceAll("[^0-9.]", "");
 
-		listaUsuario = usuarioService.listaUsuario(codigoColegio, idUsuario,
+		listaUsuario = usuarioService.listaUsuario(codigoColegio, nombreCompleto,
 				estado);
 		int resultado = listaUsuario.size();
 		if (resultado == 0) {
 			FacesContext.getCurrentInstance().addMessage(
 					null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR,
+					new FacesMessage(FacesMessage.SEVERITY_INFO,
 							"Usuario no encontrado", ""));
 		}
 		return;
 
 	}
+	public void reset() {
+		this.nombreCompleto = null;
+		listaUsuario = null;
+
+		FacesMessage msg = new FacesMessage("Datos limpios");
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+
 
 	public void onEdit(RowEditEvent event) {
 		FacesMessage msg = new FacesMessage("Usuario Editado",

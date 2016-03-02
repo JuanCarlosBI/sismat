@@ -19,10 +19,7 @@ public class PagoServiceImpl implements PagoService {
 	@Autowired
 	PagoDao pagoDao;
 
-	public List<Alumnos> idAlumno(String idAlumno) {
-		// TODO Auto-generated method stub
-		return pagoDao.idAlumno(idAlumno);
-	}
+	
 
 	public List<Matriculas> listaMatricula(String codigoColegio, String idAlumno) {
 		

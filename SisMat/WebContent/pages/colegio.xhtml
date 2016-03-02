@@ -1,0 +1,157 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+<f:view contentType="text/html">
+	<h:head>
+		<title>Registro colegio</title>
+		<link type="text/css" rel="stylesheet"
+			href="#{request.contextPath}/css/default.css" />
+		<link type="text/css" rel="stylesheet"
+			href="#{request.contextPath}/css/icons.css" />
+		<script type="text/javacsript"
+			src="#{request.contextPath}/js/jquery-2.1.3.js"></script>
+		<script type="text/javacsript" src="#{request.contextPath}/js/util.js"></script>
+			
+		<style type="text/css">
+/* 			.fieldInputForm { */
+/* 				width: 200px; */
+/* 			} */
+		</style>
+	</h:head>
+	<h:body>
+	<br />
+		<h:form id="form"  enctype="multipart/form-data">
+
+			<p:panel id="busquedaColegio" header="Busqueda de Colegio"
+				styleClass="panelBusquedaForm" toggleable="false" closable="false"
+				toggleSpeed="500" closeSpeed="2000" widgetVar="panel">
+				
+				<table>
+				<tr>
+					<td><p:outputLabel value="Nombre de Colegio:"/></td>
+										<td colspan="3"><p:autoComplete value="#{colegioMB.nombreColegio}"
+										completeMethod="#{colegioMB.autoCompletadoColegio}" 
+										style="width:250px;text-align:left; " />
+										</td>
+										<td><p:commandButton id="btnBuscar" value="Buscar"
+										action="#{colegioMB.listaColegio}"
+										update=":form:idColegio:" styleClass="buttonForm" />
+										
+										</td>	
+										<td>
+										<p:commandButton id="btnLimpiarrr"	 update="busquedaColegio,idColegio"			
+										process="@this" actionListener="#{colegioMB.reset}"				
+										value="Limpiar" styleClass="buttonForm"/>
+										</td>
+				</tr>
+				</table>
+				
+					
+		</p:panel>
+
+		<p:panel id="idColegio" menuTitle="Colegio" header="Colegio" 
+				styleClass="panelTabla" toggleable="false" closable="false" 
+				toggleSpeed="500" closeSpeed="2000" widgetVar="panel" rowKey="#{lista.id}" >
+				 
+	
+			<p:dataTable  id="myDataTable" rowIndexVar="row" var="lista" value="#{colegioMB.colegios}" editable="true">
+			   
+			  <p:ajax event="rowEdit" listener="#{colegioMB.onEdit}" update=":form:messages" label="Editar"/>  
+                         
+			    <p:column headerText="Id" styleClass="panelTabla">
+				<h:outputText id="id" value="#{row + 1}"/>
+				</p:column>
+			 
+			    <p:column headerText="Razon Social" styleClass="panelTabla">
+			        <p:cellEditor>  
+                            <f:facet name="output">  
+                                <h:outputText value="#{lista.razonSocial}" />
+                            </f:facet>  
+                            <f:facet name="input">  
+                                <p:inputText value="#{lista.razonSocial}" required="true" requiredMessage="Ingrese Razon Social"/>  
+                            </f:facet>  
+                    </p:cellEditor>
+			    </p:column>
+			 
+			    <p:column headerText="RUC" styleClass="panelTabla">
+			        <p:cellEditor>  
+                            <f:facet name="output">  
+                                <h:outputText value="#{lista.codigoColegio}" />
+                            </f:facet>  
+                            <f:facet name="input">  
+								<p:inputMask  value="#{lista.codigoColegio}" mask="99999999999"   required="true" requiredMessage="Ingrese RUC"/>
+					        </f:facet>  
+                    </p:cellEditor>
+			    </p:column>
+			 
+			    <p:column headerText="Correo" styleClass="panelTabla">
+			        <p:cellEditor>  
+                            <f:facet name="output">  
+                                <h:outputText value="#{lista.correo}" />
+                            </f:facet>  
+                            <f:facet name="input">  
+                               <p:inputText value="#{lista.correo}" required="true" requiredMessage="Ingrese Correo" validatorMessage="Por favor ingrese el correo correctamente. Ejm: abc@abc.com">
+					   <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" /> 		
+					</p:inputText>  
+                            </f:facet>  
+                    </p:cellEditor>
+			    </p:column>
+			    
+			    <p:column headerText="Direccion" styleClass="panelTabla">
+			        <p:cellEditor>  
+                            <f:facet name="output">  
+                                <h:outputText value="#{lista.direccion}" />
+                            </f:facet>  
+                            <f:facet name="input">  
+                                <p:inputText value="#{lista.direccion}" required="true" requiredMessage="Ingrese Direccion" />  
+                            </f:facet>  
+                    </p:cellEditor>
+			    </p:column>	
+			    <p:column headerText="Telefono" styleClass="panelTabla">
+			        <p:cellEditor>  
+                            <f:facet name="output">  
+                                <h:outputText value="#{lista.telefono}" />
+                            </f:facet>  
+                            <f:facet name="input">  
+                                	<p:inputMask  value="#{lista.telefono}" required="true" requiredMessage="Ingrese Telefono" mask="999-9999"/>
+					
+                            </f:facet>  
+                    </p:cellEditor>
+ 			    </p:column>	 
+ 			    <p:column headerText="Fax" styleClass="panelTabla"> 
+			        <p:cellEditor>   
+                             <f:facet name="output">   
+                                 <h:outputText value="#{lista.fax}" /> 
+                             </f:facet>   
+                             <f:facet name="input">     
+                                <p:inputMask value="#{lista.fax}" required="true" requiredMessage="Ingrese Fax" mask="999-9999"/>
+                             </f:facet>   
+                     </p:cellEditor>
+ 			    </p:column>	 
+<!--  			    <p:column headerText="Logo" styleClass="panelTabla">  -->
+
+
+<!-- <p:graphicImage value="#{colegioMB.graphicText}" /> -->
+<!--                 </p:column>	 -->
+                 
+ 			     <p:column headerText="Opciones" styleClass="panelTabla" >  
+                         <p:rowEditor />  
+                    </p:column>  
+		
+			</p:dataTable>
+		
+			   
+		     
+ 			     
+					<p:messages id="messages" showDetail="false" autoUpdate="true" closable="true" />
+				
+ 		</p:panel> 
+ 			
+		</h:form>
+	</h:body>
+</f:view>
+</html>

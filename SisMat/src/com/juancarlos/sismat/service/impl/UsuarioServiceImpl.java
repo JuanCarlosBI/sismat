@@ -51,9 +51,9 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 	
 
-	public List<Usuario> listaUsuario(String codigoColegio, String idUsuario,String estado){
+	public List<Usuario> listaUsuario(String codigoColegio, String nombreCompleto,String estado){
 		
-		List<Usuario> listaUsuario=usuarioDao.listaUsuario(codigoColegio,idUsuario,estado);
+		List<Usuario> listaUsuario=usuarioDao.listaUsuario(codigoColegio,nombreCompleto,estado);
 		return listaUsuario;
 	}
 

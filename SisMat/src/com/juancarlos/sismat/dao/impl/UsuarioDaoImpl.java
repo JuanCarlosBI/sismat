@@ -47,7 +47,7 @@ public class UsuarioDaoImpl extends HibernateDaoSupport implements UsuarioDao {
 		return sesion;
 	}
 
-	public List<Usuario> listaUsuario(String codigoColegio, String idUsuario,
+	public List<Usuario> listaUsuario(String codigoColegio, String nombreCompleto,
 			String estado) {
 		logger.info("en listaUsuario");
 
@@ -55,27 +55,27 @@ public class UsuarioDaoImpl extends HibernateDaoSupport implements UsuarioDao {
 		List<Usuario> listaUsuario = new ArrayList<Usuario>();
 
 		try {
-			if (idUsuario.length() == 0 && estado.length() == 0) {
+			if (nombreCompleto.length() == 0 && estado.length() == 0) {
 				sql = "from Usuario where codigoColegio = '"
 						+ codigoColegio.trim() + "'";
 
 			}
-			if (idUsuario.length() != 0 && estado.length() == 0) {
+			if (nombreCompleto.length() != 0 && estado.length() == 0) {
 				sql = "from Usuario where codigoColegio = '"
-						+ codigoColegio.trim() + "' AND idUsuario='"
-						+ idUsuario + "'";
+						+ codigoColegio.trim() + "' AND nombreCompleto='"
+						+ nombreCompleto + "'";
 
 			}
-			if (idUsuario.length() == 0 && estado.length() != 0) {
+			if (nombreCompleto.length() == 0 && estado.length() != 0) {
 				sql = "from Usuario where codigoColegio = '"
 						+ codigoColegio.trim() + "' AND estado='" + estado
 						+ "'";
 
 			}
-			if (idUsuario.length() != 0 && estado.length() != 0) {
+			if (nombreCompleto.length() != 0 && estado.length() != 0) {
 				sql = "from Usuario where codigoColegio = '"
-						+ codigoColegio.trim() + "' AND idUsuario='"
-						+ idUsuario + "' AND estado='" + estado + "'";
+						+ codigoColegio.trim() + "' AND nombreCompleto='"
+						+ nombreCompleto + "' AND estado='" + estado + "'";
 
 			}
 
